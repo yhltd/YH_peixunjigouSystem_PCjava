@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.yhocn.income.mapper.IncomeMapper">
+
+	<select id="selectAll" parameterType="Income" resultType="Income">
+		select *,(SELECT SUM(money)FROM income) mall,(SELECT SUM(paid)FROM income) pall,(SELECT SUM(money)FROM income WHERE msort="学费") xall,(SELECT SUM(money)-SUM(paid)FROM income) yall
+		 from income
+	</select>
+	<insert id="add">
+		insert into
+		income(rgdate,money,msort,mremark,paid,
+		psort,premark,handle)
+		values(#{rgdate},#{money},#{msort},#{mremark},#{paid},
+		#{psort},#{premark},#{handle})
+	</insert>
+</mapper>

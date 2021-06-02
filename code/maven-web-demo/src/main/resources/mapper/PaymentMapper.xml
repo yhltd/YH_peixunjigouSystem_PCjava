@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.yhocn.pay.mapper.PaymentMapper">
+
+	<select id="selectAll" parameterType="Payment" resultType="Payment">
+		select * from payment
+		<where>
+			<if test="realname != null and realname != ''">
+				and realname like concat('%',#{realname},'%')
+			</if>
+		</where>
+	</select>
+
+	<select id="selectById" resultType="Payment">
+		select * from payment where
+		id=#{id}
+	</select>
+
+	<insert id="add">
+		insert into
+		payment(ksdate,realname,paid,money,paiment,keeper,remark)
+		values(#{ksdate},#{realname},#{paid},#{money},#{paiment},
+		#{keeper},#{remark})
+	</insert>
+
+	<update id="update">
+		update payment
+		set
+		ksdate=#{ksdate},
+		realname=#{realname},
+		paid=#{paid},
+		paiment=#{paiment},
+		keeper=#{keeper},
+		remark=#{remark}
+		where
+		id=#{id}
+	</update>
+
+	<delete id="delete">
+		delete from payment
+		where id=#{id}
+	</delete>
+
+	<select id="selectByRealname" resultType="Payment">
+		select *
+		from payment
+		where realname=#{realname}
+	</select>
+	
+</mapper>

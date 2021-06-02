@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.yhocn.student.mapper.StudentMapper">
+
+	<select id="selectAll" parameterType="Student" resultType="Student">
+		select * from student
+		<where>
+			<if test="realName != null and realName != ''">
+				and Realname like concat('%',#{realName},'%')
+			</if>
+		</where>
+	</select>
+
+	<select id="selectArr" parameterType="Student" resultType="Student">
+		select * from student
+		where Nocost is not null and Nocost>0
+	</select>
+	
+	<select id="selectById" resultType="Student">
+		select * from student where
+		ID=#{id}
+	</select>
+
+	<insert id="add">
+		insert into
+		student(RealName,Sex,rgdate,Course,Teacher,
+		Classnum,phone,Fee,Cost,Nocost,Hour,Nohour,Allhour,Type)
+		values(#{realName},#{sex},#{rgdate},#{course},#{teacher},
+		#{classnum},#{phone},#{fee},#{cost},#{nocost},#{hour},
+		#{nohour},#{allHour},#{type})
+	</insert>
+
+	<update id="update">
+		update student
+		set
+		RealName=#{realName},
+		Sex=#{sex},
+		rgdate=#{rgdate},
+		Course=#{course},
+		Teacher=#{teacher},
+		Classnum=#{classnum},
+		phone=#{phone},
+		Fee=#{fee},
+		Cost=#{cost},
+		Nocost=#{nocost},
+		Hour=#{hour},
+		Nohour=#{nohour},
+		Allhour=#{allHour},
+		Type=#{type}
+		where
+		ID=#{id}
+	</update>
+
+	<delete id="delete">
+		delete from student
+		where ID=#{id}
+	</delete>
+
+
+	<select id="selectByRealName" resultType="Student">
+		select *
+		from student
+		where RealName=#{realName}
+	</select>
+	
+</mapper>
