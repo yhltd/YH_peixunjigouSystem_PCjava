@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yhocn.shezhi.mapper.ShezhiMapper">
+
+	<select id="selectAll" parameterType="Shezhi" resultType="Shezhi">
+		select * from shezhi
+	</select>
+
+
+	<insert id="add">
+		insert into
+		shezhi(course,teacher,type,paiment,msort,psort)
+		values(#{course},#{teacher},#{type},#{paiment},#{msort},#{psort})
+	</insert>
+
+	<update id="update">
+		update shezhi
+		set
+		Course=#{course},
+		Teacher=#{teacher},
+		Type=#{type},
+		Paiment=#{paiment},
+		Msort=#{msort},
+		Psort=#{psort}
+		where
+		ID=#{id}
+	</update>
+	<update id="alter">
+		update shezhi
+		set
+		Course=#{course},
+		Teacher=#{teacher},
+		Type=#{type},
+		Paiment=#{paiment},
+		Msort=#{msort},
+		Psort=#{psort}
+		where
+		ID=#{id}
+	</update>
+	<delete id="delete">
+		delete from shezhi
+		where ID=#{id}
+	</delete>
+	<select id="selectById" resultType="Shezhi">
+		select * from shezhi where
+		ID=#{id}
+	</select>
+</mapper>

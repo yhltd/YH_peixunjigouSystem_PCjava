@@ -2,6 +2,7 @@ package com.yhocn.student.controller;
 
 import java.util.List;
 
+import com.yhocn.shezhi.entity.Shezhi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,8 +39,10 @@ public class StudentController {
 	}
 	
 	@RequestMapping("/toUpdate")
-	public ModelAndView toUpdate(ModelAndView mv,Student s) {
+	public ModelAndView toUpdate(ModelAndView mv,Student s,Shezhi shezhi) {
 		Student s2 = service.selectById(s);
+		List<Shezhi>shezhiList= service.shezhiList(shezhi);
+		mv.addObject("shezhiList",shezhiList);
 		mv.addObject("student",s2);
 		mv.setViewName("/stu/update.jsp");
 		
@@ -89,6 +92,13 @@ public class StudentController {
 		List<Student> select = service.selectByRealName(s);
 		mv.addObject("select",select);
 		mv.setViewName("/stu/inq.jsp");
+		return mv;
+	}
+	@RequestMapping("/shezhi")
+	public ModelAndView shezhiInfo(ModelAndView mv,Shezhi shezhi){
+		List<Shezhi>shezhiList= service.shezhiList(shezhi);
+		mv.addObject("shezhiList",shezhiList);
+		mv.setViewName("/stu/add.jsp");
 		return mv;
 	}
 }

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yhocn.keshi_detail.mapper.KeshiDetailMapper">
+
+    <select id="getList" parameterType="Keshidetail" resultType="Keshidetail">
+		select * from keshi_detail
+	</select>
+
+	<select id="getListById" parameterType="Keshidetail" resultType="Keshidetail">
+		select * from keshi_detail where id=#{id}
+	</select>
+
+	<select id="shezhiList" parameterType="Shezhi" resultType="Shezhi">
+		select * from shezhi
+	</select>
+
+	<insert id="add">
+		insert into
+		keshi_detail(riqi,student_name,course,keshi,teacher_name,jine)
+		values(#{riqi},#{student_name},#{course},#{keshi},#{teacher_name},#{jine})
+	</insert>
+
+	<update id="update">
+		update keshi_detail
+		set
+		riqi=#{riqi},
+		student_name=#{student_name},
+		course=#{course},
+		keshi=#{keshi},
+		teacher_name=#{teacher_name},
+		jine=#{jine}
+		where
+		id=#{id}
+	</update>
+
+	<delete id="delete">
+		delete from keshi_detail
+		where id=#{id}
+	</delete>
+
+	<select id="getTeacherKeshiList" parameterType="Keshidetail" resultType="Keshidetail">
+		select teacher_name,course,sum(keshi) as keshi,jine,sum(jine*keshi) as gongzi from keshi_detail group by teacher_name,jine order by teacher_name
+	</select>
+
+</mapper>

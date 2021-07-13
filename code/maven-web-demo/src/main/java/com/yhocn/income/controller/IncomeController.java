@@ -9,7 +9,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.yhocn.income.entity.Income;
 import com.yhocn.income.service.IncomeService;
-import com.yhocn.student.entity.Student;
 
 @Controller
 @RequestMapping("/inc")
@@ -37,4 +36,5 @@ public class IncomeController {
 		}
 		return mv;
 	}
+
 }

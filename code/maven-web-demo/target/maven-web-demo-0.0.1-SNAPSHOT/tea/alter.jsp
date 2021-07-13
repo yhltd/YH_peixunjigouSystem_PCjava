@@ -1,18 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>职场办公管理系统</title>
+    <title>培训管理系统</title>
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/public.css"/>
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/style.css"/>
 </head>
 <body>
 <!--头部-->
 <header class="publicHeader">
-    <h1>培训机构管理系统</h1>
+    <h1>培训管理系统</h1>
 
     <div class="publicHeaderR">
         <p><span id="hours"></span><span style="color: #fff21b">${GLOBAL_USER.realName} </span> , 欢迎你！</p>
@@ -31,13 +31,16 @@
         <nav>
             <ul class="list">
                 <li><a href="<%=request.getContextPath() %>/main.jsp">主页</a></li>
-                <li><a href="<%=request.getContextPath() %>/tea/teacher.action">设置</a></li>
+                <%--原有代码     <li><a href="<%=request.getContextPath() %>/tea/teacher.action">设置</a></li>--%>
+                <li><a href="<%=request.getContextPath() %>/te/shezhi.action">设置</a></li>
                 <li><a href="<%=request.getContextPath() %>/stu/student.jsp">学生信息</a></li>
                 <li><a href="<%=request.getContextPath() %>/pay/payment.jsp">缴费记录</a></li>
-                <li><a href="<%=request.getContextPath() %>/stu/ksclass.action">课时统计</a></li>
+                <li><a href="<%=request.getContextPath() %>/keshi/getList.action">课时统计</a></li>
                 <li><a href="<%=request.getContextPath() %>/inc/income.action">收支明细</a></li>
                 <li><a href="<%=request.getContextPath() %>/stu/arr.action">欠费学生</a></li>
                 <li><a href="<%=request.getContextPath() %>/stu/inq.jsp">学生查询</a></li>
+                <li><a href="<%=request.getContextPath() %>/keshi/getTeacherKeshiList.action">教师课时统计</a></li>
+                <li><a href="<%=request.getContextPath() %>/tea/teacher.action">用户管理</a></li>
                 <li><a href="<%=request.getContextPath() %>/help.jsp">帮助</a></li>
             </ul>
         </nav>
@@ -72,7 +75,7 @@
                 <div>
                     <label for="useType">用户类别：</label>
                     <input type="text" name="useType" id="useType" value="${teacher.useType }"/>
-                	<span >*</span>
+                    <span >*</span>
                 </div>
                 <div>
                     <label for="age">年龄：</label>

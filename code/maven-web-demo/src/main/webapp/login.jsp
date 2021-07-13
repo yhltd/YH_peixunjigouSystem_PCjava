@@ -4,7 +4,7 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>职场办公管理系统</title>
+    <title>培训管理系统</title>
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/style.css"/>
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/min.css"/>
 	<script type="text/javascript">
@@ -52,15 +52,15 @@
                     <label for="password">密码：</label>
                     <input id="password" type="password" name="password" value="${cookie.password.value}" placeholder="请输入密码" required/>
                 </div>
-                	<div id="min11">
-                	<c:if test="${not empty cookie.userName and not empty cookie.password}">
-                		<input type="checkbox" id="isRemPwd" checked="true"/>
-                	</c:if>
-                	<c:if test="${empty cookie.userName or empty cookie.password}">
-                		<input type="checkbox" id="isRemPwd"/>
-                	</c:if>
-                	十天内免登录
-                </div>
+<%--                	<div id="min11">--%>
+<%--                	<c:if test="${not empty cookie.userName and not empty cookie.password}">--%>
+<%--                		<input type="checkbox" id="isRemPwd" checked="true"/>--%>
+<%--                	</c:if>--%>
+<%--                	<c:if test="${empty cookie.userName or empty cookie.password}">--%>
+<%--                		<input type="checkbox" id="isRemPwd"/>--%>
+<%--                	</c:if>--%>
+<%--                	十天内免登录--%>
+<%--                </div>--%>
                 
                 <div class="subBtn">
                     <input type="submit" id="loginBtn" value="登录" />

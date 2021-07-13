@@ -163,6 +163,9 @@ li{
 .list li:nth-child(9){
     background: url("../img/zd.png") 0  center no-repeat;
 }
+.list li:nth-child(10){
+    background: url("../img/zd.png") 0  center no-repeat;
+}
 .list li:hover{
     background-color: #acd5f5;
     border-radius: 4px;

@@ -2,6 +2,7 @@ package com.yhocn.student.service;
 
 import java.util.List;
 
+import com.yhocn.shezhi.entity.Shezhi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -46,6 +47,11 @@ public class StudentServiceImpl implements StudentService {
 	@Override
 	public List<Student> selectArr(Student s) {
 		return dao.selectArr(s);
+	}
+
+	@Override
+	public List<Shezhi> shezhiList(Shezhi shezhi) {
+		return dao.shezhiList(shezhi);
 	}
 
 

@@ -1,18 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>职场办公管理系统</title>
+    <title>培训管理系统</title>
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/public.css"/>
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/style.css"/>
 </head>
 <body>
 <!--头部-->
 <header class="publicHeader">
-    <h1>培训机构管理系统</h1>
+    <h1>培训管理系统</h1>
 
     <div class="publicHeaderR">
         <p><span id="hours"></span><span style="color: #fff21b">${GLOBAL_USER.realName} </span> , 欢迎你！</p>
@@ -41,13 +41,13 @@
         </div>
         <div class="providerAdd">
             <form action="<%=request.getContextPath() %>/tea/update.action?id=${GLOBAL_USER.id }" method="post">
-                
+
                 <div>
                     <label for="realName">姓名：</label>
                     <input type="text" name="realName" id="realName" value="${GLOBAL_USER.realName }"/>
                     <span >*</span>
                 </div>
-                 <div>
+                <div>
                     <label for="age">年龄：</label>
                     <input type="text" name="age" id="age" value="${GLOBAL_USER.age }"/>
                     <span >*</span>

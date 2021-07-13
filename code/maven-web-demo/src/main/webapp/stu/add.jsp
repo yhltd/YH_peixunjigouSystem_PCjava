@@ -1,23 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>职场办公管理系统</title>
+    <title>培训管理系统</title>
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/public.css"/>
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/style.css"/>
 </head>
 <body>
 <!--头部-->
 <header class="publicHeader">
-    <h1>培训机构管理系统</h1>
+    <h1>培训管理系统</h1>
 
     <div class="publicHeaderR">
         <p><span id="hours"></span><span style="color: #fff21b">${GLOBAL_USER.realName} </span> , 欢迎你！</p>
         <a href="<%=request.getContextPath() %>/login.jsp">退出</a>
     </div>
+
+
 </header>
 <!--时间-->
 <section class="publicTime">
@@ -31,13 +33,16 @@
         <nav>
             <ul class="list">
                 <li><a href="<%=request.getContextPath() %>/main.jsp">主页</a></li>
-                <li><a href="<%=request.getContextPath() %>/tea/teacher.action">设置</a></li>
+                <%--原有代码     <li><a href="<%=request.getContextPath() %>/tea/teacher.action">设置</a></li>--%>
+                <li><a href="<%=request.getContextPath() %>/te/shezhi.action">设置</a></li>
                 <li><a href="<%=request.getContextPath() %>/stu/student.jsp">学生信息</a></li>
                 <li><a href="<%=request.getContextPath() %>/pay/payment.jsp">缴费记录</a></li>
-                <li><a href="<%=request.getContextPath() %>/stu/ksclass.action">课时统计</a></li>
+                <li><a href="<%=request.getContextPath() %>/keshi/getList.action">课时统计</a></li>
                 <li><a href="<%=request.getContextPath() %>/stu/ksclass.action">收支明细</a></li>
                 <li><a href="<%=request.getContextPath() %>/stu/arr.action">欠费学生</a></li>
                 <li><a href="<%=request.getContextPath() %>/stu/inq.jsp">学生查询</a></li>
+                <li><a href="<%=request.getContextPath() %>/keshi/getTeacherKeshiList.action">教师课时统计</a></li>
+                <li><a href="<%=request.getContextPath() %>/tea/teacher.action">用户管理</a></li>
                 <li><a href="<%=request.getContextPath() %>/help.jsp">帮助</a></li>
             </ul>
         </nav>
@@ -56,25 +61,49 @@
                 </div>
                 <div>
                     <label  for="sex">学生性别：</label>
-                    <select name="sex">
+                    <select name="sex" id="sex" style="width: 270px">
                         <option >男</option>
                         <option selected>女</option>
                     </select>
                     <span >*</span>
                 </div>
-                 <div>
+                <div>
                     <label for="rgdate">报名时间：</label>
-                    <input type="text" name="rgdate" id="rgdate" value="${student.rgdate }"/>
+                    <%--    原先代码      <input type="text" name="rgdate" id="rgdate" value="${student.rgdate }"/>--%>
+                    <input type="date" id="rgdate" name="rgdate" />
                     <span >*</span>
                 </div>
                 <div>
                     <label for="course">培训课程：</label>
-                    <input type="text" name="course" id="course" value="${student.course }"/>
+                    <%--    原有代码     <input type="text" name="course" id="course" value="${student.course }"/>--%>
+                    <select name="course" id="course" style="width: 270px">
+<%--                        <option > </option>--%>
+<%--                        <option >作文写作</option>--%>
+<%--                        <option >口才演讲</option>--%>
+<%--                        <option >健身</option>--%>
+<%--                        <option >跆拳道</option>--%>
+<%--                        <option >吉他</option>--%>
+<%--                        <option >架子鼓</option>--%>
+                        <c:forEach items="${shezhiList}" var="shezhi">
+                            <option>${shezhi.course}</option>
+                        </c:forEach>
+                    </select>
                     <span >*</span>
                 </div>
                 <div>
                     <label for="teacher">责任老师：</label>
-                    <input type="text" name="teacher" id="teacher" value="${student.teacher }"/>
+                    <%--    原有代码     <input type="text" name="teacher" id="teacher" value="${student.teacher }"/>--%>
+                    <select name="teacher" id="teacher" style="width: 270px">
+<%--                        <option > </option>--%>
+<%--                        <option >琪一</option>--%>
+<%--                        <option >陈二</option>--%>
+<%--                        <option >张三</option>--%>
+<%--                        <option >李四</option>--%>
+<%--                        <option >王五</option>--%>
+                        <c:forEach items="${shezhiList}" var="shezhi">
+                            <option>${shezhi.teacher}</option>
+                        </c:forEach>
+                    </select>
                     <span >*</span>
                 </div>
                 <div>
@@ -111,7 +140,17 @@
                 </div>
                 <div>
                     <label for="type">状态：</label>
-                    <input type="text" name="type" id="type" value="${student.type }"/>
+                    <%--    原有代码     <input type="text" name="type" id="type" value="${student.type }"/>--%>
+                    <select name="type" id="type" style="width: 270px">
+<%--                        <option >意向预定</option>--%>
+<%--                        <option selected>在训</option>--%>
+<%--                        <option >暂停</option>--%>
+<%--                        <option >结束</option>--%>
+<%--                        <option >退学</option>--%>
+                        <c:forEach items="${shezhiList}" var="shezhi">
+                            <option >${shezhi.type}</option>
+                        </c:forEach>
+                    </select>
                 </div>
                 <div class="providerAddBtn">
                     <input type="submit" value="保存" onclick="history.back(-1)"/>

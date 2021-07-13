@@ -1,18 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>职场办公管理系统</title>
+    <title>培训管理系统</title>
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/public.css"/>
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/style.css"/>
 </head>
 <body>
 <!--头部-->
 <header class="publicHeader">
-    <h1>培训机构管理系统</h1>
+    <h1>培训管理系统</h1>
 
     <div class="publicHeaderR">
         <p><span id="hours"></span><span style="color: #fff21b">${GLOBAL_USER.realName} </span> , 欢迎你！</p>
@@ -30,13 +30,16 @@
         <nav>
             <ul class="list">
                 <li><a href="<%=request.getContextPath() %>/main.jsp">主页</a></li>
-                <li><a href="<%=request.getContextPath() %>/tea/teacher.action">设置</a></li>
+                <%--原有代码     <li><a href="<%=request.getContextPath() %>/tea/teacher.action">设置</a></li>--%>
+                <li><a href="<%=request.getContextPath() %>/te/shezhi.action">设置</a></li>
                 <li><a href="<%=request.getContextPath() %>/stu/student.jsp">学生信息</a></li>
                 <li><a href="<%=request.getContextPath() %>/pay/payment.jsp">缴费记录</a></li>
-                <li><a href="<%=request.getContextPath() %>/stu/ksclass.action">课时统计</a></li>
+                <li><a href="<%=request.getContextPath() %>/keshi/getList.action">课时统计</a></li>
                 <li><a href="<%=request.getContextPath() %>/inc/income.action">收支明细</a></li>
                 <li><a href="<%=request.getContextPath() %>/stu/arr.action">欠费学生</a></li>
                 <li><a href="<%=request.getContextPath() %>/stu/inq.jsp">学生查询</a></li>
+                <li><a href="<%=request.getContextPath() %>/keshi/getTeacherKeshiList.action">教师课时统计</a></li>
+                <li><a href="<%=request.getContextPath() %>/tea/teacher.action">用户管理</a></li>
                 <li><a href="<%=request.getContextPath() %>/help.jsp">帮助</a></li>
             </ul>
         </nav>
@@ -63,28 +66,28 @@
                 <th width="10%">照片</th>
                 <th width="5%">学历</th>
             </tr>
-           	<c:forEach items="${telist }" var="s">
-            	<tr>
-                	<td>${s.id}</td>
-                	<td>${s.userName}</td>
-                	<td>${s.password}</td>
-                	<td>${s.realName}</td>
-                	<td>${s.useType}</td>
-                	<td>${s.age}</td>
-                	<td>${s.phone}</td>
-                	<td>${s.home}</td>
-                	<td>${s.photo}</td>
-                	<td>${s.education}</td>
-                	<td>
-                    	<a href="<%=request.getContextPath() %>/tea/toalter.action?id=${s.id}"><img src="<%=request.getContextPath() %>/img/read.png" alt="查看" title="查看"/></a>
-                    	<a href="<%=request.getContextPath() %>/tea/toalter.action?id=${s.id}"><img src="<%=request.getContextPath() %>/img/xiugai.png" alt="修改" title="修改"/></a>
-                    	<a href="<%=request.getContextPath() %>/tea/delete.action?id=${s.id}" class="removeProvider" onclick="return confirm('您确认要删除本记录么？')"><img src="<%=request.getContextPath() %>/img/schu.png" alt="删除" title="删除"/></a>
-                	</td>
-            	</tr>
+            <c:forEach items="${telist }" var="s">
+                <tr>
+                    <td>${s.id}</td>
+                    <td>${s.userName}</td>
+                    <td>${s.password}</td>
+                    <td>${s.realName}</td>
+                    <td>${s.useType}</td>
+                    <td>${s.age}</td>
+                    <td>${s.phone}</td>
+                    <td>${s.home}</td>
+                    <td>${s.photo}</td>
+                    <td>${s.education}</td>
+                    <td>
+                        <a href="<%=request.getContextPath() %>/tea/toalter.action?id=${s.id}"><img src="<%=request.getContextPath() %>/img/read.png" alt="查看" title="查看"/></a>
+                        <a href="<%=request.getContextPath() %>/tea/toalter.action?id=${s.id}"><img src="<%=request.getContextPath() %>/img/xiugai.png" alt="修改" title="修改"/></a>
+                        <a href="<%=request.getContextPath() %>/tea/delete.action?id=${s.id}" class="removeProvider" onclick="return confirm('您确认要删除本记录么？')"><img src="<%=request.getContextPath() %>/img/schu.png" alt="删除" title="删除"/></a>
+                    </td>
+                </tr>
             </c:forEach>
         </table>
-
     </div>
+
 </section>
 
 <%-- <!--点击删除按钮后弹出的页面-->

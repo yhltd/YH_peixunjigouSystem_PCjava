@@ -1,0 +1,88 @@
+package com.yhocn.kstj.controller;
+
+import com.yhocn.kstj.entity.Kstj;
+
+import com.yhocn.kstj.service.KstjService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpSession;
+import java.util.List;
+
+@Controller
+@RequestMapping("/teacher")
+public class KstjController {
+
+
+	@Autowired
+	private KstjService service;
+
+	@RequestMapping("/kstj")
+	public ModelAndView query(ModelAndView mv, Kstj t) {
+		List<Kstj> tclist = service.selectAll(t);
+		mv.addObject("tclist",tclist);
+		mv.setViewName("/teacher/kstj.jsp");
+		return mv;
+	}
+
+
+	@RequestMapping("/toalter")
+	public ModelAndView toalter(ModelAndView mv,Kstj t) {
+		Kstj t2 = service.selectById(t);
+		mv.addObject("kstj",t2);
+		mv.setViewName("/teacher/alter.jsp");
+		return mv;
+	}
+	@RequestMapping("/alter")
+	public ModelAndView alter(ModelAndView mv,Kstj t) {
+		int i = service.alter(t);
+		if(i>0) {
+			mv.addObject("msg","修改用户成功");
+			mv.setViewName("/teacher/kstj.action");
+		}else {
+			mv.addObject("msg","修改用户失败");
+			mv.setViewName("/teacher/kstj.action");
+		}
+		return mv;
+	}
+
+	@RequestMapping("/update")
+	public ModelAndView update(ModelAndView mv, Kstj t, HttpSession se) {
+		int i = service.update(t);
+		if(i>0) {
+			mv.addObject("msg","修改用户成功");
+			mv.setViewName("/teacher/update.jsp");
+			se.setAttribute("GLOBAL_USER", t);
+		}else {
+			mv.addObject("msg","修改用户失败");
+			mv.setViewName("/teacher/update.jsp");
+		}
+		return mv;
+	}
+	@RequestMapping("/delete")
+	public ModelAndView delete(ModelAndView mv,Kstj t) {
+		int i = service.delete(t);
+		if(i>0) {
+			mv.addObject("msg","删除用户成功");
+		}else {
+			mv.addObject("msg","删除用户失败");
+		}
+		mv.setViewName("/teacher/kstj.action");
+		return mv;
+	}
+	@RequestMapping("/add")
+	public ModelAndView add(ModelAndView mv,Kstj t) {
+		int i = service.add(t);
+		if(i>0) {
+			mv.addObject("msg","增加用户成功");
+			mv.setViewName("/teacher/kstj.action");
+		}else {
+			mv.addObject("msg","增加用户失败");
+			mv.setViewName("/stu/add.jsp");
+		}
+		return mv;
+	}
+
+}

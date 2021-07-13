@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.yhocn.student.mapper.StudentMapper">
 
 	<select id="selectAll" parameterType="Student" resultType="Student">
-		select * from student
+		select id,RealName,Sex,rgdate,Course,Teacher,Classnum,phone,Fee,Cost,Fee - Cost as Nocost,Hour,Allhour - Hour as Nohour,Allhour,Type FROM Student
 		<where>
 			<if test="realName != null and realName != ''">
 				and Realname like concat('%',#{realName},'%')
@@ -65,6 +65,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select *
 		from student
 		where RealName=#{realName}
+	</select>
+
+	<select id="shezhiList" parameterType="Shezhi" resultType="Shezhi">
+		select * from shezhi
 	</select>
 	
 </mapper>

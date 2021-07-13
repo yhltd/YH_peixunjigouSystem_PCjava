@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yhocn.kstj.mapper.KstjMapper">
+
+	<select id="selectAll" parameterType="Kstj" resultType="Kstj">
+		select id,name,skks,mjje,skks*mjje as gzhs from kstj
+	</select>
+
+	<insert id="add">
+		insert into
+		kstj(name,skks,mjje,gzhs)
+		values(#{name},#{skks},#{mjje},#{gzhs})
+	</insert>
+
+	<update id="update">
+		update kstj
+		set
+		Name=#{name},
+		Skks=#{skks},
+		Mjje=#{mjje},
+		Gzhs=#{gzhs}
+		where
+		ID=#{id}
+	</update>
+	<update id="alter">
+		update kstj
+		set
+		Name=#{name},
+		Skks=#{skks},
+		Mjje=#{mjje},
+		Gzhs=#{gzhs}
+		where
+		ID=#{id}
+	</update>
+	<delete id="delete">
+		delete from kstj
+		where ID=#{id}
+	</delete>
+	<select id="selectById" resultType="Kstj">
+		select * from kstj where
+		ID=#{id}
+	</select>
+</mapper>
