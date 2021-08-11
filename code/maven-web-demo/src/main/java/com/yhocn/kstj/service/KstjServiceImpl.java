@@ -14,38 +14,38 @@ public class KstjServiceImpl implements KstjService{
 	@Autowired
 	private KstjMapper dao;
 	@Override
-	public List<Kstj> selectAll(Kstj t) {
-		return dao.selectAll(t);
+	public List<Kstj> selectAll(Kstj t, String c) {
+		return dao.selectAll(t,c);
 	}
 
 	@Override
-	public Kstj selectById(Kstj t) {
-		return dao.selectById(t);
+	public Kstj selectById(Kstj t, String c) {
+		return dao.selectById(t,c);
 	}
 
 	@Override
-	public int add(Kstj t) {
-		return dao.add(t);
+	public int add(Kstj t, String c) {
+		return dao.add(t,c);
 	}
 
 	@Override
-	public int update(Kstj t) {
-		return dao.update(t);
+	public int update(Kstj t, String c) {
+		return dao.update(t,c);
 	}
 
 	@Override
-	public int delete(Kstj t) {
-		return dao.delete(t);
+	public int delete(Kstj t, String c) {
+		return dao.delete(t,c);
 	}
 
 	@Override
-	public List<Kstj> selectByName(Kstj t) {
-		return dao.selectByName(t);
+	public List<Kstj> selectByName(Kstj t, String c) {
+		return dao.selectByName(t,c);
 	}
 
 	@Override
-	public int alter(Kstj t) {
-		return dao.alter(t);
+	public int alter(Kstj t, String c) {
+		return dao.alter(t,c);
 	}
 
 

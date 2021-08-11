@@ -13,38 +13,43 @@ public class TecherServiceImpl implements TeacherService{
 	@Autowired
 	private TeacherMapper dao;
 	@Override
-	public List<Teacher> selectAll(Teacher t) {
-		return dao.selectAll(t);
+	public List<Teacher> selectAll(Teacher t, String c) {
+		return dao.selectAll(t,c);
 	}
 
 	@Override
-	public Teacher selectById(Teacher t) {
-		return dao.selectById(t);
+	public List<Teacher> selectAll1() {
+		return dao.selectAll1();
 	}
 
 	@Override
-	public int add(Teacher t) {
-		return dao.add(t);
+	public Teacher selectById(Teacher t, String c) {
+		return dao.selectById(t,c);
 	}
 
 	@Override
-	public int update(Teacher t) {
-		return dao.update(t);
+	public int add(Teacher t, String c) {
+		return dao.add(t,c);
 	}
 
 	@Override
-	public int delete(Teacher t) {
-		return dao.delete(t);
+	public int update(Teacher t, String c) {
+		return dao.update(t,c);
 	}
 
 	@Override
-	public List<Teacher> selectByRealName(Teacher t) {
-		return dao.selectByRealName(t);
+	public int delete(Teacher t, String c) {
+		return dao.delete(t,c);
 	}
 
 	@Override
-	public int alter(Teacher t) {
-		return dao.alter(t);
+	public List<Teacher> selectByRealName(Teacher t, String c) {
+		return dao.selectByRealName(t,c);
+	}
+
+	@Override
+	public int alter(Teacher t, String c) {
+		return dao.alter(t,c);
 	}
 
 	

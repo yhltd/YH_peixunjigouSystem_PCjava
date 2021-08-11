@@ -7,24 +7,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.yhocn.pay.mapper.PaymentMapper">
 
 	<select id="selectAll" parameterType="Payment" resultType="Payment">
-		select * from payment
-		<where>
-			<if test="realname != null and realname != ''">
-				and realname like concat('%',#{realname},'%')
-			</if>
-		</where>
+		select * from payment where Company =#{c}
+
+	</select>
+	<select id="selectAll1" parameterType="Payment" resultType="Payment">
+		select * from payment where Company =#{c}
+		<if test="a != null and a != ''">
+			and realname like #{a}
+		</if>
 	</select>
 
 	<select id="selectById" resultType="Payment">
 		select * from payment where
-		id=#{id}
+		id=#{id} and Company =#{c}
 	</select>
 
 	<insert id="add">
 		insert into
-		payment(ksdate,realname,paid,money,paiment,keeper,remark)
+		payment(ksdate,realname,paid,money,paiment,keeper,remark,Company)
 		values(#{ksdate},#{realname},#{paid},#{money},#{paiment},
-		#{keeper},#{remark})
+		#{keeper},#{remark},#{c})
 	</insert>
 
 	<update id="update">
@@ -36,19 +38,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		paiment=#{paiment},
 		keeper=#{keeper},
 		remark=#{remark}
+		Company =#{c}
 		where
-		id=#{id}
+		id=#{id} and Company =#{c}
 	</update>
 
 	<delete id="delete">
 		delete from payment
-		where id=#{id}
+		where id=#{id} and Company =#{c}
 	</delete>
 
 	<select id="selectByRealname" resultType="Payment">
 		select *
 		from payment
-		where realname=#{realname}
+		where realname=#{realname} and Company =#{c}
 	</select>
 	
 </mapper>

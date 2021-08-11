@@ -11,11 +11,13 @@ public class Income {
 	private String psort;
 	private String premark;
 	private String handle;
+	private String Company;
 	
 	private Integer mall;
 	private Integer pall;
 	private Integer xall;
 	private Integer yall;
+	private Integer d;
 	
 	public Income() {
 		super();
@@ -23,7 +25,7 @@ public class Income {
 	}
 
 	public Income(Integer id, String rgdate, Integer money, String msort, String mremark, Integer paid, String psort,
-			String premark, String handle, Integer mall, Integer pall, Integer xall, Integer yall) {
+			String premark, String handle, Integer mall, Integer pall, Integer xall, Integer yall,String Company,Integer d) {
 		super();
 		this.id = id;
 		this.rgdate = rgdate;
@@ -34,10 +36,12 @@ public class Income {
 		this.psort = psort;
 		this.premark = premark;
 		this.handle = handle;
+		this.Company=Company;
 		this.mall = mall;
 		this.pall = pall;
 		this.xall = xall;
 		this.yall = yall;
+		this.d= d;
 	}
 
 	public Integer getId() {
@@ -144,11 +148,23 @@ public class Income {
 		this.yall = yall;
 	}
 
+	public String getCompany() { return Company; }
+
+	public void setCompany(String company) { this.Company = company; }
+
+	public Integer getD() {
+		return d;
+	}
+
+	public void setD(Integer d) {
+		this.d = d;
+	}
+
 	@Override
 	public String toString() {
 		return "Income [id=" + id + ", rgdate=" + rgdate + ", money=" + money + ", msort=" + msort + ", mremark="
 				+ mremark + ", paid=" + paid + ", psort=" + psort + ", premark=" + premark + ", handle=" + handle
-				+ ", mall=" + mall + ", pall=" + pall + ", xall=" + xall + ", yall=" + yall + "]";
+				+ ", mall=" + mall + ", pall=" + pall + ", xall=" + xall + ", yall=" + yall + ", Company=" + Company +", d=" + d +"]";
 	}
 
 	

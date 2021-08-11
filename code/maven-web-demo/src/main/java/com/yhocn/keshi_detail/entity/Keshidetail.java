@@ -13,13 +13,14 @@ public class Keshidetail {
     private String teacher_name;
     public Double jine;
     public Double gongzi;
+    private String Company;
 
     public Keshidetail() {
         super();
         // TODO Auto-generated constructor stub
     }
 
-    public Keshidetail(Integer id, String riqi, String student_name, String course, Integer keshi, String teacher_name, Double jine, Double gongzi) {
+    public Keshidetail(Integer id, String riqi, String student_name, String course, Integer keshi, String teacher_name, Double jine, Double gongzi,String Company) {
         this.id = id;
         this.riqi = riqi;
         this.student_name = student_name;
@@ -28,6 +29,7 @@ public class Keshidetail {
         this.teacher_name = teacher_name;
         this.jine = jine;
         this.gongzi = gongzi;
+        this.Company=Company;
     }
 
     public Integer getId() {
@@ -94,6 +96,10 @@ public class Keshidetail {
         this.gongzi = gongzi;
     }
 
+    public String getCompany() { return Company; }
+
+    public void setCompany(String company) { this.Company = company; }
+
     @Override
     public String toString() {
         return "Keshidetail{" +
@@ -105,6 +111,7 @@ public class Keshidetail {
                 ", teacher_name='" + teacher_name + '\'' +
                 ", jine=" + jine +
                 ", gongzi=" + gongzi +
+                ", Company=" + Company +
                 '}';
     }
 }

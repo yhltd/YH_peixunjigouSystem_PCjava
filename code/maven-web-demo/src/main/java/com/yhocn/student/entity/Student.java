@@ -17,6 +17,7 @@ public class Student {
 	private Integer nohour;
 	private Integer allHour;
 	private String type;
+	private String Company;
 	
 	public Student() {
 		super();
@@ -25,7 +26,7 @@ public class Student {
 
 	public Student(Integer id, String realName, String sex, String rgdate, String course, String teacher,
 			String classnum, String phone, Integer fee, Integer cost, Integer nocost, Integer hour, Integer nohour,
-			Integer allHour, String type) {
+			Integer allHour, String type,String Company) {
 		super();
 		this.id = id;
 		this.realName = realName;
@@ -42,6 +43,7 @@ public class Student {
 		this.nohour = nohour;
 		this.allHour = allHour;
 		this.type = type;
+		this.Company=Company;
 	}
 
 	public Integer getId() {
@@ -164,12 +166,20 @@ public class Student {
 		this.type = type;
 	}
 
+	public void setCompany(String company) {
+		this.Company = company;
+	}
+
+	public String getCompany() {
+		return Company;
+	}
+
 	@Override
 	public String toString() {
 		return "Student [id=" + id + ", realName=" + realName + ", sex=" + sex + ", rgdate=" + rgdate + ", course="
 				+ course + ", teacher=" + teacher + ", classnum=" + classnum + ", phone=" + phone + ", fee=" + fee
 				+ ", cost=" + cost + ", nocost=" + nocost + ", hour=" + hour + ", nohour=" + nohour + ", allHour="
-				+ allHour + ", type=" + type + "]";
+				+ allHour + ", type=" + type + ", Company=" + Company + "]";
 	}
 
 	

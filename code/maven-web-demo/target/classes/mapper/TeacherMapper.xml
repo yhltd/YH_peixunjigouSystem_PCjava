@@ -5,22 +5,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.yhocn.teacher.mapper.TeacherMapper">
 
 	<select id="selectAll" parameterType="Teacher" resultType="Teacher">
-		select * from teacher
+		select * from teacher where Company =#{c}
 	</select>
-
+	<select id="selectAll1" parameterType="Teacher" resultType="Teacher">
+		select distinct Company from teacher
+	</select>
 	<select id="login" resultType="Teacher">
 		select *
 		from teacher
 		where
-		UserName=#{userName} and Password=#{password}
+		UserName=#{userName} and Password=#{password} and Company=#{Company}
 	</select>
 
 	<insert id="add">
 		insert into
 		teacher(UserName,Password,RealName,UseType,Age,
-		Phone,Home,photo,Education)
+		Phone,Home,photo,Education,Company )
 		values(#{userName},#{password},#{realName},#{useType},#{age},
-		#{phone},#{home},#{photo},#{education})
+		#{phone},#{home},#{photo},#{education},#{c})
 	</insert>
 	
 	<update id="update">
@@ -32,8 +34,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		Home=#{home},
 		photo=#{photo},
 		Education=#{education}
+		Company =#{c}
 		where
-		ID=#{id}
+		ID=#{id} and Company =#{c}
 	</update>
 	<update id="alter">
 		update teacher
@@ -47,15 +50,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		Home=#{home},
 		photo=#{photo},
 		Education=#{education}
+		Company =#{c}
 		where
-		ID=#{id}
+		ID=#{id} and Company =#{c}
 	</update>
 	<delete id="delete">
 		delete from teacher
-		where ID=#{id}
+		where ID=#{id} and Company =#{c}
 	</delete>
 	<select id="selectById" resultType="Teacher">
 		select * from teacher where
-		ID=#{id}
+		ID=#{id} and Company =#{c}
 	</select>
 </mapper>

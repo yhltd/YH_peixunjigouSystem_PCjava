@@ -13,38 +13,38 @@ public class ShezhiServiceImpl implements ShezhiService{
 	@Autowired
 	private ShezhiMapper dao;
 	@Override
-	public List<Shezhi> selectAll(Shezhi t) {
-		return dao.selectAll(t);
+	public List<Shezhi> selectAll(Shezhi t, String c) {
+		return dao.selectAll(t,c);
 	}
 
 	@Override
-	public Shezhi selectById(Shezhi t) {
-		return dao.selectById(t);
+	public Shezhi selectById(Shezhi t, String c) {
+		return dao.selectById(t,c);
 	}
 
 	@Override
-	public int add(Shezhi t) {
-		return dao.add(t);
+	public int add(Shezhi t, String c) {
+		return dao.add(t,c);
 	}
 
 	@Override
-	public int update(Shezhi t) {
-		return dao.update(t);
+	public int update(Shezhi t, String c) {
+		return dao.update(t,c);
 	}
 
 	@Override
-	public int delete(Shezhi t) {
-		return dao.delete(t);
+	public int delete(Shezhi t, String c) {
+		return dao.delete(t,c);
 	}
 
 	@Override
-	public List<Shezhi> selectByTeacher(Shezhi t) {
-		return dao.selectByTeacher(t);
+	public List<Shezhi> selectByTeacher(Shezhi t, String c) {
+		return dao.selectByTeacher(t,c);
 	}
 
 	@Override
-	public int alter(Shezhi t) {
-		return dao.alter(t);
+	public int alter(Shezhi t, String c) {
+		return dao.alter(t,c);
 	}
 
 

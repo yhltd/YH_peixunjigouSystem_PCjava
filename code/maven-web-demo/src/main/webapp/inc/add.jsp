@@ -13,7 +13,6 @@
 <!--头部-->
 <header class="publicHeader">
     <h1>培训管理系统</h1>
-
     <div class="publicHeaderR">
         <p><span id="hours"></span><span style="color: #fff21b">${GLOBAL_USER.realName} </span> , 欢迎你！</p>
         <a href="<%=request.getContextPath() %>/login.jsp">退出</a>
@@ -33,8 +32,8 @@
                 <li><a href="<%=request.getContextPath() %>/main.jsp">主页</a></li>
                 <%--原有代码     <li><a href="<%=request.getContextPath() %>/tea/teacher.action">设置</a></li>--%>
                 <li><a href="<%=request.getContextPath() %>/te/shezhi.action">设置</a></li>
-                <li><a href="<%=request.getContextPath() %>/stu/student.jsp">学生信息</a></li>
-                <li><a href="<%=request.getContextPath() %>/pay/payment.jsp">缴费记录</a></li>
+                <li><a href="<%=request.getContextPath() %>/stu/student.action">学生信息</a></li>
+                <li><a href="<%=request.getContextPath() %>/pay/payment.action">缴费记录</a></li>
                 <li><a href="<%=request.getContextPath() %>/keshi/getList.action">课时统计</a></li>
                 <li><a href="<%=request.getContextPath() %>/stu/ksclass.action">收支明细</a></li>
                 <li><a href="<%=request.getContextPath() %>/stu/arr.action">欠费学生</a></li>
@@ -56,47 +55,91 @@
                     <label for="rgdate">日期：</label>
                     <%--    原先代码     <input type="text" name="rgdate" id="rgdate" value="${income.rgdate }"/>--%>
                     <input type="date" name="rgdate" id="rgdate"/>
-                    <span >*</span>
                 </div>
                 <div>
                     <label  for="money">收入金额：</label>
                     <input type="text" name="money" id="money" value="${income.money }"/>
                 </div>
-                <div>
-                    <label for="msort">收入分类：</label>
-                    <%--    原有代码     <input type="text" name="msort" id="msort" value="${income.msort }"/>--%>
+                <%--  <div>
+                     <label for="msort">收入分类：</label>
+                     <%--    原有代码     <input type="text" name="msort" id="msort" value="${income.msort }"/>--%>
+                <%-- <select name="msort" id="msort" style="width: 270px">
+                    <option> </option>
+                    <option>周边</option>
+                    <option>学费</option>
+                    <option>书本</option>
+                </select>
+            </div>--%>
+
+
+
+            <div>
+                <label for="msort">收入分类：</label>
+                <%--    原有代码     <input type="text" name="type" id="type" value="${student.type }"/>--%>
                     <select name="msort" id="msort" style="width: 270px">
-                        <option> </option>
-                        <option>周边</option>
-                        <option>学费</option>
-                        <option>书本</option>
+                        <%--                        <option >意向预定</option>--%>
+                        <%--                        <option selected>在训</option>--%>
+                        <%--                        <option >暂停</option>--%>
+                        <%--                        <option >结束</option>--%>
+                        <%--                        <option >退学</option>--%>
+                            <option selected="selected"></option>
+                        <c:forEach items="${shezhiList }" var="s">
+                            <option >${s.msort}</option>
+                        </c:forEach>
                     </select>
+
                 </div>
+
+
+
                 <div>
                     <label for="mremark">收入备注：</label>
                     <input type="text" name="mremark" id="mremark" value="${income.mremark }"/>
                 </div>
-                <div>
+            <div>
                     <label for="paid">支出金额：</label>
                     <input type="text" name="paid" id="paid" value="${income.paid }"/>
                 </div>
+                <%--   <div>
+                     <label for="psort">支出分类：</label>
+                     <%--    原有代码     <input type="text" name="psort" id="psort" value="${income.psort }"/>--%>
+                <%--    <select name="psort" id="psort" style="width: 270px">
+                      <option> </option>
+                      <option>宣传支出</option>
+                      <option>场地租金</option>
+                      <option>水电费</option>
+                  </select>
+              </div>--%>
+
+
+
+              <div>
+              <label for="psort">支出分类：</label>
+              <%--    原有代码     <input type="text" name="type" id="type" value="${student.type }"/>--%>
+                <select name="psort" id="psort" style="width: 270px">
+                    <%--                        <option >意向预定</option>--%>
+                    <%--                        <option selected>在训</option>--%>
+                    <%--                        <option >暂停</option>--%>
+                    <%--                        <option >结束</option>--%>
+                    <%--                        <option >退学</option>--%>
+                        <option selected="selected"></option>
+                    <c:forEach items="${List }" var="s">
+                        <option >${s.psort}</option>
+                    </c:forEach>
+                </select>
+
+        </div>
+
+
+                    <div>
+                       <label for="premark">支出备注：</label>
+                       <input type="text" name="premark" id="premark" value="${income.premark }"/>
+                   </div>
+
+
                 <div>
-                    <label for="psort">支出分类：</label>
-                    <%--    原有代码     <input type="text" name="psort" id="psort" value="${income.psort }"/>--%>
-                    <select name="psort" id="psort" style="width: 270px">
-                        <option> </option>
-                        <option>宣传支出</option>
-                        <option>场地租金</option>
-                        <option>水电费</option>
-                    </select>
-                </div>
-                <div>
-                    <label for="premark">支出备注：</label>
-                    <input type="text" name="premark" id="premark" value="${income.premark }"/>
-                </div>
-                <div>
-                    <label for="handle">经手人：</label>
-                    <%--    原有代码     <input type="text" name="handle" id="handle" value="${income.handle }"/>--%>
+                       <label for="handle">经手人：</label>
+                       <%--    原有代码     <input type="text" name="handle" id="handle" value="${income.handle }"/>--%>
                     <select name="handle" id="handle" style="width: 270px">
                         <option> </option>
                         <option >琪一</option>

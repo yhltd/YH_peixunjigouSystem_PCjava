@@ -10,13 +10,14 @@ public class Payment {
 	private String paiment;
 	private String keeper;
 	private String remark;
+	private String Company;
 	
 	public Payment() {
 		super();
 	}
 
 	public Payment(Integer id, String ksdate, String realname, Integer paid, Integer money, String paiment,
-			String keeper, String remark) {
+			String keeper, String remark,String Company) {
 		super();
 		this.id = id;
 		this.ksdate = ksdate;
@@ -26,6 +27,7 @@ public class Payment {
 		this.paiment = paiment;
 		this.keeper = keeper;
 		this.remark = remark;
+		this.Company=Company;
 	}
 
 	public Integer getId() {
@@ -92,10 +94,18 @@ public class Payment {
 		this.remark = remark;
 	}
 
+	public void setCompany(String company) {
+		this.Company = company;
+	}
+
+	public String getCompany() {
+		return Company;
+	}
+
 	@Override
 	public String toString() {
 		return "Payment [id=" + id + ", ksdate=" + ksdate + ", realname=" + realname + ", paid=" + paid + ", money="
-				+ money + ", paiment=" + paiment + ", keeper=" + keeper + ", remark=" + remark + "]";
+				+ money + ", paiment=" + paiment + ", keeper=" + keeper + ", remark=" + remark +", Company=" + Company + "]";
 	}
 	
 	

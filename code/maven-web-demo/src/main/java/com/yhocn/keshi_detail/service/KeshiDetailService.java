@@ -10,11 +10,13 @@ import java.util.List;
  * @date 2021/07/12 18:19
  */
 public interface KeshiDetailService {
-    public List<Keshidetail> getList(Keshidetail ksd);
-    public List<Shezhi> shezhiList(Shezhi shezhi);
-    public int add(Keshidetail ksd);
-    public int update(Keshidetail ksd);
-    public int delete(Keshidetail ksd);
-    public Keshidetail getListById(Keshidetail ksd);
-    public List<Keshidetail>getTeacherKeshiList(Keshidetail ksd);
+    public List<Keshidetail> getList(Keshidetail ksd, String c);
+    public List<Shezhi> shezhiList(Shezhi shezhi, String c);
+    public int add(Keshidetail ksd, String c);
+    public int update(Keshidetail ksd, String c);
+    public int delete(Keshidetail ksd, String c);
+    public Keshidetail getListById(Keshidetail ksd, String c);
+    public List<Keshidetail>getTeacherKeshiList(Keshidetail ksd, String c);
+
+    public List<Keshidetail> getList1(Keshidetail ksd, String c,String a,String b);
 }

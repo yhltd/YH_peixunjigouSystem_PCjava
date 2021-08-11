@@ -9,6 +9,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.yhocn.pay.entity.Payment;
 import com.yhocn.pay.service.PaymentService;
+import com.yhocn.login.controller.LoginController;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("/pay")
@@ -18,16 +21,30 @@ public class PaymentController {
 	private PaymentService service;
 	
 	@RequestMapping("/payment")
-	public ModelAndView query(ModelAndView mv,Payment p) {
-		List<Payment> plist = service.selectAll(p);
+	public ModelAndView query(ModelAndView mv,Payment p, String c) {
+		LoginController e=new  LoginController();
+		c=e.a;
+		List<Payment> plist = service.selectAll(p,c);
+		mv.addObject("plist",plist);
+		mv.setViewName("/pay/payment.jsp");
+		return mv;
+	}
+	@RequestMapping("/payment1")
+	public ModelAndView query1(ModelAndView mv, Payment p, String c, String a, HttpServletRequest request) {
+		a=request.getParameter("realname");
+		LoginController e=new  LoginController();
+		c=e.a;
+		List<Payment> plist = service.selectAll1(p,c,a);
 		mv.addObject("plist",plist);
 		mv.setViewName("/pay/payment.jsp");
 		return mv;
 	}
 	
 	@RequestMapping("/add")
-	public ModelAndView add(ModelAndView mv,Payment p) {
-		int i = service.add(p);
+	public ModelAndView add(ModelAndView mv,Payment p, String c) {
+		LoginController e=new  LoginController();
+		c=e.a;
+		int i = service.add(p,c);
 		if(i>0) {
 			mv.addObject("msg","增加用户成功");
 			mv.setViewName("/pay/payment.jsp");
@@ -38,8 +55,10 @@ public class PaymentController {
 		return mv;
 	}
 	@RequestMapping("/toUpdate")
-	public ModelAndView toUpdate(ModelAndView mv,Payment p) {
-		Payment p2 = service.selectById(p);
+	public ModelAndView toUpdate(ModelAndView mv,Payment p, String c) {
+		LoginController e=new  LoginController();
+		c=e.a;
+		Payment p2 = service.selectById(p,c);
 		mv.addObject("payment",p2);
 		mv.setViewName("/pay/update.jsp");
 		
@@ -47,8 +66,10 @@ public class PaymentController {
 	}
 	
 	@RequestMapping("/update")
-	public ModelAndView update(ModelAndView mv,Payment p) {
-		int i = service.update(p);
+	public ModelAndView update(ModelAndView mv,Payment p, String c) {
+		LoginController e=new  LoginController();
+		c=e.a;
+		int i = service.update(p,c);
 		if(i>0) {
 			mv.addObject("msg","修改用户成功");
 			mv.setViewName("/pay/payment.jsp");
@@ -59,8 +80,10 @@ public class PaymentController {
 		return mv;
 	}
 	@RequestMapping("/delete")
-	public ModelAndView delete(ModelAndView mv,Payment p) {
-		int i = service.delete(p);
+	public ModelAndView delete(ModelAndView mv,Payment p, String c) {
+		LoginController e=new  LoginController();
+		c=e.a;
+		int i = service.delete(p,c);
 		if(i>0) {
 			mv.addObject("msg","修改用户成功");
 		}else {

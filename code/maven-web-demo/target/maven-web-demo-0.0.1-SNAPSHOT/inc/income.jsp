@@ -33,8 +33,8 @@
                 <li><a href="<%=request.getContextPath() %>/main.jsp">主页</a></li>
                 <%--原有代码     <li><a href="<%=request.getContextPath() %>/tea/teacher.action">设置</a></li>--%>
                 <li><a href="<%=request.getContextPath() %>/te/shezhi.action">设置</a></li>
-                <li><a href="<%=request.getContextPath() %>/stu/student.jsp">学生信息</a></li>
-                <li><a href="<%=request.getContextPath() %>/pay/payment.jsp">缴费记录</a></li>
+                <li><a href="<%=request.getContextPath() %>/stu/student.action">学生信息</a></li>
+                <li><a href="<%=request.getContextPath() %>/pay/payment.action">缴费记录</a></li>
                 <li><a href="<%=request.getContextPath() %>/keshi/getList.action">课时统计</a></li>
                 <li><a href="<%=request.getContextPath() %>/inc/income.action">收支明细</a></li>
                 <li><a href="<%=request.getContextPath() %>/stu/arr.action">欠费学生</a></li>
@@ -53,7 +53,15 @@
 
         <div class="search">
             <span style="color:red">${msg}</span>
-            <a href="<%=request.getContextPath()%>/inc/add.jsp">添加明细</a>
+            <form action="<%=request.getContextPath()%>/inc/select.action"
+                  method="post" id="myForm"></form>
+            <span>起始：</span>
+            <input type="date"  name="rgdate" form="myForm"/>
+            <span>结束</span>
+            <input type="date"  name="rgdate2" form="myForm"/>
+
+            <input type="submit" value="查询" form="myForm"/>
+            <a href="<%=request.getContextPath()%>/inc/shezhi.action">添加明细</a>
         </div>
         <table class="providerTable" cellpadding="0" cellspacing="0">
             <tr class="firstTr">

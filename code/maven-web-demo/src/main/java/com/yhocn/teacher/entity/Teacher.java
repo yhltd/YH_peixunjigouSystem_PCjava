@@ -8,28 +8,14 @@ public class Teacher {
 	private String realName;
 	private Integer useType;
 	private Integer age;
-	private Integer phone;
+	private String phone;
 	private String home;
 	private String photo;
 	private String education;
+	public String Company;
 	
 	public Teacher() {
 		super();
-	}
-
-	public Teacher(Integer id, String userName, String password, String realName, Integer useType, Integer age,
-			Integer phone, String home, String photo, String education) {
-		super();
-		this.id = id;
-		this.userName = userName;
-		this.password = password;
-		this.realName = realName;
-		this.useType = useType;
-		this.age = age;
-		this.phone = phone;
-		this.home = home;
-		this.photo = photo;
-		this.education = education;
 	}
 
 	public Integer getId() {
@@ -80,11 +66,11 @@ public class Teacher {
 		this.age = age;
 	}
 
-	public Integer getPhone() {
+	public String getPhone() {
 		return phone;
 	}
 
-	public void setPhone(Integer phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 
@@ -112,12 +98,33 @@ public class Teacher {
 		this.education = education;
 	}
 
+	public String getCompany() { return Company; }
+
+	public void setCompany(String company) { this.Company = company; }
+
+	public Teacher(Integer id, String userName, String password, String realName, Integer useType, Integer age,
+				   String phone, String home, String photo, String education,String Company) {
+		super();
+		this.id = id;
+		this.userName = userName;
+		this.password = password;
+		this.realName = realName;
+		this.useType = useType;
+		this.age = age;
+		this.phone = phone;
+		this.home = home;
+		this.photo = photo;
+		this.education = education;
+		this.Company=Company;
+	}
+
 	@Override
 	public String toString() {
 		return "Teacher [id=" + id + ", userName=" + userName + ", password=" + password + ", realName=" + realName
 				+ ", useType=" + useType + ", age=" + age + ", phone=" + phone + ", home=" + home + ", photo=" + photo
-				+ ", education=" + education + "]";
+				+ ", education=" + education + ", Company=" + Company +"]";
 	}
-	
-	
+
+
+
 }

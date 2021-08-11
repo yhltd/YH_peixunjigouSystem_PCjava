@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import com.yhocn.login.controller.LoginController;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author wanghui
@@ -21,32 +24,52 @@ public class KeshiDetailController {
     private KeshiDetailService service;
 
     @RequestMapping("/getList")
-    public ModelAndView query(ModelAndView mv, Keshidetail ksd) {
-        List<Keshidetail> list = service.getList(ksd);
+    public ModelAndView query(ModelAndView mv, Keshidetail ksd, String c) {
+        LoginController e=new  LoginController();
+        c=e.a;
+        List<Keshidetail> list = service.getList(ksd,c);
+
+        mv.addObject("list",list);
+        mv.setViewName("/keshi/keshi_detail.jsp");
+        return mv;
+    }
+    @RequestMapping("/getList1")
+    public ModelAndView query1(ModelAndView mv, Keshidetail ksd, String c, String a, String b, HttpServletRequest request) {
+        a=request.getParameter("teacher_name");
+        b=request.getParameter("keshi");
+        LoginController e=new  LoginController();
+        c=e.a;
+        List<Keshidetail> list = service.getList1(ksd,c,a,b);
         mv.addObject("list",list);
         mv.setViewName("/keshi/keshi_detail.jsp");
         return mv;
     }
 
     @RequestMapping("/getTeacherKeshiList")
-    public ModelAndView getTeacherKeshiList(ModelAndView mv, Keshidetail ksd) {
-        List<Keshidetail> list = service.getTeacherKeshiList(ksd);
+    public ModelAndView getTeacherKeshiList(ModelAndView mv, Keshidetail ksd, String c) {
+        LoginController e=new  LoginController();
+        c=e.a;
+        List<Keshidetail> list = service.getTeacherKeshiList(ksd,c);
         mv.addObject("teacherKeshiList",list);
         mv.setViewName("/teacher/kstj.jsp");
         return mv;
     }
 
     @RequestMapping("/toadd")
-    public ModelAndView toadd(ModelAndView mv, Shezhi shezhi){
-        List<Shezhi>shezhiList= service.shezhiList(shezhi);
+    public ModelAndView toadd(ModelAndView mv, Shezhi shezhi, String c){
+        LoginController e=new  LoginController();
+        c=e.a;
+        List<Shezhi>shezhiList= service.shezhiList(shezhi,c);
         mv.addObject("shezhiList",shezhiList);
         mv.setViewName("/keshi/add.jsp");
         return mv;
     }
 
     @RequestMapping("/add")
-    public ModelAndView add(ModelAndView mv, Keshidetail ksd) {
-        int i = service.add(ksd);
+    public ModelAndView add(ModelAndView mv, Keshidetail ksd, String c) {
+        LoginController e=new  LoginController();
+        c=e.a;
+        int i = service.add(ksd,c);
         if(i>0) {
             mv.addObject("msg","增加用户成功");
             mv.setViewName("/keshi/getList.action");
@@ -58,9 +81,11 @@ public class KeshiDetailController {
     }
 
     @RequestMapping("/toupd")
-    public ModelAndView toupd(ModelAndView mv, Shezhi shezhi,Keshidetail ksd){
-        Keshidetail keshidetail= service.getListById(ksd);
-        List<Shezhi>shezhiList= service.shezhiList(shezhi);
+    public ModelAndView toupd(ModelAndView mv, Shezhi shezhi,Keshidetail ksd, String c){
+        LoginController e=new  LoginController();
+        c=e.a;
+        Keshidetail keshidetail= service.getListById(ksd,c);
+        List<Shezhi>shezhiList= service.shezhiList(shezhi,c);
         mv.addObject("shezhiList",shezhiList);
         mv.addObject("keshidetail",keshidetail);
         mv.setViewName("/keshi/update.jsp");
@@ -68,8 +93,10 @@ public class KeshiDetailController {
     }
 
     @RequestMapping("/upd")
-    public ModelAndView update(ModelAndView mv, Keshidetail ksd) {
-        int i = service.update(ksd);
+    public ModelAndView update(ModelAndView mv, Keshidetail ksd, String c) {
+        LoginController e=new  LoginController();
+        c=e.a;
+        int i = service.update(ksd,c);
         if(i>0) {
             mv.addObject("msg","修改用户成功");
             mv.setViewName("/keshi/getList.action");
@@ -81,8 +108,10 @@ public class KeshiDetailController {
     }
 
     @RequestMapping("/del")
-    public ModelAndView delete(ModelAndView mv, Keshidetail ksd) {
-        int i = service.delete(ksd);
+    public ModelAndView delete(ModelAndView mv, Keshidetail ksd, String c) {
+        LoginController e=new  LoginController();
+        c=e.a;
+        int i = service.delete(ksd,c);
         if(i>0) {
             mv.addObject("msg","删除用户成功");
             mv.setViewName("/keshi/student.jsp");

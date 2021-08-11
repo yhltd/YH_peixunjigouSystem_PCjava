@@ -6,12 +6,12 @@ import java.util.List;
 
 public interface ShezhiService {
 
-	public List<Shezhi> selectAll(Shezhi t);
-	public Shezhi selectById(Shezhi t);
-	public int add(Shezhi t);
-	public int update(Shezhi t);
-	public int delete(Shezhi t);
-	public List<Shezhi> selectByTeacher(Shezhi t);
-	public int alter(Shezhi t);
+	public List<Shezhi> selectAll(Shezhi t, String c);
+	public Shezhi selectById(Shezhi t, String c);
+	public int add(Shezhi t, String c);
+	public int update(Shezhi t, String c);
+	public int delete(Shezhi t, String c);
+	public List<Shezhi> selectByTeacher(Shezhi t, String c);
+	public int alter(Shezhi t, String c);
 
 }

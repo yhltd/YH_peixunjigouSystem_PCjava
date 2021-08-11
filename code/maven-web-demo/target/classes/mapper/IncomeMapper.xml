@@ -6,15 +6,35 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.yhocn.income.mapper.IncomeMapper">
 
-	<select id="selectAll" parameterType="Income" resultType="Income">
-		select *,(SELECT SUM(money)FROM income) mall,(SELECT SUM(paid)FROM income) pall,(SELECT SUM(money)FROM income WHERE msort="学费") xall,(SELECT SUM(money)-SUM(paid)FROM income) yall
-		 from income
+	<select id="select" parameterType="Income" resultType="Income">
+		select *,
+				   (SELECT ifnull(SUM(money),0)FROM income where  rgdate  between #{a} and #{b}and Company =#{c} ) mall,
+				   (SELECT ifnull(SUM(paid),0)FROM income where  rgdate  between #{a} and #{b}and Company =#{c}) pall,
+				   (SELECT ifnull(SUM(money),0)FROM income WHERE msort="学费" and  rgdate  between #{a} and #{b}and Company =#{c}) xall,
+				   (SELECT ifnull(SUM(money),0)-ifnull(SUM(paid),0) FROM income where  rgdate  between #{a} and #{b}and Company =#{c}) yall
+		from income where Company =#{c}
+			<if test="a != null and b != ''">
+				and rgdate  between #{a} and #{b}
+			</if>
 	</select>
+	<select id="selectAll" parameterType="Income" resultType="Income">
+		select *,(SELECT SUM(money)FROM income  where Company =#{c}) mall,(SELECT SUM(paid)FROM income where Company =#{c}) pall,(SELECT SUM(money)FROM income WHERE msort="学费" and Company =#{c}) xall,(SELECT SUM(money)-SUM(paid)FROM income where Company =#{c}) yall
+		 from income where Company =#{c}
+	</select>
+
+	<select id="shezhiList" parameterType="Shezhi" resultType="Shezhi">
+		select * from shezhi where msort != "" and Company =#{c}
+	</select>
+
+	<select id="List" parameterType="Shezhi" resultType="Shezhi">
+		select * from shezhi where  psort != "" and Company =#{c}
+	</select>
+
 	<insert id="add">
 		insert into
 		income(rgdate,money,msort,mremark,paid,
-		psort,premark,handle)
+		psort,premark,handle,Company)
 		values(#{rgdate},#{money},#{msort},#{mremark},#{paid},
-		#{psort},#{premark},#{handle})
+		#{psort},#{premark},#{handle},#{c})
 	</insert>
 </mapper>

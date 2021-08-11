@@ -14,36 +14,41 @@ public class PaymentServiceImpl implements PaymentService {
 	private PaymentMapper dao;
 	
 	@Override
-	public List<Payment> selectAll(Payment p) {
-		return dao.selectAll(p);
+	public List<Payment> selectAll(Payment p, String c) {
+		return dao.selectAll(p,c);
+	}
+
+	@Override
+	public List<Payment> selectAll1(Payment p, String c,String a) {
+		return dao.selectAll1(p,c,a);
 	}
 
 
 	@Override
-	public int add(Payment p) {
-		return dao.add(p);
+	public int add(Payment p, String c) {
+		return dao.add(p,c);
 	}
 
 	@Override
-	public int update(Payment p) {
-		return dao.update(p);
+	public int update(Payment p, String c) {
+		return dao.update(p,c);
 	}
 
 	@Override
-	public int delete(Payment p) {
-		return dao.delete(p);
-	}
-
-
-	@Override
-	public Payment selectByRealname(Payment p) {
-		return dao.selectByRealname(p);
+	public int delete(Payment p, String c) {
+		return dao.delete(p,c);
 	}
 
 
 	@Override
-	public Payment selectById(Payment p) {
-		return dao.selectById(p);
+	public Payment selectByRealname(Payment p, String c) {
+		return dao.selectByRealname(p,c);
+	}
+
+
+	@Override
+	public Payment selectById(Payment p, String c) {
+		return dao.selectById(p,c);
 	}
 
 

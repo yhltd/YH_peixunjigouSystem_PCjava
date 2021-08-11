@@ -9,13 +9,14 @@ public class Shezhi {
 	private String paiment;
 	private String msort;
 	private String psort;
+	private String Company;
 
 	public Shezhi() {
 		super();
 	}
 
 	public Shezhi(Integer id, String course, String teacher, String type,
-				  String paiment, String msort, String psort) {
+				  String paiment, String msort, String psort,String Company) {
 		super();
 		this.id = id;
 		this.course = course;
@@ -24,6 +25,7 @@ public class Shezhi {
 		this.paiment = paiment;
 		this.msort = msort;
 		this.psort = psort;
+		this.Company=Company;
 	}
 
 	public Integer getId() {
@@ -82,10 +84,18 @@ public class Shezhi {
 		this.psort = psort;
 	}
 
+	public String getCompany() {
+		return Company;
+	}
+
+	public void setCompany(String company) {
+		this.Company = company;
+	}
+
 	@Override
 	public String toString() {
 		return "Shezhi [id=" + id + ", course=" + course + ", teacher=" + teacher + ", type=" + type
-				+ ", paiment=" + paiment + ", msort=" + msort + ", psort=" + psort + "]";
+				+ ", paiment=" + paiment + ", msort=" + msort + ", psort=" + psort + ", Company=" + Company +"]";
 	}
 
 

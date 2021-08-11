@@ -32,8 +32,8 @@
                 <li><a href="<%=request.getContextPath() %>/main.jsp">主页</a></li>
                 <%--原有代码     <li><a href="<%=request.getContextPath() %>/tea/teacher.action">设置</a></li>--%>
                 <li><a href="<%=request.getContextPath() %>/te/shezhi.action">设置</a></li>
-                <li><a href="<%=request.getContextPath() %>/stu/student.jsp">学生信息</a></li>
-                <li><a href="<%=request.getContextPath() %>/pay/payment.jsp">缴费记录</a></li>
+                <li><a href="<%=request.getContextPath() %>/stu/student.action">学生信息</a></li>
+                <li><a href="<%=request.getContextPath() %>/pay/payment.action">缴费记录</a></li>
                 <li><a href="<%=request.getContextPath() %>/keshi/getList.action">课时统计</a></li>
                 <li><a href="<%=request.getContextPath() %>/inc/income.action">收支明细</a></li>
                 <li><a href="<%=request.getContextPath() %>/stu/arr.action">欠费学生</a></li>
@@ -51,7 +51,7 @@
         </div>
         <div class="search">
             <span style="color:red">${msg}</span>
-            <form action="<%=request.getContextPath()%>/pay/payment.action"
+            <form action="<%=request.getContextPath()%>/pay/payment1.action"
                   method="post" id="myForm"></form>
             <input type="text" placeholder="请输入学生姓名" name="realname" form="myForm"/>
             <input type="submit" value="查询" form="myForm"/>

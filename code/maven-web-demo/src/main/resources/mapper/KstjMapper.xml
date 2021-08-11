@@ -5,13 +5,13 @@
 <mapper namespace="com.yhocn.kstj.mapper.KstjMapper">
 
 	<select id="selectAll" parameterType="Kstj" resultType="Kstj">
-		select id,name,skks,mjje,skks*mjje as gzhs from kstj
+		select id,name,skks,mjje,skks*mjje as gzhs from kstj where Company =#{c}
 	</select>
 
 	<insert id="add">
 		insert into
-		kstj(name,skks,mjje,gzhs)
-		values(#{name},#{skks},#{mjje},#{gzhs})
+		kstj(name,skks,mjje,gzhs,Company)
+		values(#{name},#{skks},#{mjje},#{gzhs},#{c})
 	</insert>
 
 	<update id="update">
@@ -21,8 +21,9 @@
 		Skks=#{skks},
 		Mjje=#{mjje},
 		Gzhs=#{gzhs}
+		Company =#{c}
 		where
-		ID=#{id}
+		ID=#{id} and Company =#{c}
 	</update>
 	<update id="alter">
 		update kstj
@@ -31,15 +32,16 @@
 		Skks=#{skks},
 		Mjje=#{mjje},
 		Gzhs=#{gzhs}
+		Company =#{c}
 		where
-		ID=#{id}
+		ID=#{id} and Company =#{c}
 	</update>
 	<delete id="delete">
 		delete from kstj
-		where ID=#{id}
+		where ID=#{id} and Company =#{c}
 	</delete>
 	<select id="selectById" resultType="Kstj">
 		select * from kstj where
-		ID=#{id}
+		ID=#{id} and Company =#{c}
 	</select>
 </mapper>

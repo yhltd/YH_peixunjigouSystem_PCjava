@@ -8,30 +8,42 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="selectAll" parameterType="Student" resultType="Student">
 		select id,RealName,Sex,rgdate,Course,Teacher,Classnum,phone,Fee,Cost,Fee - Cost as Nocost,Hour,Allhour - Hour as Nohour,Allhour,Type FROM Student
-		<where>
-			<if test="realName != null and realName != ''">
-				and Realname like concat('%',#{realName},'%')
-			</if>
-		</where>
+		where Company =#{c}
+
+	</select>
+	<select id="selectAll1" parameterType="Student" resultType="Student">
+		select id,RealName,Sex,rgdate,Course,Teacher,Classnum,phone,Fee,Cost,Fee - Cost as Nocost,Hour,Allhour - Hour as Nohour,Allhour,Type FROM Student
+		where Company =#{c}
+		<if test="a != null and a != ''">
+			and Realname like #{a}
+		</if>
 	</select>
 
 	<select id="selectArr" parameterType="Student" resultType="Student">
 		select * from student
-		where Nocost is not null and Nocost>0
+		where Nocost is not null and Nocost>0 and Company =#{c}
+
+	</select>
+	<select id="selectArr1" parameterType="Student" resultType="Student">
+		select * from student
+		where Nocost is not null and Nocost>0 and Company =#{c}
+		<if test="a != null and a != ''">
+			and Realname like #{a}
+		</if>
 	</select>
 	
 	<select id="selectById" resultType="Student">
 		select * from student where
-		ID=#{id}
+		ID=#{id} and Company =#{c}
 	</select>
 
 	<insert id="add">
 		insert into
 		student(RealName,Sex,rgdate,Course,Teacher,
-		Classnum,phone,Fee,Cost,Nocost,Hour,Nohour,Allhour,Type)
+		Classnum,phone,Fee,Cost,Nocost,Hour,Nohour,Allhour,Type,Company)
 		values(#{realName},#{sex},#{rgdate},#{course},#{teacher},
 		#{classnum},#{phone},#{fee},#{cost},#{nocost},#{hour},
-		#{nohour},#{allHour},#{type})
+		#{nohour},#{allHour},#{type},#{c})
 	</insert>
 
 	<update id="update">
@@ -51,24 +63,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		Nohour=#{nohour},
 		Allhour=#{allHour},
 		Type=#{type}
+		Company =#{c}
 		where
-		ID=#{id}
+		ID=#{id} and Company =#{c}
 	</update>
 
 	<delete id="delete">
 		delete from student
-		where ID=#{id}
+		where ID=#{id} and Company =#{c}
 	</delete>
 
 
 	<select id="selectByRealName" resultType="Student">
 		select *
 		from student
-		where RealName=#{realName}
+		where RealName=#{realName} and Company =#{c}
 	</select>
 
 	<select id="shezhiList" parameterType="Shezhi" resultType="Shezhi">
-		select * from shezhi
+		select * from shezhi where Company =#{c}
 	</select>
 	
 </mapper>

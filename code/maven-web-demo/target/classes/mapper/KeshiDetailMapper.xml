@@ -6,21 +6,28 @@
 <mapper namespace="com.yhocn.keshi_detail.mapper.KeshiDetailMapper">
 
     <select id="getList" parameterType="Keshidetail" resultType="Keshidetail">
-		select * from keshi_detail
+		select * from keshi_detail where Company =#{c}
+
+	</select>
+	<select id="getList1" parameterType="Keshidetail" resultType="Keshidetail">
+		select * from keshi_detail where Company =#{c}
+		<if test="a != null and b != ''">
+			and teacher_name like #{a} and keshi like #{b}
+		</if>
 	</select>
 
 	<select id="getListById" parameterType="Keshidetail" resultType="Keshidetail">
-		select * from keshi_detail where id=#{id}
+		select * from keshi_detail where id=#{id} and Company =#{c}
 	</select>
 
 	<select id="shezhiList" parameterType="Shezhi" resultType="Shezhi">
-		select * from shezhi
+		select * from shezhi where  Company =#{c}
 	</select>
 
 	<insert id="add">
 		insert into
-		keshi_detail(riqi,student_name,course,keshi,teacher_name,jine)
-		values(#{riqi},#{student_name},#{course},#{keshi},#{teacher_name},#{jine})
+		keshi_detail(riqi,student_name,course,keshi,teacher_name,jine, Company)
+		values(#{riqi},#{student_name},#{course},#{keshi},#{teacher_name},#{jine},#{c})
 	</insert>
 
 	<update id="update">
@@ -32,17 +39,18 @@
 		keshi=#{keshi},
 		teacher_name=#{teacher_name},
 		jine=#{jine}
+		Company =#{c}
 		where
-		id=#{id}
+		id=#{id} and Company =#{c}
 	</update>
 
 	<delete id="delete">
 		delete from keshi_detail
-		where id=#{id}
+		where id=#{id} and Company =#{c}
 	</delete>
 
 	<select id="getTeacherKeshiList" parameterType="Keshidetail" resultType="Keshidetail">
-		select teacher_name,course,sum(keshi) as keshi,jine,sum(jine*keshi) as gongzi from keshi_detail group by teacher_name,jine order by teacher_name
+		select teacher_name,course,sum(keshi) as keshi,jine,sum(jine*keshi) as gongzi from keshi_detail where Company =#{c} group by teacher_name,jine order by teacher_name
 	</select>
 
 </mapper>

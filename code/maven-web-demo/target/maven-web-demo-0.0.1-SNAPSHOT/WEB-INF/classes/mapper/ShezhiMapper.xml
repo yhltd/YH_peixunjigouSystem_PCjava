@@ -5,14 +5,14 @@
 <mapper namespace="com.yhocn.shezhi.mapper.ShezhiMapper">
 
 	<select id="selectAll" parameterType="Shezhi" resultType="Shezhi">
-		select * from shezhi
+		select * from shezhi where Company =#{c}
 	</select>
 
 
 	<insert id="add">
 		insert into
-		shezhi(course,teacher,type,paiment,msort,psort)
-		values(#{course},#{teacher},#{type},#{paiment},#{msort},#{psort})
+		shezhi(course,teacher,type,paiment,msort,psort,Company)
+		values(#{course},#{teacher},#{type},#{paiment},#{msort},#{psort},#{c})
 	</insert>
 
 	<update id="update">
@@ -24,8 +24,9 @@
 		Paiment=#{paiment},
 		Msort=#{msort},
 		Psort=#{psort}
+		Company =#{c}
 		where
-		ID=#{id}
+		ID=#{id} and Company =#{c}
 	</update>
 	<update id="alter">
 		update shezhi
@@ -36,15 +37,16 @@
 		Paiment=#{paiment},
 		Msort=#{msort},
 		Psort=#{psort}
+		Company =#{c}
 		where
-		ID=#{id}
+		ID=#{id} and Company =#{c}
 	</update>
 	<delete id="delete">
 		delete from shezhi
-		where ID=#{id}
+		where ID=#{id} and Company =#{c}
 	</delete>
 	<select id="selectById" resultType="Shezhi">
 		select * from shezhi where
-		ID=#{id}
+		ID=#{id} and Company =#{c}
 	</select>
 </mapper>

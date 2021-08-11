@@ -15,43 +15,53 @@ public class StudentServiceImpl implements StudentService {
 	private StudentMapper dao;
 	
 	@Override
-	public List<Student> selectAll(Student s) {
-		return dao.selectAll(s);
+	public List<Student> selectAll(Student s, String c) {
+		return dao.selectAll(s,c);
 	}
 
 	@Override
-	public Student selectById(Student s) {
-		return dao.selectById(s);
+	public List<Student> selectAll1(Student s, String c,String a) {
+		return dao.selectAll1(s,c,a);
+	}
+
+
+	@Override
+	public Student selectById(Student s, String c) {
+		return dao.selectById(s,c);
 	}
 
 	@Override
-	public int add(Student s) {
-		return dao.add(s);
+	public int add(Student s, String c) {
+		return dao.add(s,c);
 	}
 
 	@Override
-	public int update(Student s) {
-		return dao.update(s);
+	public int update(Student s, String c) {
+		return dao.update(s,c);
 	}
 
 	@Override
-	public int delete(Student s) {
-		return dao.delete(s);
+	public int delete(Student s, String c) {
+		return dao.delete(s,c);
 	}
 
 	@Override
-	public List<Student> selectByRealName(Student s) {
-		return dao.selectByRealName(s);
+	public List<Student> selectByRealName(Student s, String c) {
+		return dao.selectByRealName(s,c);
 	}
 
 	@Override
-	public List<Student> selectArr(Student s) {
-		return dao.selectArr(s);
+	public List<Student> selectArr(Student s, String c) {
+		return dao.selectArr(s,c);
+	}
+	@Override
+	public List<Student> selectArr1(Student s, String c,String a) {
+		return dao.selectArr1(s,c,a);
 	}
 
 	@Override
-	public List<Shezhi> shezhiList(Shezhi shezhi) {
-		return dao.shezhiList(shezhi);
+	public List<Shezhi> shezhiList(Shezhi shezhi, String c) {
+		return dao.shezhiList(shezhi,c);
 	}
 
 
