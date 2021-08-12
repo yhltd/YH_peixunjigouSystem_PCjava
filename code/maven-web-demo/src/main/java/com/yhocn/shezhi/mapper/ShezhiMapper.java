@@ -7,15 +7,15 @@ import java.util.List;
 
 public interface ShezhiMapper {
 
-	public Shezhi login(Shezhi t,@Param("c")String c);
-	public List<Shezhi> selectAll(Shezhi t,@Param("c")String c);
-	public Shezhi selectById(Shezhi t,@Param("c")String c);
-	public int add(Shezhi t,@Param("c")String c);
-	public int update(Shezhi t,@Param("c")String c);
-	public int delete(Shezhi t,@Param("c")String c);
-	public List<Shezhi> selectByTeacher(Shezhi t,@Param("c")String c);
-	public int alter(Shezhi t,@Param("c")String c);
-	public List<Shezhi> selectArr(Shezhi t,@Param("c")String c);
+	public Shezhi login(@Param("t")Shezhi t,@Param("c")String c);
+	public List<Shezhi> selectAll(@Param("t")Shezhi t,@Param("c")String c);
+	public Shezhi selectById(@Param("t")Shezhi t,@Param("c")String c);
+	public int add(@Param("t")Shezhi t,@Param("c")String c);
+	public int update(@Param("t")Shezhi t,@Param("c")String c);
+	public int delete(@Param("t")Shezhi t,@Param("c")String c);
+	public List<Shezhi> selectByTeacher(@Param("t")Shezhi t,@Param("c")String c);
+	public int alter(@Param("t")Shezhi t,@Param("c")String c);
+	public List<Shezhi> selectArr(@Param("t")Shezhi t,@Param("c")String c);
 
 
 }

@@ -46,8 +46,8 @@ public class StudentServiceImpl implements StudentService {
 	}
 
 	@Override
-	public List<Student> selectByRealName(Student s, String c) {
-		return dao.selectByRealName(s,c);
+	public List<Student> selectByRealName(Student s, String c,String a) {
+		return dao.selectByRealName(s,c,a);
 	}
 
 	@Override

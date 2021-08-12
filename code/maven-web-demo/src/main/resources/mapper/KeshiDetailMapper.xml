@@ -17,7 +17,7 @@
 	</select>
 
 	<select id="getListById" parameterType="Keshidetail" resultType="Keshidetail">
-		select * from keshi_detail where id=#{id} and Company =#{c}
+		select * from keshi_detail where id=#{ksd.id} and Company =#{c}
 	</select>
 
 	<select id="shezhiList" parameterType="Shezhi" resultType="Shezhi">
@@ -27,26 +27,25 @@
 	<insert id="add">
 		insert into
 		keshi_detail(riqi,student_name,course,keshi,teacher_name,jine, Company)
-		values(#{riqi},#{student_name},#{course},#{keshi},#{teacher_name},#{jine},#{c})
+		values(#{ksd.riqi},#{ksd.student_name},#{ksd.course},#{ksd.keshi},#{ksd.teacher_name},#{ksd.jine},#{c})
 	</insert>
 
 	<update id="update">
 		update keshi_detail
 		set
-		riqi=#{riqi},
-		student_name=#{student_name},
-		course=#{course},
-		keshi=#{keshi},
-		teacher_name=#{teacher_name},
-		jine=#{jine}
-		Company =#{c}
+		riqi=#{ksd.riqi},
+		student_name=#{ksd.student_name},
+		course=#{ksd.course},
+		keshi=#{ksd.keshi},
+		teacher_name=#{ksd.teacher_name},
+		jine=#{ksd.jine}
 		where
-		id=#{id} and Company =#{c}
+		id=#{ksd.id} and Company =#{c}
 	</update>
 
 	<delete id="delete">
 		delete from keshi_detail
-		where id=#{id} and Company =#{c}
+		where id=#{ksd.id} and Company =#{c}
 	</delete>
 
 	<select id="getTeacherKeshiList" parameterType="Keshidetail" resultType="Keshidetail">

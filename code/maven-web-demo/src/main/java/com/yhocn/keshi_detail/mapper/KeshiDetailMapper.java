@@ -12,14 +12,14 @@ import java.util.List;
  * @date 2021/07/12 18:17
  */
 public interface KeshiDetailMapper {
-    public List<Keshidetail> getList(Keshidetail ksd,@Param("c")String c);
-    public List<Keshidetail> getList1(Keshidetail ksd,@Param("c")String c,@Param("a")String a,@Param("b")String b);
-    public List<Shezhi> shezhiList(Shezhi shezhi,@Param("c")String c);
-    public int add(Keshidetail ksd,@Param("c")String c);
-    public int update(Keshidetail ksd,@Param("c")String c);
-    public int delete(Keshidetail ksd,@Param("c")String c);
-    public Keshidetail getListById(Keshidetail ksd,@Param("c")String c);
-    public List<Keshidetail>getTeacherKeshiList(Keshidetail ksd,@Param("c")String c);
+    public List<Keshidetail> getList(@Param("ksd")Keshidetail ksd,@Param("c")String c);
+    public List<Keshidetail> getList1(@Param("ksd")Keshidetail ksd,@Param("c")String c,@Param("a")String a,@Param("b")String b);
+    public List<Shezhi> shezhiList(@Param("shezhi")Shezhi shezhi,@Param("c")String c);
+    public int add(@Param("ksd")Keshidetail ksd,@Param("c")String c);
+    public int update(@Param("ksd")Keshidetail ksd,@Param("c")String c);
+    public int delete(@Param("ksd")Keshidetail ksd,@Param("c")String c);
+    public Keshidetail getListById(@Param("ksd")Keshidetail ksd,@Param("c")String c);
+    public List<Keshidetail>getTeacherKeshiList(@Param("ksd")Keshidetail ksd,@Param("c")String c);
 
 
 

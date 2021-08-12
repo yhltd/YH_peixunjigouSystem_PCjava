@@ -125,15 +125,17 @@ public class StudentController {
 		mv.setViewName("/stu/arr.jsp");
 		return mv;
 	}
+
 	@RequestMapping("/inq")
-	public ModelAndView select(ModelAndView mv,Student s, String c) {
-		LoginController e=new  LoginController();
-		c=e.a;
-		List<Student> select = service.selectByRealName(s,c);
-		mv.addObject("select",select);
-		mv.setViewName("/stu/inq.jsp");
-		return mv;
-	}
+	public ModelAndView inq(ModelAndView mv,Student s, String c, String a, HttpServletRequest request) {
+		a=request.getParameter("realName");
+			LoginController e=new  LoginController();
+			c=e.a;
+			List<Student> select = service.selectByRealName(s,c,a);
+			mv.addObject("select",select);
+			mv.setViewName("/stu/inq.jsp");
+			return mv;
+		}
 	@RequestMapping("/shezhi")
 	public ModelAndView shezhiInfo(ModelAndView mv,Shezhi shezhi, String c){
 		LoginController e=new  LoginController();

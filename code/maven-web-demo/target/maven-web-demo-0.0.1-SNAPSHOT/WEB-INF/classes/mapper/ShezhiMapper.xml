@@ -12,41 +12,40 @@
 	<insert id="add">
 		insert into
 		shezhi(course,teacher,type,paiment,msort,psort,Company)
-		values(#{course},#{teacher},#{type},#{paiment},#{msort},#{psort},#{c})
+		values(#{t.course},#{t.teacher},#{t.type},#{t.paiment},#{t.msort},#{t.psort},#{c})
 	</insert>
 
 	<update id="update">
 		update shezhi
 		set
-		Course=#{course},
-		Teacher=#{teacher},
-		Type=#{type},
-		Paiment=#{paiment},
-		Msort=#{msort},
-		Psort=#{psort}
-		Company =#{c}
+		Course=#{t.course},
+		Teacher=#{t.teacher},
+		Type=#{t.type},
+		Paiment=#{t.paiment},
+		Msort=#{t.msort},
+		Psort=#{t.psort}
 		where
-		ID=#{id} and Company =#{c}
+		ID=#{t.id} and Company =#{c}
 	</update>
 	<update id="alter">
 		update shezhi
 		set
-		Course=#{course},
-		Teacher=#{teacher},
-		Type=#{type},
-		Paiment=#{paiment},
-		Msort=#{msort},
-		Psort=#{psort}
-		Company =#{c}
+		Course=#{t.course},
+		Teacher=#{t.teacher},
+		Type=#{t.type},
+		Paiment=#{t.paiment},
+		Msort=#{t.msort},
+		Psort=#{t.psort}
+
 		where
-		ID=#{id} and Company =#{c}
+		ID=#{t.id} and Company =#{c}
 	</update>
 	<delete id="delete">
 		delete from shezhi
-		where ID=#{id} and Company =#{c}
+		where ID=#{t.id} and Company =#{c}
 	</delete>
 	<select id="selectById" resultType="Shezhi">
 		select * from shezhi where
-		ID=#{id} and Company =#{c}
+		ID=#{t.id} and Company =#{c}
 	</select>
 </mapper>

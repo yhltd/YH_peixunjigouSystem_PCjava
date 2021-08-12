@@ -8,15 +8,15 @@ import org.apache.ibatis.annotations.Param;
 
 public interface StudentMapper {
 
-	public List<Student> selectAll(Student s,@Param("c")String c);
-	public List<Student> selectAll1(Student s,@Param("c")String c,@Param("a")String a);
-	public Student selectById(Student s,@Param("c")String c);
-	public int add(Student s,@Param("c")String c);
-	public int update(Student s,@Param("c")String c);
-	public int delete(Student s,@Param("c")String c);
-	public List<Student> selectByRealName(Student s,@Param("c")String c);
+	public List<Student> selectAll(@Param("s")Student s,@Param("c")String c);
+	public List<Student> selectAll1(@Param("s")Student s,@Param("c")String c,@Param("a")String a);
+	public Student selectById(@Param("s")Student s,@Param("c")String c);
+	public int add(@Param("s")Student s,@Param("c")String c);
+	public int update(@Param("s")Student s,@Param("c")String c);
+	public int delete(@Param("s")Student s,@Param("c")String c);
+	public List<Student> selectByRealName(@Param("s")Student s,@Param("c")String c,@Param("a")String a);
 	
-	public List<Student> selectArr(Student s,@Param("c")String c);
-	public List<Student> selectArr1(Student s,@Param("c")String c,@Param("a")String a);
-	public List<Shezhi> shezhiList(Shezhi shezhi,@Param("c")String c);
+	public List<Student> selectArr(@Param("s")Student s,@Param("c")String c);
+	public List<Student> selectArr1(@Param("s")Student s,@Param("c")String c,@Param("a")String a);
+	public List<Shezhi> shezhiList(@Param("shezhi")Shezhi shezhi,@Param("c")String c);
 }

@@ -34,50 +34,49 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="selectById" resultType="Student">
 		select * from student where
-		ID=#{id} and Company =#{c}
+		ID=#{s.id} and Company =#{c}
 	</select>
 
 	<insert id="add">
 		insert into
 		student(RealName,Sex,rgdate,Course,Teacher,
 		Classnum,phone,Fee,Cost,Nocost,Hour,Nohour,Allhour,Type,Company)
-		values(#{realName},#{sex},#{rgdate},#{course},#{teacher},
-		#{classnum},#{phone},#{fee},#{cost},#{nocost},#{hour},
-		#{nohour},#{allHour},#{type},#{c})
+		values(#{s.realName},#{s.sex},#{s.rgdate},#{s.course},#{s.teacher},
+		#{s.classnum},#{s.phone},#{s.fee},#{s.cost},#{s.nocost},#{s.hour},
+		#{s.nohour},#{s.allHour},#{s.type},#{c})
 	</insert>
 
 	<update id="update">
 		update student
 		set
-		RealName=#{realName},
-		Sex=#{sex},
-		rgdate=#{rgdate},
-		Course=#{course},
-		Teacher=#{teacher},
-		Classnum=#{classnum},
-		phone=#{phone},
-		Fee=#{fee},
-		Cost=#{cost},
-		Nocost=#{nocost},
-		Hour=#{hour},
-		Nohour=#{nohour},
-		Allhour=#{allHour},
-		Type=#{type}
-		Company =#{c}
+		RealName=#{s.realName},
+		Sex=#{s.sex},
+		rgdate=#{s.rgdate},
+		Course=#{s.course},
+		Teacher=#{s.teacher},
+		Classnum=#{s.classnum},
+		phone=#{s.phone},
+		Fee=#{s.fee},
+		Cost=#{s.cost},
+		Nocost=#{s.nocost},
+		Hour=#{s.hour},
+		Nohour=#{s.nohour},
+		Allhour=#{s.allHour},
+		Type=#{s.type}
 		where
-		ID=#{id} and Company =#{c}
+		ID=#{s.id} and Company =#{c}
 	</update>
 
 	<delete id="delete">
 		delete from student
-		where ID=#{id} and Company =#{c}
+		where ID=#{s.id} and Company =#{c}
 	</delete>
 
 
 	<select id="selectByRealName" resultType="Student">
 		select *
 		from student
-		where RealName=#{realName} and Company =#{c}
+		where RealName=#{a} and Company =#{c}
 	</select>
 
 	<select id="shezhiList" parameterType="Shezhi" resultType="Shezhi">

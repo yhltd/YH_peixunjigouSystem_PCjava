@@ -11,37 +11,35 @@
 	<insert id="add">
 		insert into
 		kstj(name,skks,mjje,gzhs,Company)
-		values(#{name},#{skks},#{mjje},#{gzhs},#{c})
+		values(#{t.name},#{t.skks},#{t.mjje},#{t.gzhs},#{c})
 	</insert>
 
 	<update id="update">
 		update kstj
 		set
-		Name=#{name},
-		Skks=#{skks},
-		Mjje=#{mjje},
-		Gzhs=#{gzhs}
-		Company =#{c}
+		Name=#{t.name},
+		Skks=#{t.skks},
+		Mjje=#{t.mjje},
+		Gzhs=#{t.gzhs}
 		where
-		ID=#{id} and Company =#{c}
+		ID=#{t.id} and Company =#{c}
 	</update>
 	<update id="alter">
 		update kstj
 		set
-		Name=#{name},
-		Skks=#{skks},
-		Mjje=#{mjje},
-		Gzhs=#{gzhs}
-		Company =#{c}
+		Name=#{t.name},
+		Skks=#{t.skks},
+		Mjje=#{t.mjje},
+		Gzhs=#{t.gzhs}
 		where
-		ID=#{id} and Company =#{c}
+		ID=#{t.id} and Company =#{c}
 	</update>
 	<delete id="delete">
 		delete from kstj
-		where ID=#{id} and Company =#{c}
+		where ID=#{t.id} and Company =#{c}
 	</delete>
 	<select id="selectById" resultType="Kstj">
 		select * from kstj where
-		ID=#{id} and Company =#{c}
+		ID=#{t.id} and Company =#{c}
 	</select>
 </mapper>

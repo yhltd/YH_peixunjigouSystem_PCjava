@@ -19,39 +19,39 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="selectById" resultType="Payment">
 		select * from payment where
-		id=#{id} and Company =#{c}
+		id=#{p.id} and Company =#{c}
 	</select>
 
 	<insert id="add">
 		insert into
 		payment(ksdate,realname,paid,money,paiment,keeper,remark,Company)
-		values(#{ksdate},#{realname},#{paid},#{money},#{paiment},
-		#{keeper},#{remark},#{c})
+		values(#{p.ksdate},#{p.realname},#{p.paid},#{p.money},#{p.paiment},
+		#{p.keeper},#{p.remark},#{c})
 	</insert>
 
 	<update id="update">
 		update payment
 		set
-		ksdate=#{ksdate},
-		realname=#{realname},
-		paid=#{paid},
-		paiment=#{paiment},
-		keeper=#{keeper},
-		remark=#{remark}
-		Company =#{c}
+		ksdate=#{p.ksdate},
+		realname=#{p.realname},
+		paid=#{p.paid},
+		paiment=#{p.paiment},
+		keeper=#{p.keeper},
+		remark=#{p.remark}
+
 		where
-		id=#{id} and Company =#{c}
+		id=#{p.id} and Company =#{c}
 	</update>
 
 	<delete id="delete">
 		delete from payment
-		where id=#{id} and Company =#{c}
+		where id=#{p.id} and Company =#{c}
 	</delete>
 
 	<select id="selectByRealname" resultType="Payment">
 		select *
 		from payment
-		where realname=#{realname} and Company =#{c}
+		where realname=#{p.realname} and Company =#{c}
 	</select>
 	
 </mapper>

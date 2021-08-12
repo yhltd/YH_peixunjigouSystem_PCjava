@@ -10,7 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectAll1" parameterType="Teacher" resultType="Teacher">
 		select distinct Company from teacher
 	</select>
-	<select id="login" resultType="Teacher">
+	<select id="login" parameterType="Teacher" resultType="Teacher">
 		select *
 		from teacher
 		where
@@ -21,45 +21,44 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into
 		teacher(UserName,Password,RealName,UseType,Age,
 		Phone,Home,photo,Education,Company )
-		values(#{userName},#{password},#{realName},#{useType},#{age},
-		#{phone},#{home},#{photo},#{education},#{c})
+		values(#{t.userName},#{t.password},#{t.realName},#{t.useType},#{t.age},
+		#{t.phone},#{t.home},#{t.photo},#{t.education},#{c})
 	</insert>
 	
 	<update id="update">
 		update teacher
 		set
-		RealName=#{realName},
-		Age=#{age},
-		Phone=#{phone},
-		Home=#{home},
-		photo=#{photo},
-		Education=#{education}
-		Company =#{c}
+		RealName=#{t.realName},
+		Age=#{t.age},
+		Phone=#{t.phone},
+		Home=#{t.home},
+		photo=#{t.photo},
+		Education=#{t.education}
 		where
-		ID=#{id} and Company =#{c}
+		ID=#{t.id} and Company =#{c}
 	</update>
+
 	<update id="alter">
 		update teacher
 		set
-		UserName=#{userName},
-		Password=#{password},
-		RealName=#{realName},
-		UseType=#{useType},
-		Age=#{age},
-		Phone=#{phone},
-		Home=#{home},
-		photo=#{photo},
-		Education=#{education}
-		Company =#{c}
+		UserName=#{t.userName},
+		Password=#{t.password},
+		RealName=#{t.realName},
+		UseType=#{t.useType},
+		Age=#{t.age},
+		Phone=#{t.phone},
+		Home=#{t.home},
+		photo=#{t.photo},
+		Education=#{t.education}
 		where
-		ID=#{id} and Company =#{c}
+		ID=#{t.id} and Company =#{c}
 	</update>
 	<delete id="delete">
 		delete from teacher
-		where ID=#{id} and Company =#{c}
+		where ID=#{t.id} and Company =#{c}
 	</delete>
 	<select id="selectById" resultType="Teacher">
 		select * from teacher where
-		ID=#{id} and Company =#{c}
+		ID=#{t.id} and Company =#{c}
 	</select>
 </mapper>

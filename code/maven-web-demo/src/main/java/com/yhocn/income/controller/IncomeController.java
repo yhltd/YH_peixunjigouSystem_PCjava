@@ -48,6 +48,7 @@ public class IncomeController {
 		LoginController e=new  LoginController();
 		c=e.a;
 		int i = service.add(inc,c);
+
 		if(i>0) {
 			mv.addObject("msg","增加用户成功");
 			mv.setViewName("/inc/income.action");

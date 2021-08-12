@@ -10,11 +10,11 @@ import org.apache.ibatis.annotations.Param;
 import javax.servlet.http.Cookie;
 
 public interface IncomeMapper {
-	public List<Income> selectAll(Income inc,@Param("c")String c);
-	public int add(Income inc,@Param("c")String c);
-	public List<Shezhi> shezhiList(Shezhi shezhi,@Param("c")String c);
-	public List<Shezhi> List(Shezhi shezhi,@Param("c")String c);
-	public List<Income> select(Income inc, @Param("a")String a,@Param("b")String b,@Param("c")String c);
+	public List<Income> selectAll(@Param("inc")Income inc,@Param("c")String c);
+	public int add(@Param("inc")Income inc,@Param("c")String c);
+	public List<Shezhi> shezhiList(@Param("shezhi")Shezhi shezhi,@Param("c")String c);
+	public List<Shezhi> List(@Param("shezhi")Shezhi shezhi,@Param("c")String c);
+	public List<Income> select(@Param("inc")Income inc, @Param("a")String a,@Param("b")String b,@Param("c")String c);
 
 
 
