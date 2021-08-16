@@ -54,7 +54,7 @@
         <div class="providerAdd">
             <form action="<%=request.getContextPath() %>/keshi/upd.action">
                 <div>
-                    <input type="text" name="id" id="id" hidden="hidden" value="${keshidetail.id}" />
+                    <input type="text" readonly="readonly" name="id" id="id" hidden="hidden" value="${keshidetail.id}" />
                 </div>
                 <div>
                     <label for="student_name">学生姓名：</label>

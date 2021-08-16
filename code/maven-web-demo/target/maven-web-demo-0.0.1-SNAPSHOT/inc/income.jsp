@@ -103,7 +103,7 @@
                 <li class="min8">
                     <div class="min10">累计收入</div>
                     <div class="min9">
-                        <c:forEach items="${inclist}" var="use" >
+                        <c:forEach items="${inclist}" begin="0" end="0" var="use" >
                             ${use.mall }
                         </c:forEach>
                     </div>
@@ -111,7 +111,7 @@
                 <li class="min8">
                     <div class="min10">累计支出</div>
                     <div class="min9">
-                        <c:forEach items="${inclist}"  var="use" >
+                        <c:forEach items="${inclist}" begin="0" end="0" var="use" >
                             ${use.pall }
                         </c:forEach>
                     </div>
@@ -119,7 +119,7 @@
                 <li class="min8">
                     <div class="min10">学费收入</div>
                     <div class="min9">
-                        <c:forEach items="${inclist}" var="use" >
+                        <c:forEach items="${inclist}" begin="0" end="0" var="use" >
                             ${use.xall }
                         </c:forEach>
                     </div>
@@ -127,7 +127,7 @@
                 <li class="min8">
                     <div class="min10">累计结余</div>
                     <div class="min9">
-                        <c:forEach items="${inclist}"  var="use" >
+                        <c:forEach items="${inclist}" begin="0" end="0" var="use" >
                             ${use.yall }
                         </c:forEach>
                     </div>

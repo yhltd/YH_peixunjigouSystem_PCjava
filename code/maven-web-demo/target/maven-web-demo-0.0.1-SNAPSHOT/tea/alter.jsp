@@ -54,7 +54,7 @@
             <form action="<%=request.getContextPath() %>/tea/alter.action">
                 <div>
                     <label for="id">序号：</label>
-                    <input type="text" name="id" id="id" value="${teacher.id }"/>
+                    <input type="text" readonly="readonly" name="id" id="id" value="${teacher.id }"/>
                     <span >*</span>
                 </div>
                 <div>
@@ -90,7 +90,7 @@
                     <input type="text" name="home" id="home" value="${teacher.home }"/>
                 </div>
                 <div>
-                    <label for="photo">照片：</label>
+                    <label for="photo">身份证号：</label>
                     <input type="text" name="photo" id="photo" value="${teacher.photo }"/>
                 </div>
                 <div>

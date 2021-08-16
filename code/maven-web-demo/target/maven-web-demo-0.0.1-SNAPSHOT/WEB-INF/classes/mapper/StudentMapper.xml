@@ -41,7 +41,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into
 		student(RealName,Sex,rgdate,Course,Teacher,
 		Classnum,phone,Fee,Cost,Nocost,Hour,Nohour,Allhour,Type,Company)
-		values(#{s.realName},#{s.sex},#{s.rgdate},#{s.course},#{s.teacher},
+		values(#{s.realName},#{s.sex},
+		       <choose>
+		<when test="s.rgdate != ''">
+			#{s.rgdate}
+		</when>
+		<otherwise>
+			null
+		</otherwise>
+	</choose>,
+		#{s.course},#{s.teacher},
 		#{s.classnum},#{s.phone},#{s.fee},#{s.cost},#{s.nocost},#{s.hour},
 		#{s.nohour},#{s.allHour},#{s.type},#{c})
 	</insert>
@@ -51,7 +60,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		set
 		RealName=#{s.realName},
 		Sex=#{s.sex},
-		rgdate=#{s.rgdate},
+		rgdate=<choose>
+		<when test="s.rgdate != ''">
+			#{s.rgdate}
+		</when>
+		<otherwise>
+			null
+		</otherwise>
+	</choose>,
 		Course=#{s.course},
 		Teacher=#{s.teacher},
 		Classnum=#{s.classnum},

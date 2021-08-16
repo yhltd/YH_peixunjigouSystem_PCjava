@@ -85,7 +85,7 @@
                     <input type="text" name="home" id="home" value="${teacher.home }"/>
                 </div>
                 <div>
-                    <label for="photo">照片：</label>
+                    <label for="photo">身份证号：</label>
                     <input type="text" name="photo" id="photo" value="${teacher.photo }"/>
                 </div>
                 <div>

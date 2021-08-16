@@ -60,7 +60,7 @@
 				<div>
 					<%--	原先代码			<label for="id">日期：</label> <input type="text" name="ksdate" id="ksdate"--%>
 					<%--					value="${payment.ksdate}" />--%>
-					<label for="id">日期：</label>
+					<label >日期：</label>
 					<input type="date" name="ksdate" />
 				</div>
 				<div>
@@ -68,37 +68,26 @@
 															   name="realname" id="realname" value="${payment.realname }" /> <span>*</span>
 				</div>
 				<div>
-					<label for="paid">定金金额：</label>  <input type="text"
+					<label for="paid">定金金额：</label>  <input type="number"
 															name="paid" id="paid" value="${payment.paid }" />
 				</div>
 				<div>
-					<label for="money">学费金额：</label> <input type="text" name="money"
+					<label for="money">学费金额：</label> <input type="number" name="money"
 															id="money" value="${payment.money }" />
 				</div>
 				<div>
 					<%--	原有代码			<label for="paiment">繳費方式：</label> <input type="text" name="paiment"--%>
 					<%--					id="paiment" value="${payment.paiment }" />--%>
 					<label for="paiment">缴费方式：</label>
-					<select name="paiment" style="width: 270px">
-						<option > </option>
-						<option >刷卡</option>
-						<option >转账</option>
-						<option >支付宝</option>
-						<option >微信</option>
-					</select>
+						<input type="text" name="paiment"
+							   id="paiment" value="${payment.paiment }" />
 				</div>
 				<div>
 					<%--	原有代码		<label for="keeper">收費人：</label> <input type="text"--%>
 					<%--				name="keeper" id="keeper" value="${payment.keeper }" /> <span>*</span>--%>
 					<label for="keeper">收费人：</label>
-					<select name="keeper" style="width: 270px">
-						<option > </option>
-						<option >琪一</option>
-						<option >陈二</option>
-						<option >张三</option>
-						<option >李四</option>
-						<option >王五</option>
-					</select>
+						<input type="text" name="keeper"
+							   id="keeper" value="${payment.keeper}" />
 				</div>
 				<div>
 					<label for="remark">备注：</label> <input type="text"

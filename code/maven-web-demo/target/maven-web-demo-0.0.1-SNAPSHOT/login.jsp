@@ -14,7 +14,7 @@
         $(document).ready(function(){
             $.ajax({
                 type: 'post',
-                url:'tea1/teacher2.action',
+                url:'denglu/xiala.action',
                 data:{
 
                 },

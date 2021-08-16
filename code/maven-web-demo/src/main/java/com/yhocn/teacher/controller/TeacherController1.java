@@ -21,16 +21,15 @@ import com.yhocn.teacher.service.TeacherService;
 import com.yhocn.login.controller.LoginController;
 
 @Controller
-@RequestMapping("/tea1")
+@RequestMapping("/denglu")
 public class TeacherController1 {
 
 
     @Autowired
     private TeacherService service;
-    @RequestMapping("/teacher2")
+    @RequestMapping("/xiala")
     @ResponseBody
     public String sendString(){    //user是与页面参数对应的JavaBean
-        //map集合用来存放返回值
         List<Teacher> telist = service.selectAll1();
         List<String>gongsi=new ArrayList<>();
         for(int i=0;i<telist.size();i++){

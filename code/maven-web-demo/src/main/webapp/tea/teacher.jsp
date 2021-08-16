@@ -63,7 +63,7 @@
                 <th width="5%">年龄</th>
                 <th width="10%">电话</th>
                 <th width="10%">家庭住址</th>
-                <th width="10%">照片</th>
+                <th width="10%">身份证号</th>
                 <th width="5%">学历</th>
             </tr>
             <c:forEach items="${telist }" var="s">

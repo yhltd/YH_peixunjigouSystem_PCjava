@@ -54,7 +54,7 @@
             <form action="<%=request.getContextPath() %>/stu/update.action">
                 <div>
                     <label for="id">序号：</label>
-                    <input type="text" name="id" id="id" value="${student.id}" readonly="readonly"/>
+                    <input type="text" readonly="readonly" name="id" id="id" value="${student.id}" readonly="readonly"/>
                     <span >*</span>
                 </div>
                 <div>
@@ -106,15 +106,15 @@
                 </div>
                 <div>
                     <label for="fee">学费：</label>
-                    <input type="text" name="fee" id="fee" value="${student.fee }"/>
+                    <input type="number" name="fee" id="fee" value="${student.fee }"/>
                 </div>
                 <div>
                     <label for="cost">已缴费：</label>
-                    <input type="text" name="cost" id="cost" value="${student.cost }"/>
+                    <input type="number" name="cost" id="cost" value="${student.cost }"/>
                 </div>
                 <div>
                     <label for="nocost">未交费：</label>
-                    <input type="text" name="nocost" id="nocost" value="${student.nocost }"/>
+                    <input type="number" name="nocost" id="nocost" value="${student.nocost }"/>
                 </div>
                 <div>
                     <label for="hour">已上课时：</label>

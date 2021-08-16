@@ -9,6 +9,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<select id="selectAll1" parameterType="Teacher" resultType="Teacher">
 		select distinct Company from teacher
+		where Company != ""
+
 	</select>
 	<select id="login" parameterType="Teacher" resultType="Teacher">
 		select *

@@ -63,7 +63,7 @@
                     <span >*</span>
                 </div>
                 <div>
-                    <label for="photo">照片：</label>
+                    <label for="photo">身份证号：</label>
                     <input type="text" name="photo" id="photo" value="${GLOBAL_USER.photo }"/>
                 </div>
                 <div>

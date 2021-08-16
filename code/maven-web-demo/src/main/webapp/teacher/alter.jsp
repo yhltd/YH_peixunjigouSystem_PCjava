@@ -53,7 +53,7 @@
             <form action="<%=request.getContextPath() %>/teacher/alter.action">
                 <div>
                     <label for="id">序号：</label>
-                    <input type="text" name="id" id="id" value="${kstj.id }"/>
+                    <input type="text" readonly="readonly" name="id" id="id" value="${kstj.id }"/>
 
                 </div>
                 <div>

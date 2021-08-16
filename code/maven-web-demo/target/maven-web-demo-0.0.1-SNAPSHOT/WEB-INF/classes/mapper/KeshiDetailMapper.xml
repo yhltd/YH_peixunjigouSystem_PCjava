@@ -11,8 +11,12 @@
 	</select>
 	<select id="getList1" parameterType="Keshidetail" resultType="Keshidetail">
 		select * from keshi_detail where Company =#{c}
-		<if test="a != null and b != ''">
-			and teacher_name like #{a} and keshi like #{b}
+
+		<if test="a != null and a !='' ">
+			and teacher_name like #{a}
+		</if>
+		<if test="b != '' and b !=null  ">
+			and keshi like #{b}
 		</if>
 	</select>
 
@@ -27,13 +31,28 @@
 	<insert id="add">
 		insert into
 		keshi_detail(riqi,student_name,course,keshi,teacher_name,jine, Company)
-		values(#{ksd.riqi},#{ksd.student_name},#{ksd.course},#{ksd.keshi},#{ksd.teacher_name},#{ksd.jine},#{c})
+		values( 	<choose>
+		<when test="ksd.riqi != ''">
+			#{ksd.riqi}
+		</when>
+		<otherwise>
+			null
+		</otherwise>
+	</choose>,
+		#{ksd.student_name},#{ksd.course},#{ksd.keshi},#{ksd.teacher_name},#{ksd.jine},#{c})
 	</insert>
 
 	<update id="update">
 		update keshi_detail
 		set
-		riqi=#{ksd.riqi},
+		riqi=<choose>
+		<when test="ksd.riqi != ''">
+			#{ksd.riqi}
+		</when>
+		<otherwise>
+			null
+		</otherwise>
+	</choose>,
 		student_name=#{ksd.student_name},
 		course=#{ksd.course},
 		keshi=#{ksd.keshi},

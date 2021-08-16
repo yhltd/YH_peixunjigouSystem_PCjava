@@ -58,7 +58,7 @@
                 </div>
                 <div>
                     <label  for="money">收入金额：</label>
-                    <input type="text" name="money" id="money" value="${income.money }"/>
+                    <input type="number" name="money" id="money" value="${income.money }"/>
                 </div>
                 <%--  <div>
                      <label for="msort">收入分类：</label>
@@ -98,7 +98,7 @@
                 </div>
             <div>
                     <label for="paid">支出金额：</label>
-                    <input type="text" name="paid" id="paid" value="${income.paid }"/>
+                    <input type="number" name="paid" id="paid" value="${income.paid }"/>
                 </div>
                 <%--   <div>
                      <label for="psort">支出分类：</label>

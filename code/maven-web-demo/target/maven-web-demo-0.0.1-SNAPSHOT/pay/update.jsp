@@ -63,7 +63,7 @@
 			<form action="<%=request.getContextPath()%>/pay/update.action">
 				<div>
 					<label for="id">序号：</label>
-					<input type="text" name="id" id="id" value="${payment.id}"/>
+					<input type="text" readonly="readonly" name="id" id="id" value="${payment.id}"/>
 					<span >*</span>
 				</div>
 				<div>
@@ -76,11 +76,11 @@
 															   name="realname" id="realname" value="${payment.realname }" /> <span>*</span>
 				</div>
 				<div>
-					<label for="paid">定金金额：</label><input type="text"
+					<label for="paid">定金金额：</label><input type="number"
 														  name="paid" id="paid" value="${payment.paid }" />
 				</div>
 				<div>
-					<label for="money">学费金额：</label> <input type="text" name="money"
+					<label for="money">学费金额：</label> <input type="number" name="money"
 															id="money" value="${payment.money }" />
 				</div>
 				<div>

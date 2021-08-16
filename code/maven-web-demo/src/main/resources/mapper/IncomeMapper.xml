@@ -34,7 +34,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into
 		income(rgdate,money,msort,mremark,paid,
 		psort,premark,handle,Company)
-		values(#{inc.rgdate},#{inc.money},#{inc.msort},#{inc.mremark},#{inc.paid},
+		values(
+	   	<choose>
+			<when test="inc.rgdate != ''">
+				#{inc.rgdate}
+			</when>
+			<otherwise>
+				null
+			</otherwise>
+		</choose>,
+	   	#{inc.money},#{inc.msort},#{inc.mremark},#{inc.paid},
 		#{inc.psort},#{inc.premark},#{inc.handle},#{c})
 	</insert>
 </mapper>

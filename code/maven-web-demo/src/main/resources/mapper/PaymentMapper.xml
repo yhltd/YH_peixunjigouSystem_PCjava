@@ -25,20 +25,35 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="add">
 		insert into
 		payment(ksdate,realname,paid,money,paiment,keeper,remark,Company)
-		values(#{p.ksdate},#{p.realname},#{p.paid},#{p.money},#{p.paiment},
+		values( 	<choose>
+		<when test="p.ksdate != ''">
+			#{p.ksdate}
+		</when>
+		<otherwise>
+			null
+		</otherwise>
+	</choose>,
+	    #{p.realname},#{p.paid},#{p.money},#{p.paiment},
 		#{p.keeper},#{p.remark},#{c})
 	</insert>
 
 	<update id="update">
 		update payment
 		set
-		ksdate=#{p.ksdate},
+		ksdate= <choose>
+		<when test="p.ksdate != ''">
+			#{p.ksdate}
+		</when>
+		<otherwise>
+			null
+		</otherwise>
+	</choose>,
 		realname=#{p.realname},
 		paid=#{p.paid},
 		paiment=#{p.paiment},
 		keeper=#{p.keeper},
-		remark=#{p.remark}
-
+		remark=#{p.remark},
+		money=#{p.money}
 		where
 		id=#{p.id} and Company =#{c}
 	</update>
