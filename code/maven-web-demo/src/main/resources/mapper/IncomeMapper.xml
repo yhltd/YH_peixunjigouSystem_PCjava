@@ -46,4 +46,34 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	   	#{inc.money},#{inc.msort},#{inc.mremark},#{inc.paid},
 		#{inc.psort},#{inc.premark},#{inc.handle},#{c})
 	</insert>
+	<update id="update">
+		update  Income
+		set
+		rgdate=<choose>
+		<when test="inc.rgdate != ''">
+			#{inc.rgdate}
+		</when>
+		<otherwise>
+			null
+		</otherwise>
+		</choose>,
+		money=#{inc.money},
+		msort=#{inc.msort},
+		mremark=#{inc.mremark},
+		paid=#{inc.paid},
+		psort=#{inc.psort},
+		premark=#{inc.premark},
+		handle=#{inc.handle},
+		Company=#{c}
+		where
+		ID=#{inc.id} and Company =#{c}
+	</update>
+	<delete id="delete">
+		delete from income
+		where  ID=#{inc.id} and Company =#{c}
+	</delete>
+	<select id="selectById" resultType="Income">
+		select * from income where
+			ID=#{inc.id} and Company =#{c}
+	</select>
 </mapper>

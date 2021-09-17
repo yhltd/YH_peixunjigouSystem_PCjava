@@ -1,5 +1,6 @@
 package com.yhocn.keshi_detail.service;
 
+import com.yhocn.income.entity.Income;
 import com.yhocn.keshi_detail.entity.Keshidetail;
 import com.yhocn.shezhi.entity.Shezhi;
 
@@ -19,4 +20,6 @@ public interface KeshiDetailService {
     public List<Keshidetail>getTeacherKeshiList(Keshidetail ksd, String c);
 
     public List<Keshidetail> getList1(Keshidetail ksd, String c,String a,String b);
+
+    List<Keshidetail> select(Keshidetail ksd, String a, String c);
 }

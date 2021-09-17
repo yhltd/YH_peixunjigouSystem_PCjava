@@ -36,7 +36,7 @@
                 <li><a href="<%=request.getContextPath() %>/keshi/getList.action">课时统计</a></li>
                 <li><a href="<%=request.getContextPath() %>/inc/income.action">收支明细</a></li>
                 <li><a href="<%=request.getContextPath() %>/stu/arr.action">欠费学生</a></li>
-                <li><a href="<%=request.getContextPath() %>/stu/inq.jsp">学生查询</a></li>
+                <li><a href="<%=request.getContextPath() %>/stu/inq1.jsp">学生查询</a></li>
                 <li><a href="<%=request.getContextPath() %>/keshi/getTeacherKeshiList.action">教师课时统计</a></li>
                 <li><a href="<%=request.getContextPath() %>/tea/teacher.action">用户管理</a></li>
                 <li><a href="<%=request.getContextPath() %>/help.jsp">帮助</a></li>
@@ -47,10 +47,20 @@
         <div class="location">
             <strong>你现在所在的位置是:</strong>
             <span>教师课时统计表</span>
+
         </div>
         <div class="search">
             <span style="color:red">${msg}</span>
 <%--            <a href="<%=request.getContextPath()%>/teacher/add.jsp">添加信息</a>--%>
+            <form action="<%=request.getContextPath()%>/keshi/select.action"
+                  method="post" id="myForm"></form>
+
+            <span>教师名称</span>
+            <input type="text"  name="teacher_name" form="myForm"/>
+            <input type="submit" value="查询" form="myForm"/>
+        </div>
+        <div class="search">
+
         </div>
         <table class="providerTable" cellpadding="0" cellspacing="0">
 <%--            <tr>--%>

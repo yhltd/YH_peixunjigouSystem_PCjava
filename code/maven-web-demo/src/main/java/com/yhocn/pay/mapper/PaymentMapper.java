@@ -14,4 +14,5 @@ public interface PaymentMapper {
 	public int delete(@Param("p")Payment p,@Param("c")String c);
 	public Payment selectByRealname(@Param("p")Payment p,@Param("c")String c);
 	public Payment selectById(@Param("p")Payment p,@Param("c")String c);
+
 }

@@ -1,5 +1,6 @@
 package com.yhocn.keshi_detail.controller;
 
+import com.yhocn.income.entity.Income;
 import com.yhocn.keshi_detail.entity.Keshidetail;
 import com.yhocn.keshi_detail.service.KeshiDetailService;
 import com.yhocn.shezhi.entity.Shezhi;
@@ -36,7 +37,7 @@ public class KeshiDetailController {
     @RequestMapping("/getList1")
     public ModelAndView query1(ModelAndView mv, Keshidetail ksd, String c, String a, String b, HttpServletRequest request) {
         a=request.getParameter("teacher_name");
-        b=request.getParameter("keshi");
+        b=request.getParameter("course");
         LoginController e=new  LoginController();
         c=e.a;
         List<Keshidetail> list = service.getList1(ksd,c,a,b);
@@ -54,7 +55,16 @@ public class KeshiDetailController {
         mv.setViewName("/teacher/kstj.jsp");
         return mv;
     }
-
+    @RequestMapping("/select")
+    public ModelAndView info(ModelAndView mv, Keshidetail ksd, String a ,String c, HttpServletRequest request) {
+        a=request.getParameter("teacher_name");
+        LoginController e=new  LoginController();
+        c=e.a;
+        List<Keshidetail> list = service.select(ksd,c,a);
+        mv.addObject("teacherKeshiList",list);
+        mv.setViewName("/teacher/kstj.jsp");
+        return mv;
+    }
     @RequestMapping("/toadd")
     public ModelAndView toadd(ModelAndView mv, Shezhi shezhi, String c){
         LoginController e=new  LoginController();

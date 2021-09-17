@@ -25,7 +25,6 @@
                     var strcontent ="";
                     for(var i=0;i<user.length;i++){
                         strcontent+="<option>"+user[i]+"</option>"
-
                     }
                     str+=strcontent+"</select>";
                     $("#content").html(str);
@@ -46,7 +45,7 @@
 
         <section class="loginCont">
         <div id="min2">${msg}</div>
-            <form class="loginForm" action="<%=request.getContextPath() %>/login.action">
+            <form class="loginForm" method="post" action="<%=request.getContextPath() %>/aa.action">
 
                 <div class="inputbox" id="content" >
 

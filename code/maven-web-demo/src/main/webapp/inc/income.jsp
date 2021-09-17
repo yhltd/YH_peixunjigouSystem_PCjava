@@ -38,7 +38,7 @@
                 <li><a href="<%=request.getContextPath() %>/keshi/getList.action">课时统计</a></li>
                 <li><a href="<%=request.getContextPath() %>/inc/income.action">收支明细</a></li>
                 <li><a href="<%=request.getContextPath() %>/stu/arr.action">欠费学生</a></li>
-                <li><a href="<%=request.getContextPath() %>/stu/inq.jsp">学生查询</a></li>
+                <li><a href="<%=request.getContextPath() %>/stu/inq1.jsp">学生查询</a></li>
                 <li><a href="<%=request.getContextPath() %>/teacher/kstj.action">教师课时统计</a></li>
                 <li><a href="<%=request.getContextPath() %>/tea/teacher.action">用户管理</a></li>
                 <li><a href="<%=request.getContextPath() %>/help.jsp">帮助</a></li>
@@ -89,8 +89,9 @@
                     <td>${s.premark}</td>
                     <td>${s.handle}</td>
                     <td>
-<%--                        <a href="<%=request.getContextPath() %>/stu/toUpdate.action?id=${s.id}"><img src="<%=request.getContextPath() %>/img/xiugai.png" alt="修改" title="修改"/></a>--%>
-<%--                        <a href="<%=request.getContextPath() %>/stu/delete.action?id=${s.id}" class="removeProvider" onclick="return confirm('您确认要删除本记录么？')"><img src="<%=request.getContextPath() %>/img/schu.png" alt="删除" title="删除"/></a>--%>
+                        <a href="<%=request.getContextPath() %>/inc/toUpdate.action?id=${s.id}"><img src="<%=request.getContextPath() %>/img/read.png" alt="查看" title="查看"/></a>
+                        <a href="<%=request.getContextPath() %>/inc/toUpdate.action?id=${s.id}"><img src="<%=request.getContextPath() %>/img/xiugai.png" alt="修改" title="修改"/></a>
+                        <a href="<%=request.getContextPath() %>/inc/delete.action?id=${s.id}" class="removeProvider" onclick="return confirm('您确认要删除本记录么？')"><img src="<%=request.getContextPath() %>/img/schu.png" alt="删除" title="删除"/></a>
                     </td>
                 </tr>
             </c:forEach>

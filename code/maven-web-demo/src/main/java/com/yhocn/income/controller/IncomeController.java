@@ -2,7 +2,9 @@ package com.yhocn.income.controller;
 
 import java.util.List;
 
+import com.yhocn.pay.entity.Payment;
 import com.yhocn.shezhi.entity.Shezhi;
+import com.yhocn.student.entity.Student;
 import com.yhocn.teacher.entity.Teacher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -54,7 +56,7 @@ public class IncomeController {
 			mv.setViewName("/inc/income.action");
 		}else {
 			mv.addObject("msg","增加用户失败");
-			mv.setViewName("/inc/add.jsp");
+			mv.setViewName("/inc/add.action");
 		}
 		return mv;
 	}
@@ -70,5 +72,42 @@ public class IncomeController {
 		mv.setViewName("/inc/add.jsp");
 		return mv;
 	}
+	@RequestMapping("/update")
+	public ModelAndView update(ModelAndView mv,Income inc, String c) {
+		LoginController e=new  LoginController();
+		c=e.a;
+		int i = service.update(inc,c);
+		if(i>0) {
+			mv.addObject("msg","修改用户成功");
+			mv.setViewName("/inc/income.action");
+		}else {
+			mv.addObject("msg","修改用户失败");
+			mv.setViewName("/inc/income.action");
+		}
+		return mv;
+	}
+	@RequestMapping("/delete")
+	public ModelAndView delete(ModelAndView mv,Income inc, String c) {
+		LoginController e=new  LoginController();
+		c=e.a;
 
+		int i = service.delete(inc,c);
+		if(i>0) {
+			mv.addObject("msg","删除用户成功");
+		}else {
+			mv.addObject("msg","删除用户失败");
+		}
+		mv.setViewName("/inc/income.action");
+		return mv;
+	}
+	@RequestMapping("/toUpdate")
+	public ModelAndView toUpdate(ModelAndView mv, Income inc, String c) {
+		LoginController e=new  LoginController();
+		c=e.a;
+		Income inc1 = service.selectById(inc,c);
+		mv.addObject("income",inc1);
+		mv.setViewName("/inc/update.jsp");
+
+		return mv;
+	}
 }

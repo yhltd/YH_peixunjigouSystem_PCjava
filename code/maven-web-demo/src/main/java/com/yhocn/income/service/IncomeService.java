@@ -17,5 +17,10 @@ public interface IncomeService {
 	List<Income> select(Income inc, String a, String b, String c);
 
 
+    int update(Income inc, String c);
+
+    int delete(Income inc, String c);
+
+	Income selectById(Income inc, String c);
 }
 			

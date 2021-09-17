@@ -13,10 +13,10 @@
 		select * from keshi_detail where Company =#{c}
 
 		<if test="a != null and a !='' ">
-			and teacher_name like #{a}
+			and teacher_name like "%"#{a}"%"
 		</if>
 		<if test="b != '' and b !=null  ">
-			and keshi like #{b}
+			and course like "%"#{b}"%"
 		</if>
 	</select>
 
@@ -70,5 +70,12 @@
 	<select id="getTeacherKeshiList" parameterType="Keshidetail" resultType="Keshidetail">
 		select teacher_name,course,sum(keshi) as keshi,jine,sum(jine*keshi) as gongzi from keshi_detail where Company =#{c} group by teacher_name,jine order by teacher_name
 	</select>
+	<select id="select" parameterType="Keshidetail" resultType="Keshidetail">
+		select teacher_name,course,sum(keshi) as keshi,jine,sum(jine*keshi) as gongzi from keshi_detail where Company =#{c}
+		<if test="a != null and a != ''">
+			and teacher_name  like "%"#{a}"%"
+		</if>
+		group by teacher_name,jine order by teacher_name
 
+	</select>
 </mapper>

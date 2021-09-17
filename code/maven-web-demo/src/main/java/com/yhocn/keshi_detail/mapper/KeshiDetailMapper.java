@@ -22,5 +22,5 @@ public interface KeshiDetailMapper {
     public List<Keshidetail>getTeacherKeshiList(@Param("ksd")Keshidetail ksd,@Param("c")String c);
 
 
-
+    public List<Keshidetail> select(@Param("ksd")Keshidetail ksd,@Param("c")String c,@Param("a")String a);
 }

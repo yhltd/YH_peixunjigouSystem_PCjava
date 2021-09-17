@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
@@ -27,11 +28,12 @@ public class TeacherController1 {
 
     @Autowired
     private TeacherService service;
-    @RequestMapping("/xiala")
+    @RequestMapping(value="/xiala",produces = "text/plain;charset=UTF-8")
     @ResponseBody
-    public String sendString(){    //user是与页面参数对应的JavaBean
+    public String sendString(HttpServletResponse resp){    //user是与页面参数对应的JavaBean
         List<Teacher> telist = service.selectAll1();
         List<String>gongsi=new ArrayList<>();
+        resp.setCharacterEncoding("UTF-8");
         for(int i=0;i<telist.size();i++){
             String gs= telist.get(i).getCompany();
             gongsi.add(gs);

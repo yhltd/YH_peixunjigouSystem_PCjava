@@ -12,6 +12,9 @@ import javax.servlet.http.Cookie;
 public interface IncomeMapper {
 	public List<Income> selectAll(@Param("inc")Income inc,@Param("c")String c);
 	public int add(@Param("inc")Income inc,@Param("c")String c);
+	public int update(@Param("inc")Income inc,@Param("c")String c);
+	public int delete(@Param("inc")Income inc,@Param("c")String c);
+	public Income selectById(@Param("inc")Income inc,@Param("c")String c);
 	public List<Shezhi> shezhiList(@Param("shezhi")Shezhi shezhi,@Param("c")String c);
 	public List<Shezhi> List(@Param("shezhi")Shezhi shezhi,@Param("c")String c);
 	public List<Income> select(@Param("inc")Income inc, @Param("a")String a,@Param("b")String b,@Param("c")String c);

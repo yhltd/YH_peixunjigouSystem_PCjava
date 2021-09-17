@@ -47,10 +47,10 @@ public class PaymentController {
 		int i = service.add(p,c);
 		if(i>0) {
 			mv.addObject("msg","增加用户成功");
-			mv.setViewName("/pay/payment.jsp");
+			mv.setViewName("/pay/payment.action");
 		}else {
 			mv.addObject("msg","增加用户失败");
-			mv.setViewName("/pay/payment.jsp");
+			mv.setViewName("/pay/payment.action");
 		}
 		return mv;
 	}
@@ -72,10 +72,10 @@ public class PaymentController {
 		int i = service.update(p,c);
 		if(i>0) {
 			mv.addObject("msg","修改用户成功");
-			mv.setViewName("/pay/payment.jsp");
+			mv.setViewName("/pay/payment.action");
 		}else {
 			mv.addObject("msg","修改用户失败");
-			mv.setViewName("/pay/update.jsp");
+			mv.setViewName("/pay/update.action");
 		}
 		return mv;
 	}
@@ -89,7 +89,7 @@ public class PaymentController {
 		}else {
 			mv.addObject("msg","修改用户失败");
 		}
-		mv.setViewName("/pay/payment.jsp");
+		mv.setViewName("/pay/payment.action");
 		return mv;
 	}
 }

@@ -47,7 +47,7 @@ public class StudentController {
 		int i = service.add(s,c);
 		if(i>0) {
 			mv.addObject("msg","增加用户成功");
-			mv.setViewName("/stu/student.jsp");
+			mv.setViewName("/stu/student.action");
 		}else {
 			mv.addObject("msg","增加用户失败");
 			mv.setViewName("/stu/add.jsp");
@@ -131,6 +131,7 @@ public class StudentController {
 		a=request.getParameter("realName");
 			LoginController e=new  LoginController();
 			c=e.a;
+
 			List<Student> select = service.selectByRealName(s,c,a);
 			mv.addObject("select",select);
 			mv.setViewName("/stu/inq.jsp");

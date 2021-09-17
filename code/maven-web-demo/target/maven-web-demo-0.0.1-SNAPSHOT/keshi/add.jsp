@@ -40,7 +40,7 @@
                 <li><a href="<%=request.getContextPath() %>/keshi/getList.action">课时统计</a></li>
                 <li><a href="<%=request.getContextPath() %>/stu/ksclass.action">收支明细</a></li>
                 <li><a href="<%=request.getContextPath() %>/stu/arr.action">欠费学生</a></li>
-                <li><a href="<%=request.getContextPath() %>/stu/inq.jsp">学生查询</a></li>
+                <li><a href="<%=request.getContextPath() %>/stu/inq1.jsp">学生查询</a></li>
                 <li><a href="<%=request.getContextPath() %>/keshi/getTeacherKeshiList.action">教师课时统计</a></li>
                 <li><a href="<%=request.getContextPath() %>/tea/teacher.action">用户管理</a></li>
                 <li><a href="<%=request.getContextPath() %>/help.jsp">帮助</a></li>
@@ -54,13 +54,14 @@
         </div>
         <div class="providerAdd">
             <form action="<%=request.getContextPath() %>/keshi/add.action">
-                <div>
-                    <label for="student_name">学生姓名：</label>
-                    <input type="text" name="student_name" id="student_name"/>
-                </div>
+
                 <div>
                     <label for="riqi">日期：</label>
                     <input type="date" id="riqi" name="riqi"/>
+                </div>
+                <div>
+                    <label for="student_name">学生姓名：</label>
+                    <input type="text" name="student_name" id="student_name"/>
                 </div>
                 <div>
                     <label for="course">培训课程：</label>

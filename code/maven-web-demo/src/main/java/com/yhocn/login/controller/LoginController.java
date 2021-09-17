@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.yhocn.income.entity.Income;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,12 +34,12 @@ public class LoginController {
 			if(t2.getUseType()==1) {
 				mv.setViewName("/main.jsp");
 				se.setAttribute("GLOBAL_USER", t2);
-			
+
 				if("true".equals(isRemPwd)) {
 					Cookie c1=new Cookie("userName", t.getUserName());
 					c1.setMaxAge(10*24*60*60);
 					response.addCookie(c1);
-					
+
 					Cookie c2=new Cookie("password",t.getPassword());
 					c2.setMaxAge(10*24*60*60);
 					response.addCookie(c2);
@@ -52,7 +53,7 @@ public class LoginController {
 					Cookie c1=new Cookie("userName", t.getUserName());
 					c1.setMaxAge(0);
 					response.addCookie(c1);
-				
+
 					Cookie c2=new Cookie("password",t.getPassword());
 					c2.setMaxAge(0);
 					response.addCookie(c2);}
@@ -71,5 +72,10 @@ public class LoginController {
 
 		return mv;
 
+	}
+	@RequestMapping("/aa")
+	public ModelAndView query(ModelAndView mv) {
+		mv.setViewName("/login.action");
+		return mv;
 	}
 }

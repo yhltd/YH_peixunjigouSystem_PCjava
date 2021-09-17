@@ -40,7 +40,7 @@
                 <li><a href="<%=request.getContextPath() %>/keshi/getList.action">课时统计</a></li>
                 <li><a href="<%=request.getContextPath() %>/stu/ksclass.action">收支明细</a></li>
                 <li><a href="<%=request.getContextPath() %>/stu/arr.action">欠费学生</a></li>
-                <li><a href="<%=request.getContextPath() %>/stu/inq.jsp">学生查询</a></li>
+                <li><a href="<%=request.getContextPath() %>/stu/inq1.jsp">学生查询</a></li>
                 <li><a href="<%=request.getContextPath() %>/keshi/getTeacherKeshiList.action">教师课时统计</a></li>
                 <li><a href="<%=request.getContextPath() %>/tea/teacher.action">用户管理</a></li>
                 <li><a href="<%=request.getContextPath() %>/help.jsp">帮助</a></li>
@@ -123,16 +123,8 @@
                     <input type="number" name="cost" id="cost" value="${student.cost }"/>
                 </div>
                 <div>
-                    <label for="nocost">未交费：</label>
-                    <input type="number" name="nocost" id="nocost" value="${student.nocost }"/>
-                </div>
-                <div>
                     <label for="hour">已上课时：</label>
                     <input type="text" name="hour" id="hour" value="${student.hour }"/>
-                </div>
-                <div>
-                    <label for="nohour">剩余课时：</label>
-                    <input type="text" name="nohour" id="nohour" value="${student.nohour }"/>
                 </div>
                 <div>
                     <label for="allHour">总课时：</label>

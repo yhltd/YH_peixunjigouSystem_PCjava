@@ -28,7 +28,12 @@ public  class IncomeServiceImpl implements IncomeService{
 
 	@Override
 	public int add(Income inc, String c) { return dao.add(inc,c); }
-
+	@Override
+	public int update(Income inc, String c) { return dao.update(inc,c); }
+	@Override
+	public int delete(Income inc, String c) { return dao.delete(inc,c); }
+	@Override
+	public Income selectById(Income inc, String c) { return dao.selectById(inc,c); }
 	@Override
 	public List<Shezhi> shezhiList(Shezhi shezhi, String c) {
 		return dao.shezhiList(shezhi,c);

@@ -38,7 +38,7 @@
                 <li><a href="<%=request.getContextPath() %>/keshi/getList.action">课时统计</a></li>
                 <li><a href="<%=request.getContextPath() %>/inc/income.action">收支明细</a></li>
                 <li><a href="<%=request.getContextPath() %>/stu/arr.action">欠费学生</a></li>
-                <li><a href="<%=request.getContextPath() %>/stu/inq.jsp">学生查询</a></li>
+                <li><a href="<%=request.getContextPath() %>/stu/inq1.jsp">学生查询</a></li>
                 <li><a href="<%=request.getContextPath() %>/keshi/getTeacherKeshiList.action">教师课时统计</a></li>
                 <li><a href="<%=request.getContextPath() %>/tea/teacher.action">用户管理</a></li>
                 <li><a href="<%=request.getContextPath() %>/help.jsp">帮助</a></li>
@@ -53,7 +53,7 @@
         <div class="search">
             <span style="color:red">${msg}</span>
             <input type="text" placeholder="请输入老师姓名" name="teacher_name" form="myForm"/>
-            <input type="text" placeholder="请输入课时" name="keshi" form="myForm"/>
+            <input type="text" placeholder="请输入培训课程" name="course" form="myForm"/>
             <input type="submit" value="查询" form="myForm"/>
             <form action="<%=request.getContextPath()%>/keshi/getList1.action"
                   method="post" id="myForm"></form>
