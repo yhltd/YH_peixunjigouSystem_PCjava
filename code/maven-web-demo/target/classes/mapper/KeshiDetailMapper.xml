@@ -18,6 +18,9 @@
 		<if test="b != '' and b !=null  ">
 			and course like "%"#{b}"%"
 		</if>
+		<if test="d != null and f != ''">
+			and riqi between #{d} and #{f}
+		</if>
 	</select>
 
 	<select id="getListById" parameterType="Keshidetail" resultType="Keshidetail">
@@ -55,8 +58,7 @@
 	</choose>,
 		student_name=#{ksd.student_name},
 		course=#{ksd.course},
-		keshi=#{ksd.keshi},
-		teacher_name=#{ksd.teacher_name},
+ 		teacher_name=#{ksd.teacher_name},
 		jine=#{ksd.jine}
 		where
 		id=#{ksd.id} and Company =#{c}
@@ -74,6 +76,17 @@
 		select teacher_name,course,sum(keshi) as keshi,jine,sum(jine*keshi) as gongzi from keshi_detail where Company =#{c}
 		<if test="a != null and a != ''">
 			and teacher_name  like "%"#{a}"%"
+		</if>
+		<if test="d != null and f != ''">
+			and riqi between #{d} and #{f}
+		</if>
+		group by teacher_name,jine order by teacher_name
+
+	</select>
+	<select id="select1" parameterType="Keshidetail" resultType="Keshidetail">
+		select teacher_name,course,sum(keshi) as keshi,jine,sum(jine*keshi) as gongzi from keshi_detail where Company =#{c}
+		<if test="a != null and a != ''">
+			and riqi  like "%"#{a}"%"
 		</if>
 		group by teacher_name,jine order by teacher_name
 

@@ -5,13 +5,13 @@
 
 /*登录页面*/
 .login_bg {
-    background: url("../img/loginBg.jpg") 0 0 repeat-x;
+    background: url("../img/bj.jpg") 0 0 repeat-x;
 }
 
 .loginBox {
     width: 1000px;
     margin: 0 auto;
-    background: url("../img/login_bg.jpg") 0 0 no-repeat;
+    background: url("../img/bj.jpg") 0 0 no-repeat;
 }
 
 .loginHeader {
@@ -94,16 +94,20 @@ input {
 .subBtn {
     margin-left: 70px;
     margin-top: 20px;
+    width:600px;
+
 }
 
 /*/!*登录页登录和重置按钮*!/.providerView a是供应商管理页面下信息查看也得返回按钮的样式*/
 .subBtn input[type='submit'], input[type='reset'], .providerView a {
-    width: 40%;
+    width: 90px;
+    height: 30px;
     cursor: pointer;
     background: #54a4d7;
     padding: 16px 18px;
     font-family: 'BebasNeueRegular', 'Arial Narrow', Arial, sans-serif;
     color: #fff;
+    line-height: 7px;
     font-size: 18px;
     border: 1px solid #4682be;
     margin-bottom: 20px;
@@ -145,7 +149,7 @@ input[type='reset']:active, input[type='reset']:focus, .providerView a:hover, .p
 }
 
 .wFont {
-    float: left;
+    /*float: left;*/
     margin-top: 50px;
 }
 
@@ -385,6 +389,21 @@ input[type='reset']:active, input[type='reset']:focus, .providerView a:hover, .p
     background: #679016;
 
 }
-
+.page{
+    margin: auto;
+    width: 300px;
+    text-align: center;
+    margin-top: 10px;
+}
+.page_cell{
+    float: left;
+    width: 50px;
+    border:1px solid #F5F5F5;
+    margin:2px;
+    cursor: pointer;
+}
+ .page_cell:hover{
+     -webkit-box-shadow: #777 0px 0px 1px;
+ }
 
 

@@ -18,7 +18,8 @@ public class Student {
 	private Integer allHour;
 	private String type;
 	private String Company;
-	
+	private String mall;
+	private String nall;
 	public Student() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -26,7 +27,7 @@ public class Student {
 
 	public Student(Integer id, String realName, String sex, String rgdate, String course, String teacher,
 			String classnum, String phone, Integer fee, Integer cost, Integer nocost, Integer hour, Integer nohour,
-			Integer allHour, String type,String Company) {
+			Integer allHour, String type,String Company,String mall,String nall) {
 		super();
 		this.id = id;
 		this.realName = realName;
@@ -44,6 +45,8 @@ public class Student {
 		this.allHour = allHour;
 		this.type = type;
 		this.Company=Company;
+		this.mall=mall;
+		this.nall=nall;
 	}
 
 	public Integer getId() {
@@ -174,12 +177,28 @@ public class Student {
 		return Company;
 	}
 
+	public String getMall() {
+		return mall;
+	}
+
+	public void setMall(String mall) {
+		this.mall = mall;
+	}
+
+	public String getNall() {
+		return nall;
+	}
+
+	public void setNall(String nall) {
+		this.nall = nall;
+	}
+
 	@Override
 	public String toString() {
 		return "Student [id=" + id + ", realName=" + realName + ", sex=" + sex + ", rgdate=" + rgdate + ", course="
 				+ course + ", teacher=" + teacher + ", classnum=" + classnum + ", phone=" + phone + ", fee=" + fee
 				+ ", cost=" + cost + ", nocost=" + nocost + ", hour=" + hour + ", nohour=" + nohour + ", allHour="
-				+ allHour + ", type=" + type + ", Company=" + Company + "]";
+				+ allHour + ", type=" + type + ", Company=" + Company+ ", mall=" + mall+ ", nall=" + nall + "]";
 	}
 
 	

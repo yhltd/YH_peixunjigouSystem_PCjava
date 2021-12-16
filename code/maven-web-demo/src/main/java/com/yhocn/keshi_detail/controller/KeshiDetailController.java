@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 import com.yhocn.login.controller.LoginController;
 
@@ -35,12 +36,20 @@ public class KeshiDetailController {
         return mv;
     }
     @RequestMapping("/getList1")
-    public ModelAndView query1(ModelAndView mv, Keshidetail ksd, String c, String a, String b, HttpServletRequest request) {
-        a=request.getParameter("teacher_name");
-        b=request.getParameter("course");
+    public ModelAndView query1(ModelAndView mv, Keshidetail ksd, String c, String a, String b,String d,String f, HttpServletRequest request) {
+        a=request.getParameter("teacher_name").trim();
+        b=request.getParameter("course").trim();
+        d=request.getParameter("date1");
+        f=request.getParameter("date2");
+        if(d.equals("")){
+            d="1900/1/1";
+        }
+        if(f.equals("")){
+            f="2300/1/1";
+        }
         LoginController e=new  LoginController();
         c=e.a;
-        List<Keshidetail> list = service.getList1(ksd,c,a,b);
+        List<Keshidetail> list = service.getList1(ksd,c,a,b,d,f);
         mv.addObject("list",list);
         mv.setViewName("/keshi/keshi_detail.jsp");
         return mv;
@@ -56,13 +65,36 @@ public class KeshiDetailController {
         return mv;
     }
     @RequestMapping("/select")
-    public ModelAndView info(ModelAndView mv, Keshidetail ksd, String a ,String c, HttpServletRequest request) {
-        a=request.getParameter("teacher_name");
+    public ModelAndView info(ModelAndView mv, Keshidetail ksd, String a ,String c,String d,String f, HttpServletRequest request) {
+        a=request.getParameter("teacher_name").trim();
+        d=request.getParameter("date1");
+        f=request.getParameter("date2");
+        if(d.equals("")){
+            d="1900/1/1";
+        }
+        if(f.equals("")){
+            f="2300/1/1";
+        }
         LoginController e=new  LoginController();
         c=e.a;
-        List<Keshidetail> list = service.select(ksd,c,a);
+        List<Keshidetail> list = service.select(ksd,c,a,d,f);
         mv.addObject("teacherKeshiList",list);
         mv.setViewName("/teacher/kstj.jsp");
+        return mv;
+    }
+    @RequestMapping("/select1")
+    public ModelAndView info1(ModelAndView mv, Keshidetail ksd, String a ,String c, HttpServletRequest request) {
+       a=request.getParameter("date2");
+//        String strDateFormat = "yyyy-MM";
+//        SimpleDateFormat sdf = new SimpleDateFormat(a);
+        if (!a.equals("")){
+        String s1[]=a.split("-");
+        a=s1[0]+ "-" + s1[1];}
+        LoginController e=new  LoginController();
+        c=e.a;
+        List<Keshidetail> list = service.select1(ksd,c,a);
+        mv.addObject("teacherKeshiList",list);
+        mv.setViewName("/tea/jisuan.jsp");
         return mv;
     }
     @RequestMapping("/toadd")

@@ -13,15 +13,15 @@ public class StudentServiceImpl implements StudentService {
 
 	@Autowired
 	private StudentMapper dao;
-	
+
 	@Override
 	public List<Student> selectAll(Student s, String c) {
 		return dao.selectAll(s,c);
 	}
 
 	@Override
-	public List<Student> selectAll1(Student s, String c,String a) {
-		return dao.selectAll1(s,c,a);
+	public List<Student> selectAll1(Student s, String c,String a,String b,String d,String E,String f) {
+		return dao.selectAll1(s,c,a,b,d,E,f);
 	}
 
 

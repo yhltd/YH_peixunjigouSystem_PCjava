@@ -5,17 +5,18 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>培训管理系统</title>
+    <link rel="shortcut icon" href="../img/mm.png" />
+    <title>教务管理系统</title>
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/public.css"/>
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/style.css"/>
 </head>
 <body>
 <!--头部-->
 <header class="publicHeader">
-    <h1>培训管理系统</h1>
+    <h1>教务管理系统</h1>
 
     <div class="publicHeaderR">
-        <p><span id="hours"></span><span style="color: #fff21b">${GLOBAL_USER.realName} </span> , 欢迎你！</p>
+        <p><span id="hours"></span><img src="../img/yyh.png" style="width: 14px;height: 14px"><span style="color: #fff21b">${GLOBAL_USER.realName} </span> , 欢迎你！</p>
         <a href="<%=request.getContextPath() %>/login.jsp">退出</a>
     </div>
 </header>
@@ -38,7 +39,7 @@
                 <li><a href="<%=request.getContextPath() %>/keshi/getList.action">课时统计</a></li>
                 <li><a href="<%=request.getContextPath() %>/inc/income.action">收支明细</a></li>
                 <li><a href="<%=request.getContextPath() %>/stu/arr.action">欠费学生</a></li>
-                <li><a href="<%=request.getContextPath() %>/stu/inq1.jsp">学生查询</a></li>
+                <li><a href="<%=request.getContextPath() %>/tea/jisuan.jsp">教师工资</a></li>
                 <li><a href="<%=request.getContextPath() %>/keshi/getTeacherKeshiList.action">教师课时统计</a></li>
                 <li><a href="<%=request.getContextPath() %>/tea/teacher.action">用户管理</a></li>
                 <li><a href="<%=request.getContextPath() %>/help.jsp">帮助</a></li>
@@ -54,10 +55,13 @@
             <span style="color:red">${msg}</span>
             <input type="text" placeholder="请输入老师姓名" name="teacher_name" form="myForm"/>
             <input type="text" placeholder="请输入培训课程" name="course" form="myForm"/>
+            <input type="date" placeholder="请输入开始时间" name="date1" form="myForm"/>
+            <input type="date" placeholder="请输入结束时间" name="date2" form="myForm"/>
+            <a href="<%=request.getContextPath()%>/keshi/toadd.action">添加明细</a>
             <input type="submit" value="查询" form="myForm"/>
             <form action="<%=request.getContextPath()%>/keshi/getList1.action"
                   method="post" id="myForm"></form>
-            <a href="<%=request.getContextPath()%>/keshi/toadd.action">添加明细</a>
+
         </div>
         <table class="providerTable" cellpadding="0" cellspacing="0">
             <tr class="firstTr">

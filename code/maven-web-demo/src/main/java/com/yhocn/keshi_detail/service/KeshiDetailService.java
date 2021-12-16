@@ -19,7 +19,8 @@ public interface KeshiDetailService {
     public Keshidetail getListById(Keshidetail ksd, String c);
     public List<Keshidetail>getTeacherKeshiList(Keshidetail ksd, String c);
 
-    public List<Keshidetail> getList1(Keshidetail ksd, String c,String a,String b);
+    public List<Keshidetail> getList1(Keshidetail ksd, String c,String a,String b,String d,String f);
 
-    List<Keshidetail> select(Keshidetail ksd, String a, String c);
+    List<Keshidetail> select(Keshidetail ksd, String a, String c,String d,String f);
+    List<Keshidetail> select1(Keshidetail ksd, String a, String c);
 }

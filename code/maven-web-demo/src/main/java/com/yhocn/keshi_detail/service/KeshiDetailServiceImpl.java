@@ -22,14 +22,17 @@ public class KeshiDetailServiceImpl implements KeshiDetailService {
         return km.getList(ksd,c);
     }
     @Override
-    public List<Keshidetail> getList1(Keshidetail ksd, String c,String a,String b) {
-        return km.getList1(ksd,c,a,b);
+    public List<Keshidetail> getList1(Keshidetail ksd, String c,String a,String b,String d,String f) {
+        return km.getList1(ksd,c,a,b,d,f);
     }
     @Override
-    public List<Keshidetail> select(Keshidetail ksd, String c,String a) {
-        return km.select(ksd,c,a);
+    public List<Keshidetail> select(Keshidetail ksd, String c,String a,String d,String f) {
+        return km.select(ksd,c,a,d,f);
     }
-
+    @Override
+    public List<Keshidetail> select1(Keshidetail ksd, String c,String a) {
+        return km.select1(ksd,c,a);
+    }
     @Override
     public List<Shezhi> shezhiList(Shezhi shezhi, String c) {
         return km.shezhiList(shezhi,c);

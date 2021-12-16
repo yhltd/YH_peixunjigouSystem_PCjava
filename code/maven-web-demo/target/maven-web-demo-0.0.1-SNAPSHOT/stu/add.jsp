@@ -5,19 +5,21 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>培训管理系统</title>
+    <link rel="shortcut icon" href="../img/mm.png" />
+    <title>教务管理系统</title>
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/public.css"/>
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/style.css"/>
 </head>
 <body>
 <!--头部-->
 <header class="publicHeader">
-    <h1>培训管理系统</h1>
+    <h1>教务管理系统</h1>
 
     <div class="publicHeaderR">
-        <p><span id="hours"></span><span style="color: #fff21b">${GLOBAL_USER.realName} </span> , 欢迎你！</p>
+        <p><span id="hours"></span><img src="../img/yyh.png" style="width: 14px;height: 14px"><span style="color: #fff21b">${GLOBAL_USER.realName} </span> , 欢迎你！</p>
         <a href="<%=request.getContextPath() %>/login.jsp">退出</a>
     </div>
+
 
 
 </header>
@@ -40,7 +42,7 @@
                 <li><a href="<%=request.getContextPath() %>/keshi/getList.action">课时统计</a></li>
                 <li><a href="<%=request.getContextPath() %>/stu/ksclass.action">收支明细</a></li>
                 <li><a href="<%=request.getContextPath() %>/stu/arr.action">欠费学生</a></li>
-                <li><a href="<%=request.getContextPath() %>/stu/inq1.jsp">学生查询</a></li>
+                <li><a href="<%=request.getContextPath() %>/tea/jisuan.jsp">教师工资</a></li>
                 <li><a href="<%=request.getContextPath() %>/keshi/getTeacherKeshiList.action">教师课时统计</a></li>
                 <li><a href="<%=request.getContextPath() %>/tea/teacher.action">用户管理</a></li>
                 <li><a href="<%=request.getContextPath() %>/help.jsp">帮助</a></li>
@@ -118,14 +120,14 @@
                     <label for="fee">学费：</label>
                     <input type="number" name="fee" id="fee" value="${student.fee }"/>
                 </div>
-                <div>
-                    <label for="cost">已缴费：</label>
-                    <input type="number" name="cost" id="cost" value="${student.cost }"/>
-                </div>
-                <div>
-                    <label for="hour">已上课时：</label>
-                    <input type="text" name="hour" id="hour" value="${student.hour }"/>
-                </div>
+<%--                <div>--%>
+<%--                    <label for="cost">已缴费：</label>--%>
+<%--                    <input type="number" name="cost" id="cost" value="${student.cost }"/>--%>
+<%--                </div>--%>
+<%--                <div>--%>
+<%--                    <label for="hour">已上课时：</label>--%>
+<%--                    <input type="text" name="hour" id="hour" value="${student.hour }"/>--%>
+<%--                </div>--%>
                 <div>
                     <label for="allHour">总课时：</label>
                     <input type="text" name="allHour" id="allHour" value="${student.allHour }"/>

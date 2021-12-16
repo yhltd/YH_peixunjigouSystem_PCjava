@@ -31,7 +31,7 @@ public class TeacherController1 {
     @RequestMapping(value="/xiala",produces = "text/plain;charset=UTF-8")
     @ResponseBody
     public String sendString(HttpServletResponse resp){    //user是与页面参数对应的JavaBean
-        List<Teacher> telist = service.selectAll1();
+        List<Teacher> telist = service.selectAll2();
         List<String>gongsi=new ArrayList<>();
         resp.setCharacterEncoding("UTF-8");
         for(int i=0;i<telist.size();i++){

@@ -38,6 +38,12 @@ public class IncomeController {
 	public ModelAndView info(ModelAndView mv, Income inc, String a, String b, String c,HttpServletRequest request) {
 		a=request.getParameter("rgdate");
 		b=request.getParameter("rgdate2");
+		if(a.equals("")){
+			a="1900/1/1";
+		}
+		if(b.equals("")){
+			b="2300/1/1";
+		}
 		LoginController e=new  LoginController();
 		c=e.a;
 		List<Income> inclist = service.select(inc,a,b,c);

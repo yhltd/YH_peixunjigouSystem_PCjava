@@ -5,13 +5,14 @@
 #min2{
 	    text-align:center;
 	    color:red;
-
 }
+
+
 #min3 span{
 	width: 300px;
     text-align:center;
-    float: right;
-    margin: 30px 100px;
+    /*float: left;*/
+    margin: 30px 30px;
     height:60px;
     line-height: 60px;
     border: 1px solid #0c89de;
@@ -40,6 +41,7 @@
  	flex-direction: column;
     justify-content: space-around;
     align-items: center;
+	margin-left: 14px;
 }
 
 #min6{
@@ -53,6 +55,7 @@
 	color:white;
 	font-size:37px;
 	font-weight: 900;
+
 }
 #min7{
 	background: #0194cb;

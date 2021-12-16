@@ -7,16 +7,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.yhocn.student.mapper.StudentMapper">
 
 	<select id="selectAll" parameterType="Student" resultType="Student">
-		select id,RealName,Sex,rgdate,Course,Teacher,Classnum,phone,Fee,Cost,Fee - Cost as Nocost,Hour,Allhour - Hour as Nohour,Allhour,Type FROM Student
+		select id,RealName,Sex,rgdate,Course,Teacher,Classnum,phone,Fee,(select ifnull(SUM(paid),0) from payment where Company =#{c} and realname=#{s.realName}) mall ,Fee -Cost as Nocost,(select ifnull(SUM(keshi),0) from keshi_detail where Company=#{c} and student_name=#{s.realName} and course=#{s.course}) nall,Allhour - Hour as Nohour,Allhour,Type FROM Student
 		where Company =#{c}
 
 	</select>
 	<select id="selectAll1" parameterType="Student" resultType="Student">
-		select id,RealName,Sex,rgdate,Course,Teacher,Classnum,phone,Fee,Cost,Fee - Cost as Nocost,Hour,Allhour - Hour as Nohour,Allhour,Type FROM Student
+		select id,RealName,Sex,rgdate,Course,Teacher,Classnum,phone,Fee,(select ifnull(SUM(paid),0) from payment where Company =#{c} and realname=#{s.realName}) mall,Fee - Cost as Nocost,(select ifnull(SUM(keshi),0) from keshi_detail where Company=#{c} and student_name=#{s.realName} and course=#{s.course}) nall,Allhour - Hour as Nohour,Allhour,Type FROM Student
 		where Company =#{c}
-		<if test="a != null and a != ''">
-			and Realname like "%"#{a}"%"
+		<if test="d != null and d != ''">
+			and Realname like "%"#{d}"%"
 		</if>
+		<if test="a != null and b != ''">
+			and rgdate between #{a} and #{b}
+		</if>
+		<if test="E != null and E != ''">
+			and Teacher like "%"#{E}"%"
+		</if>
+		<if test="f != null and f != ''">
+			and Course like "%"#{f}"%"
+		</if>
+
 	</select>
 
 	<select id="selectArr" parameterType="Student" resultType="Student">
@@ -31,7 +41,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			and Realname like "%"#{a}"%"
 		</if>
 	</select>
-	
+
 	<select id="selectById" resultType="Student">
 		select * from student where
 		ID=#{s.id} and Company =#{c}
@@ -51,7 +61,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</otherwise>
 	</choose>,
 		#{s.course},#{s.teacher},
-		#{s.classnum},#{s.phone},#{s.fee},#{s.cost},#{s.fee}-#{s.cost},#{s.hour},
+		#{s.classnum},#{s.phone},#{s.fee},#{s.cost} ,#{s.fee}-#{s.cost},{s.hour},
 		#{s.allHour}-#{s.hour},#{s.allHour},#{s.type},#{c})
 	</insert>
 
@@ -104,5 +114,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="shezhiList" parameterType="Shezhi" resultType="Shezhi">
 		select * from shezhi where Company =#{c}
 	</select>
-	
+
 </mapper>

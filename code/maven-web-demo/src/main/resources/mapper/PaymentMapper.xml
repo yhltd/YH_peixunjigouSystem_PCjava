@@ -6,14 +6,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.yhocn.pay.mapper.PaymentMapper">
 
-	<select id="selectAll" parameterType="Payment" resultType="Payment">
+	<select id="selectAll1" parameterType="Payment" resultType="Payment">
 		select * from payment where Company =#{c}
 
 	</select>
-	<select id="selectAll1" parameterType="Payment" resultType="Payment">
+	<select id="selectAll" parameterType="Payment" resultType="Payment">
 		select * from payment where Company =#{c}
-		<if test="a != null and a != ''">
-			and realname like "%"#{a}"%"
+		<if test="d != null and d != ''">
+			and realname like "%"#{d}"%"
+		</if>
+		<if test=" a != '' and  b != ''">
+			 and  ksdate between #{a} and #{b}
 		</if>
 	</select>
 

@@ -14,13 +14,13 @@ public class PaymentServiceImpl implements PaymentService {
 	private PaymentMapper dao;
 	
 	@Override
-	public List<Payment> selectAll(Payment p, String c) {
-		return dao.selectAll(p,c);
+	public List<Payment> selectAll(Payment p, String a, String b, String c, String d) {
+		return dao.selectAll(p,a,b,c,d);
 	}
 
 	@Override
-	public List<Payment> selectAll1(Payment p, String c,String a) {
-		return dao.selectAll1(p,c,a);
+	public List<Payment> selectAll1(Payment p, String c) {
+		return dao.selectAll1(p,c);
 	}
 
 

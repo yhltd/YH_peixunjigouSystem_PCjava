@@ -5,7 +5,8 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>职场办公管理系统</title>
+    <link rel="shortcut icon" href="../img/mm.png" />
+    <title>教务管理系统</title>
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/public.css"/>
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/style.css"/>
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/min.css"/>
@@ -13,10 +14,10 @@
 <body>
 <!--头部-->
 <header class="publicHeader">
-    <h1>培训机构管理系统</h1>
+    <h1>教务管理系统</h1>
 
     <div class="publicHeaderR">
-        <p><span id="hours"></span><span style="color: #fff21b">${GLOBAL_USER.realName} </span> , 欢迎你！</p>
+        <p><span id="hours"></span><img src="../img/yyh.png" style="width: 14px;height: 14px"><span style="color: #fff21b">${GLOBAL_USER.realName} </span> , 欢迎你！</p>
         <a href="<%=request.getContextPath() %>/login.jsp">退出</a>
     </div>
 </header>
@@ -38,7 +39,7 @@
                 <li><a href="<%=request.getContextPath() %>/keshi/getList.action">课时统计</a></li>
                 <li><a href="<%=request.getContextPath() %>/inc/income.action">收支明细</a></li>
                 <li><a href="<%=request.getContextPath() %>/stu/arr.action">欠费学生</a></li>
-                <li><a href="<%=request.getContextPath() %>/stu/inq1.jsp">学生查询</a></li>
+                <li><a href="<%=request.getContextPath() %>/tea/jisuan.jsp">教师工资</a></li>
                 <li><a href="<%=request.getContextPath() %>/teacher/kstj.action">教师课时统计</a></li>
                 <li><a href="<%=request.getContextPath() %>/tea/teacher.action">用户管理</a></li>
                 <li><a href="<%=request.getContextPath() %>/help.jsp">帮助</a></li>
@@ -61,9 +62,10 @@
             <input type="date"  name="rgdate2" form="myForm"/>
 
             <input type="submit" value="查询" form="myForm"/>
+            <a id="toExcel" >导出excel</a>
             <a href="<%=request.getContextPath()%>/inc/shezhi.action">添加明细</a>
         </div>
-        <table class="providerTable" cellpadding="0" cellspacing="0">
+        <table id="data"  class="providerTable" cellpadding="0" cellspacing="0">
             <tr class="firstTr">
                 <th width="15%" rowspan="2">日期</th>
                 <th width="30%" colspan="3">收入</th>
@@ -135,7 +137,9 @@
                 </li>
             </div>
         </div>
-
+<%--        <div style="width: 600px; height: 400px; overflow-x: scroll;margin-right: 1px">--%>
+<%--            <div id="main" style="width: 600px;height: 400px;"></div>--%>
+<%--        </div>--%>
     </div>
 </section>
 
@@ -148,4 +152,69 @@
 <script src="<%=request.getContextPath() %>/js/time.js"></script>
 
 </body>
+<script>
+    var element=document.getElementById("toExcel")
+    var toExcel=function (event) {
+        var html="<html><head><meta charset='UTF-8'></head><body>"+document.getElementById("data").outerHTML+"</body></html>";
+        var blob=new Blob([html],{type:"application/vnd.ms-excel"});
+        var a=event.target;
+        a.href=URL.createObjectURL(blob);
+        a.download="收支明细";
+    }
+    element.onclick=toExcel;
+
+</script>
+<%--<script type="text/javascript">--%>
+<%--    var renyuanChart = echarts.init(document.getElementById('main'));--%>
+<%--    renyuanChart.showLoading();--%>
+<%--    $.get('/inc/select.action').done(function (data) {--%>
+<%--        renyuanChart.hideLoading();--%>
+<%--        data = JSON.parse(data);--%>
+
+<%--        var columns = []--%>
+<%--        var values = []--%>
+<%--        for (let col in data){--%>
+<%--            columns.push(col);--%>
+<%--            values.push(data[col])--%>
+<%--        }--%>
+
+<%--        renyuanChart.setOption({--%>
+<%--            title: {--%>
+<%--                text: "",--%>
+<%--                textStyle:{--%>
+<%--                    color:'#000000', //颜色--%>
+<%--                    fontStyle:'normal', //风格--%>
+<%--                    fontWeight:'normal', //粗细--%>
+<%--                    fontFamily:'Microsoft yahei', //字体--%>
+<%--                    fontSize:20, //大小--%>
+<%--                    align:'center' //水平对齐--%>
+<%--                },--%>
+<%--            },--%>
+<%--            grid:{--%>
+<%--                left:'14px'--%>
+<%--            },--%>
+<%--            tooltip: {--%>
+<%--                trigger: "axis",--%>
+<%--                axisPointer: {--%>
+<%--                    type: "shadow"--%>
+<%--                }--%>
+<%--            },--%>
+<%--            xAxis: {--%>
+<%--                type: category,--%>
+<%--                data: [累计收入, 累计支出, 学费收入, 累计结余]--%>
+<%--            },--%>
+<%--            yAxis: {--%>
+<%--                type: value--%>
+<%--            },--%>
+<%--            series: [{--%>
+<%--                data: [${use.mall },${use.pall }, ${use.xall }, ${use.yall }],--%>
+<%--                type: bar,--%>
+<%--                label: {--%>
+<%--                    show: true,--%>
+<%--                    position: top--%>
+<%--                },--%>
+<%--            }],--%>
+<%--        });--%>
+<%--    });--%>
+<%--</script>--%>
 </html>

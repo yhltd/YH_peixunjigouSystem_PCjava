@@ -20,21 +20,30 @@ public class PaymentController {
 	@Autowired
 	private PaymentService service;
 	
-	@RequestMapping("/payment")
-	public ModelAndView query(ModelAndView mv,Payment p, String c) {
+	@RequestMapping("/payment1")
+	public ModelAndView query(ModelAndView mv,Payment p, String a, String b, String c, String d,HttpServletRequest request) {
 		LoginController e=new  LoginController();
+		a=request.getParameter("date1");
+		b=request.getParameter("date2");
+		d=request.getParameter("realname").trim();
+		if(a==""){
+			a="1900/1/1";
+		}
+		if(b==""){
+			b="2300/1/1";
+		}
 		c=e.a;
-		List<Payment> plist = service.selectAll(p,c);
+		List<Payment> plist = service.selectAll(p,a,b,c,d);
 		mv.addObject("plist",plist);
 		mv.setViewName("/pay/payment.jsp");
 		return mv;
 	}
-	@RequestMapping("/payment1")
-	public ModelAndView query1(ModelAndView mv, Payment p, String c, String a, HttpServletRequest request) {
-		a=request.getParameter("realname");
+	@RequestMapping("/payment")
+	public ModelAndView query1(ModelAndView mv, Payment p, String c,  HttpServletRequest request) {
+
 		LoginController e=new  LoginController();
 		c=e.a;
-		List<Payment> plist = service.selectAll1(p,c,a);
+		List<Payment> plist = service.selectAll1(p,c);
 		mv.addObject("plist",plist);
 		mv.setViewName("/pay/payment.jsp");
 		return mv;

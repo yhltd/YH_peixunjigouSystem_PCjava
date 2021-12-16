@@ -18,10 +18,13 @@ public class TecherServiceImpl implements TeacherService{
 	}
 
 	@Override
-	public List<Teacher> selectAll1() {
-		return dao.selectAll1();
+	public List<Teacher> selectAll1(Teacher t, String c, String a, String b, String d) {
+		return dao.selectAll1(t,c,a,b,d);
 	}
-
+	@Override
+	public List<Teacher> selectAll2() {
+		return dao.selectAll2();
+	}
 	@Override
 	public Teacher selectById(Teacher t, String c) {
 		return dao.selectById(t,c);

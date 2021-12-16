@@ -2,6 +2,7 @@ package com.yhocn.teacher.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,14 +31,19 @@ public class TeacherController {
 		mv.setViewName("/tea/teacher.jsp");
 		return mv;
 	}
-//	@RequestMapping("/teacher1")
-//	public ModelAndView query1(ModelAndView mv,Teacher t) {
-//
-//		List<Teacher> telist = service.selectAll1(t);
-//		mv.addObject("telist",telist);
-//		mv.setViewName("/tea/teacher.jsp");
-//		return mv;
-//	}
+	@RequestMapping("/teacher1")
+	public ModelAndView query1(ModelAndView mv,Teacher t, String c, String a, String b, String d, HttpServletRequest request) {
+
+		LoginController e=new  LoginController();
+		c=e.a;
+		a=request.getParameter("realName").trim();
+		b=request.getParameter("teacher").trim();
+		d=request.getParameter("peixun").trim();
+		List<Teacher> telist = service.selectAll1(t,c,a,b,d);
+		mv.addObject("telist",telist);
+		mv.setViewName("/tea/teacher.jsp");
+		return mv;
+	}
 	
 	@RequestMapping("/toalter")
 	public ModelAndView toalter(ModelAndView mv,Teacher t, String c) {

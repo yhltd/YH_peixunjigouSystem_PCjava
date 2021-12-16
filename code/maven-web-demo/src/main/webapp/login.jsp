@@ -5,7 +5,8 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>培训管理系统</title>
+    <link rel="shortcut icon" href="img/mm.png" />
+    <title>教务管理系统</title>
     <script src="js/jquery.js"></script>
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/style.css"/>
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/min.css"/>
@@ -38,15 +39,17 @@
     </script>
 </head>
 <body class="login_bg">
+
     <section class="loginBox">
         <header class="loginHeader">
-            <h1>登录系统</h1>
+            <h1>教务管理登录系统</h1>
         </header>
-
+        <img src="img/px1.png" style="width: 200px;height: 200px;float: left">
+        <img src="img/px2.png" style="width: 200px;height: 200px;float: right">
         <section class="loginCont">
+
         <div id="min2">${msg}</div>
             <form class="loginForm" method="post" action="<%=request.getContextPath() %>/aa.action">
-
                 <div class="inputbox" id="content" >
 
 <%--                    style="width: 300px;height:40px;margin:0 auto "--%>
@@ -76,8 +79,21 @@
                 </div>
 
             </form>
-        </section>
-    </section>
 
+        </section>
+
+    </section>
+    <div style="text-align: center">
+        <br>
+        <br>
+
+    <br>
+    <br>
+
+    <a href="http://yhocn.cn/" style="font-size: medium;color: #0f0f0f">
+        云合未来计算机技术有限公司 © Copyright 2018-2030 技术支持：信息技术中心 联系电话：16619776280
+        云合未来计算机技术有限公司 技术支持 www.yhocn.cn</a>
+
+    </div>
 </body>
 </html>

@@ -19,5 +19,7 @@ public interface TeacherMapper {
 	public List<Teacher> selectArr1(@Param("t")Teacher t,@Param("c")String c);
 
 
-	List<Teacher> selectAll1();
+	List<Teacher> selectAll2();
+
+	List<Teacher> selectAll1(@Param("t")Teacher t,@Param("c")String c,@Param("a")String a,@Param("b")String b,@Param("d")String d);
 }
