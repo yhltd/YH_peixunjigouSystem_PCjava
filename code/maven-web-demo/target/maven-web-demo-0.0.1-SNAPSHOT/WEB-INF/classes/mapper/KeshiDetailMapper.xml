@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.yhocn.keshi_detail.mapper.KeshiDetailMapper">
 
-    <select id="getList" parameterType="Keshidetail" resultType="Keshidetail">
+	<select id="getList" parameterType="Keshidetail" resultType="Keshidetail">
 		select * from keshi_detail where Company =#{c}
-
+		<if test="a != null and a !='' ">
+			and teacher_name like "%"#{a}"%"
+		</if>
+		<if test="b != '' and b !=null  ">
+			and course like "%"#{b}"%"
+		</if>
+		<if test="d != null and f != ''">
+			and riqi between #{d} and #{f}
+		</if>
 	</select>
 	<select id="getList1" parameterType="Keshidetail" resultType="Keshidetail">
 		select * from keshi_detail where Company =#{c}
@@ -21,6 +29,7 @@
 		<if test="d != null and f != ''">
 			and riqi between #{d} and #{f}
 		</if>
+		order by id limit #{page},10
 	</select>
 
 	<select id="getListById" parameterType="Keshidetail" resultType="Keshidetail">
@@ -58,7 +67,7 @@
 	</choose>,
 		student_name=#{ksd.student_name},
 		course=#{ksd.course},
- 		teacher_name=#{ksd.teacher_name},
+		teacher_name=#{ksd.teacher_name},
 		jine=#{ksd.jine}
 		where
 		id=#{ksd.id} and Company =#{c}

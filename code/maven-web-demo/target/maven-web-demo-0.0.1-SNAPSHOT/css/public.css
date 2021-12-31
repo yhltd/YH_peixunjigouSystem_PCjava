@@ -42,7 +42,8 @@ li{
     color: #fff;
     margin-right: 50px;
     text-align: center;
-
+    display:inline-block;
+    vertical-align:middle
 }
 .publicHeaderR p{
     display: inline-block;

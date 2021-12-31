@@ -16,10 +16,10 @@
     <h1>教务管理系统</h1>
 
     <div class="publicHeaderR">
-        <p><span id="hours"></span><img src="../img/yyh.png" style="width: 14px;height: 14px"><span style="color: #fff21b">${GLOBAL_USER.realName} </span> , 欢迎你！</p>
+        <p><span id="hours"></span><span style="color: #fff21b">${GLOBAL_USER.realName} </span> , 欢迎你！</p>
         <a href="<%=request.getContextPath() %>/login.jsp">退出</a>
     </div>
-
+    <img src="../img/yyh.png" style="width: 32px;height: 32px;float:right;margin-top: 8px;">
 </header>
 <!--时间-->
 <section class="publicTime">
@@ -39,7 +39,7 @@
     <div class="right">
         <div class="location">
             <strong>你现在所在的位置是:</strong>
-            <span>个人信息维护表</span>
+            <span>个人信息维护</span>
         </div>
         <div class="providerAdd">
             <form action="<%=request.getContextPath() %>/tea/update.action?id=${GLOBAL_USER.id }" method="post">

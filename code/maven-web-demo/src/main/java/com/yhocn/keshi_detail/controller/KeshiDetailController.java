@@ -14,6 +14,7 @@ import java.util.List;
 import com.yhocn.login.controller.LoginController;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * @author wanghui
@@ -22,34 +23,129 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 @RequestMapping("/keshi")
 public class KeshiDetailController {
+    public String a1;
+    public String a2;
+    public String a3;
+    public String a4;
+    public int a5;
+    public int a6;
     @Autowired
     private KeshiDetailService service;
 
     @RequestMapping("/getList")
-    public ModelAndView query(ModelAndView mv, Keshidetail ksd, String c) {
+    public ModelAndView query(ModelAndView mv, Keshidetail ksd, String c, String a, String b,String d,String f,Integer page, HttpSession session) {
         LoginController e=new  LoginController();
         c=e.a;
-        List<Keshidetail> list = service.getList(ksd,c);
+        session.setAttribute("page",1);
+        List<Keshidetail> list = service.getList(ksd,c,a,b,d,f,page);
 
         mv.addObject("list",list);
         mv.setViewName("/keshi/keshi_detail.jsp");
         return mv;
     }
     @RequestMapping("/getList1")
-    public ModelAndView query1(ModelAndView mv, Keshidetail ksd, String c, String a, String b,String d,String f, HttpServletRequest request) {
-        a=request.getParameter("teacher_name").trim();
-        b=request.getParameter("course").trim();
+    public ModelAndView query1(ModelAndView mv, Keshidetail ksd, String c, String a, String b,String d,String f,Integer page, HttpServletRequest request, HttpSession session) {
+
         d=request.getParameter("date1");
         f=request.getParameter("date2");
-        if(d.equals("")){
-            d="1900/1/1";
-        }
-        if(f.equals("")){
-            f="2300/1/1";
+
+
+        if(d == null){
+            a=a1;
+            b=a2;
+            d=a3;
+            f=a4;
+            if(a3== null){
+                d="1900/1/1";
+                f="2300/1/1";
+                a3="1900/1/1";
+                a4="2300/1/1";
+                a5=1;
+            }
+        }else{
+            a=request.getParameter("teacher_name").trim();
+            b=request.getParameter("course").trim();
+            if(d.equals("")){
+                d="1900/1/1";
+            }
+            if(f.equals("")){
+                f="2300/1/1";
+            }
+            a1=a;
+            a2=b;
+            a3=d;
+            a4=f;
+            a5=1;
         }
         LoginController e=new  LoginController();
         c=e.a;
-        List<Keshidetail> list = service.getList1(ksd,c,a,b,d,f);
+        session.setAttribute("page",1);
+
+        page=0;
+        List<Keshidetail> list = service.getList1(ksd,c,a,b,d,f,page);
+        List<Keshidetail> list1 = service.getList(ksd,c,a,b,d,f,page);
+        a6= (int)Math.floor(list1.size()/10);
+        mv.addObject("list",list);
+        mv.setViewName("/keshi/keshi_detail.jsp");
+        return mv;
+    }
+    @RequestMapping("/getList2")
+    public ModelAndView query2(ModelAndView mv, Keshidetail ksd, String c, String a, String b,String d,String f,Integer page, HttpServletRequest request, HttpSession session) {
+
+        a=a1;
+        b=a2;
+        d=a3;
+        f=a4;
+        LoginController e=new  LoginController();
+        c=e.a;
+        if(a5>1){
+            page=a5*10-20;
+        }else if(a5==1){
+            page=a5*10-10;
+        }else{
+            page=0;
+        }
+
+        a5=a5-1;
+        if(a5<1){
+            a5=1;
+        }
+        session.setAttribute("page",a5);
+        List<Keshidetail> list = service.getList1(ksd,c,a,b,d,f,page);
+        mv.addObject("list",list);
+        mv.setViewName("/keshi/keshi_detail.jsp");
+        return mv;
+    }
+    @RequestMapping("/getList3")
+    public ModelAndView query3(ModelAndView mv, Keshidetail ksd, String c, String a, String b,String d,String f,Integer page, HttpServletRequest request, HttpSession session) {
+        a=a1;
+        b=a2;
+        d=a3;
+        f=a4;
+        LoginController e=new  LoginController();
+        c=e.a;
+        if(a5>=a6){
+            a5=a6;
+        }
+        page=a5*10;
+        a5=a5+1;
+        session.setAttribute("page",a5);
+        List<Keshidetail> list = service.getList1(ksd,c,a,b,d,f,page);
+        mv.addObject("list",list);
+        mv.setViewName("/keshi/keshi_detail.jsp");
+        return mv;
+    }
+    @RequestMapping("/getList4")
+    public ModelAndView query4(ModelAndView mv, Keshidetail ksd, String c, String a, String b,String d,String f,Integer page, HttpServletRequest request, HttpSession session) {
+        a=a1;
+        b=a2;
+        d=a3;
+        f=a4;
+        LoginController e=new  LoginController();
+        c=e.a;
+        page=a6*10;
+        session.setAttribute("page",a6);
+        List<Keshidetail> list = service.getList1(ksd,c,a,b,d,f,page);
         mv.addObject("list",list);
         mv.setViewName("/keshi/keshi_detail.jsp");
         return mv;
@@ -84,12 +180,12 @@ public class KeshiDetailController {
     }
     @RequestMapping("/select1")
     public ModelAndView info1(ModelAndView mv, Keshidetail ksd, String a ,String c, HttpServletRequest request) {
-       a=request.getParameter("date2");
+        a=request.getParameter("date2");
 //        String strDateFormat = "yyyy-MM";
 //        SimpleDateFormat sdf = new SimpleDateFormat(a);
         if (!a.equals("")){
-        String s1[]=a.split("-");
-        a=s1[0]+ "-" + s1[1];}
+            String s1[]=a.split("-");
+            a=s1[0]+ "-" + s1[1];}
         LoginController e=new  LoginController();
         c=e.a;
         List<Keshidetail> list = service.select1(ksd,c,a);
@@ -111,13 +207,22 @@ public class KeshiDetailController {
     public ModelAndView add(ModelAndView mv, Keshidetail ksd, String c) {
         LoginController e=new  LoginController();
         c=e.a;
-        int i = service.add(ksd,c);
-        if(i>0) {
-            mv.addObject("msg","增加用户成功");
-            mv.setViewName("/keshi/getList.action");
-        }else {
-            mv.addObject("msg","增加用户失败");
-            mv.setViewName("/keshi/add.jsp");
+        String b= ksd.getRiqi();
+        if(b.equals("")){
+            mv.addObject("msg","请选择日期");
+            mv.setViewName("/keshi/toadd.action");
+        }else if(b.equals(null)){
+            mv.addObject("msg","请选择日期");
+            mv.setViewName("/keshi/toadd.action");
+        }else{
+            int i = service.add(ksd,c);
+            if(i>0) {
+                mv.addObject("msg","增加用户成功");
+                mv.setViewName("/keshi/getList1.action");
+            }else {
+                mv.addObject("msg","增加用户失败");
+                mv.setViewName("/keshi/toadd.action");
+            }
         }
         return mv;
     }
@@ -136,15 +241,24 @@ public class KeshiDetailController {
 
     @RequestMapping("/upd")
     public ModelAndView update(ModelAndView mv, Keshidetail ksd, String c) {
-        LoginController e=new  LoginController();
-        c=e.a;
-        int i = service.update(ksd,c);
-        if(i>0) {
-            mv.addObject("msg","修改用户成功");
-            mv.setViewName("/keshi/getList.action");
-        }else {
-            mv.addObject("msg","修改用户失败");
-            mv.setViewName("/keshi/update.jsp");
+        LoginController e = new LoginController();
+        c = e.a;
+        String b = ksd.getRiqi();
+        if (b.equals("")) {
+            mv.addObject("msg", "请选择日期");
+            mv.setViewName("/keshi/toupd.action");
+        } else if (b.equals(null)) {
+            mv.addObject("msg", "请选择日期");
+            mv.setViewName("/keshi/toupd.action");
+        } else{
+            int i = service.update(ksd, c);
+            if (i > 0) {
+                mv.addObject("msg", "修改用户成功");
+                mv.setViewName("/keshi/getList1.action");
+            } else {
+                mv.addObject("msg", "修改用户失败");
+                mv.setViewName("/keshi/toupd.action");
+            }
         }
         return mv;
     }
@@ -161,7 +275,7 @@ public class KeshiDetailController {
             mv.addObject("msg","删除用户失败");
             mv.setViewName("/keshi/add.jsp");
         }
-        mv.setViewName("/keshi/getList.action");
+        mv.setViewName("/keshi/getList1.action");
         return mv;
     }
 

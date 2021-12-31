@@ -18,12 +18,12 @@ public class KeshiDetailServiceImpl implements KeshiDetailService {
     public KeshiDetailMapper km;
 
     @Override
-    public List<Keshidetail> getList(Keshidetail ksd, String c) {
-        return km.getList(ksd,c);
+    public List<Keshidetail> getList(Keshidetail ksd, String c,String a,String b,String d,String f,Integer page) {
+        return km.getList(ksd,c,a,b,d,f,page);
     }
     @Override
-    public List<Keshidetail> getList1(Keshidetail ksd, String c,String a,String b,String d,String f) {
-        return km.getList1(ksd,c,a,b,d,f);
+    public List<Keshidetail> getList1(Keshidetail ksd, String c,String a,String b,String d,String f,Integer page) {
+        return km.getList1(ksd,c,a,b,d,f,page);
     }
     @Override
     public List<Keshidetail> select(Keshidetail ksd, String c,String a,String d,String f) {

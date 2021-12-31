@@ -18,10 +18,10 @@
     <h1>教务管理系统</h1>
 
     <div class="publicHeaderR">
-        <p><span id="hours"></span><img src="../img/yyh.png" style="width: 14px;height: 14px"><span style="color: #fff21b">${GLOBAL_USER.realName} </span> , 欢迎你！</p>
+        <p><span id="hours"></span><span style="color: #fff21b">${GLOBAL_USER.realName} </span> , 欢迎你！</p>
         <a href="<%=request.getContextPath() %>/login.jsp">退出</a>
     </div>
-
+    <img src="../img/yyh.png" style="width: 32px;height: 32px;float:right;margin-top: 8px;">
 </header>
 <!--时间-->
 <section class="publicTime">
@@ -37,9 +37,9 @@
                 <li><a href="<%=request.getContextPath() %>/main.jsp">主页</a></li>
                 <%--原有代码     <li><a href="<%=request.getContextPath() %>/tea/teacher.action">设置</a></li>--%>
                 <li><a href="<%=request.getContextPath() %>/te/shezhi.action">设置</a></li>
-                <li><a href="<%=request.getContextPath() %>/stu/student.action">学生信息</a></li>
+                <li><a href="<%=request.getContextPath() %>/stu/student1.action">学生信息</a></li>
                 <li><a href="<%=request.getContextPath() %>/pay/payment.action">缴费记录</a></li>
-                <li><a href="<%=request.getContextPath() %>/keshi/getList.action">课时统计</a></li>
+                <li><a href="<%=request.getContextPath() %>/keshi/getList1.action">课时统计</a></li>
                 <li><a href="<%=request.getContextPath() %>/inc/income.action">收支明细</a></li>
                 <li><a href="<%=request.getContextPath() %>/stu/arr.action">欠费学生</a></li>
                 <li><a href="<%=request.getContextPath() %>/tea/jisuan.jsp">教师工资</a></li>
@@ -52,7 +52,7 @@
     <div class="right">
         <div class="location">
             <strong>你现在所在的位置是:</strong>
-            <span>学生信息登记表</span>
+            <span>学生信息</span>
         </div>
         <div class="search">
             <span style="color:red">${msg}</span>
@@ -66,7 +66,7 @@
             <input type="submit" value="查询" form="myForm"/>
             <a id="toExcel">导出excel</a>
             <a href="<%=request.getContextPath() %>/stu/shezhi.action">添加信息</a>
-<%--            <a href="<%=request.getContextPath()%>/stu/add.jsp">添加学生</a>--%>
+            <%--            <a href="<%=request.getContextPath()%>/stu/add.jsp">添加学生</a>--%>
 
         </div>
         <table id="data" class="providerTable" cellpadding="0" cellspacing="0">
@@ -115,19 +115,20 @@
 
             </c:forEach>
         </table>
-<%--        <div class="page">--%>
-<%--            <div class="page_cell"><a href="<%=request.getContextPath() %>/stu/student1.action">首页</a></div>--%>
-<%--            <div class="page_cell" onclick="last_page(<%=session.getAttribute("page")%>)">上一页</div>--%>
-<%--            <div style="float: left;margin: 2px"><%=session.getAttribute("page")%>页</div>--%>
-<%--            <div class="page_cell" onclick="next_page(<%=session.getAttribute("page")%>)">下一页</div>--%>
-<%--        </div>--%>
-<%--        <div style="text-align: center">--%>
-<%--            <input type="submit" value="首页" form="myForm"/>--%>
-<%--            <input type="submit" value="上一页" form="myForm"/>--%>
-<%--            <div style="float: left;margin: 2px"><%=session.getAttribute("page")%>页</div>--%>
-<%--            <input type="submit" value="下一页" form="myForm"/>--%>
-<%--            <input type="submit" value="末页" form="myForm"/>--%>
-<%--        </div>--%>
+        <div class="page">
+            <div class="page_cell"><a href="<%=request.getContextPath() %>/stu/student1.action">首页</a></div>
+            <div class="page_cell" onclick="last_page(<%=session.getAttribute("page")%>)"><a href="<%=request.getContextPath() %>/stu/student2.action">上一页</a></div>
+            <div style="float: left;margin: 2px"><%=session.getAttribute("page")%>页</div>
+            <div class="page_cell" onclick="next_page(<%=session.getAttribute("page")%>)"><a href="<%=request.getContextPath() %>/stu/student3.action">下一页</a></div>
+            <div class="page_cell"><a href="<%=request.getContextPath() %>/stu/student4.action">末页</a></div>
+        </div>
+        <%--        <div style="text-align: center">--%>
+        <%--            <input type="submit" value="首页" form="myForm"/>--%>
+        <%--            <input type="submit" value="上一页" form="myForm"/>--%>
+        <%--            <div style="float: left;margin: 2px"><%=session.getAttribute("page")%>页</div>--%>
+        <%--            <input type="submit" value="下一页" form="myForm"/>--%>
+        <%--            <input type="submit" value="末页" form="myForm"/>--%>
+        <%--        </div>--%>
     </div>
 </section>
 
@@ -157,57 +158,79 @@
     var element=document.getElementById("toExcel")
     var toExcel=function (event) {
         var html="<html><head><meta charset='UTF-8'></head><body>"+document.getElementById("data").outerHTML+"</body></html>";
-        var blob=new Blob([html],{type:"application/vnd.ms-excel"});
+        var html2 = document.getElementById("data");
+        var zhong_html = "<html><head><meta charset='UTF-8'></head><body><table><tbody>"
+        var rows = html2.rows;
+        var columns = rows[0].cells.length
+
+        for (var i = 0;i<rows.length;i++){
+            zhong_html += "<tr>"
+            var cells=rows[i].cells
+            for(var j = 0;j<cells.length-1;j++){
+                var cells2 = cells[j].outerHTML
+                zhong_html += cells2
+                if (j == cells.length-2){
+                    zhong_html += "</tr>"
+                }
+            }
+        }
+        zhong_html += "</tbody></table></body></html>"
+        var blob=new Blob([zhong_html],{type:"application/vnd.ms-excel"});
         var a=event.target;
         a.href=URL.createObjectURL(blob);
         a.download="学生信息";
     }
     element.onclick=toExcel;
+
+
+
+    // function next_page(page){
+    //         var data = {
+    //             "page":page
+    //       };
+    //         $.ajax({
+    //                 type:"post",
+    //                 url:"/Student/stu/next_pagedo",
+    //                 data:JSON.stringify(data),
+    //                 dataType:"json",
+    //                 contentType:"application/json",
+    //                 success:function(data){
+    //                  var show_data = document.getElementById("show_data")
+    //                    show_data.innerHTML = " ";
+    //                  for(i=0; i<data.length; i++){
+    //                              //.....异步刷新页面
+    //                         }
+    //                 }, error:function(data){
+    //                alert("网络连接错误");
+    //            }
+    //         });
+    // }
+    // function last_page(page){
+    //     var data = {
+    //         "page":page
+    //     };
+    //     $.ajax({
+    //         type:"post",
+    //         url:"/Student/next_pageup",
+    //         data:JSON.stringify(data),
+    //         dataType:"json",
+    //         contentType:"application/json",
+    //         success:function(data){
+    //             var show_data = document.getElementById("show_data")
+    //             show_data.innerHTML = " ";
+    //             for(i=0; i<data.length; i++){
+    //                 //.....异步刷新页面
+    //             }
+    //         }, error:function(data){
+    //             alert("网络连接错误");
+    //         }
+    //     });
+    // }
+
 </script>
 
 
-<%--    // function next_page(page){--%>
-<%--    //         var data = {--%>
-<%--    //             "page":page--%>
-<%--    //       };--%>
-<%--    //         $.ajax({--%>
-<%--    //                 type:"post",--%>
-<%--    //                 url:"/stu/next_pagedo.action",--%>
-<%--    //                 data:JSON.stringify(data),--%>
-<%--    //                 dataType:"json",--%>
-<%--    //                 contentType:"application/json",--%>
-<%--    //                 success:function(data){--%>
-<%--    //                  var show_data = document.getElementById("show_data")--%>
-<%--    //                    show_data.innerHTML = " ";--%>
-<%--    //                  for(i=0; i<data.length; i++){--%>
-<%--    //                              //.....异步刷新页面--%>
-<%--    //                         }--%>
-<%--    //                 }, error:function(data){--%>
-<%--    //                alert("网络连接错误");--%>
-<%--    //            }--%>
-<%--    //         });--%>
-<%--    // }--%>
-<%--    // function last_page(page){--%>
-<%--    //     var data = {--%>
-<%--    //         "page":page--%>
-<%--    //     };--%>
-<%--    //     $.ajax({--%>
-<%--    //         type:"post",--%>
-<%--    //         url:"/stu/next_pageup.action",--%>
-<%--    //         data:JSON.stringify(data),--%>
-<%--    //         dataType:"json",--%>
-<%--    //         contentType:"application/json",--%>
-<%--    //         success:function(data){--%>
-<%--    //             var show_data = document.getElementById("show_data")--%>
-<%--    //             show_data.innerHTML = " ";--%>
-<%--    //             for(i=0; i<data.length; i++){--%>
-<%--    //                 //.....异步刷新页面--%>
-<%--    //             }--%>
-<%--    //         }, error:function(data){--%>
-<%--    //             alert("网络连接错误");--%>
-<%--    //         }--%>
-<%--    //     });--%>
-<%--    // }--%>
+
 
 
 </html>

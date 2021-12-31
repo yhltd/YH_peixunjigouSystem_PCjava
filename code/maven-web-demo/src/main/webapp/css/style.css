@@ -5,13 +5,15 @@
 
 /*登录页面*/
 .login_bg {
-    background: url("../img/bj.jpg") 0 0 repeat-x;
+    background: url("../img/bj.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
 }
 
 .loginBox {
     width: 1000px;
     margin: 0 auto;
-    background: url("../img/bj.jpg") 0 0 no-repeat;
+    /*background: url("../img/bj.jpg") 0 0 no-repeat;*/
 }
 
 .loginHeader {
@@ -150,7 +152,7 @@ input[type='reset']:active, input[type='reset']:focus, .providerView a:hover, .p
 
 .wFont {
     /*float: left;*/
-    margin-top: 50px;
+    /*margin-top: 50px;*/
 }
 
 .wFont h2 {
@@ -348,7 +350,7 @@ input[type='reset']:active, input[type='reset']:focus, .providerView a:hover, .p
     overflow: hidden;
 }
 .remove{
-   display: none;       /* 修改这里可以让删除框消失*/
+    display: none;       /* 修改这里可以让删除框消失*/
     width: 400px;
     height: 190px;
     position: absolute;
@@ -402,8 +404,8 @@ input[type='reset']:active, input[type='reset']:focus, .providerView a:hover, .p
     margin:2px;
     cursor: pointer;
 }
- .page_cell:hover{
-     -webkit-box-shadow: #777 0px 0px 1px;
- }
+.page_cell:hover{
+    -webkit-box-shadow: #777 0px 0px 1px;
+}
 
 

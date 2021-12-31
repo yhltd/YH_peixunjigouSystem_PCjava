@@ -8,8 +8,9 @@ import org.apache.ibatis.annotations.Param;
 
 public interface StudentMapper {
 
-	public List<Student> selectAll(@Param("s")Student s,@Param("c")String c);
-	public List<Student> selectAll1(@Param("s")Student s,@Param("c")String c,@Param("a")String a,@Param("b")String b,@Param("d")String d,@Param("E")String E,@Param("f")String f);
+	public List<Student> selectAll(@Param("s")Student s,@Param("c")String c,@Param("a")String a,@Param("b")String b,@Param("d")String d,@Param("E")String E,@Param("f")String f,@Param("page")Integer page);
+
+	public List<Student> selectAll1(@Param("s")Student s,@Param("c")String c,@Param("a")String a,@Param("b")String b,@Param("d")String d,@Param("E")String E,@Param("f")String f,@Param("page")Integer page);
 	public Student selectById(@Param("s")Student s,@Param("c")String c);
 	public int add(@Param("s")Student s,@Param("c")String c);
 	public int update(@Param("s")Student s,@Param("c")String c);

@@ -16,10 +16,10 @@
     <h1>教务管理系统</h1>
 
     <div class="publicHeaderR">
-        <p><span id="hours"></span><img src="../img/yyh.png" style="width: 14px;height: 14px"><span style="color: #fff21b">${GLOBAL_USER.realName} </span> , 欢迎你！</p>
+        <p><span id="hours"></span><span style="color: #fff21b">${GLOBAL_USER.realName} </span> , 欢迎你！</p>
         <a href="<%=request.getContextPath() %>/login.jsp">退出</a>
     </div>
-
+    <img src="../img/yyh.png" style="width: 32px;height: 32px;float:right;margin-top: 8px;">
 </header>
 <!--时间-->
 <section class="publicTime">
@@ -35,9 +35,9 @@
                 <li><a href="<%=request.getContextPath() %>/main.jsp">主页</a></li>
                 <%--原有代码     <li><a href="<%=request.getContextPath() %>/tea/teacher.action">设置</a></li>--%>
                 <li><a href="<%=request.getContextPath() %>/te/shezhi.action">设置</a></li>
-                <li><a href="<%=request.getContextPath() %>/stu/student.action">学生信息</a></li>
+                <li><a href="<%=request.getContextPath() %>/stu/student1.action">学生信息</a></li>
                 <li><a href="<%=request.getContextPath() %>/pay/payment.action">缴费记录</a></li>
-                <li><a href="<%=request.getContextPath() %>/keshi/getList.action">课时统计</a></li>
+                <li><a href="<%=request.getContextPath() %>/keshi/getList1.action">课时统计</a></li>
                 <li><a href="<%=request.getContextPath() %>/inc/income.action">收支明细</a></li>
                 <li><a href="<%=request.getContextPath() %>/stu/arr.action">欠费学生</a></li>
                 <li><a href="<%=request.getContextPath() %>/tea/jisuan.jsp">教师工资</a></li>
@@ -50,7 +50,7 @@
     <div class="right">
         <div class="location">
             <strong>你现在所在的位置是:</strong>
-            <span>欠费学生统计记表</span>
+            <span>欠费学生</span>
         </div>
         <div class="search">
                <span>学生姓名：</span>
@@ -118,7 +118,24 @@
     var element=document.getElementById("toExcel")
     var toExcel=function (event) {
         var html="<html><head><meta charset='UTF-8'></head><body>"+document.getElementById("data").outerHTML+"</body></html>";
-        var blob=new Blob([html],{type:"application/vnd.ms-excel"});
+        var html2 = document.getElementById("data");
+        var zhong_html = "<html><head><meta charset='UTF-8'></head><body><table><tbody>"
+        var rows = html2.rows;
+        var columns = rows[0].cells.length
+
+        for (var i = 0;i<rows.length;i++){
+            zhong_html += "<tr>"
+            var cells=rows[i].cells
+            for(var j = 0;j<cells.length;j++){
+                var cells2 = cells[j].outerHTML
+                zhong_html += cells2
+                if (j == cells.length-1){
+                    zhong_html += "</tr>"
+                }
+            }
+        }
+        zhong_html += "</tbody></table></body></html>"
+        var blob=new Blob([zhong_html],{type:"application/vnd.ms-excel"});
         var a=event.target;
         a.href=URL.createObjectURL(blob);
         a.download="欠费学生";
