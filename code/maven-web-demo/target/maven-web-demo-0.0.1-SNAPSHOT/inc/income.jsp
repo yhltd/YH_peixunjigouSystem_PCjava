@@ -94,7 +94,7 @@
                     <td>${s.premark}</td>
                     <td>${s.handle}</td>
                     <td>
-                        <a href="<%=request.getContextPath() %>/inc/toUpdate.action?id=${s.id}"><img src="<%=request.getContextPath() %>/img/read.png" alt="查看" title="查看"/></a>
+<%--                        <a href="<%=request.getContextPath() %>/inc/toUpdate.action?id=${s.id}"><img src="<%=request.getContextPath() %>/img/read.png" alt="查看" title="查看"/></a>--%>
                         <a href="<%=request.getContextPath() %>/inc/toUpdate.action?id=${s.id}"><img src="<%=request.getContextPath() %>/img/xiugai.png" alt="修改" title="修改"/></a>
                         <a href="<%=request.getContextPath() %>/inc/delete.action?id=${s.id}" class="removeProvider" onclick="return confirm('您确认要删除本记录么？')"><img src="<%=request.getContextPath() %>/img/schu.png" alt="删除" title="删除"/></a>
                     </td>
@@ -148,8 +148,8 @@
                 </li>
             </div>
         </div>
-        <div id="main" style="width: 600px;height:400px;margin-top: -36%;margin-left: 50%;"></div>
-
+        <div id="main" style="width: 600px;height:400px;"></div>
+<%--margin-top: -36%;margin-left: 50%--%>
 <%--        <div style="width: 600px; height: 400px; overflow-x: scroll;margin-right: 1px">--%>
 <%--            <div id="main" style="width: 600px;height: 400px;"></div>--%>
 <%--        </div>--%>

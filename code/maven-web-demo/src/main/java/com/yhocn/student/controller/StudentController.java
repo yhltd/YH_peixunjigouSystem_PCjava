@@ -191,6 +191,18 @@ public class StudentController {
 
 		return mv;
 	}
+	@RequestMapping("/toSelect")
+	public ModelAndView toSelect(ModelAndView mv,Student s,Shezhi shezhi, String c) {
+		LoginController e=new  LoginController();
+		c=e.a;
+		Student s2 = service.selectById(s,c);
+		List<Shezhi>shezhiList= service.shezhiList(shezhi,c);
+		mv.addObject("shezhiList",shezhiList);
+		mv.addObject("student",s2);
+		mv.setViewName("/stu/select.jsp");
+
+		return mv;
+	}
 
 	@RequestMapping("/update")
 	public ModelAndView update(ModelAndView mv,Student s, String c) {

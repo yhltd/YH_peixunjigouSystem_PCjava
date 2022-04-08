@@ -53,7 +53,7 @@
             <span>用户管理  >> 用户管理增加页面</span>
         </div>
         <div class="providerAdd">
-            <form action="<%=request.getContextPath() %>/tea/add.action">
+            <form action="<%=request.getContextPath() %>/tea/add.action" method="post">
                 <div>
                     <label for="userName">登录名：</label>
                     <input type="text" name="userName" id="userName" value="${teacher.userName }"/>

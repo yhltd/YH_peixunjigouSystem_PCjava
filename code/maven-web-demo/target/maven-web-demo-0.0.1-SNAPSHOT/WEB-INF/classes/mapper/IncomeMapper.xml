@@ -47,7 +47,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		#{inc.psort},#{inc.premark},#{inc.handle},#{c})
 	</insert>
 	<update id="update">
-		update  Income
+		update  income
 		set
 		rgdate=<choose>
 		<when test="inc.rgdate != ''">

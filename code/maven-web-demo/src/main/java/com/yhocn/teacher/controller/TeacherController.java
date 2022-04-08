@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.yhocn.teacher.entity.Teacher;
@@ -21,7 +22,7 @@ public class TeacherController {
 
 	@Autowired
 	private TeacherService service;
-	
+
 	@RequestMapping("/teacher")
 	public ModelAndView query(ModelAndView mv,Teacher t, String c) {
 		LoginController e=new  LoginController();
@@ -44,7 +45,7 @@ public class TeacherController {
 		mv.setViewName("/tea/teacher.jsp");
 		return mv;
 	}
-	
+
 	@RequestMapping("/toalter")
 	public ModelAndView toalter(ModelAndView mv,Teacher t, String c) {
 		LoginController e=new  LoginController();
@@ -68,7 +69,7 @@ public class TeacherController {
 		}
 		return mv;
 	}
-	
+
 	@RequestMapping("/update")
 	public ModelAndView update(ModelAndView mv,Teacher t,HttpSession se, String c) {
 		LoginController e=new  LoginController();
@@ -97,7 +98,7 @@ public class TeacherController {
 		mv.setViewName("/tea/teacher.action");
 		return mv;
 	}
-	@RequestMapping("/add")
+	@RequestMapping(value = "/add",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public ModelAndView add(ModelAndView mv,Teacher t, String c) {
 		LoginController e=new  LoginController();
 		c=e.a;

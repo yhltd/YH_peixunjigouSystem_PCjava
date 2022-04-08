@@ -7,8 +7,10 @@
     <meta charset="UTF-8">
     <link rel="shortcut icon" href="../img/mm.png" />
     <title>教务管理系统</title>
+    <script type="text/javascript" src="<%=request.getContextPath() %>/js/jquery.js"></script>
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/public.css"/>
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/style.css"/>
+
 </head>
 <body>
 <!--头部-->
@@ -66,9 +68,10 @@
                 </div>
                 <div>
                     <label  for="sex">学生性别：</label>
+                    <input hidden="hidden" id="sex2" value="${student.sex }"/>
                     <select name="sex" id="sex" style="width: 270px">
                         <option value="男">男</option>
-                        <option value="女" selected>女</option>
+                        <option value="女">女</option>
                     </select>
                     <span >*</span>
                 </div>
@@ -80,7 +83,7 @@
                 </div>
                 <div>
                     <label for="course">培训课程：</label>
-<%--                    <input type="text" name="course" id="course" value="${student.course }"/>--%>
+                    <input hidden="hidden" id="course2" value="${student.course }"/>
                     <select name="course" id="course" style="width: 270px">
                         <c:forEach items="${shezhiList}" var="shezhi">
                             <option>${shezhi.course}</option>
@@ -90,7 +93,7 @@
                 </div>
                 <div>
                     <label for="teacher">责任老师：</label>
-<%--                    <input type="text" name="teacher" id="teacher" value="${student.teacher }"/>--%>
+                    <input hidden="hidden" id="teacher2" value="${student.teacher }"/>
                     <select name="teacher" id="teacher" style="width: 270px">
                         <c:forEach items="${shezhiList}" var="shezhi">
                             <option>${shezhi.teacher}</option>
@@ -118,7 +121,7 @@
                 </div>
                 <div>
                     <label for="type">状态：</label>
-<%--                    <input type="text" name="type" id="type" value="${student.type }"/>--%>
+                    <input hidden="hidden" id="type2" value="${student.type }"/>
                     <select name="type" id="type" style="width: 270px">
                         <c:forEach items="${shezhiList}" var="shezhi">
                             <option>${shezhi.type}</option>
@@ -137,6 +140,18 @@
 <footer class="footer">
 </footer>
 <script src="<%=request.getContextPath() %>/js/time.js"></script>
-
 </body>
+<script type="text/javascript">
+    window.onload=function(){
+        var sex2=$("#sex2").val();
+        var course2=$("#course2").val();
+        var teacher2=$("#teacher2").val();
+        var type2=$("#type2").val();
+
+        $("#sex").val(sex2);
+        $("#course").val(course2);
+        $("#teacher").val(teacher2);
+        $("#type").val(type2);
+    }
+</script>
 </html>

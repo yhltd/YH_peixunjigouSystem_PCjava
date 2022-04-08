@@ -79,7 +79,7 @@
 	</delete>
 
 	<select id="getTeacherKeshiList" parameterType="Keshidetail" resultType="Keshidetail">
-		select teacher_name,course,sum(keshi) as keshi,jine,sum(jine*keshi) as gongzi from keshi_detail where Company =#{c} group by teacher_name,jine order by teacher_name
+		select teacher_name,course,sum(keshi) as keshi,jine,sum(jine*keshi) as gongzi from keshi_detail where Company =#{c} group by teacher_name,course,jine order by teacher_name
 	</select>
 	<select id="select" parameterType="Keshidetail" resultType="Keshidetail">
 		select teacher_name,course,sum(keshi) as keshi,jine,sum(jine*keshi) as gongzi from keshi_detail where Company =#{c}
@@ -89,7 +89,7 @@
 		<if test="d != null and f != ''">
 			and riqi between #{d} and #{f}
 		</if>
-		group by teacher_name,jine order by teacher_name
+		group by teacher_name,course,jine order by teacher_name
 
 	</select>
 	<select id="select1" parameterType="Keshidetail" resultType="Keshidetail">
@@ -97,7 +97,7 @@
 		<if test="a != null and a != ''">
 			and riqi  like "%"#{a}"%"
 		</if>
-		group by teacher_name,jine order by teacher_name
+		group by teacher_name,course,jine order by teacher_name
 
 	</select>
 </mapper>

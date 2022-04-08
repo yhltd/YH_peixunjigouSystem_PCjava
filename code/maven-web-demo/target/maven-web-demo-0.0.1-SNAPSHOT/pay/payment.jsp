@@ -81,7 +81,7 @@
                     <td>${p.keeper}</td>
                     <td>${p.remark}</td>
                     <td>
-                        <a href="<%=request.getContextPath() %>/pay/toUpdate.action?id=${p.id}"><img src="<%=request.getContextPath() %>/img/read.png" alt="查看" title="查看"/></a>
+                        <a href="<%=request.getContextPath() %>/pay/toSelect.action?id=${p.id}"><img src="<%=request.getContextPath() %>/img/read.png" alt="查看" title="查看"/></a>
                         <a href="<%=request.getContextPath() %>/pay/toUpdate.action?id=${p.id}"><img src="<%=request.getContextPath() %>/img/xiugai.png" alt="修改" title="修改"/></a>
                         <a href="<%=request.getContextPath() %>/pay/delete.action?id=${p.id}" class="removeProvider" onclick="return confirm('您确认要删除本记录么？')"><img src="<%=request.getContextPath() %>/img/schu.png" alt="删除" title="删除"/></a>
                     </td>

@@ -56,7 +56,7 @@
 			<strong>你现在所在的位置是:</strong> <span>缴费记录 >> 缴费记录增加页面</span>
 		</div>
 		<div class="providerAdd">
-			<form action="<%=request.getContextPath()%>/pay/add.action">
+			<form action="<%=request.getContextPath()%>/pay/add.action" method="post">
 				<div>
 					<%--	原先代码			<label for="id">日期：</label> <input type="text" name="ksdate" id="ksdate"--%>
 					<%--					value="${payment.ksdate}" />--%>
@@ -79,15 +79,15 @@
 					<%--	原有代码			<label for="paiment">繳費方式：</label> <input type="text" name="paiment"--%>
 					<%--					id="paiment" value="${payment.paiment }" />--%>
 					<label for="paiment">缴费方式：</label>
-						<input type="text" name="paiment"
-							   id="paiment" value="${payment.paiment }" />
+					<input type="text" name="paiment"
+						   id="paiment" value="${payment.paiment }" />
 				</div>
 				<div>
 					<%--	原有代码		<label for="keeper">收費人：</label> <input type="text"--%>
 					<%--				name="keeper" id="keeper" value="${payment.keeper }" /> <span>*</span>--%>
 					<label for="keeper">收费人：</label>
-						<input type="text" name="keeper"
-							   id="keeper" value="${payment.keeper}" />
+					<input type="text" name="keeper"
+						   id="keeper" value="${payment.keeper}" />
 				</div>
 				<div>
 					<label for="remark">备注：</label> <input type="text"

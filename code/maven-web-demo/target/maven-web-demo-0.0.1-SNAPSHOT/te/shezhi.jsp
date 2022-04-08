@@ -74,7 +74,7 @@
                     <td>${s.msort}</td>
                     <td>${s.psort}</td>
                     <td>
-                        <a href="<%=request.getContextPath() %>/te/toalter.action?id=${s.id}"><img src="<%=request.getContextPath() %>/img/read.png" alt="查看" title="查看"/></a>
+<%--                        <a href="<%=request.getContextPath() %>/te/toalter.action?id=${s.id}"><img src="<%=request.getContextPath() %>/img/read.png" alt="查看" title="查看"/></a>--%>
                         <a href="<%=request.getContextPath() %>/te/toalter.action?id=${s.id}"><img src="<%=request.getContextPath() %>/img/xiugai.png" alt="修改" title="修改"/></a>
                         <a href="<%=request.getContextPath() %>/te/delete.action?id=${s.id}" class="removeProvider" onclick="return confirm('您确认要删除本记录么？')"><img src="<%=request.getContextPath() %>/img/schu.png" alt="删除" title="删除"/></a>
                     </td>

@@ -39,7 +39,7 @@
     </script>
 </head>
 <body class="login_bg">
-
+<p style="text-align: right">当前系统版本：3.01.0</p>
 <section class="loginBox">
     <header class="loginHeader">
         <h1>教务管理登录系统</h1>
