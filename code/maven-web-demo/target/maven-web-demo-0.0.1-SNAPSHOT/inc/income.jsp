@@ -22,7 +22,7 @@
         <p><span id="hours"></span><span style="color: #fff21b">${GLOBAL_USER.realName} </span> , 欢迎你！</p>
         <a href="<%=request.getContextPath() %>/login.jsp">退出</a>
     </div>
-    <img src="../img/yyh.png" style="width: 32px;height: 32px;float:right;margin-top: 8px;">
+    <a href="<%=request.getContextPath() %>/keshi/getTeacherKeshiList.action"><img src="../img/yyh.png" style="width: 32px;height: 32px;float:right;margin-top: 8px;"></a>
 </header>
 <!--时间-->
 <section class="publicTime">
@@ -41,7 +41,7 @@
                 <li><a href="<%=request.getContextPath() %>/pay/payment.action">缴费记录</a></li>
                 <li><a href="<%=request.getContextPath() %>/keshi/getList1.action">课时统计</a></li>
                 <li><a href="<%=request.getContextPath() %>/inc/income.action">收支明细</a></li>
-                <li><a href="<%=request.getContextPath() %>/stu/arr.action">欠费学生</a></li>
+                <li><a href="<%=request.getContextPath() %>/stu/arr.action">欠费学员</a></li>
                 <li><a href="<%=request.getContextPath() %>/tea/jisuan.jsp">教师工资</a></li>
                 <li><a href="<%=request.getContextPath() %>/teacher/kstj.action">教师课时统计</a></li>
                 <li><a href="<%=request.getContextPath() %>/tea/teacher.action">用户管理</a></li>
@@ -53,6 +53,7 @@
         <div class="location">
             <strong>你现在所在的位置是:</strong>
             <span>收支明细</span>
+            <div title="此页面为课时统计，这里可以增删改查，下方可以统计支出和收入金额以及生成图表" style="color: red">*</div>
         </div>
 
         <div class="search">
@@ -101,7 +102,7 @@
                 </tr>
             </c:forEach>
         </table>
-        <div id="min5">
+        <div id="min5" >
             <div id="min6">
                 收支汇总
             </div>

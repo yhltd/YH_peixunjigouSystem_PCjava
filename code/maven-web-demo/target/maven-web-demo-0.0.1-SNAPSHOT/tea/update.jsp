@@ -19,7 +19,7 @@
         <p><span id="hours"></span><span style="color: #fff21b">${GLOBAL_USER.realName} </span> , 欢迎你！</p>
         <a href="<%=request.getContextPath() %>/login.jsp">退出</a>
     </div>
-    <img src="../img/yyh.png" style="width: 32px;height: 32px;float:right;margin-top: 8px;">
+    <a href="<%=request.getContextPath() %>/keshi/getTeacherKeshiList.action"><img src="../img/yyh.png" style="width: 32px;height: 32px;float:right;margin-top: 8px;"></a>
 </header>
 <!--时间-->
 <section class="publicTime">

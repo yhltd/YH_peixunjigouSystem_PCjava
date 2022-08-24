@@ -2,7 +2,7 @@ package com.yhocn.student.controller;
 
 import java.util.List;
 
-import com.sun.deploy.cache.BaseLocalApplicationProperties;
+//import com.sun.deploy.cache.BaseLocalApplicationProperties;
 import com.yhocn.shezhi.entity.Shezhi;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;

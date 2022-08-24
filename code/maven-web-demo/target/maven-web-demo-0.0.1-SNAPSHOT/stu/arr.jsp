@@ -19,7 +19,7 @@
         <p><span id="hours"></span><span style="color: #fff21b">${GLOBAL_USER.realName} </span> , 欢迎你！</p>
         <a href="<%=request.getContextPath() %>/login.jsp">退出</a>
     </div>
-    <img src="../img/yyh.png" style="width: 32px;height: 32px;float:right;margin-top: 8px;">
+    <a href="<%=request.getContextPath() %>/keshi/getTeacherKeshiList.action"><img src="../img/yyh.png" style="width: 32px;height: 32px;float:right;margin-top: 8px;"></a>
 </header>
 <!--时间-->
 <section class="publicTime">
@@ -39,7 +39,7 @@
                 <li><a href="<%=request.getContextPath() %>/pay/payment.action">缴费记录</a></li>
                 <li><a href="<%=request.getContextPath() %>/keshi/getList1.action">课时统计</a></li>
                 <li><a href="<%=request.getContextPath() %>/inc/income.action">收支明细</a></li>
-                <li><a href="<%=request.getContextPath() %>/stu/arr.action">欠费学生</a></li>
+                <li><a href="<%=request.getContextPath() %>/stu/arr.action">欠费学员</a></li>
                 <li><a href="<%=request.getContextPath() %>/tea/jisuan.jsp">教师工资</a></li>
                 <li><a href="<%=request.getContextPath() %>/keshi/getTeacherKeshiList.action">教师课时统计</a></li>
                 <li><a href="<%=request.getContextPath() %>/tea/teacher.action">用户管理</a></li>
@@ -50,15 +50,17 @@
     <div class="right">
         <div class="location">
             <strong>你现在所在的位置是:</strong>
-            <span>欠费学生</span>
+            <span>欠费学员</span>
+            <div title="此页面为欠费学员，这里会自动统计出欠费学员名单" style="color: red">*</div>
         </div>
         <div class="search">
-               <span>学生姓名：</span>
+           <span>学生姓名：</span>
+            <form action="<%=request.getContextPath()%>/stu/arr1.action"
+                  method="post" id="myForm"></form>
             <input type="text" placeholder="请输入学生姓名" name="realName" form="myForm"/>
             <input type="submit" value="查询" form="myForm"/>
             <a id="toExcel" >导出excel</a>
-               <form action="<%=request.getContextPath()%>/stu/arr1.action"
-               method="post" id="myForm"></form>
+
 
         </div>
 
@@ -138,7 +140,7 @@
         var blob=new Blob([zhong_html],{type:"application/vnd.ms-excel"});
         var a=event.target;
         a.href=URL.createObjectURL(blob);
-        a.download="欠费学生";
+        a.download="欠费学员";
     }
     element.onclick=toExcel;
 

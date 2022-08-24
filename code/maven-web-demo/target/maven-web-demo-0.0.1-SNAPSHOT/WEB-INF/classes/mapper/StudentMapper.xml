@@ -7,7 +7,7 @@
 <mapper namespace="com.yhocn.student.mapper.StudentMapper">
 
 	<select id="selectAll" parameterType="Student" resultType="Student">
-		select id,RealName,Sex,rgdate,Course,Teacher,Classnum,phone,Fee,(select ifnull(SUM(paid),0) from payment where Company =#{c} and realname=#{s.realName}) mall ,Fee -Cost as Nocost,(select ifnull(SUM(keshi),0) from keshi_detail where Company=#{c} and student_name=#{s.realName} and course=#{s.course}) nall,Allhour - Hour as Nohour,Allhour,Type FROM student
+		select id,RealName,Sex,rgdate,Course,Teacher,Classnum,phone,Fee,(select SUM(case when Company =#{c} and realname=#{s.realName} then paid else 0 end) from payment ) mall ,Fee -Cost as Nocost,(select SUM(case when Company=#{c} and student_name=#{s.realName} and course=#{s.course} then keshi else 0 end ) from keshi_detail ) nall,Allhour - Hour as Nohour,Allhour,Type FROM student
 		where Company =#{c}
 		<if test="d != null and d != ''">
 			and Realname like "%"#{d}"%"
@@ -23,7 +23,7 @@
 		</if>
 	</select>
 	<select id="selectAll1" parameterType="Student" resultType="Student">
-		select id,RealName,Sex,rgdate,Course,Teacher,Classnum,phone,Fee,(select ifnull(SUM(paid),0) from payment where Company =#{c} and realname=#{s.realName}) mall,Fee - Cost as Nocost,(select ifnull(SUM(keshi),0) from keshi_detail where Company=#{c} and student_name=#{s.realName} and course=#{s.course}) nall,Allhour - Hour as Nohour,Allhour,Type FROM student
+		select id,RealName,Sex,rgdate,Course,Teacher,Classnum,phone,Fee,(select SUM(case when Company =#{c} and realname=student.realname then paid else 0 end) from payment ) mall ,Fee -Cost as Nocost,(select SUM(case when Company=#{c} and student_name=student.realname and course=student.Course then keshi else 0 end ) from keshi_detail ) nall,Allhour - Hour as Nohour,Allhour,Type FROM student
 		where Company =#{c}
 		<if test="d != null and d != ''">
 			and Realname like "%"#{d}"%"

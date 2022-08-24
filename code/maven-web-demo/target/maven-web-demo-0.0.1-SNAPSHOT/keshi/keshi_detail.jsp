@@ -19,7 +19,7 @@
         <p><span id="hours"></span><span style="color: #fff21b">${GLOBAL_USER.realName} </span> , 欢迎你！</p>
         <a href="<%=request.getContextPath() %>/login.jsp">退出</a>
     </div>
-    <img src="../img/yyh.png" style="width: 32px;height: 32px;float:right;margin-top: 8px;">
+    <a href="<%=request.getContextPath() %>/keshi/getTeacherKeshiList.action"><img src="../img/yyh.png" style="width: 32px;height: 32px;float:right;margin-top: 8px;"></a>
 </header>
 <!--时间-->
 <section class="publicTime">
@@ -39,7 +39,7 @@
                 <li><a href="<%=request.getContextPath() %>/pay/payment.action">缴费记录</a></li>
                 <li><a href="<%=request.getContextPath() %>/keshi/getList1.action">课时统计</a></li>
                 <li><a href="<%=request.getContextPath() %>/inc/income.action">收支明细</a></li>
-                <li><a href="<%=request.getContextPath() %>/stu/arr.action">欠费学生</a></li>
+                <li><a href="<%=request.getContextPath() %>/stu/arr.action">欠费学员</a></li>
                 <li><a href="<%=request.getContextPath() %>/tea/jisuan.jsp">教师工资</a></li>
                 <li><a href="<%=request.getContextPath() %>/keshi/getTeacherKeshiList.action">教师课时统计</a></li>
                 <li><a href="<%=request.getContextPath() %>/tea/teacher.action">用户管理</a></li>
@@ -51,17 +51,19 @@
         <div class="location">
             <strong>你现在所在的位置是:</strong>
             <span>课时统计</span>
+            <div title="此页面为课时统计，这里可以手动维护数据，在这里添加数据后学生信息会自动更新已上课时" style="color: red">*</div>
         </div>
         <div class="search">
             <span style="color:red">${msg}</span>
+            <form action="<%=request.getContextPath()%>/keshi/getList1.action"
+                  method="post" id="myForm"></form>
             <input type="text" placeholder="请输入老师姓名" name="teacher_name" form="myForm"/>
             <input type="text" placeholder="请输入培训课程" name="course" form="myForm"/>
             <input type="date" placeholder="请输入开始时间" name="date1" form="myForm"/>
             <input type="date" placeholder="请输入结束时间" name="date2" form="myForm"/>
             <a href="<%=request.getContextPath()%>/keshi/toadd.action">添加明细</a>
             <input type="submit" value="查询" form="myForm"/>
-            <form action="<%=request.getContextPath()%>/keshi/getList1.action"
-                  method="post" id="myForm"></form>
+
 
         </div>
         <table class="providerTable" cellpadding="0" cellspacing="0">

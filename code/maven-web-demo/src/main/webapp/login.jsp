@@ -39,7 +39,8 @@
     </script>
 </head>
 <body class="login_bg">
-<p style="text-align: right">当前系统版本：3.01.0</p>
+<img src="img/yhlogo.png" style="width: 70px;height: 70px;float: left">
+<p style="text-align: right;font-size: 14px">当前系统版本：3.01.0&nbsp;&nbsp;</p>
 <section class="loginBox">
     <header class="loginHeader">
         <h1>教务管理登录系统</h1>
@@ -85,7 +86,7 @@
 </section>
 <div style="text-align: center;margin-top:15%">
 
-    <a href="http://yhocn.cn/" style="font-size: medium;color: #0f0f0f">
+    <a href="http://yhocn.cn/" style="font-size: 14px;color: #0f0f0f">
         云合未来计算机技术有限公司 © Copyright 2018-2030 版权所有 All rights reserved 联系电话：16619776280
         技术支持 www.yhocn.cn</a>
 

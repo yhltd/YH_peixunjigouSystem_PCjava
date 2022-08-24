@@ -16,17 +16,15 @@
 
 <header class="publicHeader">
     <h1>教务管理系统</h1>
-
     <div class="publicHeaderR">
         <p><span id="hours"></span><span style="color: #fff21b">${GLOBAL_USER.realName} </span> , 欢迎你！</p>
         <a href="<%=request.getContextPath() %>/login.jsp">退出</a>
     </div>
-    <img src="../img/yyh.png" style="width: 32px;height: 32px;float:right;margin-top: 8px;">
+    <a href="<%=request.getContextPath() %>/keshi/getTeacherKeshiList.action"><img src="../img/yyh.png" style="width: 32px;height: 32px;float:right;margin-top: 8px;"></a>
 </header>
 <!--时间-->
 <section class="publicTime">
     <span id="time"></span>
-
 </section>
 <!--主体内容-->
 <section class="publicMian ">
@@ -41,7 +39,7 @@
                 <li><a href="<%=request.getContextPath() %>/pay/payment.action">缴费记录</a></li>
                 <li><a href="<%=request.getContextPath() %>/keshi/getList1.action">课时统计</a></li>
                 <li><a href="<%=request.getContextPath() %>/inc/income.action">收支明细</a></li>
-                <li><a href="<%=request.getContextPath() %>/stu/arr.action">欠费学生</a></li>
+                <li><a href="<%=request.getContextPath() %>/stu/arr.action">欠费学员</a></li>
                 <li><a href="<%=request.getContextPath() %>/tea/jisuan.jsp">教师工资</a></li>
                 <li><a href="<%=request.getContextPath() %>/keshi/getTeacherKeshiList.action">教师课时统计</a></li>
                 <li><a href="<%=request.getContextPath() %>/tea/teacher.action">用户管理</a></li>
@@ -53,6 +51,7 @@
         <div class="location">
             <strong>你现在所在的位置是:</strong>
             <span>学生信息</span>
+            <div title="学生信息页面可以对学生基本信息进行操作，已上课时和已缴费会根据后面页面的数据自动计算" style="color: red">*</div>
         </div>
         <div class="search">
             <span style="color:red">${msg}</span>
@@ -63,8 +62,9 @@
             <input type="text" placeholder="请输入学生姓名" name="realName" form="myForm"/>
             <input type="text" placeholder="请输入教师姓名" name="teacher" form="myForm"/>
             <input type="text" placeholder="请输入培训课程" name="peixun" form="myForm"/>
+            <br>
             <input type="submit" value="查询" form="myForm"/>
-            <a id="toExcel">导出excel</a>
+            <a id="toExcel" >导出excel</a>
             <a href="<%=request.getContextPath() %>/stu/shezhi.action">添加信息</a>
             <%--            <a href="<%=request.getContextPath()%>/stu/add.jsp">添加学生</a>--%>
 
