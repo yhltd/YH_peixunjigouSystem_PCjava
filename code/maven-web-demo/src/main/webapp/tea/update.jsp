@@ -17,9 +17,11 @@
 
     <div class="publicHeaderR">
         <p><span id="hours"></span><span style="color: #fff21b">${GLOBAL_USER.realName} </span> , 欢迎你！</p>
-        <a href="<%=request.getContextPath() %>/login.jsp">退出</a>
+        <input hidden="hidden" id="rongliang" value="${rongliang }"/>
+        <a onclick="shujv()" style="width:80px">数据空间</a>
+        <a href="<%=request.getContextPath() %>/login.jsp" style="width:80px">退出</a>
     </div>
-    <a href="<%=request.getContextPath() %>/keshi/getTeacherKeshiList.action"><img src="../img/yyh.png" style="width: 32px;height: 32px;float:right;margin-top: 8px;"></a>
+    <a href="<%=request.getContextPath() %>/tea/teacher.action"><img src="../img/yyh.png" style="width: 32px;height: 32px;float:right;margin-top: 8px;"></a>
 </header>
 <!--时间-->
 <section class="publicTime">
@@ -85,4 +87,10 @@
 <script src="<%=request.getContextPath() %>/js/time.js"></script>
 
 </body>
+<script>
+    function shujv() {
+        alert($('#rongliang').val());
+        return false;
+    }
+</script>
 </html>

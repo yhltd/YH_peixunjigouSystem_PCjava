@@ -18,9 +18,11 @@
     <h1>教务管理系统</h1>
     <div class="publicHeaderR">
         <p><span id="hours"></span><span style="color: #fff21b">${GLOBAL_USER.realName} </span> , 欢迎你！</p>
-        <a href="<%=request.getContextPath() %>/login.jsp">退出</a>
+        <input hidden="hidden" id="rongliang" value="${rongliang }"/>
+        <a onclick="shujv()" style="width:80px">数据空间</a>
+        <a href="<%=request.getContextPath() %>/login.jsp" style="width:80px">退出</a>
     </div>
-    <a href="<%=request.getContextPath() %>/keshi/getTeacherKeshiList.action"><img src="../img/yyh.png" style="width: 32px;height: 32px;float:right;margin-top: 8px;"></a>
+    <a href="<%=request.getContextPath() %>/tea/teacher.action"><img src="../img/yyh.png" style="width: 32px;height: 32px;float:right;margin-top: 8px;"></a>
 </header>
 <!--时间-->
 <section class="publicTime">
@@ -36,14 +38,15 @@
                 <%--原有代码     <li><a href="<%=request.getContextPath() %>/tea/teacher.action">设置</a></li>--%>
                 <li><a href="<%=request.getContextPath() %>/te/shezhi.action">设置</a></li>
                 <li><a href="<%=request.getContextPath() %>/stu/student1.action">学生信息</a></li>
-                <li><a href="<%=request.getContextPath() %>/pay/payment.action">缴费记录</a></li>
+                <li><a href="<%=request.getContextPath() %>/teacherInfo/getList1.action">教师信息</a></li>
+                <li><a href="<%=request.getContextPath() %>/pay/payment1.action">缴费记录</a></li>
                 <li><a href="<%=request.getContextPath() %>/keshi/getList1.action">课时统计</a></li>
                 <li><a href="<%=request.getContextPath() %>/inc/income.action">收支明细</a></li>
                 <li><a href="<%=request.getContextPath() %>/stu/arr.action">欠费学员</a></li>
                 <li><a href="<%=request.getContextPath() %>/tea/jisuan.jsp">教师工资</a></li>
                 <li><a href="<%=request.getContextPath() %>/keshi/getTeacherKeshiList.action">教师课时统计</a></li>
                 <li><a href="<%=request.getContextPath() %>/tea/teacher.action">用户管理</a></li>
-                <li><a href="<%=request.getContextPath() %>/help.jsp">帮助</a></li>
+                <li><a href="<%=request.getContextPath() %>/pdf/云合培训管理系统_PC.pdf">帮助</a></li>
             </ul>
         </nav>
     </div>
@@ -53,7 +56,7 @@
             <span>学生信息</span>
             <div title="学生信息页面可以对学生基本信息进行操作，已上课时和已缴费会根据后面页面的数据自动计算" style="color: red">*</div>
         </div>
-        <div class="search">
+        <div class="search" style="background: url('<%=request.getContextPath()%>/img/background3.jpeg')  repeat center!important;background-size:100% 100%;">
             <span style="color:red">${msg}</span>
             <form action="<%=request.getContextPath()%>/stu/student1.action"
                   method="post" id="myForm"></form>
@@ -62,10 +65,9 @@
             <input type="text" placeholder="请输入学生姓名" name="realName" form="myForm"/>
             <input type="text" placeholder="请输入教师姓名" name="teacher" form="myForm"/>
             <input type="text" placeholder="请输入培训课程" name="peixun" form="myForm"/>
-            <br>
-            <input type="submit" value="查询" form="myForm"/>
-            <a id="toExcel" >导出excel</a>
-            <a href="<%=request.getContextPath() %>/stu/shezhi.action">添加信息</a>
+            <input type="submit" value="查询" form="myForm" style="width:90px"/>
+            <a id="toExcel" style="width:70px">导出excel</a>
+            <a href="<%=request.getContextPath() %>/stu/shezhi.action" style="width:70px">添加信息</a>
             <%--            <a href="<%=request.getContextPath()%>/stu/add.jsp">添加学生</a>--%>
 
         </div>
@@ -115,6 +117,7 @@
 
             </c:forEach>
         </table>
+
         <div class="page">
             <div class="page_cell"><a href="<%=request.getContextPath() %>/stu/student1.action">首页</a></div>
             <div class="page_cell" onclick="last_page(<%=session.getAttribute("page")%>)"><a href="<%=request.getContextPath() %>/stu/student2.action">上一页</a></div>
@@ -122,6 +125,7 @@
             <div class="page_cell" onclick="next_page(<%=session.getAttribute("page")%>)"><a href="<%=request.getContextPath() %>/stu/student3.action">下一页</a></div>
             <div class="page_cell"><a href="<%=request.getContextPath() %>/stu/student4.action">末页</a></div>
         </div>
+
         <%--        <div style="text-align: center">--%>
         <%--            <input type="submit" value="首页" form="myForm"/>--%>
         <%--            <input type="submit" value="上一页" form="myForm"/>--%>
@@ -179,8 +183,13 @@
         var a=event.target;
         a.href=URL.createObjectURL(blob);
         a.download="学生信息";
-    }
+    };
     element.onclick=toExcel;
+
+    function shujv() {
+        alert($('#rongliang').val());
+        return false;
+    }
 
 
 

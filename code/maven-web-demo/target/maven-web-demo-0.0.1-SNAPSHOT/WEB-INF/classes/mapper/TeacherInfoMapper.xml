@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yhocn.teacherInfo.mapper.TeacherInfoMapper">
+
+    <select id="getAllList" parameterType="TeacherInfo" resultType="TeacherInfo">
+		select * from teacherInfo where company =#{c}
+	</select>
+
+    <select id="getList" parameterType="TeacherInfo" resultType="TeacherInfo">
+        select * from teacherInfo where company =#{c} and t_name like "%"#{t_name}"%" limit #{page},10
+    </select>
+
+    <select id="getListById" resultType="TeacherInfo">
+		select * from teacherInfo where id=#{t.id} and company =#{c}
+	</select>
+
+    <insert id="add">
+        insert into teacherInfo (t_name,sex,id_code,minzu,birthday,post,education,phone,rz_riqi,state,shebao,address,company)
+        values(#{t.t_name},#{t.sex},#{t.id_code},#{t.minzu},#{t.birthday},#{t.post},#{t.education},#{t.phone},#{t.rz_riqi},
+        #{t.state},#{t.shebao},#{t.address},#{c})
+    </insert>
+
+    <update id="update">
+        update teacherInfo set t_name=#{t.t_name}, sex=#{t.sex}, id_code=#{t.id_code}, minzu=#{t.minzu}, birthday=#{t.birthday},
+        post=#{t.post}, education=#{t.education}, phone=#{t.phone}, rz_riqi=#{t.rz_riqi}, state=#{t.state}, shebao=#{t.shebao},
+        address=#{t.address} where id=#{t.id}
+    </update>
+
+    <delete id="delete">
+		delete from teacherInfo where id=#{t.id}
+	</delete>
+
+</mapper>

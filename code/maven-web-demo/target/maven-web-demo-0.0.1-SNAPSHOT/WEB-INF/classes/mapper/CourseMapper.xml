@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yhocn.course.mapper.CourseMapper">
+    <select id="getAllList" parameterType="Course" resultType="Course">
+		select * from course where company =#{c}
+	</select>
+
+    <select id="getList" parameterType="Course" resultType="Course">
+        select * from course where company =#{c} and teacher like "%"#{teacher}"%" and course like "%"#{cou}"%" limit #{page},10
+    </select>
+
+    <select id="getListById" resultType="Course">
+		select * from course where id=#{course.id} and company =#{c}
+	</select>
+
+    <insert id="add">
+        insert into course (teacher,course,riqi,xingqi,company)
+        values(#{course.teacher},#{course.course},#{course.riqi},#{course.xingqi},#{c})
+    </insert>
+
+    <update id="update">
+        update course set teacher=#{course.teacher}, course=#{course.course}, riqi=#{course.riqi},
+        xingqi=#{course.xingqi} where id=#{course.id}
+    </update>
+
+    <delete id="delete">
+		delete from course where id=#{course.id}
+	</delete>
+
+</mapper>

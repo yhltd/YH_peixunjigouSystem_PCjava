@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yhocn.kaoqin.mapper.KaoQinMapper">
+    <select id="getAllList" parameterType="KaoQin" resultType="KaoQin">
+		select * from kaoqin where company =#{c}
+	</select>
+
+    <select id="getList" parameterType="KaoQin" resultType="KaoQin">
+        select * from kaoqin where company =#{c} and s_name like "%"#{s_name}"%"  limit #{page},10
+    </select>
+
+    <select id="getListById" resultType="KaoQin">
+		select * from kaoqin where id=#{kaoQin.id} and company =#{c}
+	</select>
+
+    <insert id="add">
+        insert into kaoqin (nian,yue,s_name,ri1,ri2,ri3,ri4,ri5,ri6,ri7,ri8,ri9,ri10,ri11,ri12,ri13,ri14,ri15,ri16,ri17,ri18,ri19,ri20,ri21,ri22,ri23,ri24,ri25,ri26,ri27,ri28,ri29,ri30,ri31,company)
+        values(#{kaoQin.nian},#{kaoQin.yue},#{kaoQin.s_name},#{kaoQin.ri1},#{kaoQin.ri2},#{kaoQin.ri3},#{kaoQin.ri4},#{kaoQin.ri5},#{kaoQin.ri6},#{kaoQin.ri7},#{kaoQin.ri8},#{kaoQin.ri9},#{kaoQin.ri10},#{kaoQin.ri11},#{kaoQin.ri12},#{kaoQin.ri13},#{kaoQin.ri14},#{kaoQin.ri15},#{kaoQin.ri16},#{kaoQin.ri17},#{kaoQin.ri18},#{kaoQin.ri19},#{kaoQin.ri20},#{kaoQin.ri21},#{kaoQin.ri22},#{kaoQin.ri23},#{kaoQin.ri24},#{kaoQin.ri25},#{kaoQin.ri26},#{kaoQin.ri27},#{kaoQin.ri28},#{kaoQin.ri29},#{kaoQin.ri30},#{kaoQin.ri31},#{c})
+    </insert>
+
+    <update id="update">
+        update kaoqin set nian=#{kaoQin.nian}, yue=#{kaoQin.yue}, s_name=#{kaoQin.s_name},ri1=#{kaoQin.ri1},ri2=#{kaoQin.ri2} ,ri3=#{kaoQin.ri3} ,ri4=#{kaoQin.ri4} ,ri5=#{kaoQin.ri5} ,ri6=#{kaoQin.ri6} ,ri7=#{kaoQin.ri7} ,ri8=#{kaoQin.ri8} ,ri9=#{kaoQin.ri9} ,ri10=#{kaoQin.ri10} ,ri11=#{kaoQin.ri11} ,ri12=#{kaoQin.ri12} ,ri13=#{kaoQin.ri13} ,ri14=#{kaoQin.ri14} ,ri15=#{kaoQin.ri15} ,ri16=#{kaoQin.ri16} ,ri17=#{kaoQin.ri17} ,ri18=#{kaoQin.ri18} ,ri19=#{kaoQin.ri19} ,ri20=#{kaoQin.ri20} ,ri21=#{kaoQin.ri21} ,ri22=#{kaoQin.ri22} ,ri23=#{kaoQin.ri23} ,ri24=#{kaoQin.ri24} ,ri25=#{kaoQin.ri25} ,ri26=#{kaoQin.ri26} ,ri27=#{kaoQin.ri27} ,ri28=#{kaoQin.ri28} ,ri29=#{kaoQin.ri29} ,ri30=#{kaoQin.ri30} ,ri31=#{kaoQin.ri31}
+        where id=#{kaoQin.id}
+    </update>
+
+    <delete id="delete">
+		delete from kaoqin where id=#{kaoQin.id}
+	</delete>
+
+</mapper>

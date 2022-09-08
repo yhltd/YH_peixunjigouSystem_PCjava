@@ -14,8 +14,8 @@ public class PaymentServiceImpl implements PaymentService {
 	private PaymentMapper dao;
 	
 	@Override
-	public List<Payment> selectAll(Payment p, String a, String b, String c, String d) {
-		return dao.selectAll(p,a,b,c,d);
+	public List<Payment> selectAll(Payment p, String a, String b, String c, String d,Integer page) {
+		return dao.selectAll(p,a,b,c,d,page);
 	}
 
 	@Override

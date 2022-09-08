@@ -35,9 +35,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="add">
 		insert into
 		teacher(UserName,Password,RealName,UseType,Age,
-		Phone,Home,photo,Education,Company )
+		Phone,Home,photo,Education,Company,state )
 		values(#{t.userName},#{t.password},#{t.realName},#{t.useType},#{t.age},
-		#{t.phone},#{t.home},#{t.photo},#{t.education},#{c})
+		#{t.phone},#{t.home},#{t.photo},#{t.education},#{c},#{t.state})
 	</insert>
 	
 	<update id="update">
@@ -48,7 +48,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		Phone=#{t.phone},
 		Home=#{t.home},
 		photo=#{t.photo},
-		Education=#{t.education}
+		Education=#{t.education},
+		state=#{t.state},
 		where
 		ID=#{t.id} and Company =#{c}
 	</update>
@@ -64,10 +65,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		Phone=#{t.phone},
 		Home=#{t.home},
 		photo=#{t.photo},
-		Education=#{t.education}
+		Education=#{t.education},
+		state=#{t.state}
 		where
 		ID=#{t.id} and Company =#{c}
 	</update>
+
 	<delete id="delete">
 		delete from teacher
 		where ID=#{t.id} and Company =#{c}

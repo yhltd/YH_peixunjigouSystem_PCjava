@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/style.css"/>
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/min.css"/>
     <script type="text/javascript">
-
         $(document).ready(function(){
             $.ajax({
                 type: 'post',

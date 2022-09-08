@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/public.css"/>
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/style.css"/>
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/min.css"/>
-
 </head>
 <body>
 <!--头部-->
@@ -18,9 +17,11 @@
     <h1>教务管理系统</h1>
     <div class="publicHeaderR">
         <p style="font-size:13px"><span id="hours"></span><span style="color: #fff21b;">${GLOBAL_USER.realName} </span> , 欢迎你！</p>
-        <a href="<%=request.getContextPath() %>/login.jsp">退出</a>
+        <input hidden="hidden" id="rongliang" value="${rongliang }"/>
+        <a onclick="shujv()" style="width:80px">数据空间</a>
+        <a href="<%=request.getContextPath() %>/login.jsp" style="width:80px">退出</a>
     </div>
-    <a href="<%=request.getContextPath() %>/keshi/getTeacherKeshiList.action"><img src="img/yyh.png" style="width: 32px;height: 32px;float:right;margin-top: 8px;"></a>
+    <a href="<%=request.getContextPath() %>/tea/teacher.action"><img src="img/yyh.png" style="width: 32px;height: 32px;float:right;margin-top: 8px;"></a>
 </header>
 <!--时间-->
 <section class="publicTime">
@@ -36,34 +37,37 @@
                 <li><a href="<%=request.getContextPath() %>/main.jsp">主页</a></li>
                 <li><a href="<%=request.getContextPath() %>/te/shezhi.action">设置</a></li>
                 <li><a href="<%=request.getContextPath() %>/stu/student1.action">学生信息</a></li>
-                <li><a href="<%=request.getContextPath() %>/pay/payment.action">缴费记录</a></li>
+                <li><a href="<%=request.getContextPath() %>/teacherInfo/getList1.action">教师信息</a></li>
+                <li><a href="<%=request.getContextPath() %>/pay/payment1.action">缴费记录</a></li>
                 <li><a href="<%=request.getContextPath() %>/keshi/getList1.action">课时统计</a></li>
                 <li><a href="<%=request.getContextPath() %>/inc/income.action">收支明细</a></li>
                 <li><a href="<%=request.getContextPath() %>/stu/arr.action">欠费学员</a></li>
                 <li><a href="<%=request.getContextPath() %>/tea/jisuan.jsp">教师工资</a></li>
                 <li><a href="<%=request.getContextPath() %>/keshi/getTeacherKeshiList.action">教师课时统计</a></li>
                 <li><a href="<%=request.getContextPath() %>/tea/teacher.action">用户管理</a></li>
-                <li><a href="<%=request.getContextPath() %>/help.jsp">帮助</a></li>
+                <li><a href="<%=request.getContextPath() %>/pdf/云合培训管理系统_PC.pdf">帮助</a></li>
             </ul>
         </nav>
     </div>
     <div class="right">
         <div class="wFont">
             <div id="min3">
+                <p style="color: red">${qianfei}</p>
                 <span ><a href="<%=request.getContextPath() %>/stu/student1.action" >学生信息</a></span>
+                <span ><a href="<%=request.getContextPath() %>/teacherInfo/getList1.action" >教师信息</a></span>
+                <br>
+
                 <span ><a href="<%=request.getContextPath() %>/pay/payment.action">缴费记录</a></span>
-                <br>
-
                 <span ><a href="<%=request.getContextPath() %>/keshi/getList1.action">课时统计</a></span>
-                <span ><a href="<%=request.getContextPath() %>/inc/income.action">收支明细</a></span>
                 <br>
-                <span ><a href="<%=request.getContextPath() %>/stu/arr.action">欠费学员</a></span>
-                <span ><a href="<%=request.getContextPath() %>/keshi/select1.action">教师工资</a></span>
-                <br>
-                <span ><a href="<%=request.getContextPath() %>/te/shezhi.action">自定义参数</a></span>
-                <span ><a href="<%=request.getContextPath() %>/help.jsp">使用帮助</a></span>
-            </div>
 
+                <span ><a href="<%=request.getContextPath() %>/inc/income.action">收支明细</a></span>
+                <span ><a href="<%=request.getContextPath() %>/stu/arr.action">欠费学员</a></span>
+                <br>
+
+                <span ><a href="<%=request.getContextPath() %>/keshi/select1.action">教师工资</a></span>
+                <span ><a href="<%=request.getContextPath() %>/te/shezhi.action">自定义参数</a></span>
+            </div>
         </div>
     </div>
 </section>
@@ -77,4 +81,10 @@
 <div style="text-align:center;">
 </div>
 </body>
+<script>
+    function shujv() {
+        alert($('#rongliang').val());
+        return false;
+    }
+</script>
 </html>

@@ -13,6 +13,7 @@ public class Teacher {
 	private String photo;
 	private String education;
 	public String Company;
+	public String state;
 	
 	public Teacher() {
 		super();
@@ -102,8 +103,16 @@ public class Teacher {
 
 	public void setCompany(String company) { this.Company = company; }
 
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
 	public Teacher(Integer id, String userName, String password, String realName, Integer useType, Integer age,
-				   String phone, String home, String photo, String education,String Company) {
+				   String phone, String home, String photo, String education, String Company, String state) {
 		super();
 		this.id = id;
 		this.userName = userName;
@@ -116,15 +125,25 @@ public class Teacher {
 		this.photo = photo;
 		this.education = education;
 		this.Company=Company;
+		this.state=state;
 	}
+
 
 	@Override
 	public String toString() {
-		return "Teacher [id=" + id + ", userName=" + userName + ", password=" + password + ", realName=" + realName
-				+ ", useType=" + useType + ", age=" + age + ", phone=" + phone + ", home=" + home + ", photo=" + photo
-				+ ", education=" + education + ", Company=" + Company +"]";
+		return "Teacher{" +
+				"id=" + id +
+				", userName='" + userName + '\'' +
+				", password='" + password + '\'' +
+				", realName='" + realName + '\'' +
+				", useType=" + useType +
+				", age=" + age +
+				", phone='" + phone + '\'' +
+				", home='" + home + '\'' +
+				", photo='" + photo + '\'' +
+				", education='" + education + '\'' +
+				", Company='" + Company + '\'' +
+				", state='" + state + '\'' +
+				'}';
 	}
-
-
-
 }

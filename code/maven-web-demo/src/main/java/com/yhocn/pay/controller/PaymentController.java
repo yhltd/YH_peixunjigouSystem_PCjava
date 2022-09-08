@@ -13,104 +13,224 @@ import com.yhocn.pay.service.PaymentService;
 import com.yhocn.login.controller.LoginController;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/pay")
 public class PaymentController {
+    public int yeshu;
+    public int weiye;
 
-	@Autowired
-	private PaymentService service;
+    @Autowired
+    private PaymentService service;
 
-	@RequestMapping("/payment1")
-	public ModelAndView query(ModelAndView mv,Payment p, String a, String b, String c, String d,HttpServletRequest request) {
-		LoginController e=new  LoginController();
-		a=request.getParameter("date1");
-		b=request.getParameter("date2");
-		d=request.getParameter("realname").trim();
-		if(a==""){
-			a="1900/1/1";
+    @RequestMapping("/payment1")
+    public ModelAndView query(ModelAndView mv, Payment p, String a, String b, String c, String d, Integer page, HttpServletRequest request, HttpSession session) {
+        LoginController e = new LoginController();
+        a = request.getParameter("date1");
+        b = request.getParameter("date2");
+		if (request.getParameter("realname") == null) {
+			d = "";
+		}else{
+			d = request.getParameter("realname").trim();
 		}
-		if(b==""){
-			b="2300/1/1";
+
+
+        yeshu = 1;
+        page = 0;
+        if (a == null || a.equals("")) {
+            a = "1900/1/1";
+        }
+        if (b == null || b.equals("")) {
+            b = "2300/1/1";
+        }
+        c = e.a;
+        List<Payment> plist = service.selectAll(p, a, b, c, d, page);
+        List<Payment> plistAll = service.selectAll1(p, c);
+
+        session.setAttribute("page", 1);
+        weiye = (int) Math.floor(plistAll.size() / 10);
+
+        mv.addObject("plist", plist);
+        mv.setViewName("/pay/payment.jsp");
+        return mv;
+    }
+
+    @RequestMapping("/payment2")
+    public ModelAndView query2(ModelAndView mv, Payment p, String a, String b, String c, String d, Integer page, HttpServletRequest request, HttpSession session) {
+        LoginController e = new LoginController();
+        a = request.getParameter("date1");
+        b = request.getParameter("date2");
+		if (request.getParameter("realname") == null) {
+			d = "";
+		}else{
+			d = request.getParameter("realname").trim();
 		}
-		c=e.a;
-		List<Payment> plist = service.selectAll(p,a,b,c,d);
-		mv.addObject("plist",plist);
-		mv.setViewName("/pay/payment.jsp");
-		return mv;
-	}
-	@RequestMapping("/payment")
-	public ModelAndView query1(ModelAndView mv, Payment p, String c,  HttpServletRequest request) {
 
-		LoginController e=new  LoginController();
-		c=e.a;
-		List<Payment> plist = service.selectAll1(p,c);
-		mv.addObject("plist",plist);
-		mv.setViewName("/pay/payment.jsp");
-		return mv;
-	}
+        if (a == null || a.equals("")) {
+            a = "1900/1/1";
+        }
+        if (b == null || b.equals("")) {
+            b = "2300/1/1";
+        }
+        c = e.a;
 
-	@RequestMapping(value = "/add",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
-	public ModelAndView add(ModelAndView mv,Payment p, String c) {
-		LoginController e=new  LoginController();
-		c=e.a;
-		int i = service.add(p,c);
-		if(i>0) {
-			mv.addObject("msg","增加用户成功");
-			mv.setViewName("/pay/payment.action");
-		}else {
-			mv.addObject("msg","增加用户失败");
-			mv.setViewName("/pay/payment.action");
+        if (yeshu > 1) {
+            page = yeshu * 10 - 20;
+        } else if (yeshu == 1) {
+            page = yeshu * 10 - 10;
+        } else {
+            page = 0;
+        }
+        yeshu = yeshu - 1;
+        if (yeshu < 1) {
+            yeshu = 1;
+        }
+
+        session.setAttribute("page", yeshu);
+        List<Payment> plist = service.selectAll(p, a, b, c, d, page);
+
+        mv.addObject("plist", plist);
+        mv.setViewName("/pay/payment.jsp");
+        return mv;
+    }
+
+    @RequestMapping("/payment3")
+    public ModelAndView query3(ModelAndView mv, Payment p, String a, String b, String c, String d, Integer page, HttpServletRequest request, HttpSession session) {
+        LoginController e = new LoginController();
+        a = request.getParameter("date1");
+        b = request.getParameter("date2");
+		if (request.getParameter("realname") == null) {
+			d = "";
+		}else{
+			d = request.getParameter("realname").trim();
 		}
-		return mv;
-	}
-	@RequestMapping("/toUpdate")
-	public ModelAndView toUpdate(ModelAndView mv,Payment p, String c) {
-		LoginController e=new  LoginController();
-		c=e.a;
-		Payment p2 = service.selectById(p,c);
-		mv.addObject("payment",p2);
-		mv.setViewName("/pay/update.jsp");
 
-		return mv;
-	}
-	@RequestMapping("/toSelect")
-	public ModelAndView toSelect(ModelAndView mv,Payment p, String c) {
-		LoginController e=new  LoginController();
-		c=e.a;
-		Payment p2 = service.selectById(p,c);
-		mv.addObject("payment",p2);
-		mv.setViewName("/pay/select.jsp");
+        if (a == null || a.equals("")) {
+            a = "1900/1/1";
+        }
+        if (b == null || b.equals("")) {
+            b = "2300/1/1";
+        }
+        c = e.a;
 
-		return mv;
-	}
+        if (yeshu >= weiye) {
+            yeshu = weiye;
+        }
+        page = yeshu * 10;
+        yeshu = yeshu + 1;
 
-	@RequestMapping("/update")
-	public ModelAndView update(ModelAndView mv,Payment p, String c) {
-		LoginController e=new  LoginController();
-		c=e.a;
-		int i = service.update(p,c);
-		if(i>0) {
-			mv.addObject("msg","修改用户成功");
-			mv.setViewName("/pay/payment.action");
-		}else {
-			mv.addObject("msg","修改用户失败");
-			mv.setViewName("/pay/update.action");
+        session.setAttribute("page", yeshu);
+        List<Payment> plist = service.selectAll(p, a, b, c, d, page);
+
+        mv.addObject("plist", plist);
+        mv.setViewName("/pay/payment.jsp");
+        return mv;
+    }
+
+    @RequestMapping("/payment4")
+    public ModelAndView query4(ModelAndView mv, Payment p, String a, String b, String c, String d, Integer page, HttpServletRequest request, HttpSession session) {
+        LoginController e = new LoginController();
+        a = request.getParameter("date1");
+        b = request.getParameter("date2");
+		if (request.getParameter("realname") == null) {
+			d = "";
+		}else{
+			d = request.getParameter("realname").trim();
 		}
-		return mv;
-	}
 
-	@RequestMapping("/delete")
-	public ModelAndView delete(ModelAndView mv,Payment p, String c) {
-		LoginController e=new  LoginController();
-		c=e.a;
-		int i = service.delete(p,c);
-		if(i>0) {
-			mv.addObject("msg","修改用户成功");
-		}else {
-			mv.addObject("msg","修改用户失败");
-		}
-		mv.setViewName("/pay/payment.action");
-		return mv;
-	}
+        if (a == null || a.equals("")) {
+            a = "1900/1/1";
+        }
+        if (b == null || b.equals("")) {
+            b = "2300/1/1";
+        }
+        c = e.a;
+
+        page = weiye * 10;
+        session.setAttribute("page", weiye);
+        List<Payment> plist = service.selectAll(p, a, b, c, d, page);
+
+        mv.addObject("plist", plist);
+        mv.setViewName("/pay/payment.jsp");
+        return mv;
+    }
+
+
+    @RequestMapping("/payment")
+    public ModelAndView query1(ModelAndView mv, Payment p, String c, HttpServletRequest request) {
+
+        LoginController e = new LoginController();
+        c = e.a;
+        List<Payment> plist = service.selectAll1(p, c);
+        mv.addObject("plist", plist);
+        mv.setViewName("/pay/payment.jsp");
+        return mv;
+    }
+
+    @RequestMapping(value = "/add", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public ModelAndView add(ModelAndView mv, Payment p, String c) {
+        LoginController e = new LoginController();
+        c = e.a;
+        int i = service.add(p, c);
+        if (i > 0) {
+            mv.addObject("msg", "增加用户成功");
+            mv.setViewName("/pay/payment1.action");
+        } else {
+            mv.addObject("msg", "增加用户失败");
+            mv.setViewName("/pay/payment1.action");
+        }
+        return mv;
+    }
+
+    @RequestMapping("/toUpdate")
+    public ModelAndView toUpdate(ModelAndView mv, Payment p, String c) {
+        LoginController e = new LoginController();
+        c = e.a;
+        Payment p2 = service.selectById(p, c);
+        mv.addObject("payment", p2);
+        mv.setViewName("/pay/update.jsp");
+
+        return mv;
+    }
+
+    @RequestMapping("/toSelect")
+    public ModelAndView toSelect(ModelAndView mv, Payment p, String c) {
+        LoginController e = new LoginController();
+        c = e.a;
+        Payment p2 = service.selectById(p, c);
+        mv.addObject("payment", p2);
+        mv.setViewName("/pay/select.jsp");
+
+        return mv;
+    }
+
+    @RequestMapping("/update")
+    public ModelAndView update(ModelAndView mv, Payment p, String c) {
+        LoginController e = new LoginController();
+        c = e.a;
+        int i = service.update(p, c);
+        if (i > 0) {
+            mv.addObject("msg", "修改用户成功");
+            mv.setViewName("/pay/payment1.action");
+        } else {
+            mv.addObject("msg", "修改用户失败");
+            mv.setViewName("/pay/update.action");
+        }
+        return mv;
+    }
+
+    @RequestMapping("/delete")
+    public ModelAndView delete(ModelAndView mv, Payment p, String c) {
+        LoginController e = new LoginController();
+        c = e.a;
+        int i = service.delete(p, c);
+        if (i > 0) {
+            mv.addObject("msg", "删除用户成功");
+        } else {
+            mv.addObject("msg", "删除用户失败");
+        }
+        mv.setViewName("/pay/payment.action");
+        return mv;
+    }
 }

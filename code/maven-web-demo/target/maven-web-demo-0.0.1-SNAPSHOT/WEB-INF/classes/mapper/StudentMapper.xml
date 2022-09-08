@@ -125,4 +125,7 @@
 		select * from shezhi where Company =#{c}
 	</select>
 
+	<select id="getListByName" parameterType="Student" resultType="Student">
+		select * from Student where RealName=#{RealName} and company=#{c} limit 0,1
+	</select>
 </mapper>

@@ -6,7 +6,7 @@ import com.yhocn.pay.entity.Payment;
 
 public interface PaymentService {
 
-	public List<Payment> selectAll(Payment p, String a, String b, String c, String d);
+	public List<Payment> selectAll(Payment p, String a, String b, String c, String d,Integer page);
 	public List<Payment> selectAll1(Payment p, String c);
 	public int add(Payment p, String c);
 	public int update(Payment p, String c);
