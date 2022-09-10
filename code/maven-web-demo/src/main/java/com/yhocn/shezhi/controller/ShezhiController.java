@@ -21,7 +21,18 @@ public class ShezhiController {
 
 	@RequestMapping("/shezhi")
 	public ModelAndView query(ModelAndView mv, Shezhi t, String c) {
-		LoginController e=new  LoginController();
+		LoginController e = new LoginController();
+		boolean pd=false;
+		for (int i=0;i<e.quanxian.size();i++){
+			if(e.quanxian.get(i).getView_name().equals("设置")&&e.quanxian.get(i).getSel().equals("√")){
+				pd=true;
+			}
+		}
+		if(!pd){
+			mv.addObject("msg", "无权限");
+			mv.setViewName("/main.jsp");
+			return mv;
+		}
 		c=e.a;
 		List<Shezhi> szlist = service.selectAll(t,c);
 		mv.addObject("szlist",szlist);
@@ -41,7 +52,19 @@ public class ShezhiController {
 	}
 	@RequestMapping("/alter")
 	public ModelAndView alter(ModelAndView mv,Shezhi t, String c) {
-		LoginController e=new  LoginController();
+		LoginController e = new LoginController();
+		boolean pd=false;
+		for (int i=0;i<e.quanxian.size();i++){
+			if(e.quanxian.get(i).getView_name().equals("设置")&&e.quanxian.get(i).getUpd().equals("√")){
+				pd=true;
+			}
+		}
+		if(!pd){
+			mv.addObject("msg", "无权限");
+			mv.setViewName("/main.jsp");
+			return mv;
+		}
+
 		c=e.a;
 		int i = service.alter(t,c);
 		if(i>0) {
@@ -56,7 +79,18 @@ public class ShezhiController {
 
 	@RequestMapping("/update")
 	public ModelAndView update(ModelAndView mv,Shezhi t,HttpSession se, String c) {
-		LoginController e=new  LoginController();
+		LoginController e = new LoginController();
+		boolean pd=false;
+		for (int i=0;i<e.quanxian.size();i++){
+			if(e.quanxian.get(i).getView_name().equals("设置")&&e.quanxian.get(i).getUpd().equals("√")){
+				pd=true;
+			}
+		}
+		if(!pd){
+			mv.addObject("msg", "无权限");
+			mv.setViewName("/main.jsp");
+			return mv;
+		}
 		c=e.a;
 		int i = service.update(t,c);
 		if(i>0) {
@@ -71,7 +105,18 @@ public class ShezhiController {
 	}
 	@RequestMapping("/delete")
 	public ModelAndView delete(ModelAndView mv,Shezhi t, String c) {
-		LoginController e=new  LoginController();
+		LoginController e = new LoginController();
+		boolean pd=false;
+		for (int i=0;i<e.quanxian.size();i++){
+			if(e.quanxian.get(i).getView_name().equals("设置")&&e.quanxian.get(i).getDel().equals("√")){
+				pd=true;
+			}
+		}
+		if(!pd){
+			mv.addObject("msg", "无权限");
+			mv.setViewName("/main.jsp");
+			return mv;
+		}
 		c=e.a;
 		int i = service.delete(t,c);
 		if(i>0) {
@@ -84,7 +129,18 @@ public class ShezhiController {
 	}
 	@RequestMapping("/add")
 	public ModelAndView add(ModelAndView mv,Shezhi t, String c) {
-		LoginController e=new  LoginController();
+		LoginController e = new LoginController();
+		boolean pd=false;
+		for (int i=0;i<e.quanxian.size();i++){
+			if(e.quanxian.get(i).getView_name().equals("设置")&&e.quanxian.get(i).getAdd().equals("√")){
+				pd=true;
+			}
+		}
+		if(!pd){
+			mv.addObject("msg", "无权限");
+			mv.setViewName("/main.jsp");
+			return mv;
+		}
 		c=e.a;
 		int i = service.add(t,c);
 		if(i>0) {

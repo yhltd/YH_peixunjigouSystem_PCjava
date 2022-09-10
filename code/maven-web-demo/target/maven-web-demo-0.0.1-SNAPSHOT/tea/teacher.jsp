@@ -64,6 +64,7 @@
             <input type="submit" value="查询" form="myForm"/>
             <a id="toExcel" >导出excel</a>
             <a href="<%=request.getContextPath()%>/tea/add.jsp">添加员工</a>
+            <a href="<%=request.getContextPath()%>/power/getList1.action">权限管理</a>
         </div>
         <table id="data" class="providerTable" cellpadding="0" cellspacing="0">
             <tr class="firstTr">

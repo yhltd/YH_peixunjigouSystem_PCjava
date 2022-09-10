@@ -25,7 +25,19 @@ public class TeacherController {
 
 	@RequestMapping("/teacher")
 	public ModelAndView query(ModelAndView mv,Teacher t, String c) {
-		LoginController e=new  LoginController();
+		LoginController e = new LoginController();
+		boolean pd=false;
+		for (int i=0;i<e.quanxian.size();i++){
+			if(e.quanxian.get(i).getView_name().equals("用户管理")&&e.quanxian.get(i).getSel().equals("√")){
+				pd=true;
+			}
+		}
+		if(!pd){
+			mv.addObject("msg", "无权限");
+			mv.setViewName("/main.jsp");
+			return mv;
+		}
+
 		c=e.a;
 		List<Teacher> telist = service.selectAll(t,c);
 		mv.addObject("telist",telist);
@@ -34,8 +46,18 @@ public class TeacherController {
 	}
 	@RequestMapping("/teacher1")
 	public ModelAndView query1(ModelAndView mv,Teacher t, String c, String a, String b, String d, HttpServletRequest request) {
-
-		LoginController e=new  LoginController();
+		LoginController e = new LoginController();
+		boolean pd=false;
+		for (int i=0;i<e.quanxian.size();i++){
+			if(e.quanxian.get(i).getView_name().equals("用户管理")&&e.quanxian.get(i).getSel().equals("√")){
+				pd=true;
+			}
+		}
+		if(!pd){
+			mv.addObject("msg", "无权限");
+			mv.setViewName("/main.jsp");
+			return mv;
+		}
 		c=e.a;
 		a=request.getParameter("realName").trim();
 		b=request.getParameter("teacher").trim();
@@ -57,7 +79,19 @@ public class TeacherController {
 	}
 	@RequestMapping("/alter")
 	public ModelAndView alter(ModelAndView mv,Teacher t, String c) {
-		LoginController e=new  LoginController();
+		LoginController e = new LoginController();
+		boolean pd=false;
+		for (int i=0;i<e.quanxian.size();i++){
+			if(e.quanxian.get(i).getView_name().equals("用户管理")&&e.quanxian.get(i).getUpd().equals("√")){
+				pd=true;
+			}
+		}
+		if(!pd){
+			mv.addObject("msg", "无权限");
+			mv.setViewName("/main.jsp");
+			return mv;
+		}
+
 		c=e.a;
 		int i = service.alter(t,c);
 		if(i>0) {
@@ -72,7 +106,18 @@ public class TeacherController {
 
 	@RequestMapping("/update")
 	public ModelAndView update(ModelAndView mv,Teacher t,HttpSession se, String c) {
-		LoginController e=new  LoginController();
+		LoginController e = new LoginController();
+		boolean pd=false;
+		for (int i=0;i<e.quanxian.size();i++){
+			if(e.quanxian.get(i).getView_name().equals("用户管理")&&e.quanxian.get(i).getUpd().equals("√")){
+				pd=true;
+			}
+		}
+		if(!pd){
+			mv.addObject("msg", "无权限");
+			mv.setViewName("/main.jsp");
+			return mv;
+		}
 		c=e.a;
 		int i = service.update(t,c);
 		if(i>0) {
@@ -87,7 +132,18 @@ public class TeacherController {
 	}
 	@RequestMapping("/delete")
 	public ModelAndView delete(ModelAndView mv,Teacher t, String c) {
-		LoginController e=new  LoginController();
+		LoginController e = new LoginController();
+		boolean pd=false;
+		for (int i=0;i<e.quanxian.size();i++){
+			if(e.quanxian.get(i).getView_name().equals("用户管理")&&e.quanxian.get(i).getDel().equals("√")){
+				pd=true;
+			}
+		}
+		if(!pd){
+			mv.addObject("msg", "无权限");
+			mv.setViewName("/main.jsp");
+			return mv;
+		}
 		c=e.a;
 		int i = service.delete(t,c);
 		if(i>0) {
@@ -100,7 +156,18 @@ public class TeacherController {
 	}
 	@RequestMapping(value = "/add",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public ModelAndView add(ModelAndView mv,Teacher t, String c) {
-		LoginController e=new  LoginController();
+		LoginController e = new LoginController();
+		boolean pd=false;
+		for (int i=0;i<e.quanxian.size();i++){
+			if(e.quanxian.get(i).getView_name().equals("用户管理")&&e.quanxian.get(i).getAdd().equals("√")){
+				pd=true;
+			}
+		}
+		if(!pd){
+			mv.addObject("msg", "无权限");
+			mv.setViewName("/main.jsp");
+			return mv;
+		}
 		c=e.a;
 		int i = service.add(t,c);
 		if(i>0) {

@@ -1,7 +1,6 @@
 package com.yhocn.course.service;
 
 import com.yhocn.course.entity.Course;
-import com.yhocn.teacherInfo.entity.TeacherInfo;
 
 import java.util.List;
 

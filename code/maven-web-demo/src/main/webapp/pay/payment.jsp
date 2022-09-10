@@ -63,37 +63,40 @@
             <input type="date" placeholder="请输入结束时间" name="date2" form="myForm"/>
             <input type="text" placeholder="请输入学生姓名" name="realname" form="myForm"/>
             <input type="submit" value="查询" form="myForm"/>
+            <a onclick="printpage()" >打印</a>
             <a href="<%=request.getContextPath()%>/pay/add.jsp">添加记录</a>
             <a id="toExcel" >导出excel</a>
-            <a onclick="printpage()" >打印</a>
         </div>
-        <table id="data" class="providerTable" cellpadding="0" cellspacing="0">
-            <tr class="firstTr">
-                <th width="10%">日期</th>
-                <th width="10%">学生姓名</th>
-                <th width="10%">定金金额</th>
-                <th width="10%">学费金额</th>
-                <th width="10%">缴费方式</th>
-                <th width="10%">收费人</th>
-                <th width="20%">备注</th>
-            </tr>
-            <c:forEach items="${plist }" var="p">
-                <tr>
-                    <td>${p.ksdate}</td>
-                    <td>${p.realname}</td>
-                    <td>${p.paid}</td>
-                    <td>${p.money}</td>
-                    <td>${p.paiment}</td>
-                    <td>${p.keeper}</td>
-                    <td>${p.remark}</td>
-                    <td>
-                        <a href="<%=request.getContextPath() %>/pay/toSelect.action?id=${p.id}"><img src="<%=request.getContextPath() %>/img/read.png" alt="查看" title="查看"/></a>
-                        <a href="<%=request.getContextPath() %>/pay/toUpdate.action?id=${p.id}"><img src="<%=request.getContextPath() %>/img/xiugai.png" alt="修改" title="修改"/></a>
-                        <a href="<%=request.getContextPath() %>/pay/delete.action?id=${p.id}" class="removeProvider" onclick="return confirm('您确认要删除本记录么？')"><img src="<%=request.getContextPath() %>/img/schu.png" alt="删除" title="删除"/></a>
-                    </td>
+        <div id="div">
+            <table id="data" class="providerTable" cellpadding="0" cellspacing="0">
+                <tr class="firstTr">
+                    <th width="10%">日期</th>
+                    <th width="10%">学生姓名</th>
+                    <th width="10%">定金金额</th>
+                    <th width="10%">学费金额</th>
+                    <th width="10%">缴费方式</th>
+                    <th width="10%">收费人</th>
+                    <th width="20%">备注</th>
                 </tr>
-            </c:forEach>
-        </table>
+                <c:forEach items="${plist }" var="p">
+                    <tr>
+                        <td>${p.ksdate}</td>
+                        <td ><a href="<%=request.getContextPath() %>/pay/dayin.jsp" onclick="popWin(this);">${p.realname}</a></td>
+                        <td>${p.paid}</td>
+                        <td>${p.money}</td>
+                        <td>${p.paiment}</td>
+                        <td>${p.keeper}</td>
+                        <td>${p.remark}</td>
+                        <td name="yincang">
+                            <a href="<%=request.getContextPath() %>/pay/toSelect.action?id=${p.id}"><img src="<%=request.getContextPath() %>/img/read.png" alt="查看" title="查看"/></a>
+                            <a href="<%=request.getContextPath() %>/pay/toUpdate.action?id=${p.id}"><img src="<%=request.getContextPath() %>/img/xiugai.png" alt="修改" title="修改"/></a>
+                            <a href="<%=request.getContextPath() %>/pay/delete.action?id=${p.id}" class="removeProvider" onclick="return confirm('您确认要删除本记录么？')"><img src="<%=request.getContextPath() %>/img/schu.png" alt="删除" title="删除"/></a>
+                        </td>
+                    </tr>
+                </c:forEach>
+            </table>
+        </div>
+
 
         <div class="page">
             <div class="page_cell"><a href="<%=request.getContextPath() %>/pay/payment1.action">首页</a></div>
@@ -105,24 +108,11 @@
     </div>
 </section>
 
-<%-- <!--点击删除按钮后弹出的页面-->
-<div class="zhezhao"></div>
-<div class="remove" id="removeProv">
-   <div class="removerChid">
-       <h2>提示</h2>
-       <div class="removeMain" >
-           <p>你确定要删除该学生吗？</p>
-           <a href="<%=request.getContextPath()%>/user/delete.action?id=${s.id}" id="yes">确定</a>
-           <a href="#" id="no">取消</a>
-       </div>
-   </div>
-</div> --%>
-
-
 <footer class="footer">
 </footer>
 
 <script src="<%=request.getContextPath() %>/js/jquery.js"></script>
+<script src="<%=request.getContextPath() %>/js/jquerysession.js"></script>
 <script src="<%=request.getContextPath() %>/js/js.js"></script>
 <script src="<%=request.getContextPath() %>/js/time.js"></script>
 
@@ -163,12 +153,37 @@
     }
 
     function printpage(){
-        var newstr = document.getElementById("right").innerHTML;
+        $('[name="yincang"]').css("display","none");
+        var newstr = document.getElementById("div").innerHTML;
         var oldstr = document.body.innerHTML;
         document.body.innerHTML = newstr;
         window.print();
         document.body.innerHTML = oldstr;
+        $('[name="yincang"]').css("display","block");
         return false;
+    }
+
+    function popWin(td) {
+
+        var parentTR = td.parentNode.parentNode;
+        var val1 = $(parentTR).children('td').eq(0).text();
+        var val2 = $(parentTR).children('td').eq(1).text();
+        var val3 = $(parentTR).children('td').eq(2).text();
+        var val4 = $(parentTR).children('td').eq(3).text();
+        var val5 = $(parentTR).children('td').eq(4).text();
+        var val6 = $(parentTR).children('td').eq(5).text();
+        var val7 = $(parentTR).children('td').eq(6).text();
+
+        $.session.set('val1', val1)
+        $.session.set('val2', val2)
+        $.session.set('val3', val3)
+        $.session.set('val4', val4)
+        $.session.set('val5', val5)
+        $.session.set('val6', val6)
+        $.session.set('val7', val7)
+
+
+
     }
 
 </script>

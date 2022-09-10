@@ -27,6 +27,17 @@ public class PaymentController {
     @RequestMapping("/payment1")
     public ModelAndView query(ModelAndView mv, Payment p, String a, String b, String c, String d, Integer page, HttpServletRequest request, HttpSession session) {
         LoginController e = new LoginController();
+        boolean pd=false;
+        for (int i=0;i<e.quanxian.size();i++){
+            if(e.quanxian.get(i).getView_name().equals("缴费记录")&&e.quanxian.get(i).getSel().equals("√")){
+                pd=true;
+            }
+        }
+        if(!pd){
+            mv.addObject("msg", "无权限");
+            mv.setViewName("/main.jsp");
+            return mv;
+        }
         a = request.getParameter("date1");
         b = request.getParameter("date2");
 		if (request.getParameter("realname") == null) {
@@ -171,6 +182,17 @@ public class PaymentController {
     @RequestMapping(value = "/add", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ModelAndView add(ModelAndView mv, Payment p, String c) {
         LoginController e = new LoginController();
+        boolean pd=false;
+        for (int i=0;i<e.quanxian.size();i++){
+            if(e.quanxian.get(i).getView_name().equals("缴费记录")&&e.quanxian.get(i).getAdd().equals("√")){
+                pd=true;
+            }
+        }
+        if(!pd){
+            mv.addObject("msg", "无权限");
+            mv.setViewName("/main.jsp");
+            return mv;
+        }
         c = e.a;
         int i = service.add(p, c);
         if (i > 0) {
@@ -208,6 +230,17 @@ public class PaymentController {
     @RequestMapping("/update")
     public ModelAndView update(ModelAndView mv, Payment p, String c) {
         LoginController e = new LoginController();
+        boolean pd=false;
+        for (int i=0;i<e.quanxian.size();i++){
+            if(e.quanxian.get(i).getView_name().equals("缴费记录")&&e.quanxian.get(i).getUpd().equals("√")){
+                pd=true;
+            }
+        }
+        if(!pd){
+            mv.addObject("msg", "无权限");
+            mv.setViewName("/main.jsp");
+            return mv;
+        }
         c = e.a;
         int i = service.update(p, c);
         if (i > 0) {
@@ -223,6 +256,17 @@ public class PaymentController {
     @RequestMapping("/delete")
     public ModelAndView delete(ModelAndView mv, Payment p, String c) {
         LoginController e = new LoginController();
+        boolean pd=false;
+        for (int i=0;i<e.quanxian.size();i++){
+            if(e.quanxian.get(i).getView_name().equals("缴费记录")&&e.quanxian.get(i).getDel().equals("√")){
+                pd=true;
+            }
+        }
+        if(!pd){
+            mv.addObject("msg", "无权限");
+            mv.setViewName("/main.jsp");
+            return mv;
+        }
         c = e.a;
         int i = service.delete(p, c);
         if (i > 0) {

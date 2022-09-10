@@ -45,6 +45,19 @@ public class StudentController {
 
     @RequestMapping("/student1")
     public ModelAndView query1(ModelAndView mv, Student s, String c, String a, String b, String d, String E, String f, Integer page, HttpServletRequest request, HttpSession session) {
+        LoginController e = new LoginController();
+        boolean pd=false;
+        for (int i=0;i<e.quanxian.size();i++){
+            if(e.quanxian.get(i).getView_name().equals("学生信息")&&e.quanxian.get(i).getSel().equals("√")){
+                pd=true;
+            }
+        }
+        if(!pd){
+            mv.addObject("msg", "无权限");
+            mv.setViewName("/main.jsp");
+            return mv;
+        }
+
         a = request.getParameter("date1");
         b = request.getParameter("date2");
         if (a == null) {
@@ -78,7 +91,7 @@ public class StudentController {
             a6 = 1;
         }
 
-        LoginController e = new LoginController();
+
         c = e.a;
         session.setAttribute("page", 1);
 
@@ -158,9 +171,19 @@ public class StudentController {
 
     @RequestMapping("/add")
     public ModelAndView add(ModelAndView mv, Student s, String c) {
-
-
         LoginController e = new LoginController();
+        boolean pd=false;
+        for (int i=0;i<e.quanxian.size();i++){
+            if(e.quanxian.get(i).getView_name().equals("学生信息")&&e.quanxian.get(i).getAdd().equals("√")){
+                pd=true;
+            }
+        }
+        if(!pd){
+            mv.addObject("msg", "无权限");
+            mv.setViewName("/main.jsp");
+            return mv;
+        }
+
         c = e.a;
         String b = s.getRgdate();
         if (b.equals("")) {
@@ -211,6 +234,18 @@ public class StudentController {
     @RequestMapping("/update")
     public ModelAndView update(ModelAndView mv, Student s, String c) {
         LoginController e = new LoginController();
+        boolean pd=false;
+        for (int i=0;i<e.quanxian.size();i++){
+            if(e.quanxian.get(i).getView_name().equals("学生信息")&&e.quanxian.get(i).getUpd().equals("√")){
+                pd=true;
+            }
+        }
+        if(!pd){
+            mv.addObject("msg", "无权限");
+            mv.setViewName("/main.jsp");
+            return mv;
+        }
+
         c = e.a;
         String b = s.getRgdate();
         if (b.equals("")) {
@@ -235,6 +270,18 @@ public class StudentController {
     @RequestMapping("/delete")
     public ModelAndView delete(ModelAndView mv, Student s, String c) {
         LoginController e = new LoginController();
+        boolean pd=false;
+        for (int i=0;i<e.quanxian.size();i++){
+            if(e.quanxian.get(i).getView_name().equals("学生信息")&&e.quanxian.get(i).getDel().equals("√")){
+                pd=true;
+            }
+        }
+        if(!pd){
+            mv.addObject("msg", "无权限");
+            mv.setViewName("/main.jsp");
+            return mv;
+        }
+
         c = e.a;
 
         int i = service.delete(s, c);
@@ -250,6 +297,18 @@ public class StudentController {
     @RequestMapping("/ksclass")
     public ModelAndView ksclass(ModelAndView mv, Student s, String c, String a, String b, String d, String E, String f, Integer page) {
         LoginController e = new LoginController();
+        boolean pd=false;
+        for (int i=0;i<e.quanxian.size();i++){
+            if(e.quanxian.get(i).getView_name().equals("课时统计")&&e.quanxian.get(i).getSel().equals("√")){
+                pd=true;
+            }
+        }
+        if(!pd){
+            mv.addObject("msg", "无权限");
+            mv.setViewName("/main.jsp");
+            return mv;
+        }
+
         c = e.a;
         List<Student> list = service.selectAll(s, c, a, b, d, E, f, page);
         mv.addObject("kslist", list);
@@ -260,6 +319,18 @@ public class StudentController {
     @RequestMapping("/arr")
     public ModelAndView arr(ModelAndView mv, Student s, String c) {
         LoginController e = new LoginController();
+        boolean pd=false;
+        for (int i=0;i<e.quanxian.size();i++){
+            if(e.quanxian.get(i).getView_name().equals("欠费学员")&&e.quanxian.get(i).getSel().equals("√")){
+                pd=true;
+            }
+        }
+        if(!pd){
+            mv.addObject("msg", "无权限");
+            mv.setViewName("/main.jsp");
+            return mv;
+        }
+
         c = e.a;
         List<Student> list = service.selectArr(s, c);
         mv.addObject("arrlist", list);

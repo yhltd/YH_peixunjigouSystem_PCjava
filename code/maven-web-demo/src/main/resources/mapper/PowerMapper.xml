@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yhocn.power.mapper.PowerMapper">
+    <select id="getAllList" parameterType="Power" resultType="Power">
+		select p.id,t_id,view_name,`add`,del,upd,sel,RealName as s_name from power as p left join teacher as t on p.t_id=t.ID  where p.company =#{c}
+	</select>
+
+    <select id="getList" parameterType="Power" resultType="Power">
+        select p.id,t_id,view_name,`add`,del,upd,sel,RealName as s_name from power as p left join teacher as t on p.t_id=t.ID  where p.company =#{c} and view_name like "%"#{view_name}"%" limit #{page},10
+    </select>
+
+    <select id="getListById" resultType="Power">
+		select p.id,t_id,view_name,`add`,del,upd,sel,RealName as s_name from power as p left join teacher as t on p.t_id=t.ID  where p.company =#{c} and p.id=#{p.id}
+	</select>
+
+    <select id="getListByName" resultType="Power">
+		select p.id,t_id,view_name,`add`,del,upd,sel,RealName as s_name from power as p left join teacher as t on p.t_id=t.ID  where p.company =#{c} and p.t_id=#{t_id}
+	</select>
+
+    <insert id="add">
+        insert into power (t_id,view_name,`add`,del,upd,sel,company)
+        values(#{p.t_id},#{p.view_name},#{p.add},#{p.del},#{p.upd},#{p.sel},#{c})
+    </insert>
+
+    <update id="update">
+        update power set t_id=#{p.t_id}, view_name=#{p.view_name}, `add`=#{p.add},del=#{p.del},upd=#{p.upd},sel=#{p.sel} where id=#{p.id}
+    </update>
+
+    <delete id="delete">
+		delete from power where id=#{p.id}
+	</delete>
+
+</mapper>

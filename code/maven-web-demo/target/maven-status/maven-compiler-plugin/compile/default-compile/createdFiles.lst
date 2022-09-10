@@ -1,2 +1,3 @@
 com\yhocn\student\controller\StudentController.class
+com\yhocn\power\mapper\PowerMapper.class
 com\yhocn\teacherInfo\service\TeacherInfoServiceImpl.class

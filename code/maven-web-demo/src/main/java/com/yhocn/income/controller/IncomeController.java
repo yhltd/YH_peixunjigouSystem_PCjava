@@ -32,6 +32,19 @@ public class IncomeController {
 
     @RequestMapping("/income")
     public ModelAndView query(ModelAndView mv, Income inc, String c) {
+        LoginController e = new LoginController();
+        boolean pd=false;
+        for (int i=0;i<e.quanxian.size();i++){
+            if(e.quanxian.get(i).getView_name().equals("收支明细")&&e.quanxian.get(i).getSel().equals("√")){
+                pd=true;
+            }
+        }
+        if(!pd){
+            mv.addObject("msg", "无权限");
+            mv.setViewName("/main.jsp");
+            return mv;
+        }
+
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
         Calendar calendar = new GregorianCalendar();
@@ -145,6 +158,18 @@ public class IncomeController {
     @RequestMapping("/add")
     public ModelAndView add(ModelAndView mv, Income inc, String c) {
         LoginController e = new LoginController();
+        boolean pd=false;
+        for (int i=0;i<e.quanxian.size();i++){
+            if(e.quanxian.get(i).getView_name().equals("收支明细")&&e.quanxian.get(i).getAdd().equals("√")){
+                pd=true;
+            }
+        }
+        if(!pd){
+            mv.addObject("msg", "无权限");
+            mv.setViewName("/main.jsp");
+            return mv;
+        }
+
         c = e.a;
         int i = service.add(inc, c);
 
@@ -173,6 +198,17 @@ public class IncomeController {
     @RequestMapping("/update")
     public ModelAndView update(ModelAndView mv, Income inc, String c) {
         LoginController e = new LoginController();
+        boolean pd=false;
+        for (int i=0;i<e.quanxian.size();i++){
+            if(e.quanxian.get(i).getView_name().equals("收支明细")&&e.quanxian.get(i).getUpd().equals("√")){
+                pd=true;
+            }
+        }
+        if(!pd){
+            mv.addObject("msg", "无权限");
+            mv.setViewName("/main.jsp");
+            return mv;
+        }
         c = e.a;
         int i = service.update(inc, c);
         if (i > 0) {
@@ -188,6 +224,17 @@ public class IncomeController {
     @RequestMapping("/delete")
     public ModelAndView delete(ModelAndView mv, Income inc, String c) {
         LoginController e = new LoginController();
+        boolean pd=false;
+        for (int i=0;i<e.quanxian.size();i++){
+            if(e.quanxian.get(i).getView_name().equals("收支明细")&&e.quanxian.get(i).getDel().equals("√")){
+                pd=true;
+            }
+        }
+        if(!pd){
+            mv.addObject("msg", "无权限");
+            mv.setViewName("/main.jsp");
+            return mv;
+        }
         c = e.a;
 
         int i = service.delete(inc, c);

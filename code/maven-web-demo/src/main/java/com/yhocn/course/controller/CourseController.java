@@ -30,6 +30,17 @@ public class CourseController {
     @RequestMapping("/getList1")
     public ModelAndView getList1(ModelAndView mv, Course course, String c, String teacher, String cou, Integer page, HttpServletRequest request, HttpSession session) {
         LoginController e = new LoginController();
+        boolean pd=false;
+        for (int i=0;i<e.quanxian.size();i++){
+            if(e.quanxian.get(i).getView_name().equals("教师课表")&&e.quanxian.get(i).getSel().equals("√")){
+                pd=true;
+            }
+        }
+        if(!pd){
+            mv.addObject("msg", "无权限");
+            mv.setViewName("/main.jsp");
+            return mv;
+        }
         if (request.getParameter("teacher") == null) {
             teacher = "";
         }else{
@@ -147,6 +158,18 @@ public class CourseController {
     @RequestMapping(value = "/add")
     public ModelAndView add(ModelAndView mv, Course course, String c) {
         LoginController e = new LoginController();
+        boolean pd=false;
+        for (int i=0;i<e.quanxian.size();i++){
+            if(e.quanxian.get(i).getView_name().equals("教师课表")&&e.quanxian.get(i).getAdd().equals("√")){
+                pd=true;
+            }
+        }
+        if(!pd){
+            mv.addObject("msg", "无权限");
+            mv.setViewName("/main.jsp");
+            return mv;
+        }
+
         c = e.a;
         int i = service.add(course, c);
         if (i > 0) {
@@ -172,6 +195,17 @@ public class CourseController {
     @RequestMapping("/update")
     public ModelAndView update(ModelAndView mv, Course course, String c) {
         LoginController e = new LoginController();
+        boolean pd=false;
+        for (int i=0;i<e.quanxian.size();i++){
+            if(e.quanxian.get(i).getView_name().equals("教师课表")&&e.quanxian.get(i).getUpd().equals("√")){
+                pd=true;
+            }
+        }
+        if(!pd){
+            mv.addObject("msg", "无权限");
+            mv.setViewName("/main.jsp");
+            return mv;
+        }
         c = e.a;
         int i = service.update(course, c);
         if (i > 0) {
@@ -187,6 +221,17 @@ public class CourseController {
     @RequestMapping("/delete")
     public ModelAndView delete(ModelAndView mv, Course course, String c) {
         LoginController e = new LoginController();
+        boolean pd=false;
+        for (int i=0;i<e.quanxian.size();i++){
+            if(e.quanxian.get(i).getView_name().equals("教师课表")&&e.quanxian.get(i).getDel().equals("√")){
+                pd=true;
+            }
+        }
+        if(!pd){
+            mv.addObject("msg", "无权限");
+            mv.setViewName("/main.jsp");
+            return mv;
+        }
         c = e.a;
         int i = service.delete(course, c);
         if (i > 0) {

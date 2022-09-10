@@ -45,7 +45,18 @@ public class KeshiDetailController {
     }
     @RequestMapping("/getList1")
     public ModelAndView query1(ModelAndView mv, Keshidetail ksd, String c, String a, String b,String d,String f,Integer page, HttpServletRequest request, HttpSession session) {
-
+        LoginController e = new LoginController();
+        boolean pd=false;
+        for (int i=0;i<e.quanxian.size();i++){
+            if(e.quanxian.get(i).getView_name().equals("课时统计")&&e.quanxian.get(i).getSel().equals("√")){
+                pd=true;
+            }
+        }
+        if(!pd){
+            mv.addObject("msg", "无权限");
+            mv.setViewName("/main.jsp");
+            return mv;
+        }
         d=request.getParameter("date1");
         f=request.getParameter("date2");
 
@@ -77,7 +88,6 @@ public class KeshiDetailController {
             a4=f;
             a5=1;
         }
-        LoginController e=new  LoginController();
         c=e.a;
         session.setAttribute("page",1);
 
@@ -153,7 +163,18 @@ public class KeshiDetailController {
 
     @RequestMapping("/getTeacherKeshiList")
     public ModelAndView getTeacherKeshiList(ModelAndView mv, Keshidetail ksd, String c) {
-        LoginController e=new  LoginController();
+        LoginController e = new LoginController();
+        boolean pd=false;
+        for (int i=0;i<e.quanxian.size();i++){
+            if(e.quanxian.get(i).getView_name().equals("教师课时统计")&&e.quanxian.get(i).getSel().equals("√")){
+                pd=true;
+            }
+        }
+        if(!pd){
+            mv.addObject("msg", "无权限");
+            mv.setViewName("/main.jsp");
+            return mv;
+        }
         c=e.a;
         List<Keshidetail> list = service.getTeacherKeshiList(ksd,c);
         mv.addObject("teacherKeshiList",list);
@@ -205,7 +226,19 @@ public class KeshiDetailController {
 
     @RequestMapping("/add")
     public ModelAndView add(ModelAndView mv, Keshidetail ksd, String c) {
-        LoginController e=new  LoginController();
+        LoginController e = new LoginController();
+        boolean pd=false;
+        for (int i=0;i<e.quanxian.size();i++){
+            if(e.quanxian.get(i).getView_name().equals("课时统计")&&e.quanxian.get(i).getAdd().equals("√")){
+                pd=true;
+            }
+        }
+        if(!pd){
+            mv.addObject("msg", "无权限");
+            mv.setViewName("/main.jsp");
+            return mv;
+        }
+
         c=e.a;
         String b= ksd.getRiqi();
         if(b.equals("")){
@@ -242,6 +275,18 @@ public class KeshiDetailController {
     @RequestMapping("/upd")
     public ModelAndView update(ModelAndView mv, Keshidetail ksd, String c) {
         LoginController e = new LoginController();
+        boolean pd=false;
+        for (int i=0;i<e.quanxian.size();i++){
+            if(e.quanxian.get(i).getView_name().equals("学生信息")&&e.quanxian.get(i).getUpd().equals("√")){
+                pd=true;
+            }
+        }
+        if(!pd){
+            mv.addObject("msg", "无权限");
+            mv.setViewName("/main.jsp");
+            return mv;
+        }
+
         c = e.a;
         String b = ksd.getRiqi();
         if (b.equals("")) {
@@ -265,7 +310,18 @@ public class KeshiDetailController {
 
     @RequestMapping("/del")
     public ModelAndView delete(ModelAndView mv, Keshidetail ksd, String c) {
-        LoginController e=new  LoginController();
+        LoginController e = new LoginController();
+        boolean pd=false;
+        for (int i=0;i<e.quanxian.size();i++){
+            if(e.quanxian.get(i).getView_name().equals("课时统计")&&e.quanxian.get(i).getDel().equals("√")){
+                pd=true;
+            }
+        }
+        if(!pd){
+            mv.addObject("msg", "无权限");
+            mv.setViewName("/main.jsp");
+            return mv;
+        }
         c=e.a;
         int i = service.delete(ksd,c);
         if(i>0) {

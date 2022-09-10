@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.yhocn.income.entity.Income;
+import com.yhocn.power.entity.Power;
+import com.yhocn.power.service.PowerService;
 import com.yhocn.student.entity.Student;
 import com.yhocn.student.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,20 +23,24 @@ public class LoginController {
 
 	public static String a;
 
+	public static List<Power>quanxian;
+
 	@Autowired
 	private LoginService service;
 	@Autowired
 	private StudentService service2;
+	@Autowired
+	private PowerService service3;
 
 	@RequestMapping("/login")
 	public  ModelAndView login(Teacher t,HttpSession se,String isRemPwd,HttpServletResponse response, HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
 		Teacher t2 = service.login(t);
-
 		this.a = request.getParameter("Company");
 
 		if(t2!=null) {
-			if(t2.getUseType()==1 && t2.getState().equals("正常")) {
+			this.quanxian = service3.getListByName(t2.getId(),t2.getCompany());
+			if(t2.getState().equals("正常")) {
 				mv.setViewName("/main.jsp");
 				se.setAttribute("GLOBAL_USER", t2);
 
@@ -78,9 +84,6 @@ public class LoginController {
 					se.setAttribute("rongliang","使用容量未超过90%，请放心使用");
 				}
 				response.addCookie(c3);
-			}else if(t2.getUseType()==0 && t2.getState().equals("正常")) {
-				mv.setViewName("/tea/update.jsp");
-				se.setAttribute("GLOBAL_USER", t2);
 			}else{
 				mv.setViewName("/login.jsp");
 				mv.addObject("msg","账户已被禁用");
