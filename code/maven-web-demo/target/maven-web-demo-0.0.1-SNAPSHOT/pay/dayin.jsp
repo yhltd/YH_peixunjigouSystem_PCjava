@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+         pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <link rel="shortcut icon" href="../img/mm.png" />
+    <link rel="shortcut icon" href="../img/mm.png"/>
     <title>教务管理系统</title>
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/public.css"/>
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/style.css"/>
@@ -21,7 +21,8 @@
         <a onclick="shujv()" style="width:80px">数据空间</a>
         <a href="<%=request.getContextPath() %>/login.jsp" style="width:80px">退出</a>
     </div>
-    <a href="<%=request.getContextPath() %>/tea/teacher.action"><img src="../img/yyh.png" style="width: 32px;height: 32px;float:right;margin-top: 8px;"></a>
+    <a href="<%=request.getContextPath() %>/tea/teacher.action"><img src="../img/yyh.png"
+                                                                     style="width: 32px;height: 32px;float:right;margin-top: 8px;"></a>
 </header>
 <!--时间-->
 <section class="publicTime">
@@ -53,40 +54,41 @@
             <strong>你现在所在的位置是:</strong>
             <span>缴费记录打印</span>
         </div>
-        <div class="search" style="background: url('<%=request.getContextPath()%>/img/background3.jpeg')  repeat center!important;background-size:100% 100%;">
+        <div class="search"
+             style="background: url('<%=request.getContextPath()%>/img/background3.jpeg')  repeat center!important;background-size:100% 100%;">
             <span style="color:red">${msg}</span>
             <form action="<%=request.getContextPath()%>/pay/payment1.action"
                   method="post" id="myForm"></form>
-            <a onclick="printpage()" >打印</a>
+            <a onclick="printpage()">打印</a>
         </div>
         <div id="div" style="margin-top: 20px;">
-            <table style="margin: auto" id="table" border="1" cellspacing="0">
+            <table style="margin: auto" id="table" border="2" cellspacing="0">
                 <tr>
-                    <td style="width: 150px;height: 50px;font-size: 16px">日期：</td>
+                    <td style="width: 150px;height: 50px;font-size: 16px">&nbsp;日期：</td>
                     <td style="width: 200px;height: 50px;font-size: 16px" id="riqi"></td>
                 </tr>
                 <tr>
-                    <td style="width: 150px;height: 50px;font-size: 16px">学生姓名：</td>
+                    <td style="width: 150px;height: 50px;font-size: 16px">&nbsp;学生姓名：</td>
                     <td style="width: 200px;height: 50px;font-size: 16px" id="name"></td>
                 </tr>
                 <tr>
-                    <td style="width: 150px;height: 50px;font-size: 16px">定金金额：</td>
+                    <td style="width: 150px;height: 50px;font-size: 16px">&nbsp;定金金额：</td>
                     <td style="width: 200px;height: 50px;font-size: 16px" id="dingjin"></td>
                 </tr>
                 <tr>
-                    <td style="width: 150px;height: 50px;font-size: 16px">学费金额：</td>
+                    <td style="width: 150px;height: 50px;font-size: 16px">&nbsp;学费金额：</td>
                     <td style="width: 200px;height: 50px;font-size: 16px" id="jine"></td>
                 </tr>
                 <tr>
-                    <td style="width: 150px;height: 50px;font-size: 16px">缴费方式：</td>
+                    <td style="width: 150px;height: 50px;font-size: 16px">&nbsp;缴费方式：</td>
                     <td style="width: 200px;height: 50px;font-size: 16px" id="pay"></td>
                 </tr>
                 <tr>
-                    <td style="width: 150px;height: 50px;font-size: 16px">收费人：</td>
+                    <td style="width: 150px;height: 50px;font-size: 16px">&nbsp;收费人：</td>
                     <td style="width: 200px;height: 50px;font-size: 16px" id="shoufeiren"></td>
                 </tr>
                 <tr>
-                    <td style="width: 150px;height: 50px;font-size: 16px">备注：</td>
+                    <td style="width: 150px;height: 50px;font-size: 16px">&nbsp;备注：</td>
                     <td style="width: 200px;height: 50px;font-size: 16px" id="remarks"></td>
                 </tr>
             </table>
@@ -110,7 +112,7 @@
         return false;
     }
 
-    function printpage(){
+    function printpage() {
         var newstr = document.getElementById("div").innerHTML;
         var oldstr = document.body.innerHTML;
         document.body.innerHTML = newstr;
@@ -119,16 +121,15 @@
         return false;
     }
 
-    $(document).ready(function(){
-        $('#riqi').html($.session.get('val1'));
-        $('#name').html($.session.get('val2'));
-        $('#dingjin').html($.session.get('val3'));
-        $('#jine').html($.session.get('val4'));
-        $('#pay').html($.session.get('val5'));
-        $('#shoufeiren').html($.session.get('val6'));
-        $('#remarks').html($.session.get('val7'));
+    $(document).ready(function () {
+        $('#riqi').html("&nbsp;&nbsp;" + $.session.get('val1'));
+        $('#name').html("&nbsp;&nbsp;" + $.session.get('val2'));
+        $('#dingjin').html("&nbsp;&nbsp;" + $.session.get('val3'));
+        $('#jine').html("&nbsp;&nbsp;" + $.session.get('val4'));
+        $('#pay').html("&nbsp;&nbsp;" + $.session.get('val5'));
+        $('#shoufeiren').html("&nbsp;&nbsp;" + $.session.get('val6'));
+        $('#remarks').html("&nbsp;&nbsp;" + $.session.get('val7'));
     })
-
 
 
 </script>

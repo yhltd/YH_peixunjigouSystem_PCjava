@@ -64,13 +64,14 @@
             <span style="color:red">${msg}</span>
             <form action="<%=request.getContextPath()%>/teacherInfo/getList1.action"
                   method="post" id="myForm"></form>
-            <input type="text" placeholder="请输入教师姓名" name="t_name" form="myForm"/>
+            <input type="text" placeholder="请输入教师姓名" name="t_name_sel" form="myForm"/>
             <input type="submit" value="查询" form="myForm" style="width:90px"/>
             <a href="<%=request.getContextPath() %>/teacherInfo/add.jsp" style="width:70px">添加信息</a>
             <%--            <a href="<%=request.getContextPath()%>/stu/add.jsp">添加学生</a>--%>
 
         </div>
         <table id="data" class="providerTable" cellpadding="0" cellspacing="0">
+            <caption style="font-size: 14px;margin-bottom: 0.5%;">教师信息</caption>
             <tr class="firstTr">
                 <th width="5%">序号</th>
                 <th width="5%">教师姓名</th>

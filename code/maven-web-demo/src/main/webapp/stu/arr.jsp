@@ -70,6 +70,7 @@
 
 
         <table id="data" class="providerTable" cellpadding="0" cellspacing="0">
+            <caption style="font-size: 14px;margin-bottom: 0.5%;">欠费学员</caption>
             <tr class="firstTr">
                 <th width="10%">学生姓名</th>
                 <th width="10%">欠费金额</th>

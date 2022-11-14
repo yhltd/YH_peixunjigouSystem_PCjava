@@ -75,6 +75,7 @@
             <a href="<%=request.getContextPath()%>/inc/shezhi.action">添加明细</a>
         </div>
         <table id="data"  class="providerTable" cellpadding="0" cellspacing="0">
+            <caption style="font-size: 14px;margin-bottom: 0.5%;">收支明细</caption>
             <tr class="firstTr">
                 <th width="15%" rowspan="2">日期</th>
                 <th width="30%" colspan="3">收入</th>
@@ -241,7 +242,6 @@
     };
     // 使用刚指定的配置项和数据显示图表。
     myChart.setOption(option);
-
 
     function shujv() {
         alert($('#rongliang').val());

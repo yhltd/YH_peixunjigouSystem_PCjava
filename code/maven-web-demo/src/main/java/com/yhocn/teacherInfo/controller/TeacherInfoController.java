@@ -41,10 +41,10 @@ public class TeacherInfoController {
             mv.setViewName("/main.jsp");
             return mv;
         }
-        if (request.getParameter("t_name") == null) {
+        if (request.getParameter("t_name_sel") == null) {
             t_name = "";
         }else{
-            t_name = request.getParameter("t_name").trim();
+            t_name = request.getParameter("t_name_sel").trim();
         }
         yeshu = 1;
         page = 0;
@@ -65,10 +65,10 @@ public class TeacherInfoController {
     public ModelAndView getList2(ModelAndView mv, TeacherInfo t,String c, String t_name, Integer page, HttpServletRequest request, HttpSession session) {
         LoginController e = new LoginController();
         c = e.a;
-        if (request.getParameter("t_name") == null) {
+        if (request.getParameter("t_name_sel") == null) {
             t_name = "";
         }else{
-            t_name = request.getParameter("t_name").trim();
+            t_name = request.getParameter("t_name_sel").trim();
         }
 
         if (yeshu > 1) {
@@ -95,10 +95,10 @@ public class TeacherInfoController {
     public ModelAndView getList3(ModelAndView mv, TeacherInfo t,String c, String t_name, Integer page, HttpServletRequest request, HttpSession session) {
         LoginController e = new LoginController();
         c = e.a;
-        if (request.getParameter("t_name") == null) {
+        if (request.getParameter("t_name_sel") == null) {
             t_name = "";
         }else{
-            t_name = request.getParameter("t_name").trim();
+            t_name = request.getParameter("t_name_sel").trim();
         }
 
         if (yeshu >= weiye) {
@@ -119,10 +119,10 @@ public class TeacherInfoController {
     public ModelAndView getList4(ModelAndView mv, TeacherInfo t,String c, String t_name, Integer page, HttpServletRequest request, HttpSession session) {
         LoginController e = new LoginController();
         c = e.a;
-        if (request.getParameter("t_name") == null) {
+        if (request.getParameter("t_name_sel") == null) {
             t_name = "";
         }else{
-            t_name = request.getParameter("t_name").trim();
+            t_name = request.getParameter("t_name_sel").trim();
         }
 
         page = weiye * 10;

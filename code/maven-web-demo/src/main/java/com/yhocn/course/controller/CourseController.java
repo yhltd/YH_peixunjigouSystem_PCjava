@@ -41,15 +41,15 @@ public class CourseController {
             mv.setViewName("/main.jsp");
             return mv;
         }
-        if (request.getParameter("teacher") == null) {
+        if (request.getParameter("teacher_sel") == null) {
             teacher = "";
         }else{
-            teacher = request.getParameter("teacher").trim();
+            teacher = request.getParameter("teacher_sel").trim();
         }
-        if (request.getParameter("cou") == null) {
+        if (request.getParameter("cou_sel") == null) {
             cou = "";
         }else{
-            cou = request.getParameter("cou").trim();
+            cou = request.getParameter("cou_sel").trim();
         }
         yeshu = 1;
         page = 0;
@@ -70,15 +70,15 @@ public class CourseController {
     public ModelAndView getList2(ModelAndView mv, Course course, String c, String teacher, String cou, Integer page, HttpServletRequest request, HttpSession session) {
         LoginController e = new LoginController();
         c = e.a;
-        if (request.getParameter("teacher") == null) {
+        if (request.getParameter("teacher_sel") == null) {
             teacher = "";
         }else{
-            teacher = request.getParameter("teacher").trim();
+            teacher = request.getParameter("teacher_sel").trim();
         }
-        if (request.getParameter("cou") == null) {
+        if (request.getParameter("cou_sel") == null) {
             cou = "";
         }else{
-            cou = request.getParameter("cou").trim();
+            cou = request.getParameter("cou_sel").trim();
         }
 
         if (yeshu > 1) {
@@ -105,15 +105,15 @@ public class CourseController {
     public ModelAndView getList3(ModelAndView mv, Course course, String c, String teacher, String cou, Integer page, HttpServletRequest request, HttpSession session) {
         LoginController e = new LoginController();
         c = e.a;
-        if (request.getParameter("teacher") == null) {
+        if (request.getParameter("teacher_sel") == null) {
             teacher = "";
         }else{
-            teacher = request.getParameter("teacher").trim();
+            teacher = request.getParameter("teacher_sel").trim();
         }
-        if (request.getParameter("cou") == null) {
+        if (request.getParameter("cou_sel") == null) {
             cou = "";
         }else{
-            cou = request.getParameter("cou").trim();
+            cou = request.getParameter("cou_sel").trim();
         }
 
         if (yeshu >= weiye) {
@@ -134,15 +134,15 @@ public class CourseController {
     public ModelAndView getList4(ModelAndView mv, Course course, String c, String teacher, String cou, Integer page, HttpServletRequest request, HttpSession session) {
         LoginController e = new LoginController();
         c = e.a;
-        if (request.getParameter("teacher") == null) {
+        if (request.getParameter("teacher_sel") == null) {
             teacher = "";
         }else{
-            teacher = request.getParameter("teacher").trim();
+            teacher = request.getParameter("teacher_sel").trim();
         }
-        if (request.getParameter("cou") == null) {
+        if (request.getParameter("cou_sel") == null) {
             cou = "";
         }else{
-            cou = request.getParameter("cou").trim();
+            cou = request.getParameter("cou_sel").trim();
         }
 
         page = weiye * 10;

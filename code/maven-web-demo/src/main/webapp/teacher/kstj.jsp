@@ -71,6 +71,7 @@
 <%--        <div class="search" style="background: url('<%=request.getContextPath()%>/img/background3.jpeg')  repeat center!important;background-size:100% 100%;">--%>
 <%--        </div>--%>
         <table id="data" class="providerTable" cellpadding="0" cellspacing="0">
+            <caption style="font-size: 14px;margin-bottom: 0.5%;">教师课时统计</caption>
 <%--            <tr>--%>
 <%--                <th width="10%">--%>
 <%--                    <select  style="width: 50%">--%>

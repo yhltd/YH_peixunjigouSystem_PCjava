@@ -64,20 +64,21 @@
             <span style="color:red">${msg}</span>
             <form action="<%=request.getContextPath()%>/course/getList1.action"
                   method="post" id="myForm"></form>
-            <input type="text" placeholder="请输入教师姓名" name="teacher" form="myForm"/>
-            <input type="text" placeholder="请输入课程" name="cou" form="myForm"/>
+            <input type="text" placeholder="请输入教师姓名" name="teacher_sel" form="myForm"/>
+            <input type="text" placeholder="请输入课程" name="cou_sel" form="myForm"/>
             <input type="submit" value="查询" form="myForm" style="width:90px"/>
             <a href="<%=request.getContextPath() %>/course/add.jsp" style="width:70px">添加信息</a>
             <%--            <a href="<%=request.getContextPath()%>/stu/add.jsp">添加学生</a>--%>
 
         </div>
         <table id="data" class="providerTable" cellpadding="0" cellspacing="0">
+            <caption style="font-size: 14px;margin-bottom: 0.5%;">教师课表</caption>
             <tr class="firstTr">
-                <th width="20%">序号</th>
-                <th width="20%">教师</th>
-                <th width="20%">课程</th>
-                <th width="20%">日期</th>
-                <th width="20%">星期</th>
+                <th width="10%">序号</th>
+                <th width="15%">教师</th>
+                <th width="15%">课程</th>
+                <th width="15%">日期</th>
+                <th width="15%">星期</th>
             </tr>
             <c:forEach items="${list }" var="c">
                 <tr>

@@ -64,12 +64,13 @@
             <span style="color:red">${msg}</span>
             <form action="<%=request.getContextPath()%>/kaoqin/getList1.action"
                   method="post" id="myForm"></form>
-            <input type="text" placeholder="请输入姓名" name="s_name" form="myForm"/>
+            <input type="text" placeholder="请输入姓名" name="s_name_sel" form="myForm"/>
             <input type="submit" value="查询" form="myForm" style="width:90px"/>
             <a href="<%=request.getContextPath() %>/kaoqin/add.jsp" style="width:70px">添加信息</a>
 
         </div>
         <table id="data" class="providerTable" cellpadding="0" cellspacing="0">
+            <caption style="font-size: 14px;margin-bottom: 0.5%;">考勤表</caption>
             <tr class="firstTr">
                 <th>序号</th>
                 <th>姓名</th>

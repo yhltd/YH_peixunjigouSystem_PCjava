@@ -71,6 +71,7 @@
 
         </div>
         <table id="data" class="providerTable" cellpadding="0" cellspacing="0">
+            <caption style="font-size: 14px;margin-bottom: 0.5%;">权限管理</caption>
             <tr class="firstTr">
                 <th width="10%">序号</th>
                 <th width="10%">姓名</th>

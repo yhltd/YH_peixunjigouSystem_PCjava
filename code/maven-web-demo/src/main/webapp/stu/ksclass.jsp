@@ -64,6 +64,7 @@
                <a href="<%=request.getContextPath()%>/stu/add.jsp">添加学生</a>
            </div> --%>
         <table id="data" class="providerTable" cellpadding="0" cellspacing="0">
+            <caption style="font-size: 14px;margin-bottom: 0.5%;">课时统计</caption>
             <tr class="firstTr">
                 <th width="15%">日期</th>
                 <th width="15%">学生姓名</th>

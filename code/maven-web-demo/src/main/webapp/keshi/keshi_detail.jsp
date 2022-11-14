@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+         pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <link rel="shortcut icon" href="../img/mm.png" />
+    <link rel="shortcut icon" href="../img/mm.png"/>
     <title>教务管理系统</title>
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/public.css"/>
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/style.css"/>
@@ -39,6 +39,7 @@
             overflow: auto;
             border-radius: 25px;
         }
+
         .fancybox-button {
             background: rgba(30, 30, 30, .6);
             border: 0;
@@ -69,7 +70,8 @@
         <a onclick="shujv()" style="width:80px">数据空间</a>
         <a href="<%=request.getContextPath() %>/login.jsp" style="width:80px">退出</a>
     </div>
-    <a href="<%=request.getContextPath() %>/tea/teacher.action"><img src="../img/yyh.png" style="width: 32px;height: 32px;float:right;margin-top: 8px;"></a>
+    <a href="<%=request.getContextPath() %>/tea/teacher.action"><img src="../img/yyh.png"
+                                                                     style="width: 32px;height: 32px;float:right;margin-top: 8px;"></a>
 </header>
 <!--时间-->
 <section class="publicTime">
@@ -104,7 +106,8 @@
             <span>课时统计</span>
             <div title="此页面为课时统计，这里可以手动维护数据，在这里添加数据后学生信息会自动更新已上课时" style="color: red">*</div>
         </div>
-        <div class="search" style="background: url('<%=request.getContextPath()%>/img/background3.jpeg')  repeat center!important;background-size:100% 100%;">
+        <div class="search"
+             style="background: url('<%=request.getContextPath()%>/img/background3.jpeg')  repeat center!important;background-size:100% 100%;">
             <span style="color:red">${msg}</span>
             <form action="<%=request.getContextPath()%>/keshi/getList1.action"
                   method="post" id="myForm"></form>
@@ -114,11 +117,12 @@
             <input type="date" placeholder="请输入结束时间" name="date2" form="myForm"/>
             <a href="<%=request.getContextPath()%>/kaoqin/getList1.action" style="width:65px">考勤表</a>
             <a href="<%=request.getContextPath()%>/keshi/toadd.action" style="width:65px">添加明细</a>
-            <input type="submit" value="查询" style="width:65px" form="myForm"/>
-            <a id="toExcel" >导出excel</a>
+            <input type="submit" value="查询" style="width:85px" form="myForm"/>
+            <a id="toExcel">导出excel</a>
 
         </div>
         <table id="data" class="providerTable" cellpadding="0" cellspacing="0">
+            <caption style="font-size: 14px;margin-bottom: 0.5%;">课时统计</caption>
             <tr class="firstTr">
                 <th width="15%" hidden="hidden">序号</th>
                 <th width="15%">日期</th>
@@ -138,17 +142,22 @@
                     <td>${l.teacher_name}</td>
                     <td>${l.jine}</td>
                     <td>
-                        <a href="<%=request.getContextPath() %>/keshi/toupd.action?id=${l.id}"><img src="<%=request.getContextPath() %>/img/xiugai.png" alt="修改" title="修改"/></a>
-                        <a href="<%=request.getContextPath() %>/keshi/del.action?id=${l.id}" class="removeProvider" onclick="return confirm('您确认要删除本记录么？')"><img src="<%=request.getContextPath() %>/img/schu.png" alt="删除" title="删除"/></a>
+                        <a href="<%=request.getContextPath() %>/keshi/toupd.action?id=${l.id}"><img
+                                src="<%=request.getContextPath() %>/img/xiugai.png" alt="修改" title="修改"/></a>
+                        <a href="<%=request.getContextPath() %>/keshi/del.action?id=${l.id}" class="removeProvider"
+                           onclick="return confirm('您确认要删除本记录么？')"><img
+                                src="<%=request.getContextPath() %>/img/schu.png" alt="删除" title="删除"/></a>
                     </td>
                 </tr>
             </c:forEach>
         </table>
         <div class="page">
             <div class="page_cell"><a href="<%=request.getContextPath() %>/keshi/getList1.action">首页</a></div>
-            <div class="page_cell" onclick="last_page(<%=session.getAttribute("page")%>)"><a href="<%=request.getContextPath() %>/keshi/getList2.action">上一页</a></div>
+            <div class="page_cell" onclick="last_page(<%=session.getAttribute("page")%>)"><a
+                    href="<%=request.getContextPath() %>/keshi/getList2.action">上一页</a></div>
             <div style="float: left;margin: 2px"><%=session.getAttribute("page")%>页</div>
-            <div class="page_cell" onclick="next_page(<%=session.getAttribute("page")%>)"><a href="<%=request.getContextPath() %>/keshi/getList3.action">下一页</a></div>
+            <div class="page_cell" onclick="next_page(<%=session.getAttribute("page")%>)"><a
+                    href="<%=request.getContextPath() %>/keshi/getList3.action">下一页</a></div>
             <div class="page_cell"><a href="<%=request.getContextPath() %>/keshi/getList4.action">末页</a></div>
         </div>
 
@@ -164,19 +173,24 @@
                     <th width="15%">班级</th>
                     <th width="15%">电话</th>
                 </tr>
-                    <tr>
-                        <td id="RealName"></td>
-                        <td id="Sex"></td>
-                        <td id="rgdate"></td>
-                        <td id="Course"></td>
-                        <td id="Teacher"></td>
-                        <td id="Classnum"></td>
-                        <td id="phone"></td>
-                    </tr>
+                <tr>
+                    <td id="RealName"></td>
+                    <td id="Sex"></td>
+                    <td id="rgdate"></td>
+                    <td id="Course"></td>
+                    <td id="Teacher"></td>
+                    <td id="Classnum"></td>
+                    <td id="phone"></td>
+                </tr>
             </table>
         </div>
-        <div id="fade" class="black_overlay"><a href="javascript:void(0)" onclick="closeWin();" style="float: right;color: white"
-                                                class="fancybox-button fancybox-button--close"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 10.6L6.6 5.2 5.2 6.6l5.4 5.4-5.4 5.4 1.4 1.4 5.4-5.4 5.4 5.4 1.4-1.4-5.4-5.4 5.4-5.4-1.4-1.4-5.4 5.4z"></path></svg></a></div>
+        <div id="fade" class="black_overlay"><a href="javascript:void(0)" onclick="closeWin();"
+                                                style="float: right;color: white"
+                                                class="fancybox-button fancybox-button--close">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="background: white">
+                <path d="M12 10.6L6.6 5.2 5.2 6.6l5.4 5.4-5.4 5.4 1.4 1.4 5.4-5.4 5.4 5.4 1.4-1.4-5.4-5.4 5.4-5.4-1.4-1.4-5.4 5.4z"></path>
+            </svg>
+        </a></div>
 
     </div>
 </section>
@@ -201,13 +215,13 @@
 
         $.ajax({
             type: 'post',
-            url:'../stu/getListByName.action',
-            data:{
-                 RealName:firstTd_value,
+            url: '../stu/getListByName.action',
+            data: {
+                RealName: firstTd_value,
             },
-            success:function (result){
+            success: function (result) {
                 console.log(result);
-                var user = eval('('+result+')');
+                var user = eval('(' + result + ')');
                 $('#RealName').html(user[0]);
                 $('#Sex').html(user[1]);
                 $('#rgdate').html(user[2]);
@@ -215,7 +229,7 @@
                 $('#Teacher').html(user[4]);
                 $('#Classnum').html(user[5]);
                 $('#phone').html(user[6]);
-            },error:function () {
+            }, error: function () {
                 alert("error!");
             }
         })
@@ -227,34 +241,47 @@
     }
 
 
-
-    var element=document.getElementById("toExcel");
-    var toExcel=function (event) {
-        var html="<html><head><meta charset='UTF-8'></head><body>"+document.getElementById("data").outerHTML+"</body></html>";
+    var element = document.getElementById("toExcel");
+    var toExcel = function (event) {
+        var html = "<html><head><meta charset='UTF-8'></head><body>" + document.getElementById("data").outerHTML + "</body></html>";
         var html2 = document.getElementById("data");
         var zhong_html = "<html><head><meta charset='UTF-8'></head><body><table><tbody>"
         var rows = html2.rows;
         var columns = rows[0].cells.length;
 
-        for (var i = 0;i<rows.length;i++){
+        for (var i = 0; i < rows.length; i++) {
             zhong_html += "<tr>";
-            var cells=rows[i].cells;
-            for(var j = 0;j<=cells.length-1;j++){
-                var cells2 = cells[j].outerHTML;
-                zhong_html += cells2;
-                if (j == cells.length-1){
-                    zhong_html += "</tr>"
+            var cells = rows[i].cells;
+            for (var j = 0; j <= cells.length - 1; j++) {
+                if (i == 0) {
+                    var cells2 = cells[j].outerHTML;
+                    zhong_html += cells2;
+                    if (j == cells.length) {
+                        zhong_html += "</tr>"
+                    }
+                } else {
+                    if (j == 2) {
+                        var cells2 = cells[j].innerText;
+                        zhong_html +="<td>"+ cells2 +"</td>"
+                    } else {
+                        var cells2 = cells[j].outerHTML;
+                        zhong_html += cells2;
+                        if (j == cells.length - 2) {
+                            zhong_html += "</tr>"
+                            break;
+                        }
+                    }
                 }
             }
         }
 
         zhong_html += "</tbody></table></body></html>";
-        var blob=new Blob([zhong_html],{type:"application/vnd.ms-excel"});
-        var a=event.target;
-        a.href=URL.createObjectURL(blob);
-        a.download="课时统计";
+        var blob = new Blob([zhong_html], {type: "application/vnd.ms-excel"});
+        var a = event.target;
+        a.href = URL.createObjectURL(blob);
+        a.download = "课时统计";
     };
-    element.onclick=toExcel;
+    element.onclick = toExcel;
 
     function shujv() {
         alert($('#rongliang').val());

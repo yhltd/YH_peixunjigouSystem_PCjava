@@ -67,6 +67,7 @@
             <a href="<%=request.getContextPath()%>/power/getList1.action">权限管理</a>
         </div>
         <table id="data" class="providerTable" cellpadding="0" cellspacing="0">
+            <caption style="font-size: 14px;margin-bottom: 0.5%;">用户管理</caption>
             <tr class="firstTr">
                 <th width="5%">序号</th>
                 <th width="10%">登录名</th>

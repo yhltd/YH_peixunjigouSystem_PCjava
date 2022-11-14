@@ -56,9 +56,11 @@
         </div>
         <div class="search" style="background: url('<%=request.getContextPath()%>/img/background3.jpeg')  repeat center!important;background-size:100% 100%;">
             <span style="color:red">${msg}</span>
+            <form method="post" id="myForm"></form>
             <a href="<%=request.getContextPath()%>/te/add.jsp">添加信息</a>
         </div>
         <table class="providerTable" cellpadding="0" cellspacing="0">
+            <caption style="font-size: 14px;margin-bottom: 0.5%;">设置</caption>
             <tr class="firstTr">
                 <th width="5%">序号</th>
                 <th width="10%">课程列表</th>

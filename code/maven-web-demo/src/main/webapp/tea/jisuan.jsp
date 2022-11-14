@@ -55,6 +55,7 @@
             <span>教师工资</span>
             <div title="此页面为教师工资，这里会根据课时统计页面的数据来计算教师的工资" style="color: red">*</div>
         </div>
+
         <div class="search" style="background: url('<%=request.getContextPath()%>/img/background3.jpeg')  repeat center!important;background-size:100% 100%;">
             <span style="color:red">${msg}</span>
             <form action="<%=request.getContextPath()%>/keshi/select1.action"
@@ -62,42 +63,14 @@
             <input type="date" placeholder="请输入年月" name="date2" form="myForm"/>
             <input type="submit" value="查询" form="myForm"/>
         </div>
-        <div class="search" style="background: url('<%=request.getContextPath()%>/img/background3.jpeg')  repeat center!important;background-size:100% 100%;">
+<%--        <div class="search" style="background: url('<%=request.getContextPath()%>/img/background3.jpeg')  repeat center!important;background-size:100% 100%;">--%>
 
-        </div>
-        <table class="providerTable" cellpadding="0" cellspacing="0">
-            <%--            <tr>--%>
-            <%--                <th width="10%">--%>
-            <%--                    <select  style="width: 50%">--%>
-            <%--                        <option >2019</option>--%>
-            <%--                        <option >2020</option>--%>
-            <%--                        <option >2021</option>--%>
-            <%--                        <option >2022</option>--%>
-            <%--                    </select>--%>
-            <%--                </th>--%>
-            <%--                <th width="10%">年</th>--%>
-            <%--                <th width="10%">--%>
-            <%--                    <select  style="width: 40%">--%>
-            <%--                        <option >1</option>--%>
-            <%--                        <option >2</option>--%>
-            <%--                        <option >3</option>--%>
-            <%--                        <option >4</option>--%>
-            <%--                        <option >5</option>--%>
-            <%--                        <option >6</option>--%>
-            <%--                        <option >7</option>--%>
-            <%--                        <option >8</option>--%>
-            <%--                        <option >9</option>--%>
-            <%--                        <option >10</option>--%>
-            <%--                        <option >11</option>--%>
-            <%--                        <option >12</option>--%>
-            <%--                    </select>--%>
-            <%--                </th>--%>
-            <%--                <th width="10%">月</th>--%>
-            <%--                <th width="10%"></th>--%>
-            <%--            </tr>--%>
-            <tr>
-                <th colspan="5"></th>
-            </tr>
+<%--        </div>--%>
+        <table class="providerTable" cellpadding="0" cellspacing="0" style="margin-top: 5%">
+<%--            <tr>--%>
+<%--                <th colspan="5"></th>--%>
+<%--            </tr>--%>
+            <caption style="font-size: 14px;margin-bottom: 0.5%;">教师工资</caption>
             <tr class="firstTr">
                 <th width="10%">教师姓名</th>
                 <th width="10%">课程名称</th>

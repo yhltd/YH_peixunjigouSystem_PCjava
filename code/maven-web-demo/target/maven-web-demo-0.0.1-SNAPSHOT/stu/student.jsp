@@ -72,6 +72,7 @@
 
         </div>
         <table id="data" class="providerTable" cellpadding="0" cellspacing="0">
+            <caption style="font-size: 14px;margin-bottom: 0.5%;">学生信息</caption>
             <tr class="firstTr">
                 <th width="5%">序号</th>
                 <th width="5%">学生姓名</th>
