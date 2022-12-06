@@ -63,8 +63,6 @@
             <input type="text" placeholder="请输入学生姓名" name="realName" form="myForm"/>
             <input type="submit" value="查询" form="myForm"/>
             <a id="toExcel" >导出excel</a>
-
-
         </div>
 
 
@@ -121,31 +119,31 @@
 
 </body>
 <script>
-    var element=document.getElementById("toExcel")
+    var element=document.getElementById("toExcel");
     var toExcel=function (event) {
         var html="<html><head><meta charset='UTF-8'></head><body>"+document.getElementById("data").outerHTML+"</body></html>";
         var html2 = document.getElementById("data");
         var zhong_html = "<html><head><meta charset='UTF-8'></head><body><table><tbody>"
         var rows = html2.rows;
-        var columns = rows[0].cells.length
+        var columns = rows[0].cells.length;
 
         for (var i = 0;i<rows.length;i++){
-            zhong_html += "<tr>"
-            var cells=rows[i].cells
+            zhong_html += "<tr>";
+            var cells=rows[i].cells;
             for(var j = 0;j<cells.length;j++){
-                var cells2 = cells[j].outerHTML
-                zhong_html += cells2
+                var cells2 = cells[j].outerHTML;
+                zhong_html += cells2;
                 if (j == cells.length-1){
                     zhong_html += "</tr>"
                 }
             }
         }
-        zhong_html += "</tbody></table></body></html>"
+        zhong_html += "</tbody></table></body></html>";
         var blob=new Blob([zhong_html],{type:"application/vnd.ms-excel"});
         var a=event.target;
         a.href=URL.createObjectURL(blob);
         a.download="欠费学员";
-    }
+    };
     element.onclick=toExcel;
 
     function shujv() {

@@ -4,7 +4,7 @@
 }
 body{
     font-size: 12px;
-    background: #4287c2;
+    /*background: #4287c2;*/
 }
 .clear:after{
     content: '';
@@ -100,7 +100,7 @@ li{
     width: 168px;
     background: url("../img/leftBg.png") 0 0 repeat-y;
     margin-right: 10px;
-    /*height: 520px;*/
+    /*height: 1520px;*/
     min-height: 520px;
 
 }

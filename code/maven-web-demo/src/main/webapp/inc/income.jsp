@@ -64,11 +64,11 @@
             <form action="<%=request.getContextPath()%>/inc/select.action"
                   method="post" id="myForm"></form>
             <span>起始：</span>
-            <input type="date"  name="rgdate" form="myForm"/>
+            <input type="date" id="ks"  name="rgdate" form="myForm"/>
             <span>结束</span>
-            <input type="date"  name="rgdate2" form="myForm"/>
+            <input type="date" id="js" name="rgdate2" form="myForm"/>
 
-            <input type="submit" value="查询" form="myForm"/>
+            <input type="submit" id="sel_button" value="查询" form="myForm"/>
             <span>当日金额统计：${jr_jine}</span>
             <span>当月金额统计：${dy_jine}</span>
             <a id="toExcel" >导出excel</a>
@@ -169,11 +169,25 @@
 </footer>
 
 <script src="<%=request.getContextPath() %>/js/jquery.js"></script>
+<script src="<%=request.getContextPath() %>/js/jquerysession.js"></script>
 <script src="<%=request.getContextPath() %>/js/js.js"></script>
 <script src="<%=request.getContextPath() %>/js/time.js"></script>
 
 </body>
 <script type="text/javascript">
+    $(function () {
+        $('#ks').val($.session.get('ks'));
+        $('#js').val($.session.get('js'));
+        $.session.set('ks', '');
+        $.session.set('js', '');
+
+        $('#sel_button').click(function () {
+            $.session.set('ks', $('#ks').val());
+            $.session.set('js', $('#js').val());
+        })
+    });
+
+
     var element=document.getElementById("toExcel");
     var toExcel=function (event) {
         var html="<html><head><meta charset='UTF-8'></head><body>"+document.getElementById("data").outerHTML+"</body></html>";
