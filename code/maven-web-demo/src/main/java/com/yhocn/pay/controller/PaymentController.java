@@ -2,6 +2,8 @@ package com.yhocn.pay.controller;
 
 import java.util.List;
 
+import com.yhocn.shezhi.entity.Shezhi;
+import com.yhocn.shezhi.service.ShezhiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +25,8 @@ public class PaymentController {
 
     @Autowired
     private PaymentService service;
+    @Autowired
+    private ShezhiService shezhiService;
 
     @RequestMapping("/payment1")
     public ModelAndView query(ModelAndView mv, Payment p, String a, String b, String c, String d, Integer page, HttpServletRequest request, HttpSession session) {
@@ -179,6 +183,17 @@ public class PaymentController {
         return mv;
     }
 
+    @RequestMapping("/toAdd")
+    public ModelAndView toAdd(ModelAndView mv, Payment p, String c) {
+        LoginController e = new LoginController();
+        c = e.a;
+        Shezhi shezhi=new Shezhi();
+        List<Shezhi> list= shezhiService.selectAll(shezhi,c);
+        mv.addObject("shezhi", list);
+        mv.setViewName("/pay/add.jsp");
+        return mv;
+    }
+
     @RequestMapping(value = "/add", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ModelAndView add(ModelAndView mv, Payment p, String c) {
         LoginController e = new LoginController();
@@ -209,7 +224,11 @@ public class PaymentController {
     public ModelAndView toUpdate(ModelAndView mv, Payment p, String c) {
         LoginController e = new LoginController();
         c = e.a;
+
+        Shezhi shezhi=new Shezhi();
+        List<Shezhi> list= shezhiService.selectAll(shezhi,c);
         Payment p2 = service.selectById(p, c);
+        mv.addObject("shezhi", list);
         mv.addObject("payment", p2);
         mv.setViewName("/pay/update.jsp");
 

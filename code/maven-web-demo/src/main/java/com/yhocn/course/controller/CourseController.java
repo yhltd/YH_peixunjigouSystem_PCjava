@@ -3,6 +3,8 @@ package com.yhocn.course.controller;
 import com.yhocn.course.entity.Course;
 import com.yhocn.course.service.CourseService;
 import com.yhocn.login.controller.LoginController;
+import com.yhocn.shezhi.entity.Shezhi;
+import com.yhocn.shezhi.service.ShezhiService;
 import com.yhocn.teacherInfo.entity.TeacherInfo;
 import com.yhocn.teacherInfo.service.TeacherInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,8 @@ public class CourseController {
 
     @Autowired
     private CourseService service;
+    @Autowired
+    private ShezhiService shezhiService;
 
     @RequestMapping("/getList1")
     public ModelAndView getList1(ModelAndView mv, Course course, String c, String teacher, String cou, Integer page, HttpServletRequest request, HttpSession session) {
@@ -182,11 +186,26 @@ public class CourseController {
         return mv;
     }
 
+    @RequestMapping("/toAdd")
+    public ModelAndView toAdd(ModelAndView mv, Course course, String c) {
+        LoginController e = new LoginController();
+        c = e.a;
+        Course c2 = service.getListById(course, c);
+        Shezhi shezhi=new Shezhi();
+        List<Shezhi> list=shezhiService.selectAll(shezhi,c);
+        mv.addObject("shezhi", list);
+        mv.setViewName("/course/add.jsp");
+        return mv;
+    }
+
     @RequestMapping("/toUpdate")
     public ModelAndView toUpdate(ModelAndView mv, Course course, String c) {
         LoginController e = new LoginController();
         c = e.a;
         Course c2 = service.getListById(course, c);
+        Shezhi shezhi=new Shezhi();
+        List<Shezhi> list=shezhiService.selectAll(shezhi,c);
+        mv.addObject("shezhi", list);
         mv.addObject("course", c2);
         mv.setViewName("/course/update.jsp");
         return mv;

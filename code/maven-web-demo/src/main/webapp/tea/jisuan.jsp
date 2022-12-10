@@ -61,6 +61,7 @@
             <form action="<%=request.getContextPath()%>/keshi/select1.action"
                   method="post" id="myForm"></form>
             <input type="date" placeholder="请输入年月" name="date2" form="myForm"/>
+            <input type="text" placeholder="请输入教师姓名" name="teacher_name" form="myForm"/>
             <input type="submit" value="查询" form="myForm"/>
         </div>
 <%--        <div class="search" style="background: url('<%=request.getContextPath()%>/img/background3.jpeg')  repeat center!important;background-size:100% 100%;">--%>

@@ -1,11 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html>
+         pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <link rel="shortcut icon" href="../img/mm.png" />
+    <link rel="shortcut icon" href="../img/mm.png"/>
     <title>教务管理系统</title>
     <script type="text/javascript" src="<%=request.getContextPath() %>/js/jquery.js"></script>
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/public.css"/>
@@ -23,7 +22,8 @@
         <a onclick="shujv()" style="width:80px">数据空间</a>
         <a href="<%=request.getContextPath() %>/login.jsp" style="width:80px">退出</a>
     </div>
-    <a href="<%=request.getContextPath() %>/tea/teacher.action"><img src="../img/yyh.png" style="width: 32px;height: 32px;float:right;margin-top: 8px;"></a>
+    <a href="<%=request.getContextPath() %>/tea/teacher.action"><img src="../img/yyh.png"
+                                                                     style="width: 32px;height: 32px;float:right;margin-top: 8px;"></a>
 </header>
 <!--时间-->
 <section class="publicTime">
@@ -60,20 +60,30 @@
             <form action="<%=request.getContextPath() %>/course/update.action">
                 <div>
                     <label for="id">序号：</label>
-                    <input type="text" readonly="readonly" name="id" id="id" value="${course.id}" readonly="readonly"/>
-                    <span >*</span>
+                    <input style="width: 270px" type="text" readonly="readonly" name="id" id="id" value="${course.id}" readonly="readonly"/>
+                    <span>*</span>
                 </div>
                 <div>
                     <label for="teacher">教师姓名：</label>
-                    <input type="text" name="teacher" id="teacher" value="${course.teacher }"/>
+                    <input hidden="hidden" type="text" name="teacher2" id="teacher2" value="${course.teacher }"/>
+                    <select name="teacher" id="teacher" name="teacher" style="width: 270px">
+                        <c:forEach items="${shezhi}" var="shezhi">
+                            <option>${shezhi.teacher}</option>
+                        </c:forEach>
+                    </select>
                 </div>
                 <div>
-                    <label  for="course">课程：</label>
-                    <input type="text" name="course" id="course" value="${course.course }"/>
+                    <label for="course">课程：</label>
+                    <input hidden="hidden" type="text" name="course2" id="course2" value="${course.course }"/>
+                    <select name="course" id="course" style="width: 270px">
+                        <c:forEach items="${shezhi}" var="shezhi">
+                            <option>${shezhi.course}</option>
+                        </c:forEach>
+                    </select>
                 </div>
                 <div>
                     <label for="riqi">日期：</label>
-                    <input type="date" name="riqi" id="riqi" value="${course.riqi }"/>
+                    <input style="width: 270px" type="date" name="riqi" id="riqi" value="${course.riqi }"/>
                 </div>
                 <div>
                     <label for="xingqi">星期：</label>
@@ -101,11 +111,25 @@
 <script src="<%=request.getContextPath() %>/js/time.js"></script>
 </body>
 <script type="text/javascript">
-    window.onload=function(){
-        var xingqi=$("#xingqi2").val();
-
+    window.onload = function () {
+        var xingqi = $("#xingqi2").val();
         $("#xingqi").val(xingqi);
+
+        var teacher = $("#teacher2").val();
+        $("#teacher").val(teacher);
+
+        var course = $("#course2").val();
+        $("#course").val(course);
+
     };
+
+    $(function () {
+        $("#riqi").change(function () {
+            var a = ["星期天", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
+            $('#xingqi').val(a[new Date($("#riqi").val()).getDay()]);
+        });
+
+    });
 
     function shujv() {
         alert($('#rongliang').val());

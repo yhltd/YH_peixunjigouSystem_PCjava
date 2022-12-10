@@ -64,7 +64,7 @@
             <input id="name" type="text" placeholder="请输入学生姓名" name="realname" form="myForm"/>
             <input id="sel_button" type="submit" value="查询" form="myForm"/>
             <a onclick="printpage()" >打印</a>
-            <a href="<%=request.getContextPath()%>/pay/add.jsp">添加记录</a>
+            <a href="<%=request.getContextPath()%>/pay/toAdd.action">添加记录</a>
             <a id="toExcel" >导出excel</a>
         </div>
         <div id="div">
@@ -220,16 +220,13 @@
         var val6 = $(parentTR).children('td').eq(5).text();
         var val7 = $(parentTR).children('td').eq(6).text();
 
-        $.session.set('val1', val1)
-        $.session.set('val2', val2)
-        $.session.set('val3', val3)
-        $.session.set('val4', val4)
-        $.session.set('val5', val5)
-        $.session.set('val6', val6)
-        $.session.set('val7', val7)
-
-
-
+        $.session.set('val1', val1);
+        $.session.set('val2', val2);
+        $.session.set('val3', val3);
+        $.session.set('val4', val4);
+        $.session.set('val5', val5);
+        $.session.set('val6', val6);
+        $.session.set('val7', val7);
     }
 
 </script>

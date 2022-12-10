@@ -202,6 +202,7 @@ public class KeshiDetailController {
     @RequestMapping("/select1")
     public ModelAndView info1(ModelAndView mv, Keshidetail ksd, String a ,String c, HttpServletRequest request) {
         a=request.getParameter("date2");
+        String b=request.getParameter("teacher_name");
 //        String strDateFormat = "yyyy-MM";
 //        SimpleDateFormat sdf = new SimpleDateFormat(a);
         if (!a.equals("")){
@@ -209,7 +210,7 @@ public class KeshiDetailController {
             a=s1[0]+ "-" + s1[1];}
         LoginController e=new  LoginController();
         c=e.a;
-        List<Keshidetail> list = service.select1(ksd,c,a);
+        List<Keshidetail> list = service.select1(ksd,c,a,b);
         mv.addObject("teacherKeshiList",list);
         mv.setViewName("/tea/jisuan.jsp");
         return mv;

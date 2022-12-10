@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html>
 <html>
 <head lang="en">
     <meta charset="UTF-8">
@@ -57,15 +56,25 @@
             <form action="<%=request.getContextPath() %>/course/add.action">
                 <div>
                     <label for="teacher">教师姓名：</label>
-                    <input type="text" name="teacher" id="teacher" value="${course.t_name }"/>
+<%--                    <input type="text" name="teacher" id="teacher" value="${course.t_name }"/>--%>
+                    <select name="teacher" id="teacher" name="teacher" style="width: 270px">
+                        <c:forEach items="${shezhi}" var="shezhi">
+                            <option>${shezhi.teacher}</option>
+                        </c:forEach>
+                    </select>
                 </div>
                 <div>
                     <label  for="course">课程：</label>
-                    <input type="text" name="course" id="course" value="${course.course }"/>
+<%--                    <input type="text" name="course" id="course" value="${course.course }"/>--%>
+                    <select name="course" id="course" style="width: 270px">
+                        <c:forEach items="${shezhi}" var="shezhi">
+                            <option>${shezhi.course}</option>
+                        </c:forEach>
+                    </select>
                 </div>
                 <div>
                     <label for="riqi">日期：</label>
-                    <input type="date" name="riqi" id="riqi" value="${course.riqi }"/>
+                    <input style="width: 270px" type="date" name="riqi" id="riqi" value="${course.riqi }"/>
                 </div>
                 <div>
                     <label for="xingqi">星期：</label>
@@ -94,6 +103,14 @@
 
 </body>
 <script>
+    $(function () {
+        $("#riqi").change(function () {
+            var a = ["星期天", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
+            $('#xingqi').val(a[new Date($("#riqi").val()).getDay()]);
+        });
+
+    });
+
     function shujv() {
         alert($('#rongliang').val());
         return false;

@@ -2,6 +2,8 @@ package com.yhocn.teacherInfo.controller;
 
 import com.yhocn.login.controller.LoginController;
 import com.yhocn.pay.entity.Payment;
+import com.yhocn.shezhi.entity.Shezhi;
+import com.yhocn.shezhi.service.ShezhiService;
 import com.yhocn.teacherInfo.entity.TeacherInfo;
 import com.yhocn.teacherInfo.service.TeacherInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,8 @@ public class TeacherInfoController {
 
     @Autowired
     private TeacherInfoService service;
+    @Autowired
+    private ShezhiService shezhiService;
 
     @RequestMapping("/getList1")
     public ModelAndView getList1(ModelAndView mv, TeacherInfo t,String c, String t_name, Integer page, HttpServletRequest request, HttpSession session) {
@@ -135,6 +139,17 @@ public class TeacherInfoController {
         return mv;
     }
 
+    @RequestMapping("/toAdd")
+    public ModelAndView toAdd(ModelAndView mv, TeacherInfo t, String c) {
+        LoginController e = new LoginController();
+        c = e.a;
+        Shezhi shezhi=new Shezhi();
+        List<Shezhi> list= shezhiService.selectAll(shezhi,c);
+        mv.addObject("shezhi", list);
+        mv.setViewName("/teacherInfo/add.jsp");
+        return mv;
+    }
+
     @RequestMapping(value = "/add")
     public ModelAndView add(ModelAndView mv, TeacherInfo t, String c) {
         LoginController e = new LoginController();
@@ -166,7 +181,10 @@ public class TeacherInfoController {
     public ModelAndView toUpdate(ModelAndView mv, TeacherInfo t, String c) {
         LoginController e = new LoginController();
         c = e.a;
+        Shezhi shezhi=new Shezhi();
         TeacherInfo t2 = service.getListById(t, c);
+        List<Shezhi> list= shezhiService.selectAll(shezhi,c);
+        mv.addObject("shezhi", list);
         mv.addObject("teacherInfo", t2);
         mv.setViewName("/teacherInfo/update.jsp");
         return mv;

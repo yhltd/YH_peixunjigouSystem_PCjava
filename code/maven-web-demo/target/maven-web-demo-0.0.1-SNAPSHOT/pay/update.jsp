@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 		 pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html>
 <html>
 <head lang="en">
 	<meta charset="UTF-8">
@@ -86,8 +85,14 @@
 															id="money" value="${payment.money }" />
 				</div>
 				<div>
-					<label for="paiment">缴费方式：</label> <input type="text" name="paiment"
-															  id="paiment" value="${payment.paiment }" />
+					<label for="paiment">缴费方式：</label>
+					<select name="paiment" id="paiment">
+						<c:forEach items="${shezhi}" var="shezhi">
+							<option>${shezhi.paiment}</option>
+						</c:forEach>
+					</select>
+					<input type="text" name="paiment2" hidden="hidden"
+						   id="paiment2" value="${payment.paiment }" />
 				</div>
 				<div>
 					<label for="keeper">收费人：</label> <input type="text"
@@ -111,6 +116,11 @@
 
 </body>
 <script>
+	window.onload=function(){
+		var paiment2=$("#paiment2").val();
+		$("#paiment").val(paiment2);
+	};
+
 	function shujv() {
 		alert($('#rongliang').val());
 		return false;

@@ -57,7 +57,12 @@
             <form action="<%=request.getContextPath() %>/teacherInfo/add.action">
                 <div>
                     <label for="t_name">教师姓名：</label>
-                    <input type="text" name="t_name" id="t_name" value="${teacherInfo.t_name }"/>
+<%--                    <input type="text" name="t_name" id="t_name" value="${teacherInfo.t_name }"/>--%>
+                    <select name="t_name" id="t_name" style="width: 270px">
+                        <c:forEach items="${shezhi}" var="shezhi">
+                            <option>${shezhi.teacher}</option>
+                        </c:forEach>
+                    </select>
                 </div>
                 <div>
                     <label  for="sex">性别：</label>
@@ -96,7 +101,11 @@
                 </div>
                 <div>
                     <label for="state">在职状态：</label>
-                    <input type="text" name="state" id="state" value="${teacherInfo.state }"/>
+<%--                    <input type="text" name="state" id="state" value="${teacherInfo.state }"/>--%>
+                    <select name="state" id="state" style="width: 270px">
+                        <option>在职</option>
+                        <option>离职</option>
+                    </select>
                 </div>
                 <div>
                     <label for="shebao">社保情况：</label>

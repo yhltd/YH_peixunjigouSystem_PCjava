@@ -68,23 +68,25 @@ public class IncomeController {
         int jr_jine = 0;
         int dy_jine = 0;
         for (int i = 0; i < inclist.size(); i++) {
-            if (inclist.get(i).getRgdate().compareTo(firstDay) > 0 && lastDay.compareTo(inclist.get(i).getRgdate()) > 0) {
-                if (inclist.get(i).getMoney() != null) {
-                    dy_jine = dy_jine + inclist.get(i).getMoney();
+            if(inclist.get(i).getRgdate()!=null){
+                if (inclist.get(i).getRgdate().compareTo(firstDay) > 0 && lastDay.compareTo(inclist.get(i).getRgdate()) > 0) {
+                    if (inclist.get(i).getMoney() != null) {
+                        dy_jine = dy_jine + inclist.get(i).getMoney();
+                    }
+                    if (inclist.get(i).getPaid() != null) {
+                        dy_jine = dy_jine - inclist.get(i).getPaid();
+                    }
                 }
-                if (inclist.get(i).getPaid() != null) {
-					dy_jine = dy_jine - inclist.get(i).getPaid();
+
+                if(inclist.get(i).getRgdate().equals(jinri)){
+                    if (inclist.get(i).getMoney() != null) {
+                        jr_jine = jr_jine + inclist.get(i).getMoney();
+                    }
+                    if (inclist.get(i).getPaid() != null) {
+                        jr_jine = jr_jine - inclist.get(i).getPaid();
+                    }
                 }
             }
-
-            if(inclist.get(i).getRgdate().equals(jinri)){
-				if (inclist.get(i).getMoney() != null) {
-					jr_jine = jr_jine + inclist.get(i).getMoney();
-				}
-				if (inclist.get(i).getPaid() != null) {
-					jr_jine = jr_jine - inclist.get(i).getPaid();
-				}
-			}
         }
 
 		mv.addObject("jr_jine",jr_jine);

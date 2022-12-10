@@ -122,13 +122,28 @@
     }
 
     $(document).ready(function () {
-        $('#riqi').html("&nbsp;&nbsp;" + $.session.get('val1'));
-        $('#name').html("&nbsp;&nbsp;" + $.session.get('val2'));
-        $('#dingjin').html("&nbsp;&nbsp;" + $.session.get('val3'));
-        $('#jine').html("&nbsp;&nbsp;" + $.session.get('val4'));
-        $('#pay').html("&nbsp;&nbsp;" + $.session.get('val5'));
-        $('#shoufeiren').html("&nbsp;&nbsp;" + $.session.get('val6'));
-        $('#remarks').html("&nbsp;&nbsp;" + $.session.get('val7'));
+        if(typeof($.session.get('val1')) != "undefined"){
+            $('#riqi').html("&nbsp;&nbsp;" + $.session.get('val1'));
+        }
+        if(typeof($.session.get('val2')) != "undefined"){
+            $('#name').html("&nbsp;&nbsp;" + $.session.get('val2'));
+        }
+        if(typeof($.session.get('val3')) != "undefined"){
+            $('#dingjin').html("&nbsp;&nbsp;" + $.session.get('val3'));
+        }
+        if(typeof($.session.get('val4')) != "undefined"){
+            $('#jine').html("&nbsp;&nbsp;" + $.session.get('val4'));
+        }
+        if(typeof($.session.get('val5')) != "undefined"){
+            $('#pay').html("&nbsp;&nbsp;" + $.session.get('val5'));
+        }
+        if(typeof($.session.get('val6')) != "undefined"){
+            $('#shoufeiren').html("&nbsp;&nbsp;" + $.session.get('val6'));
+        }
+        if(typeof($.session.get('val7')) != "undefined"){
+            $('#remarks').html("&nbsp;&nbsp;" + $.session.get('val7'));
+        }
+
     })
 
 

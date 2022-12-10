@@ -30,8 +30,8 @@ public class KeshiDetailServiceImpl implements KeshiDetailService {
         return km.select(ksd,c,a,d,f);
     }
     @Override
-    public List<Keshidetail> select1(Keshidetail ksd, String c,String a) {
-        return km.select1(ksd,c,a);
+    public List<Keshidetail> select1(Keshidetail ksd, String c,String a,String b) {
+        return km.select1(ksd,c,a,b);
     }
     @Override
     public List<Shezhi> shezhiList(Shezhi shezhi, String c) {

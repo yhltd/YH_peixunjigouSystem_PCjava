@@ -97,6 +97,9 @@
 		<if test="a != null and a != ''">
 			and riqi  like "%"#{a}"%"
 		</if>
+		<if test="b != null and b != ''">
+			and teacher_name  like "%"#{b}"%"
+		</if>
 		group by teacher_name,course,jine order by teacher_name
 
 	</select>

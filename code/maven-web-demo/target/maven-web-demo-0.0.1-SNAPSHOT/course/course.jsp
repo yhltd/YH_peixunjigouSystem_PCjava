@@ -67,7 +67,7 @@
             <input type="text" placeholder="请输入教师姓名" name="teacher_sel" form="myForm"/>
             <input type="text" placeholder="请输入课程" name="cou_sel" form="myForm"/>
             <input type="submit" value="查询" form="myForm" style="width:90px"/>
-            <a href="<%=request.getContextPath() %>/course/add.jsp" style="width:70px">添加信息</a>
+            <a href="<%=request.getContextPath() %>/course/toAdd.action" style="width:70px">添加信息</a>
             <%--            <a href="<%=request.getContextPath()%>/stu/add.jsp">添加学生</a>--%>
 
         </div>
