@@ -103,6 +103,14 @@
 
 </body>
 <script>
+    $(function () {
+        $("#riqi").change(function () {
+            var a = ["星期天", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
+            $('#xingqi').val(a[new Date($("#riqi").val()).getDay()]);
+        });
+
+    });
+
     function shujv() {
         alert($('#rongliang').val());
         return false;
