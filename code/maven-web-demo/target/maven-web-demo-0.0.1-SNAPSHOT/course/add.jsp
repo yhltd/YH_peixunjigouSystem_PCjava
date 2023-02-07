@@ -100,15 +100,17 @@
 <footer class="footer">
 </footer>
 <script src="<%=request.getContextPath() %>/js/time.js"></script>
-
+<script src="<%=request.getContextPath() %>/js/jquery.js"></script>
+<script src="<%=request.getContextPath() %>/js/jquerysession.js"></script>
 </body>
 <script>
     $(function () {
         $("#riqi").change(function () {
+            console.log('dd')
             var a = ["星期天", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
             $('#xingqi').val(a[new Date($("#riqi").val()).getDay()]);
+            //var b =new Date(Date.parse(s.replace(/\-/g,"/")));
         });
-
     });
 
     function shujv() {
