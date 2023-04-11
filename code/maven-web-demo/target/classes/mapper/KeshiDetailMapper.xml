@@ -67,6 +67,7 @@
 	</choose>,
 		student_name=#{ksd.student_name},
 		course=#{ksd.course},
+		keshi = #{ksd.keshi},
 		teacher_name=#{ksd.teacher_name},
 		jine=#{ksd.jine}
 		where

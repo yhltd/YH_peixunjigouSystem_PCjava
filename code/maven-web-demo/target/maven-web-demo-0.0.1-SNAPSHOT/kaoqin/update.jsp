@@ -183,7 +183,7 @@
                 </div>
                 <div>
                     <label for="ri10">10：</label>
-                    <input hidden="hidden" id="ri_id10" value="${kaoqin.ri10 }"/>
+                    <input hidden="hidden" id="ri10_id" value="${kaoqin.ri10 }"/>
                     <select name="ri10" id="ri10" style="width: 270px">
                         <option></option>
                         <option>出勤</option>
@@ -243,7 +243,7 @@
                 </div>
                 <div>
                     <label for="ri16">16：</label>
-                    <input hidden="hidden" id="ri_id16" value="${kaoqin.ri16 }"/>
+                    <input hidden="hidden" id="ri16_id" value="${kaoqin.ri16 }"/>
                     <select name="ri16" id="ri16" style="width: 270px">
                         <option></option>
                         <option>出勤</option>
@@ -353,7 +353,7 @@
                 </div>
                 <div>
                     <label for="ri27">27：</label>
-                    <input hidden="hidden" id="ri_id27" value="${kaoqin.ri27 }"/>
+                    <input hidden="hidden" id="ri27_id" value="${kaoqin.ri27 }"/>
                     <select name="ri27" id="ri27" style="width: 270px">
                         <option></option>
                         <option>出勤</option>
