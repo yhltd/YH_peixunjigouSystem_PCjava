@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/public.css"/>
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/style.css"/>
 </head>
-<body>
+<body id="body">
 <!--头部-->
 <header class="publicHeader">
     <h1>教务管理系统</h1>
@@ -58,16 +58,16 @@
 
         <div class="search" style="background: url('<%=request.getContextPath()%>/img/background3.jpeg')  repeat center!important;background-size:100% 100%;">
             <span style="color:red">${msg}</span>
-            <form action="<%=request.getContextPath()%>/keshi/select1.action"
+            <form action="<%=request.getContextPath()%>/tea/jisuan.action"
                   method="post" id="myForm"></form>
-            <input type="date" placeholder="请输入年月" name="date2" form="myForm"/>
-            <input type="text" placeholder="请输入教师姓名" name="teacher_name" form="myForm"/>
-            <input type="submit" value="查询" form="myForm"/>
+            <input  type="date" placeholder="请输入年月" name="date2" form="myForm"/>
+            <input  type="text" placeholder="请输入教师姓名" name="teacher_name" form="myForm"/>
+            <input  type="submit" value="查询" form="myForm"/>
         </div>
 <%--        <div class="search" style="background: url('<%=request.getContextPath()%>/img/background3.jpeg')  repeat center!important;background-size:100% 100%;">--%>
 
 <%--        </div>--%>
-        <table class="providerTable" cellpadding="0" cellspacing="0" style="margin-top: 5%">
+        <table id="data" class="providerTable" cellpadding="0" cellspacing="0" style="margin-top: 5%">
 <%--            <tr>--%>
 <%--                <th colspan="5"></th>--%>
 <%--            </tr>--%>
@@ -97,9 +97,32 @@
     </div>
 
 </section>
-<script>
+
+<footer class="footer">
+</footer>
+
+<script src="<%=request.getContextPath() %>/js/jquery.js"></script>
+<script src="<%=request.getContextPath() %>/js/jquerysession.js"></script>
+<script src="<%=request.getContextPath() %>/js/js.js"></script>
+<script src="<%=request.getContextPath() %>/js/time.js"></script>
+
+</body>
+<script type="text/javascript">
+
+
+
     function shujv() {
         alert($('#rongliang').val());
         return false;
     }
+
+/*    window.onunload=function () {
+        $.ajax({
+            type:"GET",
+            url:"/tea/jisuan",
+            data:"",
+        })
+    }*/
+
+
 </script>

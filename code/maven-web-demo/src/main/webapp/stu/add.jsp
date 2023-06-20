@@ -131,7 +131,7 @@
 <%--                </div>--%>
                 <div>
                     <label for="allHour">总课时：</label>
-                    <input type="text" name="allHour" id="allHour" value="${student.allHour }"/>
+                    <input type="number" name="allHour" id="allHour" value="${student.allHour }"/>
                 </div>
                 <div>
                     <label for="type">状态：</label>
@@ -148,7 +148,7 @@
                     </select>
                 </div>
                 <div class="providerAddBtn">
-                    <input type="submit" value="保存" onclick="history.back(-1)"/>
+                    <input type="submit" value="保存" />
                     <input type="button" value="返回" onclick="history.back(-1)"/>
                 </div>
             </form>

@@ -94,7 +94,6 @@ public class StudentController {
 
         c = e.a;
         session.setAttribute("page", 1);
-
         page = 0;
         List<Student> list = service.selectAll1(s, c, a, b, d, E, f, page);
         List<Student> list1 = service.selectAll(s, c, a, b, d, E, f, page);

@@ -102,9 +102,9 @@
 
         <div class="page">
             <div class="page_cell"><a href="<%=request.getContextPath() %>/pay/payment1.action">首页</a></div>
-            <div class="page_cell"><a href="<%=request.getContextPath() %>/pay/payment2.action">上一页</a></div>
+            <div class="page_cell" onclick="last_page(<%=session.getAttribute("page")%>)"><a href="<%=request.getContextPath() %>/pay/payment2.action">上一页</a></div>
             <div style="float: left;margin: 2px"><%=session.getAttribute("page")%>页</div>
-            <div class="page_cell"><a href="<%=request.getContextPath() %>/pay/payment3.action">下一页</a></div>
+            <div class="page_cell" onclick="next_page(<%=session.getAttribute("page")%>)"><a href="<%=request.getContextPath() %>/pay/payment3.action">下一页</a></div>
             <div class="page_cell"><a href="<%=request.getContextPath() %>/pay/payment4.action">末页</a></div>
         </div>
     </div>
@@ -121,20 +121,20 @@
 </body>
 
 <script>
-    $(function () {
-        $('#ks').val($.session.get('ks'));
-        $('#js').val($.session.get('js'));
-        $('#name').val($.session.get('name'));
-        $.session.set('ks', '');
-        $.session.set('js', '');
-        $.session.set('name', '');
-
-        $('#sel_button').click(function () {
-            $.session.set('ks', $('#ks').val());
-            $.session.set('js', $('#js').val());
-            $.session.set('name', $('#name').val());
-        })
-    });
+    // $(function () {
+    //     $('#ks').val($.session.get('ks'));
+    //     $('#js').val($.session.get('js'));
+    //     $('#name').val($.session.get('name'));
+    //     $.session.set('ks', '');
+    //     $.session.set('js', '');
+    //     $.session.set('name', '');
+    //
+    //     $('#sel_button').click(function () {
+    //         $.session.set('ks', $('#ks').val());
+    //         $.session.set('js', $('#js').val());
+    //         $.session.set('name', $('#name').val());
+    //     })
+    // });
 
 
     var element=document.getElementById("toExcel");

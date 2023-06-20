@@ -5,6 +5,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.yhocn.keshi_detail.entity.Keshidetail;
+import com.yhocn.keshi_detail.service.KeshiDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +24,8 @@ public class TeacherController {
 
 	@Autowired
 	private TeacherService service;
+	@Autowired
+	private KeshiDetailService service2;
 
 	@RequestMapping("/teacher")
 	public ModelAndView query(ModelAndView mv,Teacher t, String c) {
@@ -179,5 +183,20 @@ public class TeacherController {
 		}
 		return mv;
 	}
-
+	@RequestMapping("/jisuan")
+	public ModelAndView info1(ModelAndView mv, Keshidetail ksd, String a , String c, HttpServletRequest request) {
+		a=request.getParameter("date2");
+		String b=request.getParameter("teacher_name");
+//        String strDateFormat = "yyyy-MM";
+//        SimpleDateFormat sdf = new SimpleDateFormat(a);
+		if (!a.equals("")){
+			String s1[]=a.split("-");
+			a=s1[0]+ "-" + s1[1];}
+		LoginController e=new  LoginController();
+		c=e.a;
+		List<Keshidetail> list = service2.select1(ksd,c,a,b);
+		mv.addObject("teacherKeshiList",list);
+		mv.setViewName("/tea/jisuan.jsp");
+		return mv;
+	}
 }

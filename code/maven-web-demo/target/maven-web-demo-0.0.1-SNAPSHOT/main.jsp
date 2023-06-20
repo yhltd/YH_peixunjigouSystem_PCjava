@@ -65,7 +65,7 @@
                 <span ><a href="<%=request.getContextPath() %>/stu/arr.action">欠费学员</a></span>
                 <br>
 
-                <span ><a href="<%=request.getContextPath() %>/keshi/select1.action">教师工资</a></span>
+                <span ><a href="<%=request.getContextPath() %>/tea/jisuan.jsp">教师工资</a></span>
                 <span ><a href="<%=request.getContextPath() %>/te/shezhi.action">自定义参数</a></span>
             </div>
         </div>

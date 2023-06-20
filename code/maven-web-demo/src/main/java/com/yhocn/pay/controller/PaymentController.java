@@ -52,7 +52,7 @@ public class PaymentController {
 
 
         yeshu = 1;
-        page = 0;
+
         if (a == null || a.equals("")) {
             a = "1900/1/1";
         }
@@ -60,12 +60,11 @@ public class PaymentController {
             b = "2300/1/1";
         }
         c = e.a;
+        session.setAttribute("page", 1);
+        page = 0;
         List<Payment> plist = service.selectAll(p, a, b, c, d, page);
         List<Payment> plistAll = service.selectAll1(p, c);
-
-        session.setAttribute("page", 1);
         weiye = (int) Math.floor(plistAll.size() / 10);
-
         mv.addObject("plist", plist);
         mv.setViewName("/pay/payment.jsp");
         return mv;
@@ -174,7 +173,6 @@ public class PaymentController {
 
     @RequestMapping("/payment")
     public ModelAndView query1(ModelAndView mv, Payment p, String c, HttpServletRequest request) {
-
         LoginController e = new LoginController();
         c = e.a;
         List<Payment> plist = service.selectAll1(p, c);
@@ -209,13 +207,23 @@ public class PaymentController {
             return mv;
         }
         c = e.a;
-        int i = service.add(p, c);
-        if (i > 0) {
-            mv.addObject("msg", "增加用户成功");
-            mv.setViewName("/pay/payment1.action");
-        } else {
-            mv.addObject("msg", "增加用户失败");
-            mv.setViewName("/pay/payment1.action");
+
+        String b = p.getKsdate();
+        if (b.equals("")) {
+            mv.addObject("msg", "请选择日期");
+            mv.setViewName("/pay/toAdd.action");
+        } else if (b.equals(null)) {
+            mv.addObject("msg", "请选择日期");
+            mv.setViewName("/pay/toAdd.action");
+        }else{
+            int i = service.add(p, c);
+            if (i > 0) {
+                mv.addObject("msg", "增加成功");
+                mv.setViewName("/pay/payment1.action");
+            } else {
+                mv.addObject("msg", "增加失败");
+                mv.setViewName("/pay/payment1.action");
+            }
         }
         return mv;
     }
@@ -261,14 +269,25 @@ public class PaymentController {
             return mv;
         }
         c = e.a;
-        int i = service.update(p, c);
-        if (i > 0) {
-            mv.addObject("msg", "修改用户成功");
-            mv.setViewName("/pay/payment1.action");
-        } else {
-            mv.addObject("msg", "修改用户失败");
-            mv.setViewName("/pay/update.action");
+
+        String b = p.getKsdate();
+        if (b.equals("")) {
+            mv.addObject("msg", "请选择日期");
+            mv.setViewName("/pay/toUpdate.action");
+        } else if (b.equals(null)) {
+            mv.addObject("msg", "请选择日期");
+            mv.setViewName("/pay/toUpdate.action");
+        }else{
+            int i = service.update(p, c);
+            if (i > 0) {
+                mv.addObject("msg", "修改用户成功");
+                mv.setViewName("/pay/payment1.action");
+            } else {
+                mv.addObject("msg", "修改用户失败");
+                mv.setViewName("/pay/update.action");
+            }
         }
+
         return mv;
     }
 

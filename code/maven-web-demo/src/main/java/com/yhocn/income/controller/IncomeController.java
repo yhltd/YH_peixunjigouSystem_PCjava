@@ -173,15 +173,25 @@ public class IncomeController {
         }
 
         c = e.a;
-        int i = service.add(inc, c);
 
-        if (i > 0) {
-            mv.addObject("msg", "增加用户成功");
-            mv.setViewName("/inc/income.action");
-        } else {
-            mv.addObject("msg", "增加用户失败");
-            mv.setViewName("/inc/add.action");
+        String b = inc.getRgdate();
+        if (b.equals("")) {
+            mv.addObject("msg", "请选择日期");
+            mv.setViewName("/inc/shezhi.action");
+        } else if (b.equals(null)) {
+            mv.addObject("msg", "请选择日期");
+            mv.setViewName("/inc/shezhi.action");
+        }else{
+            int i = service.add(inc, c);
+            if (i > 0) {
+                mv.addObject("msg", "增加用户成功");
+                mv.setViewName("/inc/income.action");
+            } else {
+                mv.addObject("msg", "增加用户失败");
+                mv.setViewName("/inc/add.action");
+            }
         }
+
         return mv;
     }
 

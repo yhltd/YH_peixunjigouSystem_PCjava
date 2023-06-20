@@ -79,7 +79,7 @@
                 </div>
                 <div>
                     <label for="useType">用户类别：</label>
-                    <input type="text" name="useType" id="useType" value="${teacher.useType }"/>
+                    <input type="number" name="useType" id="useType" value="${teacher.useType }"/>
                     <span >*</span>
                 </div>
                 <div>
