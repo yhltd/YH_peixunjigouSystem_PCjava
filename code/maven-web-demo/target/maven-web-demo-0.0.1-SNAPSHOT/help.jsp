@@ -47,7 +47,7 @@
                 <li><a href="<%=request.getContextPath() %>/tea/jisuan.jsp">教师工资</a></li>
                 <li><a href="<%=request.getContextPath() %>/keshi/getTeacherKeshiList.action">教师课时统计</a></li>
                 <li><a href="<%=request.getContextPath() %>/tea/teacher.action">用户管理</a></li>
-                <li><a href="<%=request.getContextPath() %>/pdf/云合培训管理系统_PC.pdf">帮助</a></li>
+                <li><a href="<%=request.getContextPath() %>/pdf/云合教务管理系统_使用说明.rar">帮助</a></li>
             </ul>
         </nav>
     </div>
@@ -67,7 +67,7 @@
 </body>
 <script>
     $(document).ready(function(){
-        var url = 'pdf/云合培训管理系统_PC.pdf';
+        var url = 'pdf/云合教务管理系统_使用说明.rar';
         pdfjsLib.GlobalWorkerOptions.workerSrc =
             'js/pdf.worker.js.js';
         // 获取文档
