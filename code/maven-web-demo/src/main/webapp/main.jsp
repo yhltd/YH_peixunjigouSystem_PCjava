@@ -18,6 +18,8 @@
     <div class="publicHeaderR">
         <p style="font-size:13px"><span id="hours"></span><span style="color: #fff21b;">${GLOBAL_USER.realName} </span> , 欢迎你！</p>
         <input hidden="hidden" id="rongliang" value="${rongliang }"/>
+        <a href="<%=request.getContextPath() %>/pdf/app-debug.apk">下载app</a>
+        <a href="<%=request.getContextPath() %>/pdf/教务管理系统（20230618）.xlsm">下载表格</a>
         <a onclick="shujv()" style="width:80px">数据空间</a>
         <a href="<%=request.getContextPath() %>/login.jsp" style="width:80px">退出</a>
     </div>
@@ -46,8 +48,6 @@
                 <li><a href="<%=request.getContextPath() %>/keshi/getTeacherKeshiList.action">教师课时统计</a></li>
                 <li><a href="<%=request.getContextPath() %>/tea/teacher.action">用户管理</a></li>
                 <li><a href="<%=request.getContextPath() %>/pdf/云合教务管理系统_使用说明.rar">使用说明</a></li>
-                <li><a href="<%=request.getContextPath() %>/pdf/app-debug.apk">下载app</a></li>
-                <li><a href="<%=request.getContextPath() %>/pdf/教务管理系统（20230618）.xlsm">下载表格</a></li>
             </ul>
         </nav>
     </div>
