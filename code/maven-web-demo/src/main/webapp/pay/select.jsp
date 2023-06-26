@@ -56,7 +56,9 @@
                 <li><a href="<%=request.getContextPath() %>/tea/jisuan.jsp">教师工资</a></li>
                 <li><a href="<%=request.getContextPath() %>/keshi/getTeacherKeshiList.action">教师课时统计</a></li>
                 <li><a href="<%=request.getContextPath() %>/tea/teacher.action">用户管理</a></li>
-                <li><a href="<%=request.getContextPath() %>/pdf/云合教务管理系统_使用说明.rar">帮助</a></li>
+                <li><a href="<%=request.getContextPath() %>/pdf/云合教务管理系统_使用说明.rar">使用说明</a></li>
+                <li><a href="<%=request.getContextPath() %>/pdf/app-debug.apk">下载app</a></li>
+                <li><a href="<%=request.getContextPath() %>/pdf/教务管理系统（20230618）.xlsm">下载表格</a></li>
             </ul>
         </nav>
     </div>
