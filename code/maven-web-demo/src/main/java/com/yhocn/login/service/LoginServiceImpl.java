@@ -1,5 +1,6 @@
 package com.yhocn.login.service;
 
+import Bean.DynamicDataSourceHolder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,7 @@ public class LoginServiceImpl implements LoginService {
 	
 	@Override
 	public Teacher login(Teacher t) {
+		DynamicDataSourceHolder.setDataSource("dataSource1");
 		return dao.login(t);
 	}
 

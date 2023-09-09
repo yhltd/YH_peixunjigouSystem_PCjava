@@ -3,6 +3,7 @@ package com.yhocn.kstj.controller;
 import com.yhocn.kstj.entity.Kstj;
 
 import com.yhocn.kstj.service.KstjService;
+import com.yhocn.teacher.entity.Teacher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

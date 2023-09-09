@@ -2,6 +2,7 @@ package com.yhocn.teacher.service;
 
 import java.util.List;
 
+import Bean.DynamicDataSourceHolder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +24,7 @@ public class TecherServiceImpl implements TeacherService{
 	}
 	@Override
 	public List<Teacher> selectAll2() {
+		DynamicDataSourceHolder.setDataSource("dataSource1");
 		return dao.selectAll2();
 	}
 	@Override

@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import Bean.SessionUtil;
 import com.yhocn.keshi_detail.entity.Keshidetail;
 import com.yhocn.keshi_detail.service.KeshiDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -159,7 +160,7 @@ public class TeacherController {
 		return mv;
 	}
 	@RequestMapping(value = "/add",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
-	public ModelAndView add(ModelAndView mv,Teacher t, String c) {
+	public ModelAndView add(ModelAndView mv,Teacher t, String c,HttpSession session) {
 		LoginController e = new LoginController();
 		boolean pd=false;
 		for (int i=0;i<e.quanxian.size();i++){
@@ -173,13 +174,26 @@ public class TeacherController {
 			return mv;
 		}
 		c=e.a;
-		int i = service.add(t,c);
-		if(i>0) {
-			mv.addObject("msg","增加用户成功");
-			mv.setViewName("/tea/teacher.action");
-		}else {
-			mv.addObject("msg","增加用户失败");
-			mv.setViewName("/tea/add.jsp");
+		boolean panduan = true;
+		String userNum = SessionUtil.getUserNum(session);
+		if(userNum != ""){
+			int num = Integer.parseInt(userNum);
+			List<Teacher> teacherList = service.selectAll(t,c);
+			if(teacherList.size() >= num){
+				mv.addObject("msg","已有账号数量过多，请删除无用账号后再试");
+				mv.setViewName("/tea/add.jsp");
+				panduan = false;
+			}
+		}
+		if(panduan){
+			int i = service.add(t,c);
+			if(i>0) {
+				mv.addObject("msg","增加用户成功");
+				mv.setViewName("/tea/teacher.action");
+			}else {
+				mv.addObject("msg","增加用户失败");
+				mv.setViewName("/tea/add.jsp");
+			}
 		}
 		return mv;
 	}

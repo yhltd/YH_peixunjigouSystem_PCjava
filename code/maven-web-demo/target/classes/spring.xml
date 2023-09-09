@@ -23,16 +23,36 @@
 	<context:property-placeholder location="classpath:db.properties"/>
 
 	<!-- 配置数据源 -->
-	<p:bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+	<p:bean id="dataSource1" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
 		<p:property name="username" value="${jdbc.username}" />
 		<p:property name="password" value="${jdbc.password}" />
 		<p:property name="url" value="${jdbc.url}" />
 		<p:property name="driverClassName" value="${jdbc.driver}" />
 	</p:bean>
 
+	<!-- 配置数据源 -->
+	<p:bean id="dataSource2" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
+		<p:property name="username" value="bds28428944" />
+		<p:property name="password" value="07910Lyh" />
+		<p:property name="url" value="jdbc:sqlserver://bds28428944.my3w.com;DatabaseName=bds28428944_db" />
+		<p:property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
+	</p:bean>
+
+	<!-- 配置动态配置数据源 -->
+	<p:bean id ="dynamicDataSource" class= "Bean.DynamicDataSource">
+		<!-- 默认使用dataSource1的数据源 -->
+		<p:property name ="defaultTargetDataSource" ref="dataSource1"></p:property>
+		<p:property name ="targetDataSources">
+			<p:map key-type ="java.lang.String">
+				<p:entry key= "dataSource1" value-ref="dataSource1"></p:entry>
+				<p:entry key= "dataSource2" value-ref="dataSource2"></p:entry>
+			</p:map>
+		</p:property>
+	</p:bean>
+
 	<!-- 配置sqlSessionFactory，需要使用dataSource和mybatis的配置文件 -->
 	<p:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<p:property name="dataSource" ref="dataSource" />
+		<p:property name="dataSource" ref="dynamicDataSource" />
 		<p:property name="configLocation" value="classpath:mybatis.xml"/>
 		<!-- 如果映射文件与接口类不在一个包中的话，需要下面指定映射文件的路径 -->
         <p:property name="mapperLocations" value="classpath:mapper/*.xml" />
@@ -48,7 +68,7 @@
 	<!-- 配置事务步骤1：配置事务管理器 -->
 	<p:bean id="transactionManager" 
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<p:property name="dataSource" ref="dataSource" />
+		<p:property name="dataSource" ref="dynamicDataSource" />
 	</p:bean>
 	<!-- 配置事务步骤2：配置支持事务的标签 -->
 	<tx:annotation-driven transaction-manager="transactionManager"/>

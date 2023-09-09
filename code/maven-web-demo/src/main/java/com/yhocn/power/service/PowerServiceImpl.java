@@ -1,5 +1,6 @@
 package com.yhocn.power.service;
 
+import Bean.DynamicDataSourceHolder;
 import com.yhocn.power.entity.Power;
 import com.yhocn.power.mapper.PowerMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,7 @@ public class PowerServiceImpl implements PowerService {
 
     @Override
     public List<Power> getListByName(Integer t_id, String c) {
+        DynamicDataSourceHolder.setDataSource("dataSource1");
         return dao.getListByName(t_id,c);
     }
 
