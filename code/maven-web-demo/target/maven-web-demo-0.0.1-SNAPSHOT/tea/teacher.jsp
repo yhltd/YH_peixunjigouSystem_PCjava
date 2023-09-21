@@ -9,6 +9,8 @@
     <title>教务管理系统</title>
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/public.css"/>
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/style.css"/>
+    <script src="<%=request.getContextPath() %>/js/jquery.js"></script>
+    <script src="<%=request.getContextPath() %>/js/qrcode.min.js"></script>
 </head>
 <body>
 <!--头部-->
@@ -68,6 +70,7 @@
             <a href="<%=request.getContextPath()%>/tea/add.jsp">添加员工</a>
             <a href="<%=request.getContextPath()%>/power/getList1.action">权限管理</a>
         </div>
+        <div id="qrcode" style="display: none"></div>
         <table id="data" class="providerTable" cellpadding="0" cellspacing="0">
             <caption style="font-size: 14px;margin-bottom: 0.5%;">用户管理</caption>
             <tr class="firstTr">
@@ -179,6 +182,22 @@
             },
             success: function (result) {
                 console.log(result);
+                var url = window.top.location.href.replace("maven_web_demo_war/tea/teacher.action#","maven_web_demo_war/login.jsp")
+                console.log(url)
+                url = url + "?user=" + result
+                console.log(url)
+                var qrcode_container = document.getElementById('qrcode');
+                // 生成二维码
+                var qrcode = new QRCode(qrcode_container, {
+                    text: url, // 二维码中的内容
+                    width: 200, // 二维码的宽度
+                    height: 200, // 二维码的高度
+                    colorDark: "#000000", // 二维码的颜色
+                    colorLight: "#ffffff", // 二维码的背景色
+                });
+                var base64_qrcode = qrcode_container.firstChild.toDataURL("image/png");
+                console.log(base64_qrcode)
+                downloadFileByBase64(username+".png",base64_qrcode.split(",")[1])
             }, error: function () {
                 alert("error!");
             }

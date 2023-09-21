@@ -29,17 +29,58 @@
                     str+=strcontent+"</select>";
                     $("#content").html(str);
 
+                    var user = getUrlParams("user")
+                    console.log(user)
+                    if(user!=false){
+                        $.ajax({
+                            type: 'post',
+                            url: './tea/jiemiGet.action',
+                            data:{
+                                text:user
+                            },
+                            success:function (result){
+                                console.log(result)
+                                var company = result.split("`")[2]
+                                var userName = result.split("`")[0]
+                                var password = result.split("`")[1]
+                                console.log(company)
+                                console.log(userName)
+                                console.log(password)
+                                $('#Company').val(company)
+                                $('#userName').val(userName)
+                                $('#password').val(password)
+                                document.getElementById("loginBtn").click()
+                            },error:function () {
+                                alert("error!");
+                            }
+                        })
+                    }
                 },error:function () {
                     alert("error!");
                 }
             })
         });
 
+        function getUrlParams(key) {
+            var url = window.location.search.substr(1);
+            if (url == '') {
+                return false;
+            }
+            var paramsArr = url.split('&');
+            for (var i = 0; i < paramsArr.length; i++) {
+                var combina = paramsArr[i].split("=");
+                if (combina[0] == key) {
+                    return combina[1];
+                }
+            }
+            return false;
+        };
+
     </script>
 </head>
 <body class="login_bg">
 <img src="img/yhlogo.png" style="width: 70px;height: 70px;float: left">
-<p style="text-align: right;font-size: 14px">当前系统版本：3.01.0&nbsp;&nbsp;</p>
+<p style="text-align: right;font-size: 14px">当前系统版本：3.01.1&nbsp;&nbsp;</p>
 <section class="loginBox">
     <header class="loginHeader">
         <h1>教务管理登录系统</h1>
