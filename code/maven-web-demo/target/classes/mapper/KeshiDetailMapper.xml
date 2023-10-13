@@ -80,10 +80,10 @@
 	</delete>
 
 	<select id="getTeacherKeshiList" parameterType="Keshidetail" resultType="Keshidetail">
-		select teacher_name,course,sum(keshi) as keshi,jine,sum(jine*keshi) as gongzi from keshi_detail where Company =#{c} group by teacher_name,course,jine order by teacher_name
+		select student_name,teacher_name,course,sum(keshi) as keshi from keshi_detail where Company = #{c} group by student_name,teacher_name,course,Company
 	</select>
 	<select id="select" parameterType="Keshidetail" resultType="Keshidetail">
-		select teacher_name,course,sum(keshi) as keshi,jine,sum(jine*keshi) as gongzi from keshi_detail where Company =#{c}
+		select student_name,teacher_name,course,sum(keshi) as keshi from keshi_detail where Company = #{c}
 		<if test="a != null and a != ''">
 			and teacher_name  like "%"#{a}"%"
 		</if>

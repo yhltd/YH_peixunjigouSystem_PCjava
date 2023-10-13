@@ -109,17 +109,15 @@
             <tr class="firstTr">
                 <th width="10%">教师姓名</th>
                 <th width="10%">课程名称</th>
+                <th width="10%">学生姓名</th>
                 <th width="10%">上课课时</th>
-                <th width="10%">每节金额</th>
-                <th width="10%">工资核算</th>
             </tr>
             <c:forEach items="${teacherKeshiList }" var="tkl">
                 <tr>
                     <td>${tkl.teacher_name}</td>
                     <td>${tkl.course}</td>
+                    <td>${tkl.student_name}</td>
                     <td>${tkl.keshi}</td>
-                    <td>${tkl.jine}</td>
-                    <td>${tkl.gongzi}</td>
 <%--                    <td>--%>
 <%--                        <a href="<%=request.getContextPath() %>/teacher/toalter.action?id=${s.id}"><img src="<%=request.getContextPath() %>/img/read.png" alt="查看" title="查看"/></a>--%>
 <%--                        <a href="<%=request.getContextPath() %>/teacher/toalter.action?id=${s.id}"><img src="<%=request.getContextPath() %>/img/xiugai.png" alt="修改" title="修改"/></a>--%>

@@ -7,7 +7,7 @@
 <mapper namespace="com.yhocn.student.mapper.StudentMapper">
 
 	<select id="selectAll" parameterType="Student" resultType="Student">
-		select id,RealName,Sex,rgdate,Course,Teacher,Classnum,phone,Fee,(select SUM(case when Company =#{c} and realname=#{s.realName} then paid else 0 end) from payment ) mall ,Fee -Cost as Nocost,(select SUM(case when Company=#{c} and student_name=#{s.realName} and course=#{s.course} then keshi else 0 end ) from keshi_detail ) nall,Allhour - Hour as Nohour,Allhour,Type FROM student
+		select id,RealName,Sex,rgdate,Course,Teacher,Classnum,phone,Fee,(select SUM(case when Company =#{c} and realname=#{s.realName} then paid + money else 0 end) from payment ) mall ,Fee -Cost as Nocost,(select SUM(case when Company=#{c} and student_name=#{s.realName} and course=#{s.course} then keshi else 0 end ) from keshi_detail ) nall,Allhour - Hour as Nohour,Allhour,Type FROM student
 		where Company =#{c}
 		<if test="d != null and d != ''">
 			and Realname like "%"#{d}"%"
@@ -23,7 +23,7 @@
 		</if>
 	</select>
 	<select id="selectAll1" parameterType="Student" resultType="Student">
-		select id,RealName,Sex,rgdate,Course,Teacher,Classnum,phone,Fee,(select SUM(case when Company =#{c} and realname=student.realname then paid else 0 end) from payment ) mall ,Fee -Cost as Nocost,(select SUM(case when Company=#{c} and student_name=student.realname and course=student.Course then keshi else 0 end ) from keshi_detail ) nall,Allhour - Hour as Nohour,Allhour,Type FROM student
+		select id,RealName,Sex,rgdate,Course,Teacher,Classnum,phone,Fee,(select SUM(case when Company =#{c} and realname=student.realname then paid + money else 0 end) from payment ) mall ,Fee -(select SUM(case when Company =#{c} and realname=student.realname then paid + money else 0 end) from payment ),(select SUM(case when Company=#{c} and student_name=student.realname and course=student.Course then keshi else 0 end ) from keshi_detail ) nall,Allhour - (select SUM(case when Company=#{c} and student_name=student.realname and course=student.Course then keshi else 0 end ) from keshi_detail ) as Nohour,Allhour,Type FROM student
 		where Company =#{c}
 		<if test="d != null and d != ''">
 			and Realname like "%"#{d}"%"
@@ -41,13 +41,13 @@
 	</select>
 
 	<select id="selectArr" parameterType="Student" resultType="Student">
-		select * from student
-		where Nocost is not null and Nocost>0 and Company =#{c}
+		select id,RealName,Sex,rgdate,Course,Teacher,Classnum,phone,Fee,(select SUM(case when Company =#{c}  and realname=student.realname then paid + money else 0 end) from payment ) mall ,ifnull(Fee,0) -ifnull((select SUM(case when Company =#{c}  and realname=student.realname then paid + money else 0 end) from payment ),0) as Nocost,(select SUM(case when Company=#{c}  and student_name=student.realname and course=student.Course then keshi else 0 end ) from keshi_detail ) nall,ifnull(Allhour,0) - ifnull((select SUM(case when Company=#{c}  and student_name=student.realname and course=student.Course then keshi else 0 end ) from keshi_detail ),0) as Nohour,Allhour,Type FROM student
+		where Company =#{c} and ifnull(Fee,0) -ifnull((select SUM(case when Company =#{c}  and realname=student.realname then paid else 0 end) from payment ),0)  > 0
 
 	</select>
 	<select id="selectArr1" parameterType="Student" resultType="Student">
-		select * from student
-		where Nocost is not null and Nocost>0 and Company =#{c}
+		select id,RealName,Sex,rgdate,Course,Teacher,Classnum,phone,Fee,(select SUM(case when Company =#{c}  and realname=student.realname then paid + money else 0 end) from payment ) mall ,ifnull(Fee,0) -ifnull((select SUM(case when Company =#{c}  and realname=student.realname then paid + money else 0 end) from payment ),0) as Nocost,(select SUM(case when Company=#{c}  and student_name=student.realname and course=student.Course then keshi else 0 end ) from keshi_detail ) nall,ifnull(Allhour,0) - ifnull((select SUM(case when Company=#{c}  and student_name=student.realname and course=student.Course then keshi else 0 end ) from keshi_detail ),0) as Nohour,Allhour,Type FROM student
+		where Company =#{c} and ifnull(Fee,0) -ifnull((select SUM(case when Company =#{c}  and realname=student.realname then paid else 0 end) from payment ),0)  > 0
 		<if test="a != null and a != ''">
 			and Realname like "%"#{a}"%"
 		</if>
