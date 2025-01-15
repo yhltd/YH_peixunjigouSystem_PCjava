@@ -394,7 +394,7 @@
                     </select>
                 </div>
                 <div class="providerAddBtn">
-                    <input id="pl" value="批量" onclick="pl"/>
+                    <input type="button" id="pl" value="批量" onclick="pl"/>
                     <input type="submit" value="保存" onclick="history.back(-1)"/>
                     <input type="button" value="返回" onclick="history.back(-1)"/>
                 </div>

@@ -148,14 +148,15 @@
                 <div>
                        <label for="handle">经手人：</label>
                        <%--    原有代码     <input type="text" name="handle" id="handle" value="${income.handle }"/>--%>
-                    <select name="handle" id="handle" style="width: 270px">
-                        <option> </option>
-                        <option >琪一</option>
-                        <option >陈二</option>
-                        <option >张三</option>
-                        <option >李四</option>
-                        <option >王五</option>
-                    </select>
+<%--                    <select name="handle" id="handle" style="width: 270px">--%>
+                        <input type="text" name="handle" id="handle" value="${income.handle }"/>
+<%--                        <option> </option>--%>
+<%--                        <option >琪一</option>--%>
+<%--                        <option >陈二</option>--%>
+<%--                        <option >张三</option>--%>
+<%--                        <option >李四</option>--%>
+<%--                        <option >ss</option>--%>
+<%--                    </select>--%>
                     <span >*</span>
                 </div>
                 <div class="providerAddBtn">

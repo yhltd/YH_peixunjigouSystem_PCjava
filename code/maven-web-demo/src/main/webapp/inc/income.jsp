@@ -64,7 +64,7 @@
         <div class="search" style="background: url('<%=request.getContextPath()%>/img/background3.jpeg')  repeat center!important;background-size:100% 100%;">
             <span style="color:red">${msg}</span>
             <form action="<%=request.getContextPath()%>/inc/select.action"
-                  method="post" id="myForm"></form>
+                  method="post" id="myForm"> </form>
             <span>起始：</span>
             <input type="date" id="ks"  name="rgdate" form="myForm"/>
             <span>结束</span>
@@ -177,17 +177,17 @@
 
 </body>
 <script type="text/javascript">
-    $(function () {
-        $('#ks').val($.session.get('ks'));
-        $('#js').val($.session.get('js'));
-        $.session.set('ks', '');
-        $.session.set('js', '');
-
-        $('#sel_button').click(function () {
-            $.session.set('ks', $('#ks').val());
-            $.session.set('js', $('#js').val());
-        })
-    });
+    // $(function () {
+    //     $('#ks').val($.session.get('ks'));
+    //     $('#js').val($.session.get('js'));
+    //     $.session.set('ks', '');
+    //     $.session.set('js', '');
+    //
+    //     $('#sel_button').click(function () {
+    //         $.session.set('ks', $('#ks').val());
+    //         $.session.set('js', $('#js').val());
+    //     })
+    // });
 
 
     var element=document.getElementById("toExcel");

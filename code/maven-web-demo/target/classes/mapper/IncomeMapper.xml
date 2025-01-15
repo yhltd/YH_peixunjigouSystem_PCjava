@@ -23,11 +23,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<select id="shezhiList" parameterType="Shezhi" resultType="Shezhi">
-		select * from shezhi where msort != "" and Company =#{c}
+		select * from shezhi where msort != "" and Company =#{c} group by msort
 	</select>
 
 	<select id="List" parameterType="Shezhi" resultType="Shezhi">
-		select * from shezhi where  psort != "" and Company =#{c}
+		select * from shezhi where  psort != "" and Company =#{c} group by msort
 	</select>
 
 	<insert id="add">
