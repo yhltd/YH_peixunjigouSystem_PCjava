@@ -103,7 +103,7 @@
                         <a href="<%=request.getContextPath() %>/tea/toalter.action?id=${s.id}"><img src="<%=request.getContextPath() %>/img/read.png" alt="查看" title="查看"/></a>
                         <a href="<%=request.getContextPath() %>/tea/toalter.action?id=${s.id}"><img src="<%=request.getContextPath() %>/img/xiugai.png" alt="修改" title="修改"/></a>
                         <a href="<%=request.getContextPath() %>/tea/delete.action?id=${s.id}" class="removeProvider" onclick="return confirm('您确认要删除本记录么？')"><img src="<%=request.getContextPath() %>/img/schu.png" alt="删除" title="删除"/></a>
-                        <a href="#" onclick="qr_make('${s.userName}','${s.password}','${s.company}')"><img src="<%=request.getContextPath() %>/img/read.png" alt="二维码" title="二维码"/></a>
+                        <a href="#" onclick="qr_make('${s.userName}','${s.password}','${s.company}')"><img style="height: 22px; width: 22px"  src="<%=request.getContextPath() %>/img/22.png" alt="二维码" title="二维码"/></a>
                     </td>
                 </tr>
             </c:forEach>

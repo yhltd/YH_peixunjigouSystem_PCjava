@@ -80,7 +80,7 @@
 </head>
 <body class="login_bg">
 <img src="img/yhlogo.png" style="width: 70px;height: 70px;float: left">
-<p style="text-align: right;font-size: 14px">当前系统版本：5.1.0.1&nbsp;&nbsp;</p>
+<p style="text-align: right;font-size: 14px">当前系统版本：5.1.0.2&nbsp;&nbsp;</p>
 <section class="loginBox">
     <header class="loginHeader">
         <h1>教务管理登录系统</h1>

@@ -55,20 +55,36 @@
         <div class="wFont">
             <div id="min3">
                 <p style="color: red">${qianfei}</p>
-                <span ><a href="<%=request.getContextPath() %>/stu/student1.action" >学生信息</a></span>
-                <span ><a href="<%=request.getContextPath() %>/teacherInfo/getList1.action" >教师信息</a></span>
+                <span style="display: inline-block; position: relative;">
+    <a href="<%=request.getContextPath() %>/stu/student1.action" style="display: block; width: 100%; height: 100%;">学生信息</a>
+</span>
+                <span style="display: inline-block; position: relative;">
+    <a href="<%=request.getContextPath() %>/teacherInfo/getList1.action" style="display: block; width: 100%; height: 100%;">教师信息</a>
+</span>
                 <br>
 
-                <span ><a href="<%=request.getContextPath() %>/pay/payment.action">缴费记录</a></span>
-                <span ><a href="<%=request.getContextPath() %>/keshi/getList1.action">课时统计</a></span>
+                <span style="display: inline-block; position: relative;">
+                    <a href="<%=request.getContextPath() %>/pay/payment.action" style="display: block; width: 100%; height: 100%;">缴费记录</a>
+                </span>
+                <span style="display: inline-block; position: relative;">
+                    <a href="<%=request.getContextPath() %>/keshi/getList1.action" style="display: block; width: 100%; height: 100%;">课时统计</a>
+                </span>
                 <br>
 
-                <span ><a href="<%=request.getContextPath() %>/inc/income.action">收支明细</a></span>
-                <span ><a href="<%=request.getContextPath() %>/stu/arr.action">欠费学员</a></span>
+                <span style="display: inline-block; position: relative;">
+                    <a href="<%=request.getContextPath() %>/inc/income.action" style="display: block; width: 100%; height: 100%;">收支明细</a>
+                </span>
+                <span style="display: inline-block; position: relative;">
+                    <a href="<%=request.getContextPath() %>/stu/arr.action" style="display: block; width: 100%; height: 100%;">欠费学员</a>
+                </span>
                 <br>
 
-                <span ><a href="<%=request.getContextPath() %>/tea/jisuan.jsp">教师工资</a></span>
-                <span ><a href="<%=request.getContextPath() %>/te/shezhi.action">自定义参数</a></span>
+                <span style="display: inline-block; position: relative;">
+                    <a href="<%=request.getContextPath() %>/tea/jisuan.jsp" style="display: block; width: 100%; height: 100%;">教师工资</a>
+                </span>
+                <span style="display: inline-block; position: relative;">
+                    <a href="<%=request.getContextPath() %>/te/shezhi.action" style="display: block; width: 100%; height: 100%;">自定义参数</a>
+                </span>
             </div>
         </div>
     </div>

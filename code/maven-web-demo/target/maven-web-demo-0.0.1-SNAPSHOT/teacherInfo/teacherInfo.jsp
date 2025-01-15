@@ -78,7 +78,7 @@
                 <th width="5%">序号</th>
                 <th width="5%">教师姓名</th>
                 <th width="5%">性别</th>
-                <th width="15%">身份证号码</th>
+                <th width="10%">身份证号码</th>
                 <th width="5%">民族</th>
                 <th width="10%">生日</th>
                 <th width="5%">职位</th>
@@ -87,7 +87,7 @@
                 <th width="10%">入职日期</th>
                 <th width="5%">在职状态</th>
                 <th width="5%">社保情况</th>
-                <th width="15%">地址</th>
+                <th width="10%">地址</th>
             </tr>
             <c:forEach items="${list }" var="t">
                 <tr>
@@ -109,6 +109,7 @@
                         <a href="<%=request.getContextPath() %>/teacherInfo/delete.action?id=${t.id}" class="removeProvider" onclick="return confirm('您确认要删除本记录么？')"><img src="<%=request.getContextPath() %>/img/schu.png" alt="删除" title="删除"/></a>
                     </td>
                 </tr>
+
             </c:forEach>
         </table>
         <div class="page">

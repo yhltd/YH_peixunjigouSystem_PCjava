@@ -15,9 +15,12 @@
 		select p.id,t_id,view_name,`add`,del,upd,sel,RealName as s_name from power as p left join teacher as t on p.t_id=t.ID  where p.company =#{c} and p.id=#{p.id}
 	</select>
 
+<!--    <select id="getListByName" resultType="Power">-->
+<!--		select p.id,t_id,view_name,`add`,del,upd,sel,RealName as s_name from power as p left join teacher as t on p.t_id=t.ID  where p.company =#{c} and p.t_id=#{t_id}-->
+<!--	</select>-->
     <select id="getListByName" resultType="Power">
-		select p.id,t_id,view_name,`add`,del,upd,sel,RealName as s_name from power as p left join teacher as t on p.t_id=t.ID  where p.company =#{c} and p.t_id=#{t_id}
-	</select>
+        select p.id,t_id,view_name,`add`,del,upd,sel,RealName as s_name from power as p left join teacher as t on p.t_id=t.ID  where p.company =#{c} and p.t_id=#{t_id}
+    </select>
 
     <insert id="add">
         insert into power (t_id,view_name,`add`,del,upd,sel,company)
