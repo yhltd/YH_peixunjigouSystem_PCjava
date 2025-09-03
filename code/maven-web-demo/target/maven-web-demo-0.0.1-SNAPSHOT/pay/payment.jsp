@@ -18,17 +18,18 @@
     <div class="publicHeaderR">
         <p><span id="hours"></span><span style="color: #fff21b">${GLOBAL_USER.realName} </span> , 欢迎你！</p>
         <input hidden="hidden" id="rongliang" value="${rongliang }"/>
-        <a onclick="shujv()" style="width:80px">数据空间</a>
-        <a href="<%=request.getContextPath() %>/login.jsp" style="width:80px">退出</a>
+        <a class="btn-3d" onclick="shujv()" style="width:80px">数据空间</a>
+        <a class="btn-3d" href="<%=request.getContextPath() %>/login.jsp" style="width:80px">退出</a>
     </div>
-    <a href="<%=request.getContextPath() %>/tea/teacher.action"><img src="../img/yyh.png" style="width: 32px;height: 32px;float:right;margin-top: 8px;"></a>
+<%--    <a href="<%=request.getContextPath() %>/tea/teacher.action"><img src="../img/yyh.png" style="width: 32px;height: 32px;float:right;margin-top: 8px;"></a>--%>
 </header>
 <!--时间-->
-<section class="publicTime">
-    <span id="time"></span>
-</section>
+<%--<section class="publicTime">--%>
+<%--    <span id="time"></span>--%>
+<%--</section>--%>
 <!--主体内容-->
 <section class="publicMian ">
+    <div class="left-bg">
     <div class="left">
         <h2 class="leftH2"><span class="span1"></span>功能列表 <span></span></h2>
         <nav>
@@ -51,28 +52,31 @@
             </ul>
         </nav>
     </div>
+    </div>
     <div class="right" id="right">
+        <div class="all">
         <div class="location">
             <strong>你现在所在的位置是:</strong>
             <span>缴费记录</span>
+            <span id="time"></span>
             <div title="此页面为缴费记录，在这里添加数据后学生信息会自动更新已缴费金额" style="color: red">*</div>
         </div>
-        <div class="search" style="background: url('<%=request.getContextPath()%>/img/background3.jpeg')  repeat center!important;background-size:100% 100%;">
-            <span style="color:red">${msg}</span>
+        <div class="search" style="background-size:100% 100%;">
+<%--            <span style="color:red">${msg}</span>--%>
             <form action="<%=request.getContextPath()%>/pay/payment1.action"
                   method="post" id="myForm"></form>
-            <input id="ks" type="date" placeholder="请输入开始时间" name="date1" form="myForm"/>
-            <input id="js" type="date" placeholder="请输入结束时间" name="date2" form="myForm"/>
+            <input id="ks" type="date" placeholder="请输入开始时间" name="date1" form="myForm" style="height: 40px;width: 120px;border: 1px solid #0f0f0f;border-radius: 4px"/>
+            <input id="js" type="date" placeholder="请输入结束时间" name="date2" form="myForm" style="height: 40px;width: 120px;border: 1px solid #0f0f0f;border-radius: 4px"/>
             <input id="name" type="text" placeholder="请输入学生姓名" name="realname" form="myForm"/>
-            <input id="sel_button" type="submit" value="查询" form="myForm"/>
-            <a onclick="printpage()" >打印</a>
-            <a href="<%=request.getContextPath()%>/pay/toAdd.action">添加记录</a>
-            <a id="toExcel" >导出excel</a>
+            <input class="btn-3d" id="sel_button" type="submit" value="查询" form="myForm"/>
+            <a class="btn-3d" onclick="printpage()" >打印</a>
+            <a class="btn-3d" href="<%=request.getContextPath()%>/pay/toAdd.action">添加记录</a>
+            <a class="btn-3d" id="toExcel" >导出excel</a>
         </div>
         <div id="div">
 <%--       cellpadding="1" cellspacing="1"     --%>
-            <table id="data" class="providerTable" >
-                <caption style="font-size: 14px;margin-bottom: 0.5%;">缴费记录</caption>
+            <table id="data" class="gradient-table"  >
+<%--                <caption style="font-size: 14px;margin-bottom: 0.5%;">缴费记录</caption>--%>
                 <tr class="firstTr">
                     <th style="border: 1px solid rgba(209, 218, 223, 0.4);" width="10%">日期</th>
                     <th style="border: 1px solid rgba(209, 218, 223, 0.4);" width="10%">学生姓名</th>
@@ -81,9 +85,10 @@
                     <th style="border: 1px solid rgba(209, 218, 223, 0.4);" width="10%">缴费方式</th>
                     <th style="border: 1px solid rgba(209, 218, 223, 0.4);" width="10%">收费人</th>
                     <th style="border: 1px solid rgba(209, 218, 223, 0.4);" width="20%">备注</th>
+                    <th>操作</th>
                 </tr>
                 <c:forEach items="${plist }" var="p">
-                    <tr>
+                    <tr class="end">
                         <td style="border: 1px solid rgba(209, 218, 223, 0.4);">${p.ksdate}</td>
                         <td style="border: 1px solid rgba(209, 218, 223, 0.4);"><a href="<%=request.getContextPath() %>/pay/dayin.jsp" onclick="popWin(this);">${p.realname}</a></td>
                         <td style="border: 1px solid rgba(209, 218, 223, 0.4);">${p.paid}</td>
@@ -103,12 +108,13 @@
 
 
         <div class="page">
-            <div class="page_cell"><a href="<%=request.getContextPath() %>/pay/payment1.action">首页</a></div>
-            <div class="page_cell" onclick="last_page(<%=session.getAttribute("page")%>)"><a href="<%=request.getContextPath() %>/pay/payment2.action">上一页</a></div>
-            <div style="float: left;margin: 2px"><%=session.getAttribute("page")%>页</div>
-            <div class="page_cell" onclick="next_page(<%=session.getAttribute("page")%>)"><a href="<%=request.getContextPath() %>/pay/payment3.action">下一页</a></div>
-            <div class="page_cell"><a href="<%=request.getContextPath() %>/pay/payment4.action">末页</a></div>
+            <div class="page_cell"><a class="page-btn" href="<%=request.getContextPath() %>/pay/payment1.action">首页</a></div>
+            <div class="page_cell" onclick="last_page(<%=session.getAttribute("page")%>)"><a class="page-btn" href="<%=request.getContextPath() %>/pay/payment2.action">上一页</a></div>
+            <div style="float: left;margin: 2px ;height: 40px; font-size: 16px;color: #0802e9;display: flex;justify-content: center;align-items: center;"><%=session.getAttribute("page")%>页</div>
+            <div class="page_cell" onclick="next_page(<%=session.getAttribute("page")%>)"><a class="page-btn" href="<%=request.getContextPath() %>/pay/payment3.action">下一页</a></div>
+            <div class="page_cell"><a class="page-btn" href="<%=request.getContextPath() %>/pay/payment4.action">末页</a></div>
         </div>
+    </div>
     </div>
 </section>
 

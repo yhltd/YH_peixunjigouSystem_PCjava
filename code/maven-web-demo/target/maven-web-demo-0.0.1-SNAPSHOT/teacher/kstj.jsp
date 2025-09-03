@@ -18,17 +18,18 @@
     <div class="publicHeaderR">
         <p><span id="hours"></span><span style="color: #fff21b">${GLOBAL_USER.realName} </span> , 欢迎你！</p>
         <input hidden="hidden" id="rongliang" value="${rongliang }"/>
-        <a onclick="shujv()" style="width:80px">数据空间</a>
-        <a href="<%=request.getContextPath() %>/login.jsp" style="width:80px">退出</a>
+        <a class="btn-3d" onclick="shujv()" style="width:80px">数据空间</a>
+        <a class="btn-3d" href="<%=request.getContextPath() %>/login.jsp" style="width:80px">退出</a>
     </div>
-    <a href="<%=request.getContextPath() %>/tea/teacher.action"><img src="../img/yyh.png" style="width: 32px;height: 32px;float:right;margin-top: 8px;"></a>
+<%--    <a href="<%=request.getContextPath() %>/tea/teacher.action"><img src="../img/yyh.png" style="width: 32px;height: 32px;float:right;margin-top: 8px;"></a>--%>
 </header>
 <!--时间-->
-<section class="publicTime">
-    <span id="time"></span>
-</section>
+<%--<section class="publicTime">--%>
+<%--    <span id="time"></span>--%>
+<%--</section>--%>
 <!--主体内容-->
 <section class="publicMian ">
+    <div class="left-bg">
     <div class="left">
         <h2 class="leftH2"><span class="span1"></span>功能列表 <span></span></h2>
         <nav>
@@ -50,30 +51,33 @@
             </ul>
         </nav>
     </div>
+    </div>
     <div class="right">
+        <div class="all">
         <div class="location">
             <strong>你现在所在的位置是:</strong>
             <span>教师课时统计</span>
+            <span id="time"></span>
             <div title="此页面为教师课时统计，这里会根据课时统计页面的数据来计算教师的工资" style="color: red">*</div>
         </div>
-        <div class="search" style="background: url('<%=request.getContextPath()%>/img/background3.jpeg')  repeat center!important;background-size:100% 100%;">
-            <span style="color:red">${msg}</span>
+        <div class="search" style="background-size:100% 100%;">
+<%--            <span style="color:red">${msg}</span>--%>
 <%--            <a href="<%=request.getContextPath()%>/teacher/add.jsp">添加信息</a>--%>
             <form action="<%=request.getContextPath()%>/keshi/select.action"
                   method="post" id="myForm"></form>
 
             <span>教师名称</span>
             <input type="text" placeholder="请输入老师姓名" name="teacher_name" form="myForm"/>
-            <input type="date" placeholder="请输入开始时间" name="date1" form="myForm"/>
-            <input type="date" placeholder="请输入结束时间" name="date2" form="myForm"/>
-            <input type="submit" value="查询" form="myForm"/>
-            <a id="toExcel" >导出excel</a>
-            <a href="<%=request.getContextPath() %>/course/getList1.action">教师课表</a>
+            <input type="date" placeholder="请输入开始时间" name="date1" form="myForm" style="height: 40px;width: 120px;border: 1px solid #0f0f0f;border-radius: 4px"/>
+            <input type="date" placeholder="请输入结束时间" name="date2" form="myForm" style="height: 40px;width: 120px;border: 1px solid #0f0f0f;border-radius: 4px"/>
+            <input class="btn-3d" type="submit" value="查询" form="myForm"/>
+            <a class="btn-3d" id="toExcel" >导出excel</a>
+            <a class="btn-3d" href="<%=request.getContextPath() %>/course/getList1.action">教师课表</a>
         </div>
 <%--        <div class="search" style="background: url('<%=request.getContextPath()%>/img/background3.jpeg')  repeat center!important;background-size:100% 100%;">--%>
 <%--        </div>--%>
-        <table id="data" class="providerTable" cellpadding="0" cellspacing="0">
-            <caption style="font-size: 14px;margin-bottom: 0.5%;">教师课时统计</caption>
+        <table id="data" class="gradient-table">
+<%--            <caption style="font-size: 14px;margin-bottom: 0.5%;">教师课时统计</caption>--%>
 <%--            <tr>--%>
 <%--                <th width="10%">--%>
 <%--                    <select  style="width: 50%">--%>
@@ -103,9 +107,9 @@
 <%--                <th width="10%">月</th>--%>
 <%--                <th width="10%"></th>--%>
 <%--            </tr>--%>
-            <tr>
-                <th colspan="5"></th>
-            </tr>
+<%--            <tr>--%>
+<%--                <th colspan="5"></th>--%>
+<%--            </tr>--%>
             <tr class="firstTr">
                 <th width="10%">教师姓名</th>
                 <th width="10%">课程名称</th>
@@ -113,7 +117,7 @@
                 <th width="10%">上课课时</th>
             </tr>
             <c:forEach items="${teacherKeshiList }" var="tkl">
-                <tr>
+                <tr class="end">
                     <td>${tkl.teacher_name}</td>
                     <td>${tkl.course}</td>
                     <td>${tkl.student_name}</td>
@@ -127,7 +131,7 @@
             </c:forEach>
         </table>
     </div>
-
+    </div>
 </section>
 
 <%-- <!--点击删除按钮后弹出的页面-->

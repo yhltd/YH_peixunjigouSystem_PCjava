@@ -202,8 +202,8 @@ li{
 }
 /*右边所在位置栏*/
 .location{
-    height: 30px;
-    line-height: 30px;
+    height: 40px;
+    line-height: 40px;
     border: 1px solid #e6eaf6;
     border-radius: 8px;
     background: linear-gradient(to bottom, #fefefe,#ffffff,#f6fafd);
@@ -216,31 +216,31 @@ li{
     padding-left: 30px;
 }
 .location span{
-    color: #2179a9;
+    color: #cbff84;
     font-weight:  bold;
 }
 /*搜索信息栏*/
 .search{
     height:50px;
     line-height:50px;
-    background: #f6fafd;
+    /*background: #f6fafd;*/
     /*padding-left: 24px;*/
     color: #000;
 }
 .search input[type='text']{
     width: 128px;
-    height: 22px;
+    height: 30px;
     /*outline: none;*/
     /*padding-left: 10px;*/
     border: 1px solid #0f0f0f;
-    /*border-radius: 4px;*/
+    border-radius: 4px;
 }
 
 .search input[type='submit']{
     margin-left: 20px;
     width: 100px;
     padding: 0 20px;
-    height: 30px;
+    height: 32px;
     border: 1px solid #7ba92c;
     border-radius: 4px;
     color: #fff;
@@ -256,7 +256,7 @@ li{
     width: 80px;
     padding-left:40px;
     float: right;
-    margin: 10px 10px;
+    margin: 0 10px;
     height: 30px;
     line-height: 30px;
     border: 1px solid #0c89de;

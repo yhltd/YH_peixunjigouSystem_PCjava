@@ -23,15 +23,15 @@
     <div class="publicHeaderR">
         <p><span id="hours"></span><span style="color: #fff21b">${GLOBAL_USER.realName} </span> , 欢迎你！</p>
         <input hidden="hidden" id="rongliang" value="${rongliang }"/>
-        <a onclick="shujv()" style="width:80px">数据空间</a>
-        <a href="<%=request.getContextPath() %>/login.jsp" style="width:80px">退出</a>
+        <a class="btn-3d" onclick="shujv()" style="width:80px">数据空间</a>
+        <a class="btn-3d" href="<%=request.getContextPath() %>/login.jsp" style="width:80px">退出</a>
     </div>
     <a href="<%=request.getContextPath() %>/tea/teacher.action"><img src="../img/yyh.png" style="width: 32px;height: 32px;float:right;margin-top: 8px;"></a>
 </header>
 <!--时间-->
-<section class="publicTime">
-    <span id="time"></span>
-</section>
+<%--<section class="publicTime">--%>
+<%--    <span id="time"></span>--%>
+<%--</section>--%>
 <!--主体内容-->
 <section class="publicMian ">
     <div class="left">
@@ -57,23 +57,25 @@
         </nav>
     </div>
     <div class="right">
+        <div class="all">
         <div class="location">
             <strong>你现在所在的位置是:</strong>
             <span>教师信息</span>
+            <span id="time"></span>
             <div title="教师信息页面可以对教师基本信息进行增删改查操作" style="color: red">*</div>
         </div>
-        <div class="search" style="background: url('<%=request.getContextPath()%>/img/background3.jpeg')  repeat center!important;background-size:100% 100%;">
-            <span style="color:red">${msg}</span>
+        <div class="search" style="background-size:100% 100%;">
+<%--            <span style="color:red">${msg}</span>--%>
             <form action="<%=request.getContextPath()%>/teacherInfo/getList1.action"
                   method="post" id="myForm"></form>
             <input type="text" placeholder="请输入教师姓名" name="t_name_sel" form="myForm"/>
-            <input type="submit" value="查询" form="myForm" style="width:90px"/>
-            <a href="<%=request.getContextPath() %>/teacherInfo/toAdd.action" style="width:70px">添加信息</a>
+            <input class="btn-3d" type="submit" value="查询" form="myForm" style="width:90px"/>
+            <a class="btn-3d" href="<%=request.getContextPath() %>/teacherInfo/toAdd.action" style="width:70px">添加信息</a>
             <%--            <a href="<%=request.getContextPath()%>/stu/add.jsp">添加学生</a>--%>
 
         </div>
-        <table id="data" class="providerTable" cellpadding="0" cellspacing="0">
-            <caption style="font-size: 14px;margin-bottom: 0.5%;">教师信息</caption>
+        <table id="data" class="gradient-table">
+<%--            <caption style="font-size: 14px;margin-bottom: 0.5%;">教师信息</caption>--%>
             <tr class="firstTr">
                 <th width="5%">序号</th>
                 <th width="5%">教师姓名</th>
@@ -88,6 +90,7 @@
                 <th width="5%">在职状态</th>
                 <th width="5%">社保情况</th>
                 <th width="10%">地址</th>
+                <th>操作</th>
             </tr>
             <c:forEach items="${list }" var="t">
                 <tr>
@@ -113,12 +116,13 @@
             </c:forEach>
         </table>
         <div class="page">
-            <div class="page_cell"><a href="<%=request.getContextPath() %>/teacherInfo/getList1.action">首页</a></div>
-            <div class="page_cell" onclick="last_page(<%=session.getAttribute("page")%>)"><a href="<%=request.getContextPath() %>/teacherInfo/getList2.action">上一页</a></div>
-            <div style="float: left;margin: 2px"><%=session.getAttribute("page")%>页</div>
-            <div class="page_cell" onclick="next_page(<%=session.getAttribute("page")%>)"><a href="<%=request.getContextPath() %>/teacherInfo/getList3.action">下一页</a></div>
-            <div class="page_cell"><a href="<%=request.getContextPath() %>/teacherInfo/getList4.action">末页</a></div>
+            <div class="page_cell"><a class="page-btn" href="<%=request.getContextPath() %>/teacherInfo/getList1.action">首页</a></div>
+            <div class="page_cell" onclick="last_page(<%=session.getAttribute("page")%>)"><a class="page-btn" href="<%=request.getContextPath() %>/teacherInfo/getList2.action">上一页</a></div>
+            <div style="float: left;margin: 2px;height: 40px; font-size: 16px;color: #0802e9;display: flex;justify-content: center;align-items: center;"><%=session.getAttribute("page")%>页</div>
+            <div class="page_cell" onclick="next_page(<%=session.getAttribute("page")%>)"><a class="page-btn" href="<%=request.getContextPath() %>/teacherInfo/getList3.action">下一页</a></div>
+            <div class="page_cell"><a class="page-btn" href="<%=request.getContextPath() %>/teacherInfo/getList4.action">末页</a></div>
         </div>
+    </div>
     </div>
 
 </section>

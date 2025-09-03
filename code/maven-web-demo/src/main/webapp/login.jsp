@@ -21,7 +21,7 @@
                 success:function (result){
                     // alert("1");
                     var user = eval('('+result+')');
-                    var str = "<label >公司名：</label> <select name=\"Company\" id=\"Company\" style='width: 238.19px;height: 37px;margin: 0 auto'>";
+                    var str = "<label >公司名：</label> <select name=\"Company\" id=\"Company\" style='width: 100%; border-radius: 8px;   padding: 0.75rem 0.2rem;border: 2px solid #e2e8f0;height: 46px;margin: 0 auto'>";
                     var strcontent ="";
                     for(var i=0;i<user.length;i++){
                         strcontent+="<option>"+user[i]+"</option>"
@@ -79,7 +79,9 @@
     </script>
 </head>
 <body class="login_bg">
-<img src="img/yhlogo.png" style="width: 70px;height: 70px;float: left">
+<div class="logo">
+<img src="img/yhlogo.png" style="width: 60px;height: 60px;float: left">
+</div>
 <p style="text-align: right;font-size: 14px">当前系统版本：5.1.0.2&nbsp;&nbsp;</p>
 <section class="loginBox">
     <header class="loginHeader">

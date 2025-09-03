@@ -19,17 +19,18 @@
     <div class="publicHeaderR">
         <p><span id="hours"></span><span style="color: #fff21b">${GLOBAL_USER.realName} </span> , 欢迎你！</p>
         <input hidden="hidden" id="rongliang" value="${rongliang }"/>
-        <a onclick="shujv()" style="width:80px">数据空间</a>
-        <a href="<%=request.getContextPath() %>/login.jsp" style="width:80px">退出</a>
+        <a class="btn-3d" onclick="shujv()" style="width:80px">数据空间</a>
+        <a class="btn-3d" href="<%=request.getContextPath() %>/login.jsp" style="width:80px">退出</a>
     </div>
-    <a href="<%=request.getContextPath() %>/tea/teacher.action"><img src="../img/yyh.png" style="width: 32px;height: 32px;float:right;margin-top: 8px;"></a>
+<%--    <a href="<%=request.getContextPath() %>/tea/teacher.action"><img src="../img/yyh.png" style="width: 32px;height: 32px;float:right;margin-top: 8px;"></a>--%>
 </header>
 <!--时间-->
-<section class="publicTime">
-    <span id="time"></span>
-</section>
+<%--<section class="publicTime">--%>
+<%--    <span id="time"></span>--%>
+<%--</section>--%>
 <!--主体内容-->
 <section class="publicMian ">
+    <div class="left-bg">
     <div class="left">
         <h2 class="leftH2"><span class="span1"></span>功能列表 <span></span></h2>
         <nav>
@@ -52,27 +53,30 @@
             </ul>
         </nav>
     </div>
+    </div>
     <div class="right">
+        <div class="all">
         <div class="location">
             <strong>你现在所在的位置是:</strong>
             <span>用户管理</span>
+            <span id="time"></span>
             <div title="此页面为用户管理，此页面可配置各账号信息" style="color: red">*</div>
         </div>
-        <div class="search" style="background: url('<%=request.getContextPath()%>/img/background3.jpeg')  repeat center!important;background-size:100% 100%;">
-            <span style="color:red">${msg}</span>
+        <div class="search" style="background-size:100% 100%;">
+<%--            <span style="color:red">${msg}</span>--%>
             <form action="<%=request.getContextPath()%>/tea/teacher1.action"
                   method="post" id="myForm"></form>
-            <input type="text" placeholder="请输入登录名" name="realName" form="myForm"/>
-            <input type="text" placeholder="请输入真实姓名" name="teacher" form="myForm"/>
+            <input type="text" placeholder="请输入登录名" name="realName" form="myForm" style="height: 40px;width: 120px;border: 1px solid #0f0f0f;border-radius: 4px"/>
+            <input type="text" placeholder="请输入真实姓名" name="teacher" form="myForm" style="height: 40px;width: 120px;border: 1px solid #0f0f0f;border-radius: 4px"/>
             <input type="text" placeholder="请输入电话号" name="peixun" form="myForm"/>
             <input type="submit" value="查询" form="myForm"/>
-            <a id="toExcel" >导出excel</a>
-            <a href="<%=request.getContextPath()%>/tea/add.jsp">添加员工</a>
-            <a href="<%=request.getContextPath()%>/power/getList1.action">权限管理</a>
+            <a class="btn-3d" id="toExcel" >导出excel</a>
+            <a class="btn-3d" href="<%=request.getContextPath()%>/tea/add.jsp">添加员工</a>
+            <a class="btn-3d" href="<%=request.getContextPath()%>/power/getList1.action">权限管理</a>
         </div>
         <div id="qrcode" style="display: none"></div>
-        <table id="data" class="providerTable" cellpadding="0" cellspacing="0">
-            <caption style="font-size: 14px;margin-bottom: 0.5%;">用户管理</caption>
+        <table id="data" class="gradient-table">
+<%--            <caption style="font-size: 14px;margin-bottom: 0.5%;">用户管理</caption>--%>
             <tr class="firstTr">
                 <th width="5%">序号</th>
                 <th width="10%">登录名</th>
@@ -85,9 +89,10 @@
                 <th width="10%">身份证号</th>
                 <th width="5%">学历</th>
                 <th width="5%">状态</th>
+                <th>操作</th>
             </tr>
             <c:forEach items="${telist }" var="s">
-                <tr>
+                <tr class="end">
                     <td>${s.id}</td>
                     <td>${s.userName}</td>
                     <td>${s.password}</td>
@@ -108,6 +113,7 @@
                 </tr>
             </c:forEach>
         </table>
+        </div>
     </div>
 
 </section>

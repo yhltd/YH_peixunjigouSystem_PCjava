@@ -19,17 +19,18 @@
     <div class="publicHeaderR">
         <p><span id="hours"></span><span style="color: #fff21b">${GLOBAL_USER.realName} </span> , 欢迎你！</p>
         <input hidden="hidden" id="rongliang" value="${rongliang }"/>
-        <a onclick="shujv()" style="width:80px">数据空间</a>
-        <a href="<%=request.getContextPath() %>/login.jsp" style="width:80px">退出</a>
+        <a class="btn-3d" onclick="shujv()" style="width:80px">数据空间</a>
+        <a class="btn-3d" href="<%=request.getContextPath() %>/login.jsp" style="width:80px">退出</a>
     </div>
-    <a href="<%=request.getContextPath() %>/tea/teacher.action"><img src="../img/yyh.png" style="width: 32px;height: 32px;float:right;margin-top: 8px;"></a>
+<%--    <a href="<%=request.getContextPath() %>/tea/teacher.action"><img src="../img/yyh.png" style="width: 32px;height: 32px;float:right;margin-top: 8px;"></a>--%>
 </header>
 <!--时间-->
-<section class="publicTime">
-    <span id="time"></span>
-</section>
+<%--<section class="publicTime">--%>
+<%--&lt;%&ndash;    <span id="time"></span>&ndash;%&gt;--%>
+<%--</section>--%>
 <!--主体内容-->
 <section class="publicMian ">
+    <div class="left-bg">
     <div class="left">
         <h2 class="leftH2"><span class="span1"></span>功能列表 <span></span></h2>
         <nav>
@@ -52,29 +53,32 @@
             </ul>
         </nav>
     </div>
+    </div>
     <div class="right">
+        <div class="all">
         <div class="location">
             <strong>你现在所在的位置是:</strong>
             <span>学生信息</span>
+            <span id="time"></span>
             <div title="学生信息页面可以对学生基本信息进行操作，已上课时和已缴费会根据后面页面的数据自动计算" style="color: red">*</div>
         </div>
-        <div class="search" style="background: url('<%=request.getContextPath()%>/img/background3.jpeg')  repeat center!important;background-size:100% 100%;">
-            <span style="color:red">${msg}</span>
+        <div class="search" style="background-size:100% 100%;">
+<%--            <span style="color:red">${msg}</span>--%>
             <form action="<%=request.getContextPath()%>/stu/student1.action"
                   method="post" id="myForm"></form>
-            <input type="date" placeholder="请输入开始时间" name="date1" form="myForm"/>
-            <input type="date" placeholder="请输入结束时间" name="date2" form="myForm"/>
+            <input type="date" placeholder="请输入开始时间" name="date1" form="myForm" style="height: 40px;width: 120px;border: 1px solid #0f0f0f;border-radius: 4px" />
+            <input type="date" placeholder="请输入结束时间" name="date2" form="myForm" style="height: 40px;width: 120px;border: 1px solid #0f0f0f;border-radius: 4px"/>
             <input type="text" placeholder="请输入学生姓名" name="realName" form="myForm"/>
             <input type="text" placeholder="请输入教师姓名" name="teacher" form="myForm"/>
             <input type="text" placeholder="请输入培训课程" name="peixun" form="myForm"/>
-            <input type="submit" value="查询" form="myForm" style="width:90px"/>
-            <a id="toExcel" style="width:70px">导出excel</a>
-            <a href="<%=request.getContextPath() %>/stu/shezhi.action" style="width:70px">添加信息</a>
+            <input class="btn-3d" type="submit" value="查询" form="myForm" style="width:90px"/>
+            <a class="btn-3d" id="toExcel" style="width:70px">导出excel</a>
+            <a class="btn-3d" href="<%=request.getContextPath() %>/stu/shezhi.action" style="width:70px">添加信息</a>
             <%--            <a href="<%=request.getContextPath()%>/stu/add.jsp">添加学生</a>--%>
 
         </div>
-        <table id="data" class="providerTable" cellpadding="0" cellspacing="0">
-            <caption style="font-size: 14px;margin-bottom: 0.5%;">学生信息</caption>
+        <table id="data" class="gradient-table" >
+<%--            <caption style="font-size: 14px;margin-bottom: 0.5%;">学生信息</caption>--%>
             <tr class="firstTr">
                 <th width="5%">序号</th>
                 <th width="5%">学生姓名</th>
@@ -91,9 +95,10 @@
                 <th width="5%">剩余课时</th>
                 <th width="5%">总课时</th>
                 <th width="5%">状态</th>
+                <th>操作</th>
             </tr>
             <c:forEach items="${list }" var="s">
-                <tr>
+                <tr class="end">
                     <td>${s.id}</td>
                     <td>${s.realName}</td>
                     <td>${s.sex}</td>
@@ -122,11 +127,11 @@
         </table>
 
         <div class="page">
-            <div class="page_cell"><a href="<%=request.getContextPath() %>/stu/student1.action">首页</a></div>
-            <div class="page_cell" onclick="last_page(<%=session.getAttribute("page")%>)"><a href="<%=request.getContextPath() %>/stu/student2.action">上一页</a></div>
-            <div style="float: left;margin: 2px"><%=session.getAttribute("page")%>页</div>
-            <div class="page_cell" onclick="next_page(<%=session.getAttribute("page")%>)"><a href="<%=request.getContextPath() %>/stu/student3.action">下一页</a></div>
-            <div class="page_cell"><a href="<%=request.getContextPath() %>/stu/student4.action">末页</a></div>
+            <div class="page_cell "><a class="page-btn" href="<%=request.getContextPath() %>/stu/student1.action">首页</a></div>
+            <div class="page_cell " onclick="last_page(<%=session.getAttribute("page")%>)"><a class="page-btn" href="<%=request.getContextPath() %>/stu/student2.action">上一页</a></div>
+            <div style="float: left;margin: 2px ;height: 40px; font-size: 16px;color: #0802e9;display: flex;justify-content: center;align-items: center;"><%=session.getAttribute("page")%>页</div>
+            <div class="page_cell " onclick="next_page(<%=session.getAttribute("page")%>)"><a class="page-btn" href="<%=request.getContextPath() %>/stu/student3.action">下一页</a></div>
+            <div class="page_cell "><a class="page-btn" href="<%=request.getContextPath() %>/stu/student4.action">末页</a></div>
         </div>
 
         <%--        <div style="text-align: center">--%>
@@ -136,6 +141,7 @@
         <%--            <input type="submit" value="下一页" form="myForm"/>--%>
         <%--            <input type="submit" value="末页" form="myForm"/>--%>
         <%--        </div>--%>
+        </div>
     </div>
 </section>
 

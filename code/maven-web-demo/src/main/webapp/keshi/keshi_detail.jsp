@@ -67,19 +67,20 @@
     <div class="publicHeaderR">
         <p><span id="hours"></span><span style="color: #fff21b">${GLOBAL_USER.realName} </span> , 欢迎你！</p>
         <input hidden="hidden" id="rongliang" value="${rongliang }"/>
-        <a onclick="shujv()" style="width:80px">数据空间</a>
-        <a href="<%=request.getContextPath() %>/login.jsp" style="width:80px">退出</a>
+        <a class="btn-3d" onclick="shujv()" style="width:80px">数据空间</a>
+        <a class="btn-3d" href="<%=request.getContextPath() %>/login.jsp" style="width:80px">退出</a>
     </div>
-    <a href="<%=request.getContextPath() %>/tea/teacher.action"><img src="../img/yyh.png"
-                                                                     style="width: 32px;height: 32px;float:right;margin-top: 8px;"></a>
+<%--    <a href="<%=request.getContextPath() %>/tea/teacher.action"><img src="../img/yyh.png"--%>
+<%--                                                                     style="width: 32px;height: 32px;float:right;margin-top: 8px;"></a>--%>
 </header>
 <!--时间-->
-<section class="publicTime">
-    <span id="time"></span>
+<%--<section class="publicTime">--%>
+<%--    <span id="time"></span>--%>
 
-</section>
+<%--</section>--%>
 <!--主体内容-->
 <section class="publicMian ">
+    <div class="left-bg">
     <div class="left">
         <h2 class="leftH2"><span class="span1"></span>功能列表 <span></span></h2>
         <nav>
@@ -102,29 +103,32 @@
             </ul>
         </nav>
     </div>
+    </div>
     <div class="right">
+        <div class="all">
         <div class="location">
             <strong>你现在所在的位置是:</strong>
             <span>课时统计</span>
+            <span id="time"></span>
             <div title="此页面为课时统计，这里可以手动维护数据，在这里添加数据后学生信息会自动更新已上课时" style="color: red">*</div>
         </div>
         <div class="search"
-             style="background: url('<%=request.getContextPath()%>/img/background3.jpeg')  repeat center!important;background-size:100% 100%;">
-            <span style="color:red">${msg}</span>
+             style="background-size:100% 100%;">
+<%--            <span style="color:red">${msg}</span>--%>
             <form action="<%=request.getContextPath()%>/keshi/getList1.action"
                   method="post" id="myForm"></form>
             <input type="text" placeholder="请输入老师姓名" name="teacher_name" form="myForm"/>
             <input type="text" placeholder="请输入培训课程" name="course" form="myForm"/>
-            <input type="date" placeholder="请输入开始时间" name="date1" form="myForm"/>
-            <input type="date" placeholder="请输入结束时间" name="date2" form="myForm"/>
+            <input type="date" placeholder="请输入开始时间" name="date1" form="myForm" style="height: 40px;width: 120px;border: 1px solid #0f0f0f;border-radius: 4px"/>
+            <input type="date" placeholder="请输入结束时间" name="date2" form="myForm" style="height: 40px;width: 120px;border: 1px solid #0f0f0f;border-radius: 4px"/>
             <a href="<%=request.getContextPath()%>/kaoqin/getList1.action" style="width:65px">考勤表</a>
             <a href="<%=request.getContextPath()%>/keshi/toadd.action" style="width:65px">添加明细</a>
-            <input type="submit" value="查询" style="width:85px" form="myForm"/>
-            <a id="toExcel">导出excel</a>
+            <input class="btn-3d" type="submit" value="查询" style="width:85px" form="myForm"/>
+            <a class="btn-3d" id="toExcel">导出excel</a>
 
         </div>
-        <table id="data" class="providerTable" cellpadding="0" cellspacing="0">
-            <caption style="font-size: 14px;margin-bottom: 0.5%;">课时统计</caption>
+        <table id="data" class="gradient-table">
+<%--            <caption style="font-size: 14px;margin-bottom: 0.5%;">课时统计</caption>--%>
             <tr class="firstTr">
                 <th width="15%" hidden="hidden">序号</th>
                 <th width="15%">日期</th>
@@ -133,9 +137,10 @@
                 <th width="15%">课时</th>
                 <th width="15%">责任教师</th>
                 <th width="15%">每节课时金额</th>
+                <th>操作</th>
             </tr>
             <c:forEach items="${list}" var="l">
-                <tr>
+                <tr class="end">
                     <td hidden="hidden">${l.id}</td>
                     <td>${l.riqi}</td>
                     <td><a href="#" onclick="popWin(this);">${l.student_name}</a></td>
@@ -154,13 +159,13 @@
             </c:forEach>
         </table>
         <div class="page">
-            <div class="page_cell"><a href="<%=request.getContextPath() %>/keshi/getList1.action">首页</a></div>
-            <div class="page_cell" onclick="last_page(<%=session.getAttribute("page")%>)"><a
+            <div class="page_cell"><a class="page-btn" href="<%=request.getContextPath() %>/keshi/getList1.action">首页</a></div>
+            <div class="page_cell" onclick="last_page(<%=session.getAttribute("page")%>)"><a class="page-btn"
                     href="<%=request.getContextPath() %>/keshi/getList2.action">上一页</a></div>
-            <div style="float: left;margin: 2px"><%=session.getAttribute("page")%>页</div>
-            <div class="page_cell" onclick="next_page(<%=session.getAttribute("page")%>)"><a
+            <div style="float: left;margin: 2px ;height: 40px; font-size: 16px;color: #0802e9;display: flex;justify-content: center;align-items: center;"><%=session.getAttribute("page")%>页</div>
+            <div class="page_cell" onclick="next_page(<%=session.getAttribute("page")%>)"><a class="page-btn"
                     href="<%=request.getContextPath() %>/keshi/getList3.action">下一页</a></div>
-            <div class="page_cell"><a href="<%=request.getContextPath() %>/keshi/getList4.action">末页</a></div>
+            <div class="page_cell"><a class="page-btn" href="<%=request.getContextPath() %>/keshi/getList4.action">末页</a></div>
         </div>
 
 
@@ -193,7 +198,7 @@
                 <path d="M12 10.6L6.6 5.2 5.2 6.6l5.4 5.4-5.4 5.4 1.4 1.4 5.4-5.4 5.4 5.4 1.4-1.4-5.4-5.4 5.4-5.4-1.4-1.4-5.4 5.4z"></path>
             </svg>
         </a></div>
-
+        </div>
     </div>
 </section>
 

@@ -21,17 +21,18 @@
     <div class="publicHeaderR">
         <p><span id="hours"></span><span style="color: #fff21b">${GLOBAL_USER.realName} </span> , 欢迎你！</p>
         <input hidden="hidden" id="rongliang" value="${rongliang }"/>
-        <a onclick="shujv()" style="width:80px">数据空间</a>
-        <a href="<%=request.getContextPath() %>/login.jsp" style="width:80px">退出</a>
+        <a class="btn-3d" onclick="shujv()" style="width:80px">数据空间</a>
+        <a class="btn-3d" href="<%=request.getContextPath() %>/login.jsp" style="width:80px">退出</a>
     </div>
-    <a href="<%=request.getContextPath() %>/tea/teacher.action"><img src="../img/yyh.png" style="width: 32px;height: 32px;float:right;margin-top: 8px;"></a>
+<%--    <a href="<%=request.getContextPath() %>/tea/teacher.action"><img src="../img/yyh.png" style="width: 32px;height: 32px;float:right;margin-top: 8px;"></a>--%>
 </header>
 <!--时间-->
-<section class="publicTime">
-    <span id="time"></span>
-</section>
+<%--<section class="publicTime">--%>
+<%--    <span id="time"></span>--%>
+<%--</section>--%>
 <!--主体内容-->
 <section class="publicMian ">
+    <div class="left-bg">
     <div class="left">
         <h2 class="leftH2"><span class="span1"></span>功能列表 <span></span></h2>
         <nav>
@@ -54,35 +55,39 @@
             </ul>
         </nav>
     </div>
+    </div>
     <div class="right">
+        <div class="all">
         <div class="location">
             <strong>你现在所在的位置是:</strong>
             <span>收支明细</span>
+            <span id="time"></span>
             <div title="此页面为收支明细，这里可以增删改查，下方可以统计支出和收入金额以及生成图表" style="color: red">*</div>
         </div>
 
-        <div class="search" style="background: url('<%=request.getContextPath()%>/img/background3.jpeg')  repeat center!important;background-size:100% 100%;">
-            <span style="color:red">${msg}</span>
+        <div class="search" style="background-size:100% 100%;">
+<%--            <span style="color:red">${msg}</span>--%>
             <form action="<%=request.getContextPath()%>/inc/select.action"
                   method="post" id="myForm"> </form>
             <span>起始：</span>
-            <input type="date" id="ks"  name="rgdate" form="myForm"/>
+            <input type="date" id="ks"  name="rgdate" form="myForm" style="height: 40px;width: 120px;border: 1px solid #0f0f0f;border-radius: 4px"/>
             <span>结束</span>
-            <input type="date" id="js" name="rgdate2" form="myForm"/>
+            <input type="date" id="js" name="rgdate2" form="myForm" style="height: 40px;width: 120px;border: 1px solid #0f0f0f;border-radius: 4px"/>
 
-            <input type="submit" id="sel_button" value="查询" form="myForm"/>
+            <input class="btn-3d" type="submit" id="sel_button" value="查询" form="myForm"/>
             <span>当日金额统计：${jr_jine}</span>
             <span>当月金额统计：${dy_jine}</span>
-            <a id="toExcel" >导出excel</a>
-            <a href="<%=request.getContextPath()%>/inc/shezhi.action">添加明细</a>
+            <a class="btn-3d" id="toExcel" >导出excel</a>
+            <a class="btn-3d" href="<%=request.getContextPath()%>/inc/shezhi.action">添加明细</a>
         </div>
-        <table id="data"  class="providerTable" cellpadding="0" cellspacing="0">
-            <caption style="font-size: 14px;margin-bottom: 0.5%;">收支明细</caption>
+        <table id="data" class="gradient-table">
+<%--            <caption style="font-size: 14px;margin-bottom: 0.5%;">收支明细</caption>--%>
             <tr class="firstTr">
                 <th width="15%" rowspan="2">日期</th>
                 <th width="30%" colspan="3">收入</th>
                 <th width="30%" colspan="3">支出</th>
                 <th width="10%" rowspan="2">经手人</th>
+                <th rowspan="2">操作</th>
             </tr>
             <tr class="firstTr">
                 <th width="10%">金额</th>
@@ -93,7 +98,7 @@
                 <th width="10%">备注</th>
             </tr>
             <c:forEach items="${inclist }" var="s">
-                <tr>
+                <tr class="end">
                     <td>${s.rgdate}</td>
                     <td>${s.money}</td>
                     <td>${s.msort}</td>
@@ -163,6 +168,7 @@
 <%--        <div style="width: 600px; height: 400px; overflow-x: scroll;margin-right: 1px">--%>
 <%--            <div id="main" style="width: 600px;height: 400px;"></div>--%>
 <%--        </div>--%>
+    </div>
     </div>
 </section>
 

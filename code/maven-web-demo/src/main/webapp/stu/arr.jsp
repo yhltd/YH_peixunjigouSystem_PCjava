@@ -18,18 +18,19 @@
     <div class="publicHeaderR">
         <p><span id="hours"></span><span style="color: #fff21b">${GLOBAL_USER.realName} </span> , 欢迎你！</p>
         <input hidden="hidden" id="rongliang" value="${rongliang }"/>
-        <a onclick="shujv()" style="width:80px">数据空间</a>
-        <a href="<%=request.getContextPath() %>/login.jsp" style="width:80px">退出</a>
+        <a class="btn-3d" onclick="shujv()" style="width:80px">数据空间</a>
+        <a class="btn-3d" href="<%=request.getContextPath() %>/login.jsp" style="width:80px">退出</a>
     </div>
-    <a href="<%=request.getContextPath() %>/tea/teacher.action"><img src="../img/yyh.png" style="width: 32px;height: 32px;float:right;margin-top: 8px;"></a>
+<%--    <a href="<%=request.getContextPath() %>/tea/teacher.action"><img src="../img/yyh.png" style="width: 32px;height: 32px;float:right;margin-top: 8px;"></a>--%>
 </header>
 <!--时间-->
-<section class="publicTime">
-    <span id="time">2015年1月1日 11:11  星期一</span>
-    <a href="#" style="color: red">${msg}</a>
-</section>
+<%--<section class="publicTime">--%>
+<%--    <span id="time">2015年1月1日 11:11  星期一</span>--%>
+<%--    <a href="#" style="color: red">${msg}</a>--%>
+<%--</section>--%>
 <!--主体内容-->
 <section class="publicMian ">
+    <div class="left-bg">
     <div class="left">
         <h2 class="leftH2"><span class="span1"></span>功能列表 <span></span></h2>
         <nav>
@@ -52,25 +53,28 @@
             </ul>
         </nav>
     </div>
+    </div>
     <div class="right">
+        <div class="all">
         <div class="location">
             <strong>你现在所在的位置是:</strong>
             <span>欠费学员</span>
+            <span id="time"></span>
             <div title="此页面为欠费学员，这里会自动统计出欠费学员名单" style="color: red">*</div>
         </div>
-        <div class="search" style="background: url('<%=request.getContextPath()%>/img/background3.jpeg')  repeat center!important;background-size:100% 100%;">
-           <span>学生姓名：</span>
+        <div class="search" style="background-size:100% 100%;">
+<%--           <span>学生姓名：</span>--%>
             <form action="<%=request.getContextPath()%>/stu/arr1.action"
                   method="post" id="myForm"></form>
             <input type="text" placeholder="请输入学生姓名" name="realName" form="myForm"/>
-            <input type="submit" value="查询" form="myForm"/>
-            <a id="toExcel" >导出excel</a>
+            <input class="btn-3d" type="submit" value="查询" form="myForm"/>
+            <a class="btn-3d" id="toExcel" >导出excel</a>
         </div>
 
 
 
-        <table id="data" class="providerTable" cellpadding="0" cellspacing="0">
-            <caption style="font-size: 14px;margin-bottom: 0.5%;">欠费学员</caption>
+        <table id="data" class="gradient-table" >
+<%--            <caption style="font-size: 14px;margin-bottom: 0.5%;">欠费学员</caption>--%>
             <tr class="firstTr">
                 <th width="10%">学生姓名</th>
                 <th width="10%">欠费金额</th>
@@ -94,7 +98,7 @@
                 </tr>
             </c:forEach>
         </table>
-
+        </div>
     </div>
 </section>
 
