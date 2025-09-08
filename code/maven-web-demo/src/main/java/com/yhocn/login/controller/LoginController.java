@@ -113,10 +113,15 @@ public class LoginController {
 					}
 				}
 				if(panduan){
+					String companyName = t.getCompany();  // 从Teacher对象获取公司名称
+					session.setAttribute("companyName", companyName);
+					String sessionCompany = (String) session.getAttribute("companyName");
+
 					this.quanxian = service3.getListByName(t2.getId(),t2.getCompany());
 					if(t2.getState().equals("正常")) {
 						mv.setViewName("/main.jsp");
 						se.setAttribute("GLOBAL_USER", t2);
+
 
 						if("true".equals(isRemPwd)) {
 							Cookie c1=new Cookie("userName", t.getUserName());

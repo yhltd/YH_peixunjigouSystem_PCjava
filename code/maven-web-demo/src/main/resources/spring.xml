@@ -15,7 +15,7 @@
 	http://www.springframework.org/schema/tx   
     http://www.springframework.org/schema/tx/spring-tx-3.2.xsd  
 	">
-	
+
 	<!-- 配置扫描包 -->
 	<context:component-scan  base-package="com.yhocn"/>
 	
@@ -38,14 +38,25 @@
 		<p:property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
 	</p:bean>
 
+	<p:bean id="dataSource3" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
+		<p:property name="username" value="sa" />
+		<p:property name="password" value="Lyh07910_001" />
+		<p:property name="url" value="jdbc:sqlserver://yhocn.cn;DatabaseName=yh_notice" />
+		<p:property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
+	</p:bean>
+
+
+
 	<!-- 配置动态配置数据源 -->
 	<p:bean id ="dynamicDataSource" class= "Bean.DynamicDataSource">
 		<!-- 默认使用dataSource1的数据源 -->
 		<p:property name ="defaultTargetDataSource" ref="dataSource1"></p:property>
+<!--		<p:property name ="defaultTargetDataSource" ref="dataSource3"></p:property>-->
 		<p:property name ="targetDataSources">
 			<p:map key-type ="java.lang.String">
 				<p:entry key= "dataSource1" value-ref="dataSource1"></p:entry>
 				<p:entry key= "dataSource2" value-ref="dataSource2"></p:entry>
+				<p:entry key= "dataSource3" value-ref="dataSource3"></p:entry>
 			</p:map>
 		</p:property>
 	</p:bean>

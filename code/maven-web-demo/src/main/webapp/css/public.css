@@ -18,8 +18,8 @@ li{
     list-style: none;
 }
 
-/*公共样式，头部*/
 .publicHeader{
+    display: flex;
     height: 48px;
     line-height: 48px;
     font-size: 14px;
@@ -27,28 +27,39 @@ li{
     background:-webkit-linear-gradient(to bottom,#60acf0,#64a5df,#62a0dd,#5994d6,#4f8ace,#4880ca);
     background:-moz-linear-gradient(to bottom,#60acf0,#64a5df,#62a0dd,#5994d6,#4f8ace,#4880ca);
     background:-ms-linear-gradient(to bottom,#60acf0,#64a5df,#62a0dd,#5994d6,#4f8ace,#4880ca);
+    padding: 0 15px;
+    position: relative;
+    z-index: 100;
 }
 .publicHeader h1{
-    float: left;
     color: #fff;
     font-size: 22px;
-    padding-left:80px;
+    padding-left: 50px;
     text-shadow: 2px 1px #000;
-    background: url("../img/mm.png") 30px center no-repeat;
+    background: url("../img/mm.png") 10px center no-repeat;
+    margin: 0;
+    white-space: nowrap;
+    flex-shrink: 0; /* 防止标题被压缩 */
+}
 
+/* 右侧内容区域 - 关键修改 */
+.publicHeaderR {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: nowrap; /* 防止换行 */
+    white-space: nowrap; /* 防止文本换行 */
+    margin-left: auto; /* 确保靠右显示 */
+    flex-shrink: 0; /* 防止被压缩 */
 }
-.publicHeaderR{
-    float: right;
-    color: #fff;
-    margin-right: 50px;
-    text-align: center;
-    display:inline-block;
-    vertical-align:middle
-}
+
 .publicHeaderR p{
     display: inline-block;
     font-weight: bold;
+    margin: 0;
+    white-space: nowrap; /* 防止文本换行 */
 }
+
 .publicHeaderR a{
     width: 80px;
     height: 28px;
@@ -60,13 +71,97 @@ li{
     border-radius: 4px;
     font-weight: bold;
     color: #fff;
-
+    text-decoration: none;
+    flex-shrink: 0; /* 防止按钮被压缩 */
 }
+
 .publicHeaderR a:hover,.publicHeaderR a:active{
     border: 1px solid #192b02;
     border-radius: 4px;
     font-weight: bold;
     background: linear-gradient(to bottom,#70b21c,#5c9613,#47740e,#3b6209,#2b4906);
+}
+
+/* 添加跑马灯容器样式 */
+.marquee-container {
+    flex: 1; /* 占据剩余空间 */
+    min-width: 100px; /* 最小宽度 */
+    max-width: 400px; /* 最大宽度 */
+    height: 30px;
+    overflow: hidden;
+    position: relative;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 4px;
+    margin: 0 15px;
+    display: flex;
+    align-items: center;
+}
+
+.marquee-content {
+    white-space: nowrap;
+    position: absolute;
+    animation: marquee 20s linear infinite;
+    color: #fff21b;
+    font-weight: 500;
+    font-size: 13px;
+    padding: 0 10px;
+}
+
+@keyframes marquee {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
+
+/* 响应式设计 */
+@media (max-width: 1024px) {
+    .publicHeader {
+        flex-wrap: wrap;
+        height: auto;
+        min-height: 48px;
+        padding: 10px 15px;
+    }
+
+    .publicHeader h1 {
+        margin-bottom: 10px;
+    }
+
+    .marquee-container {
+        order: 3;
+        width: 100%;
+        max-width: 100%;
+        margin: 10px 0;
+    }
+
+    .publicHeaderR {
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .publicHeaderR {
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 8px;
+    }
+
+    .publicHeaderR p {
+        width: 100%;
+        text-align: right;
+    }
+}
+
+@media (max-width: 480px) {
+    .publicHeader h1 {
+        font-size: 18px;
+        padding-left: 40px;
+        background-size: 30px;
+        background-position: left center;
+    }
+
+    .publicHeaderR a {
+        width: 70px;
+        font-size: 12px;
+    }
 }
 /*时间*/
 .publicTime{

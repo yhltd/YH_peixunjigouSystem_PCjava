@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yhocn.pushnews.mapper.PushNewsMapper">
+    <select id="getList" resultType="PushNews">
+        <![CDATA[
+        SELECT * FROM product_pushnews
+        WHERE xtname = '教务管理系统'
+          AND gsname = #{companyName}
+          AND (
+                (qidate IS NULL OR GETUTCDATE() >= CONVERT(DATETIME, LEFT(qidate, 10), 120))
+                AND (zhidate IS NULL OR GETUTCDATE() <= CONVERT(DATETIME, LEFT(zhidate, 10), 120))
+            )
+        ]]>
+    </select>
+</mapper>

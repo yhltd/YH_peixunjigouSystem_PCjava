@@ -80,7 +80,7 @@
 </head>
 <body class="login_bg">
 <div class="logo">
-<img src="img/yhlogo.png" style="width: 70px;height: 70px;float: left">
+<img src="img/yhlogo.png" style="width: 60px;height: 60px;float: left">
 </div>
 <p style="text-align: right;font-size: 14px">当前系统版本：5.1.0.2&nbsp;&nbsp;</p>
 <section class="loginBox">

@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding" defaultCharsetForPropertiesFiles="GBK">
+    <file url="file://$PROJECT_DIR$/pom.xml" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/yhocn/pushnews/controller/PushNewsController.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/yhocn/pushnews/entity/PushNews.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/yhocn/pushnews/mapper/PushNewsMapper.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/yhocn/pushnews/service/PushNewsService.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/yhocn/pushnews/service/PushNewsServiceImpl.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/js/jquerysession.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/js/pdf.js" charset="UTF-8" />
