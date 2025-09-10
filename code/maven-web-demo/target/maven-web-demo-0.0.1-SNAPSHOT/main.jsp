@@ -424,9 +424,9 @@
 
         .marquee-container {
             flex: 1;
-            margin: 0px 30px;
+            margin: 2px 30px 0 30px;
             min-width: 8%;
-            max-width: 60%;
+            max-width: 30%;
             background: rgba(255, 255, 255, 0.12);
             border-radius: 8px;
             overflow: hidden;
@@ -1011,10 +1011,10 @@
     <div class="publicHeaderR">
         <p style="font-size:13px"><span id="hours"></span><span style="color: #fff21b;">${GLOBAL_USER.realName} </span> , 欢迎你！</p>
         <input hidden="hidden" id="rongliang" value="${rongliang }"/>
-        <a class="btn-3d" href="<%=request.getContextPath() %>/pdf/app-debug.apk">下载app</a>
-        <a class="btn-3d" href="<%=request.getContextPath() %>/pdf/教务管理系统（20230618）.xlsm">下载表格</a>
-        <a class="btn-3d" onclick="shujv()" style="width:80px">数据空间</a>
-        <a class="btn-3d" href="<%=request.getContextPath() %>/login.jsp" style="width:80px">退出</a>
+        <a style="background: url(img/下载app.png);" href="<%=request.getContextPath() %>/pdf/app-debug.apk" >下载app</a>
+        <a style="background: url(img/下载excel.png);" href="<%=request.getContextPath() %>/pdf/教务管理系统（20230618）.xlsm">下载表格</a>
+        <a style="background: url(img/数据空间.png);" onclick="shujv()" >数据空间</a>
+        <a style="background: url(img/退出.png);" href="<%=request.getContextPath() %>/login.jsp" >退出</a>
     </div>
 <%--    <a href="<%=request.getContextPath() %>/tea/teacher.action"><img src="img/yyh.png" style="width: 32px;height: 32px;float:right;margin-top: 8px;"></a>--%>
     </div>

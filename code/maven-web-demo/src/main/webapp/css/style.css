@@ -448,7 +448,7 @@ input {
 /* ====表头样式 ===== */
 .firstTr {
     /* 渐变背景（比主体更浓） */
-    background: linear-gradient(135deg, #4361ee, #3a0ca3);
+    background: linear-gradient(135deg, #4361ee, #4361ee);
     height: 60px;
     /* 文字效果 */
     color: white;
@@ -658,6 +658,7 @@ input {
     background-color: #4a4949;
 }
 .search input[type='text'] {
+    margin-left: 5px;
     width: 128px;
     height: 40px;
     box-shadow: 1px 1px;
@@ -672,9 +673,11 @@ input {
     line-height: 40px;
     border: 0px solid #e6eaf6;
     border-radius: 0px 0 8px 8px;
-    background: linear-gradient(90deg,  #4254e2, #3a0ca3);
+    background: linear-gradient(90deg, #203146, #516e8c);
     color: #4a4a4a;
     padding-left: 30px;
+    position: relative;
+    overflow: hidden;
 }
 
 .location span {
@@ -851,11 +854,32 @@ input {
 /*导航栏样式*/
 .publicHeader{
     overflow: hidden;
-    position: relative;
+    position: sticky;
     height: 48px;
     line-height: 48px;
     font-size: 14px;
-    background: linear-gradient(90deg, #4361ee, #3a0ca3);
+    background: url(../img/顶部背景（5）.png);
+    background-size: 100% 100%;
+    /*background: linear-gradient(90deg, #4361ee, #3a0ca3);*/
+}
+.flow-bg{
+    color: red;
+}
+.flow-bg {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(135deg, #4152e1, #a37dfd, #4254e2);
+    background-size: 300% 300%;
+    animation: flow 8s ease infinite;
+    z-index: -1;
+}
+@keyframes flow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 .publicMian{
@@ -865,7 +889,7 @@ input {
     background: #fff;
 }
 .left-bg{
-    background: #4254e2;
+    background: #213247;
     display: flex
 ;
 }
@@ -905,30 +929,38 @@ input {
 }
 
 .publicHeaderR a{
-    margin-left: 3px;
-    height: 37px;
-    line-height: 37px;
+
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    padding-left: 25px;
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 70px;
     border: 0px solid #7ba92c;
     border-radius: 4px;
     color: #fff;
     font-weight: bold;
-    background: #61c143;
-    width: 80px;
 }
 .publicHeaderR a:hover,.publicHeaderR a:active{
     border: 0px solid #192b02;
     border-radius: 4px;
     font-weight: bold;
-    background: rgb(133 245 77);
+    /*background: rgb(133 245 77 / 0%);*/
+    color: #ffbc1f;
 }
+
+
 
 .publicHeaderR {
     float: right;
     color: #fff;
     margin-right: 8px;
     text-align: center;
-    display: inline-block;
+    display: flex;
     vertical-align: middle;
+    right: 0;
+    position: absolute;
 }
 .publicHeader h1{
     float: left;
@@ -953,14 +985,6 @@ input {
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
-.particle {
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    animation: moveRight linear infinite;
-    filter: blur(0.5px);
-}
 
 /*顶部容器*/
 .publicHeader::before {
@@ -970,7 +994,7 @@ input {
     left: -50%;
     width: 200%;
     height: 200%;
-    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(255,255,255,0.44) 0%, transparent 70%);
     animation: rotate 20s linear infinite;
 }
 @keyframes rotate {
@@ -1001,3 +1025,5 @@ input {
         opacity: 1;
     }
 }
+
+

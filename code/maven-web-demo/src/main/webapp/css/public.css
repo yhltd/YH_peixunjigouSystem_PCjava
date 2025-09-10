@@ -79,7 +79,7 @@ li{
     border: 1px solid #192b02;
     border-radius: 4px;
     font-weight: bold;
-    background: linear-gradient(to bottom,#70b21c,#5c9613,#47740e,#3b6209,#2b4906);
+    /*background: linear-gradient(to bottom,#70b21c,#5c9613,#47740e,#3b6209,#2b4906);*/
 }
 
 /* 添加跑马灯容器样式 */

@@ -9,17 +9,37 @@
     <title>教务管理系统</title>
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/public.css"/>
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/style.css"/>
+    <style>
+        .visible{
+            top:0;
+        }
+        /* 装饰性粒子 */
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.6);
+            animation: float 15s infinite linear;
+        }
+
+
+        /* 动画定义 */
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-100vh) rotate(360deg); }
+        }
+    </style>
 </head>
 <body>
 <!--头部-->
-<header class="publicHeader">
+<header class="publicHeader advanced-container" id="navbar" data-bg-id="1">
+
     <h1>教务管理系统</h1>
 
     <div class="publicHeaderR">
         <p><span id="hours"></span><span style="color: #fff21b">${GLOBAL_USER.realName} </span> , 欢迎你！</p>
         <input hidden="hidden" id="rongliang" value="${rongliang }"/>
-        <a class="btn-3d" onclick="shujv()" style="width:80px">数据空间</a>
-        <a class="btn-3d" href="<%=request.getContextPath() %>/login.jsp" style="width:80px">退出</a>
+        <a style="background: url(../img/数据空间.png);box-sizing: border-box;"  onclick="shujv()" >数据空间</a>
+        <a style="background: url(../img/退出.png);box-sizing: border-box;" href="<%=request.getContextPath() %>/login.jsp" >退出</a>
     </div>
 <%--    <a href="<%=request.getContextPath() %>/tea/teacher.action"><img src="../img/yyh.png" style="width: 32px;height: 32px;float:right;margin-top: 8px;"></a>--%>
 </header>
@@ -125,5 +145,50 @@
         alert($('#rongliang').val());
         return false;
     }
+
+    window.addEventListener('scroll', function() {
+        const navbar = document.getElementById('navbar');
+        if (window.scrollY > 100) {
+            navbar.classList.add('visible');
+        } else {
+            navbar.classList.remove('visible');
+        }
+    });
+
+
+
+    function createParticles() {
+        const particleCount = 30;
+        document.querySelectorAll('.advanced-container').forEach(container => {
+            // 为每个容器独立生成粒子
+            const id = container.dataset.bgId;
+
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+
+                // 随机大小 (2px - 8px)
+                const size = Math.random() * 6 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+
+                // 随机位置
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+
+                // 随机动画延迟和持续时间
+                particle.style.animationDelay = `${Math.random() * 15}s`;
+                particle.style.animationDuration = `${Math.random() * 10 + 10}s`;
+
+                container.appendChild(particle);
+            }
+        });
+    }
+
+    // 初始化效果
+    window.addEventListener('DOMContentLoaded', () => {
+        createParticles();
+    });
 </script>
 </html>

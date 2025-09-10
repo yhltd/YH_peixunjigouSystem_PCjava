@@ -16,17 +16,26 @@
     <title>教务管理系统</title>
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/public.css"/>
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/style.css"/>
+    <style>
+        .visible{
+            top:0;
+        }
+    </style>
 </head>
 <body>
-<header class="publicHeader">
+<header class="publicHeader" id="navbar">
+<%--    <div class="flow-bg"></div>--%>
+
     <h1>教务管理系统</h1>
+
     <div class="publicHeaderR">
         <p><span id="hours"></span><span style="color: #fff21b">${GLOBAL_USER.realName} </span> , 欢迎你！</p>
         <input hidden="hidden" id="rongliang" value="${rongliang }"/>
-        <a class="btn-3d" onclick="shujv()" style="width:80px">数据空间</a>
-        <a class="btn-3d" href="<%=request.getContextPath() %>/login.jsp" style="width:80px">退出</a>
+        <a style="background: url(../img/数据空间.png);box-sizing: border-box;" onclick="shujv()" >数据空间</a>
+        <a style="background: url(../img/退出.png);box-sizing: border-box;" href="<%=request.getContextPath() %>/login.jsp" >退出</a>
     </div>
-    <a href="<%=request.getContextPath() %>/tea/teacher.action"><img src="../img/yyh.png" style="width: 32px;height: 32px;float:right;margin-top: 8px;"></a>
+<%--        <a href="<%=request.getContextPath() %>/tea/teacher.action"><img src="../img/yyh.png" style="width: 32px;height: 32px;float:right;margin-top: 8px;"></a>--%>
+
 </header>
 <!--时间-->
 <%--<section class="publicTime">--%>
@@ -34,6 +43,7 @@
 <%--</section>--%>
 <!--主体内容-->
 <section class="publicMian ">
+    <div class="left-bg">
     <div class="left">
         <h2 class="leftH2"><span class="span1"></span>功能列表 <span></span></h2>
         <nav>
@@ -55,6 +65,7 @@
                 <li><a href="<%=request.getContextPath() %>/pdf/教务管理系统（20230618）.xlsm">下载表格</a></li>
             </ul>
         </nav>
+    </div>
     </div>
     <div class="right">
         <div class="all">
@@ -141,5 +152,15 @@
         alert($('#rongliang').val());
         return false;
     }
+
+
+    window.addEventListener('scroll', function() {
+        const navbar = document.getElementById('navbar');
+        if (window.scrollY > 100) {
+            navbar.classList.add('visible');
+        } else {
+            navbar.classList.remove('visible');
+        }
+    });
 </script>
 </html>

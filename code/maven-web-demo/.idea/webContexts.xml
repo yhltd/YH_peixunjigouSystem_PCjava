@@ -11,6 +11,7 @@
         <entry key="file://$PROJECT_DIR$/src/main/webapp/stu/student.jsp" value="file://$PROJECT_DIR$/src/main/webapp/stu" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/stu/update.jsp" value="file://$PROJECT_DIR$/src/main/webapp/stu" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/teacher/kstj.jsp" value="file://$PROJECT_DIR$/src/main/webapp/teacher" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/teacherInfo/teacherInfo.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
       </map>
     </option>
   </component>
