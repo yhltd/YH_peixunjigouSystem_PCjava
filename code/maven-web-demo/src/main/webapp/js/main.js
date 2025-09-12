@@ -64,11 +64,11 @@ function getList() {
 
             // ´´½¨ÂÖ²¥Í¼Êý¾Ý
             var carouselImages = [
-                { url: images[0].tptop2 || "https://picsum.photos/id/10/800/500", alt: "Í¼1" },
-                { url: images[1].tptop3 || "https://picsum.photos/id/11/800/500", alt: "Í¼2" },
-                { url: images[2].tptop4 || "https://picsum.photos/id/12/800/500", alt: "Í¼3" },
-                { url: images[3].tptop5 || "https://picsum.photos/id/13/800/500", alt: "Í¼4" },
-                { url: images[4].tptop6 || "https://picsum.photos/id/14/800/500", alt: "Í¼5" }
+                { url: images[0].tptop2 , alt: "Í¼1" },
+                { url: images[1].tptop3 , alt: "Í¼2" },
+                { url: images[2].tptop4 , alt: "Í¼3" },
+                { url: images[3].tptop5 , alt: "Í¼4" },
+                { url: images[4].tptop6 , alt: "Í¼5" }
             ];
 
             console.log(carouselImages, "ÂÖ²¥Í¼Í¼Æ¬Êý¾Ý");

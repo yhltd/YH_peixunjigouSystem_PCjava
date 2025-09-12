@@ -85,7 +85,7 @@
 <p style="text-align: right;font-size: 14px">当前系统版本：5.1.0.3&nbsp;&nbsp;</p>
 <section class="loginBox">
     <header class="loginHeader">
-        <h1 style="    font-size: 40px;">教务管理登录系统</h1>
+        <h1 style="    font-size: 40px;">云合一体化教务系统</h1>
     </header>
     <img src="img/px1.png" style="width: 200px;height: 200px;float: left">
     <img src="img/px2.png" style="width: 200px;height: 200px;float: right">

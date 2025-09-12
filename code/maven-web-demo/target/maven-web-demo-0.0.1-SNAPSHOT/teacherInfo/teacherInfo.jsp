@@ -104,7 +104,7 @@
                 <th>操作</th>
             </tr>
             <c:forEach items="${list }" var="t">
-                <tr>
+                <tr class="end">
                     <td>${t.id}</td>
                     <td>${t.t_name}</td>
                     <td>${t.sex}</td>

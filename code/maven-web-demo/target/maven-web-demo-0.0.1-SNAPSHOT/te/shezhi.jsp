@@ -13,20 +13,6 @@
         .visible{
             top:0;
         }
-        /* 装饰性粒子 */
-        .particle {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.6);
-            animation: float 15s infinite linear;
-        }
-
-
-        /* 动画定义 */
-        @keyframes float {
-            0% { transform: translateY(0) rotate(0deg); }
-            100% { transform: translateY(-100vh) rotate(360deg); }
-        }
     </style>
 </head>
 <body>
@@ -157,38 +143,6 @@
 
 
 
-    function createParticles() {
-        const particleCount = 30;
-        document.querySelectorAll('.advanced-container').forEach(container => {
-            // 为每个容器独立生成粒子
-            const id = container.dataset.bgId;
 
-
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.classList.add('particle');
-
-                // 随机大小 (2px - 8px)
-                const size = Math.random() * 6 + 2;
-                particle.style.width = `${size}px`;
-                particle.style.height = `${size}px`;
-
-                // 随机位置
-                particle.style.left = `${Math.random() * 100}%`;
-                particle.style.top = `${Math.random() * 100}%`;
-
-                // 随机动画延迟和持续时间
-                particle.style.animationDelay = `${Math.random() * 15}s`;
-                particle.style.animationDuration = `${Math.random() * 10 + 10}s`;
-
-                container.appendChild(particle);
-            }
-        });
-    }
-
-    // 初始化效果
-    window.addEventListener('DOMContentLoaded', () => {
-        createParticles();
-    });
 </script>
 </html>

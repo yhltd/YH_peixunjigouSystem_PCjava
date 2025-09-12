@@ -994,7 +994,7 @@
     <button type="button" class="index-btn-div" onclick="tanClick()">×</button>
     <div class="index-images">
         <div class="index-item" id="Div1">
-            <img src="https://picsum.photos/id/13/800/500" alt="图5">
+            <img src="" alt="图5">
         </div>
     </div>
 </div>
@@ -1047,7 +1047,7 @@
         </nav>
     </div>
     </div>
-    <div class="right" style="background: url(https://gips1.baidu.com/it/u=234355050,149471300&fm=3086&app=3086&f=JPEG&wm=1,baiduai3,0,0,13,9&wmo=5,5&w=1024&h=1024); background-size: cover">
+    <div class="right zhuye-bg" >
         <div class="wFont">
             <div class="location">
                 <strong>你现在所在的位置是:</strong>
