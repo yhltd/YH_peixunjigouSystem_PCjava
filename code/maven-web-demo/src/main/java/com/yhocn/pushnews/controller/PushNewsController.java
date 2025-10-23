@@ -18,10 +18,17 @@ public class PushNewsController {
     private PushNewsService pushNewsService;
 
     @RequestMapping("/getnews")
-    @ResponseBody  // 必须要有这个注解
+    @ResponseBody
     public List<PushNews> getnews(HttpSession session) {
         String companyName = (String) session.getAttribute("companyName");
         return pushNewsService.getList(companyName);
+    }
+
+    @RequestMapping("/getlogin")
+    @ResponseBody
+    public List<PushNews> getlogin(HttpSession session) {
+        String companyName = (String) session.getAttribute("companyName");
+        return pushNewsService.getLogin(companyName);
     }
 
 

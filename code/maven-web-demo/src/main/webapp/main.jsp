@@ -980,6 +980,10 @@
             display: flex;
         }
 
+        .hidden {
+            display: none !important;
+        }
+
 
     </style>
 </head>
@@ -1001,7 +1005,9 @@
 <header class="publicHeader">
     <div class="aaa">
 <%--    <canvas id="particleCanvas"></canvas>--%>
-    <h1>教务管理系统</h1>
+    <img src="./img/yhlogo.png">
+<%--    <img src="">--%>
+    <h2 style="color: white">教务管理系统</h2>
 
     <div class="marquee-container">
         <div class="marquee-content" id="marqueeText">

@@ -76,13 +76,54 @@
             return false;
         };
 
+        $(document).ready(function(){
+            $.ajax({
+                type: 'post',
+                url:'/maven_web_demo_war/pushnews/getlogin.action',
+                data:{
+
+                },
+                success:function (res){
+
+                    if (res[0].beizhu2 && res[0].beizhu2.trim() !== "") {
+                        var logoImage = "data:image/jpg;base64," + res[0].beizhu2;
+                        var imgElement = document.querySelector('.logo img');
+
+                        if (imgElement) {
+                            imgElement.src = logoImage;
+                            console.log("Logo图片已替换为base64图片");
+                        } else {
+                            console.log("未找到.logo img元素");
+                        }
+                    }
+
+                    if (res[0].beizhu3 && res[0].beizhu3.trim() !== "") {
+                        var systemName = res[0].beizhu3;
+                        var titleElement = document.querySelector('header.loginHeader h1');
+
+                        if (titleElement) {
+                            titleElement.textContent = systemName;
+                            console.log("系统名称已替换为:", systemName);
+                        } else {
+                            console.log("未找到header.loginHeader h1元素");
+                        }
+
+                        document.title = systemName;
+                    }
+
+                },error:function () {
+                    alert("error!");
+                }
+            })
+        });
+
     </script>
 </head>
 <body class="login_bg">
 <div class="logo">
 <img src="img/yhlogo.png" style="width: 60px;height: 60px;float: left">
 </div>
-<p style="text-align: right;font-size: 14px">当前系统版本：5.1.0.3&nbsp;&nbsp;</p>
+<p style="text-align: right;font-size: 14px">当前系统版本：5.1.0.4&nbsp;&nbsp;</p>
 <section class="loginBox">
     <header class="loginHeader">
         <h1 style="    font-size: 40px;">云合一体化教务系统</h1>

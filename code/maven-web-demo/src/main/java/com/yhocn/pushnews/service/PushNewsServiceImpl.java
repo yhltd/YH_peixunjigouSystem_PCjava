@@ -20,4 +20,10 @@ public class PushNewsServiceImpl implements PushNewsService {
             return pm.getList(companyName);
 
     }
+
+    public List<PushNews> getLogin(String companyName) {
+        DynamicDataSourceHolder.setDataSource("dataSource3");
+        return pm.getList(companyName);
+
+    }
 }

@@ -76,6 +76,47 @@
             return false;
         };
 
+        $(document).ready(function(){
+            $.ajax({
+                type: 'post',
+                url:'/maven_web_demo_war/pushnews/getlogin.action',
+                data:{
+
+                },
+                success:function (res){
+
+                    if (res[0].beizhu2 && res[0].beizhu2.trim() !== "") {
+                        var logoImage = "data:image/jpg;base64," + res[0].beizhu2;
+                        var imgElement = document.querySelector('.logo img');
+
+                        if (imgElement) {
+                            imgElement.src = logoImage;
+                            console.log("Logo图片已替换为base64图片");
+                        } else {
+                            console.log("未找到.logo img元素");
+                        }
+                    }
+
+                    if (res[0].beizhu3 && res[0].beizhu3.trim() !== "") {
+                        var systemName = res[0].beizhu3;
+                        var titleElement = document.querySelector('header.loginHeader h1');
+
+                        if (titleElement) {
+                            titleElement.textContent = systemName;
+                            console.log("系统名称已替换为:", systemName);
+                        } else {
+                            console.log("未找到header.loginHeader h1元素");
+                        }
+
+                        document.title = systemName;
+                    }
+
+                },error:function () {
+                    alert("error!");
+                }
+            })
+        });
+
     </script>
 </head>
 <body class="login_bg">

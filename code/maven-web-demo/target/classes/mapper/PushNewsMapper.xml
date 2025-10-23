@@ -14,4 +14,12 @@
             )
         ]]>
     </select>
+
+    <select id="getLogin" resultType="PushNews">
+        <![CDATA[
+        SELECT beizhu2,beizhu3 FROM product_pushnews
+        WHERE xtname = '教务管理系统'
+          AND gsname = #{companyName}
+        ]]>
+    </select>
 </mapper>

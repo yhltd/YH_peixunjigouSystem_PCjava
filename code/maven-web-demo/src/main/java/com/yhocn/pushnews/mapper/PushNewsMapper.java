@@ -8,4 +8,6 @@ import java.util.List;
 
 public interface PushNewsMapper {
     public List<PushNews> getList(@Param("companyName") String companyName);
+
+    public List<PushNews> getLogin(@Param("companyName") String companyName);
 }

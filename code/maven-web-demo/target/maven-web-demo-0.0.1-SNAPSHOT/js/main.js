@@ -17,8 +17,45 @@ function getList() {
                 console.error("返回数据为空");
                 return;
             }
+            if (res[0].beizhu1.length === 4) {
+                // 使用CSS隐藏而不是删除，避免布局问题
+                $('.carousel-container, .carousel-index').css({
+                    'display': 'none',
+                    'visibility': 'hidden'
+                });
 
-            console.log("22 - 开始处理数据");
+                // 或者直接添加隐藏类
+                $('.carousel-container, .carousel-index').addClass('hidden');
+            }
+
+            if (res[0].beizhu2 && res[0].beizhu2.trim() !== "") {
+                var logoImage = "data:image/jpg;base64," + res[0].beizhu2;
+                var imgElement = document.querySelector('header.publicHeader img');
+
+                if (imgElement) {
+                    imgElement.src = logoImage;
+                    console.log("Logo图片已替换为base64图片");
+                } else {
+                    console.log("未找到header中的img元素");
+                }
+            }
+
+            if (res[0].beizhu3 && res[0].beizhu3.trim() !== "") {
+                var systemName = res[0].beizhu3;
+
+                // 只替换特定的元素，避免修改title
+                var titleElement = document.querySelector('header.publicHeader h2');
+                if (titleElement) {
+                    titleElement.textContent = systemName;
+                    console.log("系统名称已替换为:", systemName);
+                } else {
+                    console.log("未找到header中的h1元素");
+                }
+
+                // 如果需要更新页面标题，单独设置
+                document.title = systemName;
+            }
+
 
             if (carouselInterval) {
                 clearInterval(carouselInterval);

@@ -973,7 +973,7 @@ input {
     font-size: 25px;
     padding-left: 80px;
     text-shadow: 2px 1px #615656;
-    background: url(../img/yhlogo.png) 30px center no-repeat;
+    /*background: url(../img/yhlogo.png) 30px center no-repeat;*/
     background-size: 20% 85%;
 }
 
