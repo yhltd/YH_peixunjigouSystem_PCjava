@@ -2,6 +2,7 @@ package com.yhocn.course.mapper;
 
 import com.yhocn.course.entity.Course;
 import com.yhocn.teacherInfo.entity.TeacherInfo;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.List;
  * @author hui
  * @date 2022/9/7 16:23
  */
+@Mapper
 public interface CourseMapper {
     public List<Course> getAllList(@Param("course") Course course, @Param("c") String c);
 

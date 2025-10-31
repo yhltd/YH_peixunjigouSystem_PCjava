@@ -70,7 +70,9 @@ public class LoginController {
 					mark2 = jiamiList.get(0).getMark2().trim();
 				}
 				if(!jiamiList.get(0).getEndtime().equals("")){
-					mark3 = jiamiList.get(0).getMark3().trim();
+					String mark3Value = jiamiList.get(0).getMark3();
+					mark3 = (mark3Value != null) ? mark3Value.trim() : "";
+//					mark3 = jiamiList.get(0).getMark3().trim();
 					if(mark3 != ""){
 						mark3 = mark3.split(":")[1];
 						mark3 = mark3.replace("(","");

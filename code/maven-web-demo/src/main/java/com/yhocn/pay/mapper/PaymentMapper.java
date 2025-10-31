@@ -3,8 +3,10 @@ package com.yhocn.pay.mapper;
 import java.util.List;
 
 import com.yhocn.pay.entity.Payment;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+@Mapper
 public interface PaymentMapper {
 
 	public List<Payment> selectAll(@Param("p")Payment p,@Param("a")String a,@Param("b")String b,@Param("c")String c,@Param("d")String d,@Param("page")Integer page);

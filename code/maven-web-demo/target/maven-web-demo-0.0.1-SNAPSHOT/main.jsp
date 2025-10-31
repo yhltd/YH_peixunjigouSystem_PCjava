@@ -1064,7 +1064,7 @@
             <div id="min3">
                 <p style="color: #00ccef;text-shadow: 1px 1px #414040;">${qianfei}</p>
                 <span  style="display: inline-block; position: relative;">
-    <a href="<%=request.getContextPath() %>/pushnews/getnews.action" class="circle-link" style="display: block;">学生信息</a>
+    <a href="<%=request.getContextPath() %>/stu/student1.action" class="circle-link" style="display: block;">学生信息</a>
 </span>
                 <span style="display: inline-block; position: relative;">
     <a href="<%=request.getContextPath() %>/teacherInfo/getList1.action" class="circle-link" style="display: block;">教师信息</a>

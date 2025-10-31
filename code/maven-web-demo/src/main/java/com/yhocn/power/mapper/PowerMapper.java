@@ -2,6 +2,7 @@ package com.yhocn.power.mapper;
 
 import com.yhocn.course.entity.Course;
 import com.yhocn.power.entity.Power;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.List;
  * @author hui
  * @date 2022/9/10 10:28
  */
+@Mapper
 public interface PowerMapper {
     public List<Power> getAllList(@Param("p") Power p, @Param("c") String c);
 

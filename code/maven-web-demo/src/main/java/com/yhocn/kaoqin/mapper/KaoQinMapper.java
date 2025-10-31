@@ -1,6 +1,7 @@
 package com.yhocn.kaoqin.mapper;
 
 import com.yhocn.kaoqin.entity.KaoQin;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.List;
  * @author hui
  * @date 2022/9/8 9:17
  */
+@Mapper
 public interface KaoQinMapper {
     public List<KaoQin> getAllList(@Param("kaoQin") KaoQin kaoQin, @Param("c") String c);
 

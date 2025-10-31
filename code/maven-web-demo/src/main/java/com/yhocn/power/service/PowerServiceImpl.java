@@ -19,16 +19,19 @@ public class PowerServiceImpl implements PowerService {
 
     @Override
     public List<Power> getAllList(Power p, String c) {
+        DynamicDataSourceHolder.setDataSource("dataSource1");
         return dao.getAllList(p, c);
     }
 
     @Override
     public List<Power> getList(Power p, String c, String view_name, Integer page) {
+        DynamicDataSourceHolder.setDataSource("dataSource1");
         return dao.getList(p, c, view_name, page);
     }
 
     @Override
     public Power getListById(Power p, String c) {
+        DynamicDataSourceHolder.setDataSource("dataSource1");
         return dao.getListById(p, c);
     }
 
@@ -40,16 +43,19 @@ public class PowerServiceImpl implements PowerService {
 
     @Override
     public int add(Power p, String c) {
+        DynamicDataSourceHolder.setDataSource("dataSource1");
         return dao.add(p, c);
     }
 
     @Override
     public int update(Power p, String c) {
+        DynamicDataSourceHolder.setDataSource("dataSource1");
         return dao.update(p, c);
     }
 
     @Override
     public int delete(Power p, String c) {
+        DynamicDataSourceHolder.setDataSource("dataSource1");
         return dao.delete(p, c);
     }
 }

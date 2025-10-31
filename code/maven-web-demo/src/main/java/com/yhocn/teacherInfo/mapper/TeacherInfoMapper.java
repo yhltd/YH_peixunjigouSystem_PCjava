@@ -1,6 +1,7 @@
 package com.yhocn.teacherInfo.mapper;
 
 import com.yhocn.teacherInfo.entity.TeacherInfo;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.List;
  * @author hui
  * @date 2022/8/27 11:52
  */
+@Mapper
 public interface TeacherInfoMapper {
     public List<TeacherInfo> getAllList(@Param("t") TeacherInfo t, @Param("c") String c);
 

@@ -1,5 +1,6 @@
 package com.yhocn.kaoqin.service;
 
+import Bean.DynamicDataSourceHolder;
 import com.yhocn.course.mapper.CourseMapper;
 import com.yhocn.kaoqin.entity.KaoQin;
 import com.yhocn.kaoqin.mapper.KaoQinMapper;
@@ -20,31 +21,38 @@ public class KaoQinServiceImpl implements KaoQinService {
 
     @Override
     public List<KaoQin> getAllList(KaoQin kaoQin, String c) {
+        DynamicDataSourceHolder.setDataSource("dataSource1");
         return dao.getAllList(kaoQin, c);
     }
 
     @Override
     public List<KaoQin> getList(KaoQin kaoQin, String c, String s_name, Integer page) {
+        DynamicDataSourceHolder.setDataSource("dataSource1");
         return dao.getList(kaoQin, c, s_name, page);
     }
 
     @Override
     public KaoQin getListById(KaoQin kaoQin, String c) {
+        DynamicDataSourceHolder.setDataSource("dataSource1");
         return dao.getListById(kaoQin, c);
     }
 
     @Override
     public int add(KaoQin kaoQin, String c) {
+        DynamicDataSourceHolder.setDataSource("dataSource1");
         return dao.add(kaoQin, c);
     }
 
     @Override
     public int update(KaoQin kaoQin, String c) {
+        DynamicDataSourceHolder.setDataSource("dataSource1");
         return dao.update(kaoQin, c);
     }
 
     @Override
     public int delete(KaoQin kaoQin, String c) {
+
+        DynamicDataSourceHolder.setDataSource("dataSource1");
         return dao.delete(kaoQin, c);
     }
 }

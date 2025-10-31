@@ -4,8 +4,9 @@ import java.util.List;
 
 import com.yhocn.shezhi.entity.Shezhi;
 import com.yhocn.student.entity.Student;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-
+@Mapper
 public interface StudentMapper {
 
     public List<Student> selectAll(@Param("s") Student s, @Param("c") String c, @Param("a") String a, @Param("b") String b, @Param("d") String d, @Param("E") String E, @Param("f") String f, @Param("page") Integer page);

@@ -5,10 +5,11 @@ import java.util.List;
 import com.yhocn.income.entity.Income;
 import com.yhocn.shezhi.entity.Shezhi;
 import com.yhocn.teacher.entity.Teacher;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import javax.servlet.http.Cookie;
-
+@Mapper
 public interface IncomeMapper {
 	public List<Income> selectAll(@Param("inc")Income inc,@Param("c")String c);
 	public int add(@Param("inc")Income inc,@Param("c")String c);

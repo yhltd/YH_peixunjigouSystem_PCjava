@@ -3,8 +3,9 @@ package com.yhocn.teacher.mapper;
 import java.util.List;
 
 import com.yhocn.teacher.entity.Teacher;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-
+@Mapper
 public interface TeacherMapper {
 
 	public Teacher login(Teacher t);

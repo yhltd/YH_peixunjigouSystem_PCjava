@@ -1,10 +1,11 @@
 package com.yhocn.kstj.mapper;
 
 import com.yhocn.kstj.entity.Kstj;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
-
+@Mapper
 public interface KstjMapper {
 
 	public Kstj login(@Param("t")Kstj t,@Param("c")String c);

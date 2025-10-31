@@ -2,6 +2,7 @@ package com.yhocn.pay.service;
 
 import java.util.List;
 
+import Bean.DynamicDataSourceHolder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,39 +16,49 @@ public class PaymentServiceImpl implements PaymentService {
 	
 	@Override
 	public List<Payment> selectAll(Payment p, String a, String b, String c, String d,Integer page) {
+		DynamicDataSourceHolder.setDataSource("dataSource1");
 		return dao.selectAll(p,a,b,c,d,page);
 	}
 
 	@Override
 	public List<Payment> selectAll1(Payment p, String c) {
+		DynamicDataSourceHolder.setDataSource("dataSource1");
+
 		return dao.selectAll1(p,c);
 	}
 
 
 	@Override
 	public int add(Payment p, String c) {
+
+		DynamicDataSourceHolder.setDataSource("dataSource1");
 		return dao.add(p,c);
 	}
 
 	@Override
 	public int update(Payment p, String c) {
+		DynamicDataSourceHolder.setDataSource("dataSource1");
+
 		return dao.update(p,c);
 	}
 
 	@Override
 	public int delete(Payment p, String c) {
+		DynamicDataSourceHolder.setDataSource("dataSource1");
 		return dao.delete(p,c);
 	}
 
 
 	@Override
 	public Payment selectByRealname(Payment p, String c) {
+		DynamicDataSourceHolder.setDataSource("dataSource1");
 		return dao.selectByRealname(p,c);
 	}
 
 
 	@Override
 	public Payment selectById(Payment p, String c) {
+		DynamicDataSourceHolder.setDataSource("dataSource1");
 		return dao.selectById(p,c);
 	}
 

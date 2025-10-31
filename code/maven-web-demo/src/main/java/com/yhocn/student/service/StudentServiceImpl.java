@@ -2,6 +2,7 @@ package com.yhocn.student.service;
 
 import java.util.List;
 
+import Bean.DynamicDataSourceHolder;
 import com.yhocn.shezhi.entity.Shezhi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,57 +18,68 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public List<Student> selectAll(Student s, String c, String a, String b, String d, String E, String f, Integer page) {
+        DynamicDataSourceHolder.setDataSource("dataSource1");
         return dao.selectAll(s, c, a, b, d, E, f, page);
     }
 
     @Override
     public List<Student> selectAll1(Student s, String c, String a, String b, String d, String E, String f, Integer page) {
+        DynamicDataSourceHolder.setDataSource("dataSource1");
         return dao.selectAll1(s, c, a, b, d, E, f, page);
     }
 
 
     @Override
     public Student selectById(Student s, String c) {
+        DynamicDataSourceHolder.setDataSource("dataSource1");
         return dao.selectById(s, c);
     }
 
     @Override
     public int add(Student s, String c) {
+        DynamicDataSourceHolder.setDataSource("dataSource1");
         return dao.add(s, c);
     }
 
     @Override
     public int update(Student s, String c) {
+        DynamicDataSourceHolder.setDataSource("dataSource1");
         return dao.update(s, c);
     }
 
     @Override
     public int delete(Student s, String c) {
+        DynamicDataSourceHolder.setDataSource("dataSource1");
         return dao.delete(s, c);
     }
 
     @Override
     public List<Student> selectByRealName(Student s, String c, String a) {
+        DynamicDataSourceHolder.setDataSource("dataSource1");
         return dao.selectByRealName(s, c, a);
     }
 
     @Override
     public List<Student> selectArr(Student s, String c) {
+        DynamicDataSourceHolder.setDataSource("dataSource1");
         return dao.selectArr(s, c);
     }
 
     @Override
     public List<Student> selectArr1(Student s, String c, String a) {
+        DynamicDataSourceHolder.setDataSource("dataSource1");
         return dao.selectArr1(s, c, a);
     }
 
     @Override
     public List<Shezhi> shezhiList(Shezhi shezhi, String c) {
+        DynamicDataSourceHolder.setDataSource("dataSource1");
         return dao.shezhiList(shezhi, c);
     }
 
     @Override
     public List<Student> getListByName(String RealName, String c) {
+        DynamicDataSourceHolder.setDataSource("dataSource1");
         return dao.getListByName(RealName, c);
     }
 
