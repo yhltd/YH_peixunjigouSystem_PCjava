@@ -17,17 +17,44 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				and rgdate  between #{a} and #{b}
 			</if>
 	</select>
+
+	<select id="select_mssql" parameterType="Income" resultType="Income">
+		select *,
+		(SELECT ISNULL(SUM(money),0)FROM income where  rgdate  between #{a} and #{b}and Company =#{c} ) mall,
+		(SELECT ISNULL(SUM(paid),0)FROM income where  rgdate  between #{a} and #{b}and Company =#{c}) pall,
+		(SELECT ISNULL(SUM(money),0)FROM income WHERE msort='学费' and  rgdate  between #{a} and #{b}and Company =#{c}) xall,
+		(SELECT ISNULL(SUM(money),0)-ISNULL(SUM(paid),0) FROM income where  rgdate  between #{a} and #{b}and Company =#{c}) yall
+		from income where Company =#{c}
+		<if test="a != null and b != ''">
+			and rgdate  between #{a} and #{b}
+		</if>
+	</select>
+
+
 	<select id="selectAll" parameterType="Income" resultType="Income">
 		select *,(SELECT SUM(money)FROM income  where Company =#{c}) mall,(SELECT SUM(paid)FROM income where Company =#{c}) pall,(SELECT SUM(money)FROM income WHERE msort="学费" and Company =#{c}) xall,(SELECT SUM(money)-SUM(paid)FROM income where Company =#{c}) yall
 		 from income where Company =#{c}
+	</select>
+
+	<select id="selectAll_mssql" parameterType="Income" resultType="Income">
+		select *,(SELECT SUM(money)FROM income  where Company =#{c}) mall,(SELECT SUM(paid)FROM income where Company =#{c}) pall,(SELECT SUM(money)FROM income WHERE msort='学费' and Company =#{c}) xall,(SELECT SUM(money)-SUM(paid)FROM income where Company =#{c}) yall
+		from income where Company =#{c}
 	</select>
 
 	<select id="shezhiList" parameterType="Shezhi" resultType="Shezhi">
 		select * from shezhi where msort != "" and Company =#{c} group by msort
 	</select>
 
+	<select id="shezhiList_mssql" parameterType="Shezhi" resultType="Shezhi">
+		select * from shezhi where msort != '' and Company =#{c} group by msort
+	</select>
+
 	<select id="List" parameterType="Shezhi" resultType="Shezhi">
 		select * from shezhi where  psort != "" and Company =#{c} group by msort
+	</select>
+
+	<select id="List_mssql" parameterType="Shezhi" resultType="Shezhi">
+		select * from shezhi where  psort != '' and Company =#{c} group by msort
 	</select>
 
 	<insert id="add">

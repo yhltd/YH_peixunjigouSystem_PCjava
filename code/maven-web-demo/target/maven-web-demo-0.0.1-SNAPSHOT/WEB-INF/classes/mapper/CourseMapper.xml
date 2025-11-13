@@ -11,6 +11,17 @@
         select * from course where company =#{c} and teacher like "%"#{teacher}"%" and course like "%"#{cou}"%" limit #{page},10
     </select>
 
+    <select id="getList_mssql" parameterType="Course" resultType="Course">
+        SELECT * FROM (
+                          SELECT *, ROW_NUMBER() OVER (ORDER BY id) as row_num
+                          FROM course
+                          WHERE company = #{c}
+                            AND teacher LIKE '%' + #{teacher} + '%'
+                            AND course LIKE '%' + #{cou} + '%'
+                      ) AS temp
+        WHERE row_num BETWEEN #{page} + 1 AND #{page} + 10
+    </select>
+
     <select id="getListById" resultType="Course">
 		select * from course where id=#{course.id} and company =#{c}
 	</select>

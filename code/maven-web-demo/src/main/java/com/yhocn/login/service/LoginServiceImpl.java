@@ -18,4 +18,10 @@ public class LoginServiceImpl implements LoginService {
 		return dao.login(t);
 	}
 
+	@Override
+	public Teacher login1(Teacher t) {
+		DynamicDataSourceHolder.setDataSource("dataSource4");
+		return dao.login1(t);
+	}
+
 }

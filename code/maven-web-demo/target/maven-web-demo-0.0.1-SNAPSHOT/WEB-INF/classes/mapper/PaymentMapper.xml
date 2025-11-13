@@ -21,6 +21,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		limit #{page},10
 	</select>
 
+	<select id="selectAll_mssql" parameterType="Payment" resultType="Payment">
+		SELECT * FROM (
+		SELECT *, ROW_NUMBER() OVER (ORDER BY id) as row_num
+		FROM payment
+		WHERE Company = #{c}
+		<if test="d != null and d != ''">
+			and realname LIKE '%' + #{d} + '%'
+		</if>
+		<if test=" a != '' and  b != ''">
+			and ksdate between #{a} and #{b}
+		</if>
+		) AS temp
+		WHERE row_num BETWEEN #{page} + 1 AND #{page} + 10
+	</select>
+
 	<select id="selectById" resultType="Payment">
 		select * from payment where
 		id=#{p.id} and Company =#{c}
@@ -71,6 +86,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select *
 		from payment
 		where realname like "%"#{p.realname}"%" and Company =#{c}
+	</select>
+	<select id="selectByRealname_mssql" resultType="Payment">
+		select *
+		from payment
+		where realname LIKE '%' + #{p.realname} + '%' and Company =#{c}
 	</select>
 	
 </mapper>

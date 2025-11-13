@@ -22,6 +22,41 @@
 			and Course like "%"#{f}"%"
 		</if>
 	</select>
+	<select id="selectAll_mssql" parameterType="Student" resultType="Student">
+		SELECT
+		s.id, s.RealName, s.Sex, s.rgdate, s.Course, s.Teacher, s.Classnum, s.phone, s.Fee,
+		ISNULL(p.mall, 0) as mall,
+		s.Fee - s.Cost as Nocost,
+		ISNULL(k.nall, 0) as nall,
+		s.Allhour - s.Hour as Nohour,
+		s.Allhour, s.Type
+		FROM student s
+		LEFT JOIN (
+		SELECT realname, ISNULL(SUM(paid + money), 0) as mall
+		FROM payment
+		WHERE Company = #{c} AND realname = #{s.realName}
+		GROUP BY realname
+		) p ON s.RealName = p.realname
+		LEFT JOIN (
+		SELECT student_name, course, ISNULL(SUM(keshi), 0) as nall
+		FROM keshi_detail
+		WHERE Company = #{c} AND student_name = #{s.realName} AND course = #{s.course}
+		GROUP BY student_name, course
+		) k ON s.RealName = k.student_name AND s.Course = k.course
+		WHERE s.Company = #{c}
+		<if test="d != null and d != ''">
+			and s.Realname LIKE '%' + #{d} + '%'
+		</if>
+		<if test="a != null and b != ''">
+			and s.rgdate between #{a} and #{b}
+		</if>
+		<if test="E != null and E != ''">
+			and s.Teacher LIKE '%' + #{E} + '%'
+		</if>
+		<if test="f != null and f != ''">
+			and s.Course LIKE '%' + #{f} + '%'
+		</if>
+	</select>
 	<select id="selectAll1" parameterType="Student" resultType="Student">
 		select id,RealName,Sex,rgdate,Course,Teacher,Classnum,phone,Fee,(select SUM(case when Company =#{c} and realname=student.realname then paid + money else 0 end) from payment ) mall ,Fee -(select SUM(case when Company =#{c} and realname=student.realname then paid + money else 0 end) from payment ),(select SUM(case when Company=#{c} and student_name=student.realname and course=student.Course then keshi else 0 end ) from keshi_detail ) nall,Allhour - (select SUM(case when Company=#{c} and student_name=student.realname and course=student.Course then keshi else 0 end ) from keshi_detail ) as Nohour,Allhour,Type FROM student
 		where Company =#{c}
@@ -40,16 +75,108 @@
 		order by id limit #{page},10
 	</select>
 
+	<select id="selectAll1_mssql" parameterType="Student" resultType="Student">
+		SELECT * FROM (
+		SELECT
+		s.id, s.RealName, s.Sex, s.rgdate, s.Course, s.Teacher, s.Classnum, s.phone, s.Fee,
+		ISNULL(p.mall, 0) as mall,
+		s.Fee - ISNULL(p.mall, 0) as nocost,
+		ISNULL(k.nall, 0) as nall,
+		s.Allhour - ISNULL(k.nall, 0) as Nohour,
+		s.Allhour, s.Type,
+		ROW_NUMBER() OVER (ORDER BY s.id) as row_num
+		FROM student s
+		LEFT JOIN (
+		SELECT realname, ISNULL(SUM(paid + money), 0) as mall
+		FROM payment
+		WHERE Company = #{c}
+		GROUP BY realname
+		) p ON s.RealName = p.realname
+		LEFT JOIN (
+		SELECT student_name, course, ISNULL(SUM(keshi), 0) as nall
+		FROM keshi_detail
+		WHERE Company = #{c}
+		GROUP BY student_name, course
+		) k ON s.RealName = k.student_name AND s.Course = k.course
+		WHERE s.Company = #{c}
+		<if test="d != null and d != ''">
+			and s.Realname LIKE '%' + #{d} + '%'
+		</if>
+		<if test="a != null and b != ''">
+			and s.rgdate between #{a} and #{b}
+		</if>
+		<if test="E != null and E != ''">
+			and s.Teacher LIKE '%' + #{E} + '%'
+		</if>
+		<if test="f != null and f != ''">
+			and s.Course LIKE '%' + #{f} + '%'
+		</if>
+		) AS temp
+		WHERE row_num BETWEEN #{page} + 1 AND #{page} + 10
+	</select>
+
 	<select id="selectArr" parameterType="Student" resultType="Student">
 		select id,RealName,Sex,rgdate,Course,Teacher,Classnum,phone,Fee,(select SUM(case when Company =#{c}  and realname=student.realname then paid + money else 0 end) from payment ) mall ,ifnull(Fee,0) -ifnull((select SUM(case when Company =#{c}  and realname=student.realname then paid + money else 0 end) from payment ),0) as Nocost,(select SUM(case when Company=#{c}  and student_name=student.realname and course=student.Course then keshi else 0 end ) from keshi_detail ) nall,ifnull(Allhour,0) - ifnull((select SUM(case when Company=#{c}  and student_name=student.realname and course=student.Course then keshi else 0 end ) from keshi_detail ),0) as Nohour,Allhour,Type FROM student
 		where Company =#{c} and ifnull(Fee,0) -ifnull((select SUM(case when Company =#{c}  and realname=student.realname then paid else 0 end) from payment ),0)  > 0
 
 	</select>
+	<select id="selectArr_mssql" parameterType="Student" resultType="Student">
+		SELECT
+			s.id, s.RealName, s.Sex, s.rgdate, s.Course, s.Teacher, s.Classnum, s.phone, s.Fee,
+			ISNULL(p.mall, 0) as mall,
+			ISNULL(s.Fee, 0) - ISNULL(p.mall, 0) as Nocost,
+			ISNULL(k.nall, 0) as nall,
+			ISNULL(s.Allhour, 0) - ISNULL(k.nall, 0) as Nohour,
+			s.Allhour, s.Type
+		FROM student s
+				 LEFT JOIN (
+			SELECT realname, ISNULL(SUM(paid + money), 0) as mall
+			FROM payment
+			WHERE Company = #{c}
+			GROUP BY realname
+		) p ON s.RealName = p.realname
+				 LEFT JOIN (
+			SELECT student_name, course, ISNULL(SUM(keshi), 0) as nall
+			FROM keshi_detail
+			WHERE Company = #{c}
+			GROUP BY student_name, course
+		) k ON s.RealName = k.student_name AND s.Course = k.course
+		WHERE s.Company = #{c}
+		  AND ISNULL(s.Fee, 0) - ISNULL(p.mall, 0) > 0
+	</select>
+
 	<select id="selectArr1" parameterType="Student" resultType="Student">
 		select id,RealName,Sex,rgdate,Course,Teacher,Classnum,phone,Fee,(select SUM(case when Company =#{c}  and realname=student.realname then paid + money else 0 end) from payment ) mall ,ifnull(Fee,0) -ifnull((select SUM(case when Company =#{c}  and realname=student.realname then paid + money else 0 end) from payment ),0) as Nocost,(select SUM(case when Company=#{c}  and student_name=student.realname and course=student.Course then keshi else 0 end ) from keshi_detail ) nall,ifnull(Allhour,0) - ifnull((select SUM(case when Company=#{c}  and student_name=student.realname and course=student.Course then keshi else 0 end ) from keshi_detail ),0) as Nohour,Allhour,Type FROM student
 		where Company =#{c} and ifnull(Fee,0) -ifnull((select SUM(case when Company =#{c}  and realname=student.realname then paid else 0 end) from payment ),0)  > 0
 		<if test="a != null and a != ''">
 			and Realname like "%"#{a}"%"
+		</if>
+	</select>
+	<select id="selectArr1_mssql" parameterType="Student" resultType="Student">
+		SELECT
+		s.id, s.RealName, s.Sex, s.rgdate, s.Course, s.Teacher, s.Classnum, s.phone, s.Fee,
+		ISNULL(p.mall, 0) as mall,
+		ISNULL(s.Fee, 0) - ISNULL(p.mall, 0) as Nocost,
+		ISNULL(k.nall, 0) as nall,
+		ISNULL(s.Allhour, 0) - ISNULL(k.nall, 0) as Nohour,
+		s.Allhour, s.Type
+		FROM student s
+		LEFT JOIN (
+		SELECT realname, ISNULL(SUM(paid + money), 0) as mall
+		FROM payment
+		WHERE Company = #{c}
+		GROUP BY realname
+		) p ON s.RealName = p.realname
+		LEFT JOIN (
+		SELECT student_name, course, ISNULL(SUM(keshi), 0) as nall
+		FROM keshi_detail
+		WHERE Company = #{c}
+		GROUP BY student_name, course
+		) k ON s.RealName = k.student_name AND s.Course = k.course
+		WHERE s.Company = #{c}
+		AND ISNULL(s.Fee, 0) - ISNULL(p.mall, 0) > 0
+		<if test="a != null and a != ''">
+			AND s.RealName LIKE '%' + #{a} + '%'
 		</if>
 	</select>
 
@@ -120,6 +247,17 @@
 			and  RealName = null
 		</if>
 	</select>
+	<select id="selectByRealName_mssql" resultType="Student">
+		select *
+		from student
+		where Company =#{c}
+		<if test="a != null and a != ''">
+			and  RealName LIKE '%' + #{a} + '%'
+		</if >
+		<if test="a = null and a = ''">
+			and  RealName = null
+		</if>
+	</select>
 
 	<select id="shezhiList" parameterType="Shezhi" resultType="Shezhi">
 		select * from shezhi where Company =#{c}
@@ -127,5 +265,8 @@
 
 	<select id="getListByName" parameterType="Student" resultType="Student">
 		select * from Student where RealName=#{RealName} and company=#{c} limit 0,1
+	</select>
+	<select id="getListByName_mssql" parameterType="Student" resultType="Student">
+		SELECT TOP 1 * FROM Student WHERE RealName=#{RealName} and company=#{c}
 	</select>
 </mapper>

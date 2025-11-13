@@ -24,6 +24,7 @@
 		where
 		ID=#{t.id} and Company =#{c}
 	</update>
+
 	<update id="alter">
 		update kstj
 		set

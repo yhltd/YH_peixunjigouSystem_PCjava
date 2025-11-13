@@ -4,6 +4,7 @@ import Bean.DynamicDataSourceHolder;
 import com.yhocn.kstj.entity.Kstj;
 import com.yhocn.kstj.mapper.KstjMapper;
 import com.yhocn.kstj.service.KstjService;
+import com.yhocn.login.DataSourceSelector;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,13 +17,29 @@ public class KstjServiceImpl implements KstjService{
 	private KstjMapper dao;
 	@Override
 	public List<Kstj> selectAll(Kstj t, String c) {
-		DynamicDataSourceHolder.setDataSource("dataSource1");
+		String dataSourceType = DataSourceSelector.getDataSourceType();
+
+		if ("mysql".equals(dataSourceType)) {
+			DynamicDataSourceHolder.setDataSource("dataSource1");
+		} else if ("mssql".equals(dataSourceType)) {
+			DynamicDataSourceHolder.setDataSource("dataSource4");
+		} else {
+			System.out.println("用户不存在");
+		}
 		return dao.selectAll(t,c);
 	}
 
 	@Override
 	public Kstj selectById(Kstj t, String c) {
-		DynamicDataSourceHolder.setDataSource("dataSource1");
+		String dataSourceType = DataSourceSelector.getDataSourceType();
+
+		if ("mysql".equals(dataSourceType)) {
+			DynamicDataSourceHolder.setDataSource("dataSource1");
+		} else if ("mssql".equals(dataSourceType)) {
+			DynamicDataSourceHolder.setDataSource("dataSource4");
+		} else {
+			System.out.println("用户不存在");
+		}
 
 		return dao.selectById(t,c);
 	}
@@ -30,31 +47,71 @@ public class KstjServiceImpl implements KstjService{
 	@Override
 	public int add(Kstj t, String c) {
 
-		DynamicDataSourceHolder.setDataSource("dataSource1");
+		String dataSourceType = DataSourceSelector.getDataSourceType();
+
+		if ("mysql".equals(dataSourceType)) {
+			DynamicDataSourceHolder.setDataSource("dataSource1");
+		} else if ("mssql".equals(dataSourceType)) {
+			DynamicDataSourceHolder.setDataSource("dataSource4");
+		} else {
+			System.out.println("用户不存在");
+		}
 		return dao.add(t,c);
 	}
 
 	@Override
 	public int update(Kstj t, String c) {
-		DynamicDataSourceHolder.setDataSource("dataSource1");
+		String dataSourceType = DataSourceSelector.getDataSourceType();
+
+		if ("mysql".equals(dataSourceType)) {
+			DynamicDataSourceHolder.setDataSource("dataSource1");
+		} else if ("mssql".equals(dataSourceType)) {
+			DynamicDataSourceHolder.setDataSource("dataSource4");
+		} else {
+			System.out.println("用户不存在");
+		}
 		return dao.update(t,c);
 	}
 
 	@Override
 	public int delete(Kstj t, String c) {
-		DynamicDataSourceHolder.setDataSource("dataSource1");
+		String dataSourceType = DataSourceSelector.getDataSourceType();
+
+		if ("mysql".equals(dataSourceType)) {
+			DynamicDataSourceHolder.setDataSource("dataSource1");
+		} else if ("mssql".equals(dataSourceType)) {
+			DynamicDataSourceHolder.setDataSource("dataSource4");
+		} else {
+			System.out.println("用户不存在");
+		}
 		return dao.delete(t,c);
 	}
 
 	@Override
 	public List<Kstj> selectByName(Kstj t, String c) {
-		DynamicDataSourceHolder.setDataSource("dataSource1");
+		String dataSourceType = DataSourceSelector.getDataSourceType();
+
+		if ("mysql".equals(dataSourceType)) {
+			DynamicDataSourceHolder.setDataSource("dataSource1");
+		} else if ("mssql".equals(dataSourceType)) {
+			DynamicDataSourceHolder.setDataSource("dataSource4");
+		} else {
+			System.out.println("用户不存在");
+		}
 		return dao.selectByName(t,c);
 	}
 
 	@Override
 	public int alter(Kstj t, String c) {
-		DynamicDataSourceHolder.setDataSource("dataSource1");
+		String dataSourceType = DataSourceSelector.getDataSourceType();
+
+		if ("mysql".equals(dataSourceType)) {
+			DynamicDataSourceHolder.setDataSource("dataSource1");
+		} else if ("mssql".equals(dataSourceType)) {
+			DynamicDataSourceHolder.setDataSource("dataSource4");
+		} else {
+			System.out.println("用户不存在");
+		}
 		return dao.alter(t,c);
 	}
 

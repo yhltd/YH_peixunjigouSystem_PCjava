@@ -16,6 +16,7 @@ public interface CourseMapper {
     public List<Course> getAllList(@Param("course") Course course, @Param("c") String c);
 
     public List<Course> getList(@Param("course") Course course, @Param("c") String c, @Param("teacher") String teacher, @Param("cou") String cou, @Param("page") Integer page);
+    public List<Course> getList_mssql(@Param("course") Course course, @Param("c") String c, @Param("teacher") String teacher, @Param("cou") String cou, @Param("page") Integer page);
 
     public Course getListById(@Param("course") Course course, @Param("c") String c);
 

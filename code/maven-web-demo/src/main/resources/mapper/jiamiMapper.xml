@@ -8,4 +8,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectAllJiami" parameterType="jiami" resultType="jiami">
 		select * from control_soft_time where name =#{name} and soft_name = '教务'
 	</select>
+
 </mapper>

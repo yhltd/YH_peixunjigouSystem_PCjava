@@ -11,6 +11,18 @@
         select * from kaoqin where company =#{c} and s_name like "%"#{s_name}"%"  limit #{page},10
     </select>
 
+    <select id="getList_mssql" parameterType="KaoQin" resultType="KaoQin">
+        SELECT * FROM (
+                          SELECT *, ROW_NUMBER() OVER (ORDER BY id) as row_num
+                          FROM kaoqin
+                          WHERE company = #{c}
+                            AND s_name LIKE '%' + #{s_name} + '%'
+                      ) AS temp
+        WHERE row_num BETWEEN #{page} + 1 AND #{page} + 10
+    </select>
+
+
+
     <select id="getListById" resultType="KaoQin">
 		select * from kaoqin where id=#{kaoQin.id} and company =#{c}
 	</select>

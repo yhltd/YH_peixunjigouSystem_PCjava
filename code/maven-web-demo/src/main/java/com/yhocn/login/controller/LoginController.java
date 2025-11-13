@@ -10,6 +10,7 @@ import Bean.StringUtils;
 import com.yhocn.income.entity.Income;
 import com.yhocn.jiami.eneity.jiami;
 import com.yhocn.jiami.service.jiamiService;
+import com.yhocn.login.DataSourceSelector;
 import com.yhocn.power.entity.Power;
 import com.yhocn.power.service.PowerService;
 import com.yhocn.student.entity.Student;
@@ -47,6 +48,29 @@ public class LoginController {
 		ModelAndView mv = new ModelAndView();
 		Teacher t2 = service.login(t);
 		this.a = request.getParameter("Company");
+
+		if (t2 != null) {
+			// MySQL登录成功
+			DataSourceSelector.setDataSourceType("mysql");
+			System.out.println("MySQL登录成功，设置数据源为mysql");
+			// 将用户信息存入session
+			request.getSession().setAttribute("currentUser", t2);
+		} else {
+			// MySQL登录失败，尝试SQL Server登录
+			t2 = service.login1(t);
+			if (t2 != null) {
+				// SQL Server登录成功
+				DataSourceSelector.setDataSourceType("mssql");
+				System.out.println("SQL Server登录成功，设置数据源为mssql");
+				// 将用户信息存入session
+				request.getSession().setAttribute("currentUser", t2);
+			} else {
+				// 两种数据库都登录失败
+				DataSourceSelector.setDataSourceType("none");
+				System.out.println("登录失败，两种数据库都验证失败");
+			}
+		}
+		System.out.println("数据源类型设置为: " + DataSourceSelector.getDataSourceType());
 
 		if(t2!=null) {
 			List<jiami> jiamiList = service4.selectAllJiami(t2.getCompany());

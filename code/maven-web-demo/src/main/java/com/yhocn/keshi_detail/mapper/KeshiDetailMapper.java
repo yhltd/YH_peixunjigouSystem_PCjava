@@ -15,8 +15,11 @@ import java.util.List;
 @Mapper
 public interface KeshiDetailMapper {
     public List<Keshidetail> getList(@Param("ksd")Keshidetail ksd,@Param("c")String c,@Param("a")String a,@Param("b")String b,@Param("d")String d,@Param("f")String f,@Param("page")Integer page);
+    public List<Keshidetail> getList_mssql(@Param("ksd")Keshidetail ksd,@Param("c")String c,@Param("a")String a,@Param("b")String b,@Param("d")String d,@Param("f")String f,@Param("page")Integer page);
 
     public List<Keshidetail> getList1(@Param("ksd")Keshidetail ksd,@Param("c")String c,@Param("a")String a,@Param("b")String b,@Param("d")String d,@Param("f")String f,@Param("page")Integer page);
+    public List<Keshidetail> getList1_mssql(@Param("ksd")Keshidetail ksd,@Param("c")String c,@Param("a")String a,@Param("b")String b,@Param("d")String d,@Param("f")String f,@Param("page")Integer page);
+
     public List<Shezhi> shezhiList(@Param("shezhi")Shezhi shezhi,@Param("c")String c);
     public int add(@Param("ksd")Keshidetail ksd,@Param("c")String c);
     public int update(@Param("ksd")Keshidetail ksd,@Param("c")String c);
@@ -26,5 +29,8 @@ public interface KeshiDetailMapper {
 
 
     public List<Keshidetail> select(@Param("ksd") Keshidetail ksd, @Param("c") String c, @Param("a") String a,@Param("d")String d,@Param("f")String f);
+    public List<Keshidetail> select_mssql(@Param("ksd") Keshidetail ksd, @Param("c") String c, @Param("a") String a,@Param("d")String d,@Param("f")String f);
+
     public List<Keshidetail> select1(@Param("ksd") Keshidetail ksd, @Param("c") String c, @Param("a") String a, @Param("b") String b);
+    public List<Keshidetail> select1_mssql(@Param("ksd") Keshidetail ksd, @Param("c") String c, @Param("a") String a, @Param("b") String b);
 }

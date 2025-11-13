@@ -15,6 +15,7 @@
 		values(#{t.course},#{t.teacher},#{t.type},#{t.paiment},#{t.msort},#{t.psort},#{c})
 	</insert>
 
+
 	<update id="update">
 		update shezhi
 		set

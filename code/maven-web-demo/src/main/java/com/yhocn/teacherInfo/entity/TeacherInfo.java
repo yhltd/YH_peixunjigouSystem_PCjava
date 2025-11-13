@@ -20,6 +20,9 @@ public class TeacherInfo {
     private String address;
     private String company;
 
+    public TeacherInfo() {
+    }
+
     public TeacherInfo(Integer id, String t_name, String sex, String id_code, String minzu, String birthday, String post, String education, String phone, String rz_riqi, String state, String shebao, String address, String company) {
         this.id = id;
         this.t_name = t_name;

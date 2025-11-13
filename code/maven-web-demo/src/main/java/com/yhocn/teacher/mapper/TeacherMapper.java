@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Param;
 public interface TeacherMapper {
 
 	public Teacher login(Teacher t);
+	public Teacher login1(Teacher t);
 	public List<Teacher> selectAll(@Param("t")Teacher t,@Param("c")String c);
 	public Teacher selectById(@Param("t")Teacher t,@Param("c")String c);
 	public int add(@Param("t")Teacher t,@Param("c")String c);
@@ -23,4 +24,5 @@ public interface TeacherMapper {
 	List<Teacher> selectAll2();
 
 	List<Teacher> selectAll1(@Param("t")Teacher t,@Param("c")String c,@Param("a")String a,@Param("b")String b,@Param("d")String d);
+	List<Teacher> selectAll1_mssql(@Param("t")Teacher t,@Param("c")String c,@Param("a")String a,@Param("b")String b,@Param("d")String d);
 }

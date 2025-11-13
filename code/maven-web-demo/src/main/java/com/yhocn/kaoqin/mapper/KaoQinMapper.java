@@ -15,6 +15,7 @@ public interface KaoQinMapper {
     public List<KaoQin> getAllList(@Param("kaoQin") KaoQin kaoQin, @Param("c") String c);
 
     public List<KaoQin> getList(@Param("kaoQin") KaoQin kaoQin, @Param("c") String c, @Param("s_name") String s_name, @Param("page") Integer page);
+    public List<KaoQin> getList_mssql(@Param("kaoQin") KaoQin kaoQin, @Param("c") String c, @Param("s_name") String s_name, @Param("page") Integer page);
 
     public KaoQin getListById(@Param("kaoQin") KaoQin kaoQin, @Param("c") String c);
 

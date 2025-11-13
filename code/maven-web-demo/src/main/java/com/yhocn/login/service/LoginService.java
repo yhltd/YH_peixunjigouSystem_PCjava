@@ -5,4 +5,6 @@ import com.yhocn.teacher.entity.Teacher;
 public interface LoginService {
 
 	public Teacher login(Teacher t);
+
+	public Teacher login1(Teacher t);
 }

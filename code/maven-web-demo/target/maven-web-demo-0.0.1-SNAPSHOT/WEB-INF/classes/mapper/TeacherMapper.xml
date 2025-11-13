@@ -11,6 +11,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select distinct Company from teacher
 		where Company != ""
 	</select>
+
 	<select id="selectAll1" parameterType="Teacher" resultType="Teacher">
 		select * from teacher
 		where Company =#{c}
@@ -25,11 +26,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</if>
 
 	</select>
+	<select id="selectAll1_mssql" parameterType="Teacher" resultType="Teacher">
+		select * from teacher
+		where Company =#{c}
+		<if test="a != null and a != ''">
+			and UserName LIKE '%' + #{a} + '%'
+		</if>
+		<if test="b != null and b != ''">
+			and Realname LIKE '%' + #{b} + '%'
+		</if>
+		<if test="d != null and d != ''">
+			and Phone LIKE '%' + #{d} + '%'
+		</if>
+	</select>
+
 	<select id="login" parameterType="Teacher" resultType="Teacher">
 		select *
 		from teacher
 		where
 		UserName=#{userName} and Password=#{password} and Company=#{Company}
+	</select>
+
+	<select id="login1" parameterType="Teacher" resultType="Teacher">
+		select *
+		from teacher
+		where
+			UserName=#{userName} and Password=#{password} and Company=#{Company}
 	</select>
 
 	<insert id="add">

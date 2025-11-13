@@ -45,6 +45,13 @@
 		<p:property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
 	</p:bean>
 
+	<p:bean id="dataSource4" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
+		<p:property name="username" value="sa" />
+		<p:property name="password" value="Lyh07910_001" />
+		<p:property name="url" value="jdbc:sqlserver://yhocn.cn;DatabaseName=xueshengguanlixitong_excel" />
+		<p:property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
+	</p:bean>
+
 
 
 	<!-- 配置动态配置数据源 -->
@@ -57,6 +64,7 @@
 				<p:entry key= "dataSource1" value-ref="dataSource1"></p:entry>
 				<p:entry key= "dataSource2" value-ref="dataSource2"></p:entry>
 				<p:entry key= "dataSource3" value-ref="dataSource3"></p:entry>
+				<p:entry key= "dataSource4" value-ref="dataSource4"></p:entry>
 			</p:map>
 		</p:property>
 	</p:bean>

@@ -14,16 +14,22 @@ import java.util.List;
 @Mapper
 public interface PowerMapper {
     public List<Power> getAllList(@Param("p") Power p, @Param("c") String c);
+    public List<Power> getAllList_mssql(@Param("p") Power p, @Param("c") String c);
 
     public List<Power> getList(@Param("p") Power p, @Param("c") String c, @Param("view_name") String view_name, @Param("page")Integer page);
+    public List<Power> getList_mssql(@Param("p") Power p, @Param("c") String c, @Param("view_name") String view_name, @Param("page")Integer page);
 
     public Power getListById(@Param("p") Power p, @Param("c") String c);
+    public Power getListById_mssql(@Param("p") Power p, @Param("c") String c);
 
     public List<Power> getListByName(@Param("t_id") Integer t_id, @Param("c") String c);
+    public List<Power> getListByName_mssql(@Param("t_id") Integer t_id, @Param("c") String c);
 
     public int add(@Param("p") Power p, @Param("c") String c);
+    public int add_mssql(@Param("p") Power p, @Param("c") String c);
 
     public int update(@Param("p") Power p, @Param("c") String c);
+    public int update_mssql(@Param("p") Power p, @Param("c") String c);
 
     public int delete(@Param("p") Power p, @Param("c") String c);
 }

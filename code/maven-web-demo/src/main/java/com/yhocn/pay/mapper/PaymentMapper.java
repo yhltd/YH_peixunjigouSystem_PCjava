@@ -10,11 +10,14 @@ import org.apache.ibatis.annotations.Param;
 public interface PaymentMapper {
 
 	public List<Payment> selectAll(@Param("p")Payment p,@Param("a")String a,@Param("b")String b,@Param("c")String c,@Param("d")String d,@Param("page")Integer page);
+	public List<Payment> selectAll_mssql(@Param("p")Payment p,@Param("a")String a,@Param("b")String b,@Param("c")String c,@Param("d")String d,@Param("page")Integer page);
+
 	public List<Payment> selectAll1(@Param("p")Payment p,@Param("c")String c);
 	public int add(@Param("p")Payment p,@Param("c")String c);
 	public int update(@Param("p")Payment p,@Param("c")String c);
 	public int delete(@Param("p")Payment p,@Param("c")String c);
 	public Payment selectByRealname(@Param("p")Payment p,@Param("c")String c);
+	public Payment selectByRealname_mssql(@Param("p")Payment p,@Param("c")String c);
 	public Payment selectById(@Param("p")Payment p,@Param("c")String c);
 
 

@@ -3,6 +3,7 @@ package com.yhocn.income.service;
 import java.util.List;
 
 import Bean.DynamicDataSourceHolder;
+import com.yhocn.login.DataSourceSelector;
 import com.yhocn.shezhi.entity.Shezhi;
 import com.yhocn.teacher.entity.Teacher;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,42 +22,123 @@ public  class IncomeServiceImpl implements IncomeService{
 	
 	@Override
 	public List<Income> selectAll(Income inc,String c) {
-		DynamicDataSourceHolder.setDataSource("dataSource1");
-		return dao.selectAll(inc,c);
+
+		String dataSourceType = DataSourceSelector.getDataSourceType();
+
+		if ("mysql".equals(dataSourceType)) {
+			DynamicDataSourceHolder.setDataSource("dataSource1");
+			return dao.selectAll(inc,c);
+		} else if ("mssql".equals(dataSourceType)) {
+			DynamicDataSourceHolder.setDataSource("dataSource4");
+			return dao.selectAll_mssql(inc,c);
+		} else {
+			System.out.println("用户不存在");
+		}
+		return null;
+
 	}
 
 	@Override
 	public List<Income> select(Income inc,String a,String b, String c) {
-		DynamicDataSourceHolder.setDataSource("dataSource1");
-	return dao.select(inc,a,b,c); }
+		String dataSourceType = DataSourceSelector.getDataSourceType();
+
+		if ("mysql".equals(dataSourceType)) {
+			DynamicDataSourceHolder.setDataSource("dataSource1");
+			return dao.select(inc,a,b,c);
+		} else if ("mssql".equals(dataSourceType)) {
+			DynamicDataSourceHolder.setDataSource("dataSource4");
+			return dao.select_mssql(inc,a,b,c);
+		} else {
+			System.out.println("用户不存在");
+		}
+		return null;
+
+
+		 }
 
 	@Override
 	public int add(Income inc, String c) {
-		DynamicDataSourceHolder.setDataSource("dataSource1");
+		String dataSourceType = DataSourceSelector.getDataSourceType();
+
+		if ("mysql".equals(dataSourceType)) {
+			DynamicDataSourceHolder.setDataSource("dataSource1");
+		} else if ("mssql".equals(dataSourceType)) {
+			DynamicDataSourceHolder.setDataSource("dataSource4");
+		} else {
+			System.out.println("用户不存在");
+		}
 	return dao.add(inc,c); }
 	@Override
 	public int update(Income inc, String c) {
-		DynamicDataSourceHolder.setDataSource("dataSource1");
+		String dataSourceType = DataSourceSelector.getDataSourceType();
+
+		if ("mysql".equals(dataSourceType)) {
+			DynamicDataSourceHolder.setDataSource("dataSource1");
+		} else if ("mssql".equals(dataSourceType)) {
+			DynamicDataSourceHolder.setDataSource("dataSource4");
+		} else {
+			System.out.println("用户不存在");
+		}
 		return dao.update(inc,c); }
 	@Override
 	public int delete(Income inc, String c) {
-		DynamicDataSourceHolder.setDataSource("dataSource1");
+		String dataSourceType = DataSourceSelector.getDataSourceType();
+
+		if ("mysql".equals(dataSourceType)) {
+			DynamicDataSourceHolder.setDataSource("dataSource1");
+		} else if ("mssql".equals(dataSourceType)) {
+			DynamicDataSourceHolder.setDataSource("dataSource4");
+		} else {
+			System.out.println("用户不存在");
+		}
 		return dao.delete(inc,c); }
 	@Override
 	public Income selectById(Income inc, String c) {
-		DynamicDataSourceHolder.setDataSource("dataSource1");
+		String dataSourceType = DataSourceSelector.getDataSourceType();
+
+		if ("mysql".equals(dataSourceType)) {
+			DynamicDataSourceHolder.setDataSource("dataSource1");
+		} else if ("mssql".equals(dataSourceType)) {
+			DynamicDataSourceHolder.setDataSource("dataSource4");
+		} else {
+			System.out.println("用户不存在");
+		}
 		return dao.selectById(inc,c); }
 	@Override
 	public List<Shezhi> shezhiList(Shezhi shezhi, String c) {
-		DynamicDataSourceHolder.setDataSource("dataSource1");
-		return dao.shezhiList(shezhi,c);
+
+		String dataSourceType = DataSourceSelector.getDataSourceType();
+
+		if ("mysql".equals(dataSourceType)) {
+			DynamicDataSourceHolder.setDataSource("dataSource1");
+			return dao.shezhiList(shezhi,c);
+		} else if ("mssql".equals(dataSourceType)) {
+			DynamicDataSourceHolder.setDataSource("dataSource4");
+			return dao.shezhiList_mssql(shezhi,c);
+		} else {
+			System.out.println("用户不存在");
+		}
+		return null;
+
 	}
 
 	@Override
 	public List<Shezhi> List(Shezhi shezhi, String c) {
 
-		DynamicDataSourceHolder.setDataSource("dataSource1");
-		return dao.List(shezhi,c);
+		String dataSourceType = DataSourceSelector.getDataSourceType();
+
+		if ("mysql".equals(dataSourceType)) {
+			DynamicDataSourceHolder.setDataSource("dataSource1");
+			return dao.List(shezhi,c);
+		} else if ("mssql".equals(dataSourceType)) {
+			DynamicDataSourceHolder.setDataSource("dataSource4");
+			return dao.List_mssql(shezhi,c);
+		} else {
+			System.out.println("用户不存在");
+		}
+		return null;
+
+
 	}
 
 

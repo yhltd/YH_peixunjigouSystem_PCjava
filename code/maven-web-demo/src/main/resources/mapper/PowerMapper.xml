@@ -7,13 +7,32 @@
 		select p.id,t_id,view_name,`add`,del,upd,sel,RealName as s_name from power as p left join teacher as t on p.t_id=t.ID  where p.company =#{c}
 	</select>
 
+    <select id="getAllList_mssql" parameterType="Power" resultType="Power">
+        select p.id,t_id,view_name,[add],del,upd,sel,RealName as s_name from power as p left join teacher as t on p.t_id=t.ID  where p.company =#{c}
+    </select>
+
     <select id="getList" parameterType="Power" resultType="Power">
         select p.id,t_id,view_name,`add`,del,upd,sel,RealName as s_name from power as p left join teacher as t on p.t_id=t.ID  where p.company =#{c} and view_name like "%"#{view_name}"%" limit #{page},10
+    </select>
+
+    <select id="getList_mssql" parameterType="Power" resultType="Power">
+        SELECT * FROM (
+                          SELECT p.id,t_id,view_name,[add],del,upd,sel,RealName as s_name, ROW_NUMBER() OVER (ORDER BY p.id) as row_num
+                          FROM power as p
+                                   LEFT JOIN teacher as t ON p.t_id=t.ID
+                          WHERE p.company = #{c}
+                            AND view_name LIKE '%' + #{view_name} + '%'
+                      ) AS temp
+        WHERE row_num BETWEEN #{page} + 1 AND #{page} + 10
     </select>
 
     <select id="getListById" resultType="Power">
 		select p.id,t_id,view_name,`add`,del,upd,sel,RealName as s_name from power as p left join teacher as t on p.t_id=t.ID  where p.company =#{c} and p.id=#{p.id}
 	</select>
+
+    <select id="getListById_mssql" resultType="Power">
+        select p.id,t_id,view_name,[add],del,upd,sel,RealName as s_name from power as p left join teacher as t on p.t_id=t.ID  where p.company =#{c} and p.id=#{p.id}
+    </select>
 
 <!--    <select id="getListByName" resultType="Power">-->
 <!--		select p.id,t_id,view_name,`add`,del,upd,sel,RealName as s_name from power as p left join teacher as t on p.t_id=t.ID  where p.company =#{c} and p.t_id=#{t_id}-->
@@ -22,13 +41,26 @@
         select p.id,t_id,view_name,`add`,del,upd,sel,RealName as s_name from power as p left join teacher as t on p.t_id=t.ID  where p.company =#{c} and p.t_id=#{t_id}
     </select>
 
+    <select id="getListByName_mssql" resultType="Power">
+        select p.id,t_id,view_name,[add],del,upd,sel,RealName as s_name from power as p left join teacher as t on p.t_id=t.ID  where p.company =#{c} and p.t_id=#{t_id}
+    </select>
+
     <insert id="add">
         insert into power (t_id,view_name,`add`,del,upd,sel,company)
         values(#{p.t_id},#{p.view_name},#{p.add},#{p.del},#{p.upd},#{p.sel},#{c})
     </insert>
 
+    <insert id="add_mssql">
+        insert into power (t_id,view_name,[add],del,upd,sel,company)
+        values(#{p.t_id},#{p.view_name},#{p.add},#{p.del},#{p.upd},#{p.sel},#{c})
+    </insert>
+
     <update id="update">
         update power set t_id=#{p.t_id}, view_name=#{p.view_name}, `add`=#{p.add},del=#{p.del},upd=#{p.upd},sel=#{p.sel} where id=#{p.id}
+    </update>
+
+    <update id="update_mssql">
+        update power set t_id=#{p.t_id}, view_name=#{p.view_name}, [add]=#{p.add},del=#{p.del},upd=#{p.upd},sel=#{p.sel} where id=#{p.id}
     </update>
 
     <delete id="delete">

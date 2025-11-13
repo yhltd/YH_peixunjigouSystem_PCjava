@@ -17,6 +17,18 @@
 			and riqi between #{d} and #{f}
 		</if>
 	</select>
+	<select id="getList_mssql" parameterType="Keshidetail" resultType="Keshidetail">
+		select * from keshi_detail where Company =#{c}
+		<if test="a != null and a !='' ">
+			and teacher_name LIKE '%' + #{a} + '%'
+		</if>
+		<if test="b != '' and b !=null  ">
+			and course LIKE '%' + #{b} + '%'
+		</if>
+		<if test="d != null and f != ''">
+			and riqi between #{d} and #{f}
+		</if>
+	</select>
 	<select id="getList1" parameterType="Keshidetail" resultType="Keshidetail">
 		select * from keshi_detail where Company =#{c}
 
@@ -30,6 +42,24 @@
 			and riqi between #{d} and #{f}
 		</if>
 		order by id limit #{page},10
+	</select>
+
+	<select id="getList1_mssql" parameterType="Keshidetail" resultType="Keshidetail">
+		SELECT * FROM (
+		SELECT *, ROW_NUMBER() OVER (ORDER BY id) as row_num
+		FROM keshi_detail
+		WHERE Company = #{c}
+		<if test="a != null and a !='' ">
+			and teacher_name LIKE '%' + #{a} + '%'
+		</if>
+		<if test="b != '' and b !=null  ">
+			and course LIKE '%' + #{b} + '%'
+		</if>
+		<if test="d != null and f != ''">
+			and riqi between #{d} and #{f}
+		</if>
+		) AS temp
+		WHERE row_num BETWEEN #{page} + 1 AND #{page} + 10
 	</select>
 
 	<select id="getListById" parameterType="Keshidetail" resultType="Keshidetail">
@@ -93,6 +123,16 @@
 		group by teacher_name,course,jine order by teacher_name
 
 	</select>
+	<select id="select_mssql" parameterType="Keshidetail" resultType="Keshidetail">
+		select student_name,teacher_name,course,sum(keshi) as keshi from keshi_detail where Company = #{c}
+		<if test="a != null and a != ''">
+			and teacher_name  LIKE '%' + #{a} + '%'
+		</if>
+		<if test="d != null and f != ''">
+			and riqi between #{d} and #{f}
+		</if>
+		group by teacher_name,course,jine order by teacher_name
+	</select>
 	<select id="select1" parameterType="Keshidetail" resultType="Keshidetail">
 		select teacher_name,course,sum(keshi) as keshi,jine,sum(jine*keshi) as gongzi from keshi_detail where Company =#{c}
 		<if test="a != null and a != ''">
@@ -103,5 +143,15 @@
 		</if>
 		group by teacher_name,course,jine order by teacher_name
 
+	</select>
+	<select id="select1_mssql" parameterType="Keshidetail" resultType="Keshidetail">
+		select teacher_name,course,sum(keshi) as keshi,jine,sum(jine*keshi) as gongzi from keshi_detail where Company =#{c}
+		<if test="a != null and a != ''">
+			and riqi  LIKE '%' + #{a} + '%'
+		</if>
+		<if test="b != null and b != ''">
+			and teacher_name  LIKE '%' + #{b} + '%'
+		</if>
+		group by teacher_name,course,jine order by teacher_name
 	</select>
 </mapper>

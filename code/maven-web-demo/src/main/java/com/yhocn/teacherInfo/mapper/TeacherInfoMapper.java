@@ -15,6 +15,7 @@ public interface TeacherInfoMapper {
     public List<TeacherInfo> getAllList(@Param("t") TeacherInfo t, @Param("c") String c);
 
     public List<TeacherInfo> getList(@Param("t") TeacherInfo t, @Param("c") String c, @Param("t_name") String t_name, @Param("page") Integer page);
+    public List<TeacherInfo> getList_mssql(@Param("t") TeacherInfo t, @Param("c") String c, @Param("t_name") String t_name, @Param("page") Integer page);
 
     public TeacherInfo getListById(@Param("t") TeacherInfo t, @Param("c") String c);
 

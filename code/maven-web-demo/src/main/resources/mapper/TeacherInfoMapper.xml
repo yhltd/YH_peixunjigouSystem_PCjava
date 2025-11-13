@@ -11,6 +11,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="getList" parameterType="TeacherInfo" resultType="TeacherInfo">
         select * from teacherInfo where company =#{c} and t_name like "%"#{t_name}"%" limit #{page},10
     </select>
+    <select id="getList_mssql" parameterType="TeacherInfo" resultType="TeacherInfo">
+        SELECT * FROM (
+                          SELECT *, ROW_NUMBER() OVER (ORDER BY id) as row_num
+                          FROM teacherInfo
+                          WHERE company = #{c}
+                            AND t_name LIKE '%' + #{t_name} + '%'
+                      ) AS temp
+        WHERE row_num BETWEEN #{page} + 1 AND #{page} + 10
+    </select>
 
     <select id="getListById" resultType="TeacherInfo">
 		select * from teacherInfo where id=#{t.id} and company =#{c}
