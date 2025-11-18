@@ -75,13 +75,13 @@
         <table id="data" class="providerTable" cellpadding="0" cellspacing="0">
             <caption style="font-size: 14px;margin-bottom: 0.5%;">权限管理</caption>
             <tr class="firstTr">
-                <th width="10%">序号</th>
-                <th width="10%">姓名</th>
-                <th width="10%">页面名称</th>
-                <th width="10%">增</th>
-                <th width="10%">删</th>
-                <th width="10%">改</th>
-                <th width="10%">查</th>
+                <th width="10%" style="color: #FFA500;">序号</th>
+                <th width="10%" style="color: #FFA500;">姓名</th>
+                <th width="10%" style="color: #FFA500;">页面名称</th>
+                <th width="10%" style="color: #FFA500;">增</th>
+                <th width="10%" style="color: #FFA500;">删</th>
+                <th width="10%" style="color: #FFA500;">改</th>
+                <th width="10%" style="color: #FFA500;">查</th>
             </tr>
             <c:forEach items="${list }" var="p">
                 <tr>

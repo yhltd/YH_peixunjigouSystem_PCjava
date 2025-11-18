@@ -21,6 +21,9 @@ public class Course {
         this.company = company;
     }
 
+    public Course() {
+    }
+
     public Integer getId() {
         return id;
     }

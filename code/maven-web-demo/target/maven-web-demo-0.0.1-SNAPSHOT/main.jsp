@@ -1017,10 +1017,14 @@
     <div class="publicHeaderR">
         <p style="font-size:13px"><span id="hours"></span><span style="color: #fff21b;">${GLOBAL_USER.realName} </span> , 欢迎你！</p>
         <input hidden="hidden" id="rongliang" value="${rongliang }"/>
-        <a style="background: url(img/下载app.png);" href="<%=request.getContextPath() %>/pdf/app-debug.apk" >下载app</a>
-        <a style="background: url(img/下载excel.png);" href="<%=request.getContextPath() %>/pdf/教务管理系统（20230618）.xlsm">下载表格</a>
-        <a style="background: url(img/数据空间.png);" onclick="shujv()" >数据空间</a>
-        <a style="background: url(img/退出.png);" href="<%=request.getContextPath() %>/login.jsp" >退出</a>
+<%--        <a style="background: url(img/下载app.png);" href="<%=request.getContextPath() %>/pdf/app-debug.apk" >下载app</a>--%>
+<%--        <a style="background: url(img/下载excel.png);" href="<%=request.getContextPath() %>/pdf/教务管理系统（20230618）.xlsm">下载表格</a>--%>
+<%--        <a style="background: url(img/数据空间.png);" onclick="shujv()" >数据空间</a>--%>
+<%--        <a style="background: url(img/退出.png);" href="<%=request.getContextPath() %>/login.jsp" >退出</a>--%>
+        <a  href="<%=request.getContextPath() %>/pdf/app-debug.apk" >下载app</a>
+        <a  href="<%=request.getContextPath() %>/pdf/教务管理系统（20230618）.xlsm">下载表格</a>
+        <a  onclick="shujv()" >数据空间</a>
+        <a  href="<%=request.getContextPath() %>/login.jsp" >退出</a>
     </div>
 <%--    <a href="<%=request.getContextPath() %>/tea/teacher.action"><img src="img/yyh.png" style="width: 32px;height: 32px;float:right;margin-top: 8px;"></a>--%>
     </div>
@@ -1091,7 +1095,7 @@
                     <a href="<%=request.getContextPath() %>/tea/jisuan.jsp" class="circle-link" style="display: block; ">教师工资</a>
                 </span>
                 <span style="display: inline-block; position: relative;">
-                    <a href="<%=request.getContextPath() %>/te/shezhi.action" class="circle-link" style="display: block; ">自定义参数</a>
+                    <a href="<%=request.getContextPath() %>/te/shezhi.action" class="circle-link" style="display: block; ">设置</a>
                 </span>
             </div>
         </div>

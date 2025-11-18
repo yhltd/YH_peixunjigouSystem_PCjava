@@ -123,7 +123,7 @@
 <div class="logo">
 <img src="img/yhlogo.png" style="width: 60px;height: 60px;float: left">
 </div>
-<p style="text-align: right;font-size: 14px">当前系统版本：5.1.0.5&nbsp;&nbsp;</p>
+<p style="text-align: right;font-size: 14px">当前系统版本：5.1.0.6&nbsp;&nbsp;</p>
 <section class="loginBox">
     <header class="loginHeader">
         <h1 style="    font-size: 40px;">云合一体化教务系统</h1>

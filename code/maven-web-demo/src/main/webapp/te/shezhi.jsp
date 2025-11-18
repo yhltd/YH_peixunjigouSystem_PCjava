@@ -24,8 +24,8 @@
     <div class="publicHeaderR">
         <p><span id="hours"></span><span style="color: #fff21b">${GLOBAL_USER.realName} </span> , 欢迎你！</p>
         <input hidden="hidden" id="rongliang" value="${rongliang }"/>
-        <a style="background: url(../img/数据空间.png);box-sizing: border-box;"  onclick="shujv()" >数据空间</a>
-        <a style="background: url(../img/退出.png);box-sizing: border-box;" href="<%=request.getContextPath() %>/login.jsp" >退出</a>
+        <a style="box-sizing: border-box;"  onclick="shujv()" >数据空间</a>
+        <a style="box-sizing: border-box;" href="<%=request.getContextPath() %>/login.jsp" >退出</a>
     </div>
 <%--    <a href="<%=request.getContextPath() %>/tea/teacher.action"><img src="../img/yyh.png" style="width: 32px;height: 32px;float:right;margin-top: 8px;"></a>--%>
 </header>

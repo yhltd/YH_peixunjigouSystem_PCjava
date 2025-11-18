@@ -127,5 +127,21 @@
 		alert($('#rongliang').val());
 		return false;
 	}
+
+	document.addEventListener('DOMContentLoaded', function() {
+		var select = document.getElementById('paiment');
+		var options = select.options;
+		var uniqueValues = [];
+
+		// 从后往前遍历，保留第一个出现的选项
+		for (var i = options.length - 1; i >= 0; i--) {
+			if (uniqueValues.indexOf(options[i].value) > -1) {
+				select.remove(i);
+			} else {
+				uniqueValues.push(options[i].value);
+			}
+		}
+	});
+
 </script>
 </html>

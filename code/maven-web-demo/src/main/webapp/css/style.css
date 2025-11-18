@@ -933,20 +933,20 @@ input {
     box-shadow: 0 6px 12px rgba(0,0,0,0.3);
 }
 
-.publicHeaderR a{
+/*.publicHeaderR a{*/
 
-    width: 25px;
-    height: 25px;
-    line-height: 25px;
-    padding-left: 25px;
-    margin-top: 0px;
-    margin-left: 0px;
-    margin-right: 70px;
-    border: 0px solid #7ba92c;
-    border-radius: 4px;
-    color: #fff;
-    font-weight: bold;
-}
+/*    width: 25px;*/
+/*    height: 25px;*/
+/*    line-height: 25px;*/
+/*    !* padding-left: 25px; *!*/
+/*    !* margin-top: 0px; *!*/
+/*    !* margin-left: 0px; *!*/
+/*    !* margin-right: 70px; *!*/
+/*    border: 0px solid #7ba92c;*/
+/*    border-radius: 4px;*/
+/*    color: #fff;*/
+/*    font-weight: bold;*/
+/*}*/
 .publicHeaderR a:hover,.publicHeaderR a:active{
     border: 0px solid #192b02;
     border-radius: 4px;

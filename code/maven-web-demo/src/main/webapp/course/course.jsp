@@ -76,11 +76,11 @@
         <table id="data" class="providerTable" cellpadding="0" cellspacing="0">
             <caption style="font-size: 14px;margin-bottom: 0.5%;">教师课表</caption>
             <tr class="firstTr">
-                <th width="10%">序号</th>
-                <th width="15%">教师</th>
-                <th width="15%">课程</th>
-                <th width="15%">日期</th>
-                <th width="15%">星期</th>
+                <th width="10%" style="color: #FFA500;">序号</th>
+                <th width="15%" style="color: #FFA500;">教师</th>
+                <th width="15%" style="color: #FFA500;">课程</th>
+                <th width="15%" style="color: #FFA500;">日期</th>
+                <th width="15%" style="color: #FFA500;">星期</th>
             </tr>
             <c:forEach items="${list }" var="c">
                 <tr>

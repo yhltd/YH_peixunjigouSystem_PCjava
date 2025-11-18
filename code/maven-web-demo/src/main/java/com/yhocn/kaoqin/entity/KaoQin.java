@@ -81,6 +81,9 @@ public class KaoQin {
         this.company = company;
     }
 
+    public KaoQin() {
+    }
+
     public String getCompany() {
         return company;
     }
