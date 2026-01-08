@@ -1,6 +1,7 @@
 com\yhocn\student\controller\StudentController.class
 com\yhocn\income\service\IncomeServiceImpl.class
 com\yhocn\keshi_detail\controller\KeshiDetailController.class
+com\yhocn\teacher\service\TeacherMssqlService.class
 com\yhocn\pushnews\controller\PushNewsController.class
 com\yhocn\shezhi\controller\ShezhiController.class
 com\yhocn\shezhi\service\ShezhiServiceImpl.class
@@ -17,6 +18,7 @@ com\yhocn\jiami\mapper\jiamiMapper.class
 com\yhocn\income\controller\IncomeController.class
 com\yhocn\keshi_detail\service\KeshiDetailServiceImpl.class
 com\yhocn\pay\controller\PaymentController.class
+com\yhocn\login\DataSourceSelector.class
 com\yhocn\kaoqin\service\KaoQinService.class
 com\yhocn\keshi_detail\mapper\KeshiDetailMapper.class
 com\yhocn\pay\entity\Payment.class
@@ -36,10 +38,12 @@ com\yhocn\teacher\controller\TeacherController1.class
 com\yhocn\course\mapper\CourseMapper.class
 com\yhocn\course\service\CourseService.class
 com\yhocn\shezhi\entity\Shezhi.class
+com\yhocn\teacher\service\TeacherMssqlServiceImpl.class
 com\yhocn\teacherInfo\service\TeacherInfoService.class
 com\yhocn\teacher\service\TeacherService.class
 Bean\SessionUtil.class
 com\yhocn\kstj\controller\KstjController.class
+com\yhocn\teacher\mapper\TeacherMssqlMapper.class
 Bean\StringUtils.class
 com\yhocn\teacherInfo\service\TeacherInfoServiceImpl.class
 com\yhocn\teacher\mapper\TeacherMapper.class

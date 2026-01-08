@@ -4,6 +4,7 @@ E:\yh_soft\YH_peixunjigouSystem_PCjava\code\maven-web-demo\src\main\java\com\yho
 E:\yh_soft\YH_peixunjigouSystem_PCjava\code\maven-web-demo\src\main\java\com\yhocn\kstj\service\KstjService.java
 E:\yh_soft\YH_peixunjigouSystem_PCjava\code\maven-web-demo\src\main\java\com\yhocn\kaoqin\entity\KaoQin.java
 E:\yh_soft\YH_peixunjigouSystem_PCjava\code\maven-web-demo\src\main\java\com\yhocn\login\service\LoginService.java
+E:\yh_soft\YH_peixunjigouSystem_PCjava\code\maven-web-demo\src\main\java\com\yhocn\teacher\service\TeacherMssqlServiceImpl.java
 E:\yh_soft\YH_peixunjigouSystem_PCjava\code\maven-web-demo\src\main\java\com\yhocn\teacherInfo\mapper\TeacherInfoMapper.java
 E:\yh_soft\YH_peixunjigouSystem_PCjava\code\maven-web-demo\src\main\java\Bean\StringUtils.java
 E:\yh_soft\YH_peixunjigouSystem_PCjava\code\maven-web-demo\src\main\java\com\yhocn\power\mapper\PowerMapper.java
@@ -22,6 +23,8 @@ E:\yh_soft\YH_peixunjigouSystem_PCjava\code\maven-web-demo\src\main\java\com\yho
 E:\yh_soft\YH_peixunjigouSystem_PCjava\code\maven-web-demo\src\main\java\com\yhocn\power\service\PowerServiceImpl.java
 E:\yh_soft\YH_peixunjigouSystem_PCjava\code\maven-web-demo\src\main\java\com\yhocn\pay\controller\PaymentController.java
 E:\yh_soft\YH_peixunjigouSystem_PCjava\code\maven-web-demo\src\main\java\com\yhocn\shezhi\service\ShezhiServiceImpl.java
+E:\yh_soft\YH_peixunjigouSystem_PCjava\code\maven-web-demo\src\main\java\com\yhocn\teacher\mapper\TeacherMssqlMapper.java
+E:\yh_soft\YH_peixunjigouSystem_PCjava\code\maven-web-demo\src\main\java\com\yhocn\login\DataSourceSelector.java
 E:\yh_soft\YH_peixunjigouSystem_PCjava\code\maven-web-demo\src\main\java\com\yhocn\student\mapper\StudentMapper.java
 E:\yh_soft\YH_peixunjigouSystem_PCjava\code\maven-web-demo\src\main\java\com\yhocn\income\mapper\IncomeMapper.java
 E:\yh_soft\YH_peixunjigouSystem_PCjava\code\maven-web-demo\src\main\java\com\yhocn\kstj\entity\Kstj.java
@@ -67,6 +70,7 @@ E:\yh_soft\YH_peixunjigouSystem_PCjava\code\maven-web-demo\src\main\java\com\yho
 E:\yh_soft\YH_peixunjigouSystem_PCjava\code\maven-web-demo\src\main\java\com\yhocn\teacherInfo\controller\TeacherInfoController.java
 E:\yh_soft\YH_peixunjigouSystem_PCjava\code\maven-web-demo\src\main\java\com\yhocn\teacher\controller\TeacherController.java
 E:\yh_soft\YH_peixunjigouSystem_PCjava\code\maven-web-demo\src\main\java\com\yhocn\course\service\CourseService.java
+E:\yh_soft\YH_peixunjigouSystem_PCjava\code\maven-web-demo\src\main\java\com\yhocn\teacher\service\TeacherMssqlService.java
 E:\yh_soft\YH_peixunjigouSystem_PCjava\code\maven-web-demo\src\main\java\com\yhocn\jiami\eneity\jiami.java
 E:\yh_soft\YH_peixunjigouSystem_PCjava\code\maven-web-demo\src\main\java\com\yhocn\power\entity\Power.java
 E:\yh_soft\YH_peixunjigouSystem_PCjava\code\maven-web-demo\src\main\java\com\yhocn\jiami\mapper\jiamiMapper.java

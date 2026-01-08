@@ -8,7 +8,7 @@ function getList() {
 
     $.ajax({
         type: 'POST',
-        url: '/maven_web_demo_war/pushnews/getnews.action',
+        url: './pushnews/getnews.action',
         dataType: 'json',
         success: function(res) {
 
