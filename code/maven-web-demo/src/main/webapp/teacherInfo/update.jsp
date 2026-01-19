@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -44,12 +46,12 @@
                 <li><a href="<%=request.getContextPath() %>/keshi/getList1.action">课时统计</a></li>
                 <li><a href="<%=request.getContextPath() %>/inc/income.action">收支明细</a></li>
                 <li><a href="<%=request.getContextPath() %>/stu/arr.action">欠费学员</a></li>
-                <li><a href="<%=request.getContextPath() %>/tea/jisuan.jsp">教师工资</a></li>
+                <li><a href="<%=request.getContextPath() %>/tea/jisuan.action">教师工资</a></li>
                 <li><a href="<%=request.getContextPath() %>/keshi/getTeacherKeshiList.action">教师课时统计</a></li>
                 <li><a href="<%=request.getContextPath() %>/tea/teacher.action">用户管理</a></li>
                 <li><a href="<%=request.getContextPath() %>/pdf/云合教务管理系统_使用说明.rar">使用说明</a></li>
                 <li><a href="<%=request.getContextPath() %>/pdf/app-debug.apk">下载app</a></li>
-                <li><a href="<%=request.getContextPath() %>/pdf/教务管理系统（20230618）.xlsm">下载表格</a></li>
+                <li><a href="<%=request.getContextPath() %>/pdf/教务管理系统（20231012）.xlsm">下载表格</a></li>
             </ul>
         </nav>
     </div>
@@ -92,8 +94,29 @@
                 </div>
                 <div>
                     <label for="birthday">生日：</label>
-                    <input type="date" name="birthday" id="birthday" value="${teacherInfo.birthday }"/>
+                    <c:choose>
+                        <c:when test="${not empty teacherInfo.birthday}">
+                            <%-- 只在这里初始化变量一次 --%>
+                            <c:choose>
+                                <c:when test="${fn:contains(teacherInfo.birthday, '-')}">
+                                    <c:set var="formattedBirthday" value="${teacherInfo.birthday}" />
+                                </c:when>
+                                <c:when test="${fn:contains(teacherInfo.birthday, '/')}">
+                                    <fmt:parseDate value="${teacherInfo.birthday}" pattern="yyyy/MM/dd" var="parsedBirthday" />
+                                    <fmt:formatDate value="${parsedBirthday}" pattern="yyyy-MM-dd" var="formattedBirthday" />
+                                </c:when>
+                                <c:otherwise>
+                                    <c:set var="formattedBirthday" value="${teacherInfo.birthday}" />
+                                </c:otherwise>
+                            </c:choose>
+                            <input type="date" name="birthday" id="birthday" value="${formattedBirthday}"/>
+                        </c:when>
+                        <c:otherwise>
+                            <input type="date" name="birthday" id="birthday" value="${teacherInfo.birthday}"/>
+                        </c:otherwise>
+                    </c:choose>
                 </div>
+
                 <div>
                     <label for="post">职位：</label>
                     <input type="text" name="post" id="post" value="${teacherInfo.post }"/>
@@ -108,7 +131,26 @@
                 </div>
                 <div>
                     <label for="rz_riqi">入职日期：</label>
-                    <input type="date" name="rz_riqi" id="rz_riqi" value="${teacherInfo.rz_riqi }"/>
+                    <c:choose>
+                        <c:when test="${not empty teacherInfo.rz_riqi}">
+                            <c:choose>
+                                <c:when test="${fn:contains(teacherInfo.rz_riqi, '-')}">
+                                    <c:set var="formattedRzRiqi" value="${teacherInfo.rz_riqi}" />
+                                </c:when>
+                                <c:when test="${fn:contains(teacherInfo.rz_riqi, '/')}">
+                                    <fmt:parseDate value="${teacherInfo.rz_riqi}" pattern="yyyy/MM/dd" var="parsedRzRiqi" />
+                                    <fmt:formatDate value="${parsedRzRiqi}" pattern="yyyy-MM-dd" var="formattedRzRiqi" />
+                                </c:when>
+                                <c:otherwise>
+                                    <c:set var="formattedRzRiqi" value="${teacherInfo.rz_riqi}" />
+                                </c:otherwise>
+                            </c:choose>
+                            <input type="date" name="rz_riqi" id="rz_riqi" value="${formattedRzRiqi}"/>
+                        </c:when>
+                        <c:otherwise>
+                            <input type="date" name="rz_riqi" id="rz_riqi" value="${teacherInfo.rz_riqi}"/>
+                        </c:otherwise>
+                    </c:choose>
                 </div>
                 <div>
                     <label for="state">在职状态：</label>
@@ -154,5 +196,14 @@
         alert($('#rongliang').val());
         return false;
     }
+    setTimeout(function(){
+        var link = document.querySelector('.list a[href*="teacherInfo"]');
+        if (link) {
+            link.style.background = 'linear-gradient(135deg, #003366, #002244)';
+            link.style.color = 'white';
+            link.style.transform = 'translateY(-3px)';
+            link.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)';
+        }
+    }, 100);
 </script>
 </html>

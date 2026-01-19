@@ -41,12 +41,12 @@
                 <li><a href="<%=request.getContextPath() %>/keshi/getList1.action">课时统计</a></li>
                 <li><a href="<%=request.getContextPath() %>/stu/ksclass.action">收支明细</a></li>
                 <li><a href="<%=request.getContextPath() %>/stu/arr.action">欠费学员</a></li>
-                <li><a href="<%=request.getContextPath() %>/tea/jisuan.jsp">教师工资</a></li>
+                <li><a href="<%=request.getContextPath() %>/tea/jisuan.action">教师工资</a></li>
                 <li><a href="<%=request.getContextPath() %>/keshi/getTeacherKeshiList.action">教师课时统计</a></li>
                 <li><a href="<%=request.getContextPath() %>/tea/teacher.action">用户管理</a></li>
                 <li><a href="<%=request.getContextPath() %>/pdf/云合教务管理系统_使用说明.rar">使用说明</a></li>
                 <li><a href="<%=request.getContextPath() %>/pdf/app-debug.apk">下载app</a></li>
-                <li><a href="<%=request.getContextPath() %>/pdf/教务管理系统（20230618）.xlsm">下载表格</a></li>
+                <li><a href="<%=request.getContextPath() %>/pdf/教务管理系统（20231012）.xlsm">下载表格</a></li>
             </ul>
         </nav>
     </div>
@@ -56,14 +56,25 @@
             <span>教师课表 >> 教师课表增加页面</span>
         </div>
         <div class="providerAdd">
-            <form action="<%=request.getContextPath() %>/kaoqin/add.action">
+            <form action="<%=request.getContextPath() %>/kaoqin/add.action" method="post">
                 <div>
                     <label for="s_name">姓名：</label>
                     <input type="text" name="s_name" id="s_name" value="${kaoqin.s_name }"/>
                 </div>
+<%--                <div>--%>
+<%--                    <label  for="nian">年：</label>--%>
+<%--                    <input type="number" name="nian" id="nian" value="${kaoqin.nian}"/>--%>
+<%--                </div>--%>
                 <div>
-                    <label  for="nian">年：</label>
-                    <input type="number" name="nian" id="nian" value="${kaoqin.nian}"/>
+                    <label for="nian">年：</label>
+                    <input type="number" name="nian" id="nian"
+                           value="${kaoqin.nian}"
+                           min="1900"
+                           max="2100"
+                           style="width: 260px;
+                  -moz-appearance: textfield;
+                  -webkit-appearance: none;
+                  appearance: none;" />
                 </div>
                 <div>
                     <label for="yue">月：</label>
@@ -394,8 +405,8 @@
                     </select>
                 </div>
                 <div class="providerAddBtn">
-                    <input type="button" id="pl" value="批量" onclick="pl"/>
-                    <input type="submit" value="保存" onclick="history.back(-1)"/>
+                    <input type="button" id="pl" value="批量" />
+                    <input type="submit" value="保存" id="saveBtn"/>
                     <input type="button" value="返回" onclick="history.back(-1)"/>
                 </div>
             </form>
@@ -408,76 +419,149 @@
 <script src="<%=request.getContextPath() %>/js/time.js"></script>
 
 </body>
-<script>
-    function shujv() {
-        alert($('#rongliang').val());
-        return false;
-    }
+<%--<script>--%>
+<%--    function shujv() {--%>
+<%--        alert($('#rongliang').val());--%>
+<%--        return false;--%>
+<%--    }--%>
 
-    var pl =document.getElementById("pl")
-    pl.onclick=function(){
-        var ri1 = document.getElementById("ri1");
-        ri1.value='出勤';
-        var ri2 = document.getElementById("ri2");
-        ri2.value='出勤';
-        var ri3 = document.getElementById("ri3");
-        ri3.value='出勤';
-        var ri4 = document.getElementById("ri4");
-        ri4.value='出勤';
-        var ri5 = document.getElementById("ri5");
-        ri5.value='出勤';
-        var ri6 = document.getElementById("ri6");
-        ri6.value='出勤';
-        var ri7 = document.getElementById("ri7");
-        ri7.value='出勤';
-        var ri8 = document.getElementById("ri8");
-        ri8.value='出勤';
-        var ri9 = document.getElementById("ri9");
-        ri9.value='出勤';
-        var ri10 = document.getElementById("ri10");
-        ri10.value='出勤';
-        var ri11 = document.getElementById("ri11");
-        ri11.value='出勤';
-        var ri12 = document.getElementById("ri12");
-        ri12.value='出勤';
-        var ri13 = document.getElementById("ri13");
-        ri13.value='出勤';
-        var ri14 = document.getElementById("ri14");
-        ri14.value='出勤';
-        var ri15 = document.getElementById("ri15");
-        ri15.value='出勤';
-        var ri16 = document.getElementById("ri16");
-        ri16.value='出勤';
-        var ri17 = document.getElementById("ri17");
-        ri17.value='出勤';
-        var ri18 = document.getElementById("ri18");
-        ri18.value='出勤';
-        var ri19 = document.getElementById("ri19");
-        ri19.value='出勤';
-        var ri20 = document.getElementById("ri20");
-        ri20.value='出勤';
-        var ri21 = document.getElementById("ri21");
-        ri21.value='出勤';
-        var ri22 = document.getElementById("ri22");
-        ri22.value='出勤';
-        var ri23 = document.getElementById("ri23");
-        ri23.value='出勤';
-        var ri24 = document.getElementById("ri24");
-        ri24.value='出勤';
-        var ri25 = document.getElementById("ri25");
-        ri25.value='出勤';
-        var ri26 = document.getElementById("ri26");
-        ri26.value='出勤';
-        var ri27 = document.getElementById("ri27");
-        ri27.value='出勤';
-        var ri28 = document.getElementById("ri28");
-        ri28.value='出勤';
-        var ri29 = document.getElementById("ri29");
-        ri29.value='出勤';
-        var ri30 = document.getElementById("ri30");
-        ri30.value='出勤';
-        var ri31 = document.getElementById("ri31");
-        ri31.value='出勤';
-    }
+<%--    var pl =document.getElementById("pl")--%>
+<%--    pl.onclick=function(){--%>
+<%--        var ri1 = document.getElementById("ri1");--%>
+<%--        ri1.value='出勤';--%>
+<%--        var ri2 = document.getElementById("ri2");--%>
+<%--        ri2.value='出勤';--%>
+<%--        var ri3 = document.getElementById("ri3");--%>
+<%--        ri3.value='出勤';--%>
+<%--        var ri4 = document.getElementById("ri4");--%>
+<%--        ri4.value='出勤';--%>
+<%--        var ri5 = document.getElementById("ri5");--%>
+<%--        ri5.value='出勤';--%>
+<%--        var ri6 = document.getElementById("ri6");--%>
+<%--        ri6.value='出勤';--%>
+<%--        var ri7 = document.getElementById("ri7");--%>
+<%--        ri7.value='出勤';--%>
+<%--        var ri8 = document.getElementById("ri8");--%>
+<%--        ri8.value='出勤';--%>
+<%--        var ri9 = document.getElementById("ri9");--%>
+<%--        ri9.value='出勤';--%>
+<%--        var ri10 = document.getElementById("ri10");--%>
+<%--        ri10.value='出勤';--%>
+<%--        var ri11 = document.getElementById("ri11");--%>
+<%--        ri11.value='出勤';--%>
+<%--        var ri12 = document.getElementById("ri12");--%>
+<%--        ri12.value='出勤';--%>
+<%--        var ri13 = document.getElementById("ri13");--%>
+<%--        ri13.value='出勤';--%>
+<%--        var ri14 = document.getElementById("ri14");--%>
+<%--        ri14.value='出勤';--%>
+<%--        var ri15 = document.getElementById("ri15");--%>
+<%--        ri15.value='出勤';--%>
+<%--        var ri16 = document.getElementById("ri16");--%>
+<%--        ri16.value='出勤';--%>
+<%--        var ri17 = document.getElementById("ri17");--%>
+<%--        ri17.value='出勤';--%>
+<%--        var ri18 = document.getElementById("ri18");--%>
+<%--        ri18.value='出勤';--%>
+<%--        var ri19 = document.getElementById("ri19");--%>
+<%--        ri19.value='出勤';--%>
+<%--        var ri20 = document.getElementById("ri20");--%>
+<%--        ri20.value='出勤';--%>
+<%--        var ri21 = document.getElementById("ri21");--%>
+<%--        ri21.value='出勤';--%>
+<%--        var ri22 = document.getElementById("ri22");--%>
+<%--        ri22.value='出勤';--%>
+<%--        var ri23 = document.getElementById("ri23");--%>
+<%--        ri23.value='出勤';--%>
+<%--        var ri24 = document.getElementById("ri24");--%>
+<%--        ri24.value='出勤';--%>
+<%--        var ri25 = document.getElementById("ri25");--%>
+<%--        ri25.value='出勤';--%>
+<%--        var ri26 = document.getElementById("ri26");--%>
+<%--        ri26.value='出勤';--%>
+<%--        var ri27 = document.getElementById("ri27");--%>
+<%--        ri27.value='出勤';--%>
+<%--        var ri28 = document.getElementById("ri28");--%>
+<%--        ri28.value='出勤';--%>
+<%--        var ri29 = document.getElementById("ri29");--%>
+<%--        ri29.value='出勤';--%>
+<%--        var ri30 = document.getElementById("ri30");--%>
+<%--        ri30.value='出勤';--%>
+<%--        var ri31 = document.getElementById("ri31");--%>
+<%--        ri31.value='出勤';--%>
+<%--    }--%>
+<%--</script>--%>
+<script>
+    // 页面加载时初始化
+    document.addEventListener('DOMContentLoaded', function() {
+        // 1. 设置select默认值
+        var yueValue = document.getElementById('yue_id').value;
+        if (yueValue) {
+            document.getElementById('yue').value = yueValue;
+        }
+
+        for (var i = 1; i <= 31; i++) {
+            var riId = 'ri' + i + '_id';
+            var riSelect = 'ri' + i;
+            var hiddenValue = document.getElementById(riId);
+            var select = document.getElementById(riSelect);
+
+            if (hiddenValue && hiddenValue.value && select) {
+                select.value = hiddenValue.value;
+            }
+        }
+
+        // 2. 批量设置功能
+        document.getElementById('pl').onclick = function() {
+            for (var i = 1; i <= 31; i++) {
+                var select = document.getElementById('ri' + i);
+                if (select) {
+                    select.value = '出勤';
+                }
+            }
+        };
+
+        // 3. 表单提交验证
+        document.querySelector('form').addEventListener('submit', function(e) {
+            console.log('表单提交事件触发');
+
+            var s_name = document.getElementById('s_name').value.trim();
+            var nian = document.getElementById('nian').value.trim();
+            var yue = document.getElementById('yue').value;
+
+            if (!s_name) {
+                alert('请输入姓名');
+                e.preventDefault();
+                return false;
+            }
+
+            if (!nian) {
+                alert('请输入年份');
+                e.preventDefault();
+                return false;
+            }
+
+            if (!yue) {
+                alert('请选择月份');
+                e.preventDefault();
+                return false;
+            }
+
+            // 显示正在提交
+            document.getElementById('saveBtn').value = '提交中...';
+            document.getElementById('saveBtn').disabled = true;
+
+            return true;
+        });
+    });
+    setTimeout(function(){
+        var link = document.querySelector('.list a[href*="keshi"]');
+        if (link) {
+            link.style.background = 'linear-gradient(135deg, #003366, #002244)';
+            link.style.color = 'white';
+            link.style.transform = 'translateY(-3px)';
+            link.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)';
+        }
+    }, 100);
 </script>
 </html>

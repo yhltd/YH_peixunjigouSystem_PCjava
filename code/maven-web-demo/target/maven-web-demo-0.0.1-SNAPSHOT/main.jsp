@@ -493,7 +493,6 @@
             position: relative;
             overflow: hidden;
         }
-
         .nav.navbar-nav > li > a::before {
             content: '';
             position: absolute;
@@ -1022,7 +1021,7 @@
 <%--        <a style="background: url(img/数据空间.png);" onclick="shujv()" >数据空间</a>--%>
 <%--        <a style="background: url(img/退出.png);" href="<%=request.getContextPath() %>/login.jsp" >退出</a>--%>
         <a  href="<%=request.getContextPath() %>/pdf/app-debug.apk" >下载app</a>
-        <a  href="<%=request.getContextPath() %>/pdf/教务管理系统（20230618）.xlsm">下载表格</a>
+        <a  href="<%=request.getContextPath() %>/pdf/教务管理系统（20231012）.xlsm">下载表格</a>
         <a  onclick="shujv()" >数据空间</a>
         <a  href="<%=request.getContextPath() %>/login.jsp" >退出</a>
     </div>
@@ -1037,25 +1036,25 @@
 <!--主体内容-->
 <section class="publicMian">
     <div class="left-bg">
-    <div class="left">
-        <h2 class="leftH2"><span class="span1"></span>功能列表 <span></span></h2>
-        <nav>
-            <ul class="list">
-                <li><a href="<%=request.getContextPath() %>/main.jsp">主页</a></li>
-                <li><a href="<%=request.getContextPath() %>/te/shezhi.action">设置</a></li>
-                <li><a href="<%=request.getContextPath() %>/stu/student1.action">学生信息</a></li>
-                <li><a href="<%=request.getContextPath() %>/teacherInfo/getList1.action">教师信息</a></li>
-                <li><a href="<%=request.getContextPath() %>/pay/payment1.action">缴费记录</a></li>
-                <li><a href="<%=request.getContextPath() %>/keshi/getList1.action">课时统计</a></li>
-                <li><a href="<%=request.getContextPath() %>/inc/income.action">收支明细</a></li>
-                <li><a href="<%=request.getContextPath() %>/stu/arr.action">欠费学员</a></li>
-                <li><a href="<%=request.getContextPath() %>/tea/jisuan.jsp">教师工资</a></li>
-                <li><a href="<%=request.getContextPath() %>/keshi/getTeacherKeshiList.action">教师课时统计</a></li>
-                <li><a href="<%=request.getContextPath() %>/tea/teacher.action">用户管理</a></li>
-                <li><a href="<%=request.getContextPath() %>/pdf/云合教务管理系统_使用说明.rar">使用说明</a></li>
-            </ul>
-        </nav>
-    </div>
+        <div class="left">
+            <h2 class="leftH2"><span class="span1"></span>功能列表 <span></span></h2>
+            <nav>
+                <ul class="list">
+                    <li data-module="main"><a href="<%=request.getContextPath() %>/main.jsp">主页</a></li>
+                    <li data-module="shezhi"><a href="<%=request.getContextPath() %>/te/shezhi.action">设置</a></li>
+                    <li data-module="student"><a href="<%=request.getContextPath() %>/stu/student1.action">学生信息</a></li>
+                    <li data-module="teacher"><a href="<%=request.getContextPath() %>/teacherInfo/getList1.action">教师信息</a></li>
+                    <li data-module="payment"><a href="<%=request.getContextPath() %>/pay/payment1.action">缴费记录</a></li>
+                    <li data-module="keshi"><a href="<%=request.getContextPath() %>/keshi/getList1.action">课时统计</a></li>
+                    <li data-module="income"><a href="<%=request.getContextPath() %>/inc/income.action">收支明细</a></li>
+                    <li data-module="arrears"><a href="<%=request.getContextPath() %>/stu/arr.action">欠费学员</a></li>
+                    <li data-module="salary"><a href="<%=request.getContextPath() %>/tea/jisuan.action">教师工资</a></li>
+                    <li data-module="teacherKeshi"><a href="<%=request.getContextPath() %>/keshi/getTeacherKeshiList.action">教师课时统计</a></li>
+                    <li data-module="user"><a href="<%=request.getContextPath() %>/tea/teacher.action">用户管理</a></li>
+                    <li data-module="manual"><a href="<%=request.getContextPath() %>/pdf/云合教务管理系统_使用说明.rar">使用说明</a></li>
+                </ul>
+            </nav>
+        </div>
     </div>
     <div class="right zhuye-bg" >
         <div class="wFont">
@@ -1117,5 +1116,40 @@
         alert($('#rongliang').val());
         return false;
     }
+    $(document).ready(function() {
+        // 点击变色
+        $('.list li').click(function() {
+            $('.list li').removeClass('active');
+            $(this).addClass('active');
+        });
+
+        // 页面加载时根据URL自动高亮
+        setTimeout(function() {
+            var currentPath = window.location.pathname;
+            var $links = $('.list li a');
+
+            $links.each(function() {
+                var href = $(this).attr('href');
+                if (currentPath.includes(href.split('/').pop())) {
+                    $(this).parent().addClass('active');
+                    return false; // 找到后退出循环
+                }
+            });
+        }, 100);
+    });
+    $(document).ready(function() {
+        var url = window.location.href;
+        $('.list a').each(function() {
+            if (url.includes($(this).attr('href'))) {
+                // 使用内联样式，优先级最高
+                $(this).attr('style',
+                    'background: linear-gradient(135deg, #003366, #002244) !important; ' +
+                    'color: white !important; ' +
+                    'transform: translateY(-3px); ' +
+                    'box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;'
+                );
+            }
+        });
+    });
 </script>
 </html>

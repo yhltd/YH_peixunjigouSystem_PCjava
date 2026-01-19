@@ -205,23 +205,93 @@ public class TeacherController {
 		}
 		return mv;
 	}
-	@RequestMapping("/jisuan")
-	public ModelAndView info1(ModelAndView mv, Keshidetail ksd, String a , String c, HttpServletRequest request) {
-		a=request.getParameter("date2");
-		String b=request.getParameter("teacher_name");
-//        String strDateFormat = "yyyy-MM";
-//        SimpleDateFormat sdf = new SimpleDateFormat(a);
-		if (!a.equals("")){
-			String s1[]=a.split("-");
-			a=s1[0]+ "-" + s1[1];}
-		LoginController e=new  LoginController();
-		c=e.a;
-		List<Keshidetail> list = service2.select1(ksd,c,a,b);
-		mv.addObject("teacherKeshiList",list);
+//	@RequestMapping("/jisuan")
+//	public ModelAndView info1(ModelAndView mv, Keshidetail ksd, String a , String c, HttpServletRequest request) {
+//		a=request.getParameter("date2");
+//		String b=request.getParameter("teacher_name");
+////        String strDateFormat = "yyyy-MM";
+////        SimpleDateFormat sdf = new SimpleDateFormat(a);
+//		if (!a.equals("")){
+//			String s1[]=a.split("-");
+//			a=s1[0]+ "-" + s1[1];}
+//		LoginController e=new  LoginController();
+//		c=e.a;
+//		List<Keshidetail> list = service2.select1(ksd,c,a,b);
+//		mv.addObject("teacherKeshiList",list);
+//		mv.setViewName("/tea/jisuan.jsp");
+//		return mv;
+//	}
+@RequestMapping("/jisuan")
+public ModelAndView info1(ModelAndView mv, HttpServletRequest request) {
+	try {
+		// 1. 获取参数，处理null
+		String a = request.getParameter("date2");
+		String b = request.getParameter("teacher_name");
+
+		if (a == null) a = "";
+		if (b == null) b = "";
+
+		// 2. 日期格式化
+		if (!a.isEmpty()) {
+			String[] s1 = a.split("-");
+			if (s1.length >= 2) {
+				a = s1[0] + "-" + s1[1];
+			}
+		}
+
+		// 3. 获取公司代码 - 安全方式
+		String c = "default_company";
+		try {
+			LoginController e = new LoginController();
+			if (e != null && e.a != null && !e.a.trim().isEmpty()) {
+				c = e.a.trim();
+			}
+		} catch (Exception e) {
+			System.err.println("获取公司代码失败: " + e.getMessage());
+		}
+
+		// 4. 创建查询对象
+		Keshidetail ksd = new Keshidetail();
+
+		// 5. 检查service2是否注入
+		if (service2 == null) {
+			System.err.println("ERROR: service2 is null! Check @Autowired annotation.");
+			// 返回空列表
+			mv.addObject("teacherKeshiList", new ArrayList<>());
+			mv.addObject("msg", "系统服务未就绪");
+			mv.setViewName("/tea/jisuan.jsp");
+			return mv;
+		}
+
+		// 6. 执行查询
+		List<Keshidetail> list = null;
+		try {
+			list = service2.select1(ksd, c, a, b);
+		} catch (Exception e) {
+			System.err.println("数据库查询异常: " + e.getMessage());
+			list = new ArrayList<>();
+		}
+
+		// 7. 确保list不为null
+		if (list == null) {
+			list = new ArrayList<>();
+		}
+
+		// 8. 返回结果
+		mv.addObject("teacherKeshiList", list);
 		mv.setViewName("/tea/jisuan.jsp");
-		return mv;
+
+	} catch (Exception e) {
+		e.printStackTrace();
+		System.err.println("Controller异常: " + e.getMessage());
+		// 发生异常时返回空页面
+		mv.addObject("teacherKeshiList", new ArrayList<>());
+		mv.addObject("msg", "系统异常: " + e.getMessage());
+		mv.setViewName("/tea/jisuan.jsp");
 	}
 
+	return mv;
+}
 	@RequestMapping(value = "/jiamiGet",produces = "text/plain;charset=UTF-8")
 	@ResponseBody
 	public String jiamiGet(@RequestParam(value="text") String text) throws Exception {

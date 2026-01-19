@@ -92,5 +92,14 @@
         alert($('#rongliang').val());
         return false;
     }
+    setTimeout(function(){
+        var link = document.querySelector('.list a[href*="tea"]');
+        if (link) {
+            link.style.background = 'linear-gradient(135deg, #003366, #002244)';
+            link.style.color = 'white';
+            link.style.transform = 'translateY(-3px)';
+            link.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)';
+        }
+    }, 100);
 </script>
 </html>

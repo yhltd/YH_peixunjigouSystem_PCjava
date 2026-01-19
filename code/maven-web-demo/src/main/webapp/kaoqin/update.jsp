@@ -44,12 +44,12 @@
                 <li><a href="<%=request.getContextPath() %>/keshi/getList1.action">课时统计</a></li>
                 <li><a href="<%=request.getContextPath() %>/inc/income.action">收支明细</a></li>
                 <li><a href="<%=request.getContextPath() %>/stu/arr.action">欠费学员</a></li>
-                <li><a href="<%=request.getContextPath() %>/tea/jisuan.jsp">教师工资</a></li>
+                <li><a href="<%=request.getContextPath() %>/tea/jisuan.action">教师工资</a></li>
                 <li><a href="<%=request.getContextPath() %>/keshi/getTeacherKeshiList.action">教师课时统计</a></li>
                 <li><a href="<%=request.getContextPath() %>/tea/teacher.action">用户管理</a></li>
                 <li><a href="<%=request.getContextPath() %>/pdf/云合教务管理系统_使用说明.rar">使用说明</a></li>
                 <li><a href="<%=request.getContextPath() %>/pdf/app-debug.apk">下载app</a></li>
-                <li><a href="<%=request.getContextPath() %>/pdf/教务管理系统（20230618）.xlsm">下载表格</a></li>
+                <li><a href="<%=request.getContextPath() %>/pdf/教务管理系统（20231012）.xlsm">下载表格</a></li>
             </ul>
         </nav>
     </div>
@@ -65,14 +65,33 @@
                     <input type="text" readonly="readonly" name="id" id="id" value="${kaoqin.id}" readonly="readonly"/>
                     <span >*</span>
                 </div>
-                <div>
-                    <label for="s_name">姓名：</label>
-                    <input type="text" name="s_name" id="s_name" value="${kaoqin.s_name }"/>
-                </div>
-                <div>
-                    <label  for="nian">年：</label>
-                    <input type="number" name="nian" id="nian" value="${kaoqin.nian }"/>
-                </div>
+<%--                <div>--%>
+<%--                    <label for="s_name">姓名：</label>--%>
+<%--                    <input type="text" name="s_name" id="s_name" value="${kaoqin.s_name }"/>--%>
+<%--                </div>--%>
+                    <div>
+                        <label for="s_name">姓名：</label>
+                        <input type="text" name="s_name" id="s_name"
+                               value="${kaoqin.s_name}"
+                               required
+                               placeholder="请输入姓名"
+                               style="width: 260px;" />
+                    </div>
+<%--                <div>--%>
+<%--                    <label  for="nian">年：</label>--%>
+<%--                    <input type="number" name="nian" id="nian" value="${kaoqin.nian }"/>--%>
+<%--                </div>--%>
+                    <div>
+                        <label for="nian">年：</label>
+                        <input type="number" name="nian" id="nian"
+                               value="${kaoqin.nian}"
+                               min="1900"
+                               max="2100"
+                               style="width: 260px;
+                  -moz-appearance: textfield;
+                  -webkit-appearance: none;
+                  appearance: none;" />
+                    </div>
                 <div>
                     <label for="yue">月：</label>
                     <input hidden="hidden" id="yue_id" value="${kaoqin.yue }"/>
@@ -404,7 +423,7 @@
                     </select>
                 </div>
                 <div class="providerAddBtn">
-                    <input type="submit" value="保存" onclick="history.back(-1)"/>
+                    <input type="submit" value="保存" id="saveBtn"/>
                     <input type="button" value="返回" onclick="history.back(-1)"/>
                 </div>
             </form>
@@ -415,47 +434,120 @@
 </footer>
 <script src="<%=request.getContextPath() %>/js/time.js"></script>
 </body>
-<script type="text/javascript">
-    window.onload=function(){
-        var yue=$("#yue_id").val();
+<%--<script type="text/javascript">--%>
+<%--    window.onload=function(){--%>
+<%--        var yue=$("#yue_id").val();--%>
 
-        $("#yue").val(yue);
+<%--        $("#yue").val(yue);--%>
 
-        $("#ri1").val($("#ri1_id").val());
-        $("#ri2").val($("#ri2_id").val());
-        $("#ri3").val($("#ri3_id").val());
-        $("#ri4").val($("#ri4_id").val());
-        $("#ri5").val($("#ri5_id").val());
-        $("#ri6").val($("#ri6_id").val());
-        $("#ri7").val($("#ri7_id").val());
-        $("#ri8").val($("#ri8_id").val());
-        $("#ri9").val($("#ri9_id").val());
-        $("#ri10").val($("#ri10_id").val());
-        $("#ri11").val($("#ri11_id").val());
-        $("#ri12").val($("#ri12_id").val());
-        $("#ri13").val($("#ri13_id").val());
-        $("#ri14").val($("#ri14_id").val());
-        $("#ri15").val($("#ri15_id").val());
-        $("#ri16").val($("#ri16_id").val());
-        $("#ri17").val($("#ri17_id").val());
-        $("#ri18").val($("#ri18_id").val());
-        $("#ri19").val($("#ri19_id").val());
-        $("#ri20").val($("#ri20_id").val());
-        $("#ri21").val($("#ri21_id").val());
-        $("#ri22").val($("#ri22_id").val());
-        $("#ri23").val($("#ri23_id").val());
-        $("#ri24").val($("#ri24_id").val());
-        $("#ri25").val($("#ri25_id").val());
-        $("#ri26").val($("#ri26_id").val());
-        $("#ri27").val($("#ri27_id").val());
-        $("#ri28").val($("#ri28_id").val());
-        $("#ri29").val($("#ri29_id").val());
-        $("#ri30").val($("#ri30_id").val());
-        $("#ri31").val($("#ri31_id").val());
-    }
-    function shujv() {
-        alert($('#rongliang').val());
-        return false;
-    }
+<%--        $("#ri1").val($("#ri1_id").val());--%>
+<%--        $("#ri2").val($("#ri2_id").val());--%>
+<%--        $("#ri3").val($("#ri3_id").val());--%>
+<%--        $("#ri4").val($("#ri4_id").val());--%>
+<%--        $("#ri5").val($("#ri5_id").val());--%>
+<%--        $("#ri6").val($("#ri6_id").val());--%>
+<%--        $("#ri7").val($("#ri7_id").val());--%>
+<%--        $("#ri8").val($("#ri8_id").val());--%>
+<%--        $("#ri9").val($("#ri9_id").val());--%>
+<%--        $("#ri10").val($("#ri10_id").val());--%>
+<%--        $("#ri11").val($("#ri11_id").val());--%>
+<%--        $("#ri12").val($("#ri12_id").val());--%>
+<%--        $("#ri13").val($("#ri13_id").val());--%>
+<%--        $("#ri14").val($("#ri14_id").val());--%>
+<%--        $("#ri15").val($("#ri15_id").val());--%>
+<%--        $("#ri16").val($("#ri16_id").val());--%>
+<%--        $("#ri17").val($("#ri17_id").val());--%>
+<%--        $("#ri18").val($("#ri18_id").val());--%>
+<%--        $("#ri19").val($("#ri19_id").val());--%>
+<%--        $("#ri20").val($("#ri20_id").val());--%>
+<%--        $("#ri21").val($("#ri21_id").val());--%>
+<%--        $("#ri22").val($("#ri22_id").val());--%>
+<%--        $("#ri23").val($("#ri23_id").val());--%>
+<%--        $("#ri24").val($("#ri24_id").val());--%>
+<%--        $("#ri25").val($("#ri25_id").val());--%>
+<%--        $("#ri26").val($("#ri26_id").val());--%>
+<%--        $("#ri27").val($("#ri27_id").val());--%>
+<%--        $("#ri28").val($("#ri28_id").val());--%>
+<%--        $("#ri29").val($("#ri29_id").val());--%>
+<%--        $("#ri30").val($("#ri30_id").val());--%>
+<%--        $("#ri31").val($("#ri31_id").val());--%>
+<%--    }--%>
+<%--    function shujv() {--%>
+<%--        alert($('#rongliang').val());--%>
+<%--        return false;--%>
+<%--    }--%>
+<%--</script>--%>
+<script>
+    // 页面加载时初始化
+    document.addEventListener('DOMContentLoaded', function() {
+        // 1. 设置select默认值
+        var yueValue = document.getElementById('yue_id').value;
+        if (yueValue) {
+            document.getElementById('yue').value = yueValue;
+        }
+
+        for (var i = 1; i <= 31; i++) {
+            var riId = 'ri' + i + '_id';
+            var riSelect = 'ri' + i;
+            var hiddenValue = document.getElementById(riId);
+            var select = document.getElementById(riSelect);
+
+            if (hiddenValue && hiddenValue.value && select) {
+                select.value = hiddenValue.value;
+            }
+        }
+
+        // 2. 批量设置功能
+        document.getElementById('pl').onclick = function() {
+            for (var i = 1; i <= 31; i++) {
+                var select = document.getElementById('ri' + i);
+                if (select) {
+                    select.value = '出勤';
+                }
+            }
+        };
+
+        // 3. 表单提交验证
+        document.querySelector('form').addEventListener('submit', function(e) {
+            console.log('表单提交事件触发');
+
+            var s_name = document.getElementById('s_name').value.trim();
+            var nian = document.getElementById('nian').value.trim();
+            var yue = document.getElementById('yue').value;
+
+            if (!s_name) {
+                alert('请输入姓名');
+                e.preventDefault();
+                return false;
+            }
+
+            if (!nian) {
+                alert('请输入年份');
+                e.preventDefault();
+                return false;
+            }
+
+            if (!yue) {
+                alert('请选择月份');
+                e.preventDefault();
+                return false;
+            }
+
+            // 显示正在提交
+            document.getElementById('saveBtn').value = '提交中...';
+            document.getElementById('saveBtn').disabled = true;
+
+            return true;
+        });
+    });
+    setTimeout(function(){
+        var link = document.querySelector('.list a[href*="keshi"]');
+        if (link) {
+            link.style.background = 'linear-gradient(135deg, #003366, #002244)';
+            link.style.color = 'white';
+            link.style.transform = 'translateY(-3px)';
+            link.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)';
+        }
+    }, 100);
 </script>
 </html>

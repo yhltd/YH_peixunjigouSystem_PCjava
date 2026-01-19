@@ -47,12 +47,12 @@
                 <li><a href="<%=request.getContextPath() %>/keshi/getList1.action">课时统计</a></li>
                 <li><a href="<%=request.getContextPath() %>/inc/income.action">收支明细</a></li>
                 <li><a href="<%=request.getContextPath() %>/stu/arr.action">欠费学员</a></li>
-                <li><a href="<%=request.getContextPath() %>/tea/jisuan.jsp">教师工资</a></li>
+                <li><a href="<%=request.getContextPath() %>/tea/jisuan.action">教师工资</a></li>
                 <li><a href="<%=request.getContextPath() %>/keshi/getTeacherKeshiList.action">教师课时统计</a></li>
                 <li><a href="<%=request.getContextPath() %>/tea/teacher.action">用户管理</a></li>
                 <li><a href="<%=request.getContextPath() %>/pdf/云合教务管理系统_使用说明.rar">使用说明</a></li>
                 <li><a href="<%=request.getContextPath() %>/pdf/app-debug.apk">下载app</a></li>
-                <li><a href="<%=request.getContextPath() %>/pdf/教务管理系统（20230618）.xlsm">下载表格</a></li>
+                <li><a href="<%=request.getContextPath() %>/pdf/教务管理系统（20231012）.xlsm">下载表格</a></li>
             </ul>
         </nav>
     </div>
@@ -119,6 +119,7 @@
                 <th width="10%">教师姓名</th>
                 <th width="10%">课程名称</th>
                 <th width="10%">学生姓名</th>
+                <th width="10%">上课日期</th>
                 <th width="10%">上课课时</th>
             </tr>
             <c:forEach items="${teacherKeshiList }" var="tkl">
@@ -126,6 +127,7 @@
                     <td>${tkl.teacher_name}</td>
                     <td>${tkl.course}</td>
                     <td>${tkl.student_name}</td>
+                    <td>${tkl.riqi}</td>
                     <td>${tkl.keshi}</td>
 <%--                    <td>--%>
 <%--                        <a href="<%=request.getContextPath() %>/teacher/toalter.action?id=${s.id}"><img src="<%=request.getContextPath() %>/img/read.png" alt="查看" title="查看"/></a>--%>
@@ -202,6 +204,20 @@
         } else {
             navbar.classList.remove('visible');
         }
+    });
+    $(document).ready(function() {
+        var url = window.location.href;
+        $('.list a').each(function() {
+            if (url.includes($(this).attr('href'))) {
+                // 使用内联样式，优先级最高
+                $(this).attr('style',
+                    'background: linear-gradient(135deg, #003366, #002244) !important; ' +
+                    'color: white !important; ' +
+                    'transform: translateY(-3px); ' +
+                    'box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;'
+                );
+            }
+        });
     });
 </script>
 </html>

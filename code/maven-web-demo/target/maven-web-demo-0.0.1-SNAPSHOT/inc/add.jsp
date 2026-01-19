@@ -41,14 +41,14 @@
                 <li><a href="<%=request.getContextPath() %>/teacherInfo/getList1.action">教师信息</a></li>
                 <li><a href="<%=request.getContextPath() %>/pay/payment1.action">缴费记录</a></li>
                 <li><a href="<%=request.getContextPath() %>/keshi/getList1.action">课时统计</a></li>
-                <li><a href="<%=request.getContextPath() %>/stu/ksclass.action">收支明细</a></li>
+                <li><a href="<%=request.getContextPath() %>/stu/ksclass.action"style="color: white;background-color: #1a237e;">收支明细</a></li>
                 <li><a href="<%=request.getContextPath() %>/stu/arr.action">欠费学员</a></li>
-                <li><a href="<%=request.getContextPath() %>/tea/jisuan.jsp">教师工资</a></li>
+                <li><a href="<%=request.getContextPath() %>/tea/jisuan.action">教师工资</a></li>
                 <li><a href="<%=request.getContextPath() %>/teacher/kstj.action">教师课时统计</a></li>
                 <li><a href="<%=request.getContextPath() %>/tea/teacher.action">用户管理</a></li>
                 <li><a href="<%=request.getContextPath() %>/pdf/云合教务管理系统_使用说明.rar">使用说明</a></li>
                 <li><a href="<%=request.getContextPath() %>/pdf/app-debug.apk">下载app</a></li>
-                <li><a href="<%=request.getContextPath() %>/pdf/教务管理系统（20230618）.xlsm">下载表格</a></li>
+                <li><a href="<%=request.getContextPath() %>/pdf/教务管理系统（20231012）.xlsm">下载表格</a></li>
             </ul>
         </nav>
     </div>
@@ -178,5 +178,13 @@
         alert($('#rongliang').val());
         return false;
     }
+    setTimeout(function(){
+        var link = document.querySelector('.list a[href*="inc"]');
+        if (link) {
+            link.style.background = 'linear-gradient(135deg, #003366, #002244)';
+            link.style.color = 'white';
+            link.style.transform = 'translateY(-3px)';
+            link.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)';
+        }
 </script>
 </html>

@@ -47,12 +47,12 @@
                 <li><a href="<%=request.getContextPath() %>/keshi/getList1.action">课时统计</a></li>
                 <li><a href="<%=request.getContextPath() %>/inc/income.action">收支明细</a></li>
                 <li><a href="<%=request.getContextPath() %>/stu/arr.action">欠费学员</a></li>
-                <li><a href="<%=request.getContextPath() %>/tea/jisuan.jsp">教师工资</a></li>
+                <li><a href="<%=request.getContextPath() %>/tea/jisuan.action">教师工资</a></li>
                 <li><a href="<%=request.getContextPath() %>/keshi/getTeacherKeshiList.action">教师课时统计</a></li>
                 <li><a href="<%=request.getContextPath() %>/tea/teacher.action">用户管理</a></li>
                 <li><a href="<%=request.getContextPath() %>/pdf/云合教务管理系统_使用说明.rar">使用说明</a></li>
                 <li><a href="<%=request.getContextPath() %>/pdf/app-debug.apk">下载app</a></li>
-                <li><a href="<%=request.getContextPath() %>/pdf/教务管理系统（20230618）.xlsm">下载表格</a></li>
+                <li><a href="<%=request.getContextPath() %>/pdf/教务管理系统（20231012）.xlsm">下载表格</a></li>
             </ul>
         </nav>
     </div>
@@ -73,7 +73,7 @@
         </div>
         <table id="data" class="providerTable" cellpadding="0" cellspacing="0">
             <caption style="font-size: 14px;margin-bottom: 0.5%;">考勤表</caption>
-            <tr class="firstTr">
+            <tr class="firstTr" style="color: black;">
                 <th>序号</th>
                 <th>姓名</th>
                 <th>年</th>
@@ -179,5 +179,21 @@
         alert($('#rongliang').val());
         return false;
     }
+    $(document).ready(function() {
+        // 课时统计页面专用：直接高亮课时统计链接
+        $('.list a').each(function() {
+            var linkHref = $(this).attr('href');
+            if (linkHref && linkHref.includes('keshi')) {
+                // 使用内联样式，优先级最高
+                $(this).attr('style',
+                    'background: linear-gradient(135deg, #003366, #002244) !important; ' +
+                    'color: white !important; ' +
+                    'transform: translateY(-3px); ' +
+                    'box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;'
+                );
+                return false; // 找到第一个匹配就停止
+            }
+        });
+    });
 </script>
 </html>
