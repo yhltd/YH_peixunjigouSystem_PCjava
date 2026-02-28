@@ -25,4 +25,6 @@ public interface TeacherInfoMapper {
 
     public int delete(@Param("t") TeacherInfo t, @Param("c") String c);
 
+    public int updateWenjian(@Param("id") Integer id, @Param("wenjian") String wenjian);
+
 }

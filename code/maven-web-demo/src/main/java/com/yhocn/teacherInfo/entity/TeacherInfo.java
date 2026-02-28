@@ -19,11 +19,12 @@ public class TeacherInfo {
     private String shebao;
     private String address;
     private String company;
+    private String wenjian;
 
     public TeacherInfo() {
     }
 
-    public TeacherInfo(Integer id, String t_name, String sex, String id_code, String minzu, String birthday, String post, String education, String phone, String rz_riqi, String state, String shebao, String address, String company) {
+    public TeacherInfo(Integer id, String t_name, String sex, String id_code, String minzu, String birthday, String post, String education, String phone, String rz_riqi, String state, String shebao, String address, String company, String wenjian) {
         this.id = id;
         this.t_name = t_name;
         this.sex = sex;
@@ -38,6 +39,7 @@ public class TeacherInfo {
         this.shebao = shebao;
         this.address = address;
         this.company = company;
+        this.wenjian = wenjian;
     }
 
     public Integer getId() {
@@ -150,6 +152,14 @@ public class TeacherInfo {
 
     public void setCompany(String company) {
         this.company = company;
+    }
+
+    public String getWenjian() {
+        return wenjian;
+    }
+
+    public void setWenjian(String wenjian) {
+        this.wenjian = wenjian;
     }
 
     @Override

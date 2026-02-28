@@ -81,26 +81,36 @@
                   method="post" id="myForm"></form>
             <input type="text" placeholder="请输入教师姓名" name="t_name_sel" form="myForm"/>
             <input class="btn-3d" type="submit" value="查询" form="myForm" style="width:90px"/>
+            <button id="upload-btn" class="btn-3d" style=" height: 35px; width: 80px;background-color: #4A4949;">
+                <i class="bi bi-pencil-square icon"></i>
+                上传文件
+            </button>
+            <button id="deup-btn" class="btn-3d" style=" height: 35px; width: 80px;background-color: #4A4949;">
+                <i class="bi bi-pencil-square icon"></i>
+                删除文件
+            </button>
             <a class="btn-3d" href="<%=request.getContextPath() %>/teacherInfo/toAdd.action" style="width:70px">添加信息</a>
             <%--            <a href="<%=request.getContextPath()%>/stu/add.jsp">添加学生</a>--%>
 
         </div>
+            <input type="file" id="file-upload" style="display: none;" accept=".jpg,.jpeg,.png,.pdf,.doc,.docx">
         <table id="data" class="gradient-table">
 <%--            <caption style="font-size: 14px;margin-bottom: 0.5%;">教师信息</caption>--%>
             <tr class="firstTr">
-                <th width="5%">序号</th>
+                <th width="4%">序号</th>
                 <th width="5%">教师姓名</th>
-                <th width="5%">性别</th>
-                <th width="10%">身份证号码</th>
-                <th width="5%">民族</th>
-                <th width="10%">生日</th>
+                <th width="3%">性别</th>
+                <th width="9%">身份证号码</th>
+                <th width="3%">民族</th>
+                <th width="7%">生日</th>
                 <th width="5%">职位</th>
-                <th width="5%">学历</th>
-                <th width="10%">联系电话</th>
-                <th width="10%">入职日期</th>
-                <th width="5%">在职状态</th>
+                <th width="3%">学历</th>
+                <th width="7%">联系电话</th>
+                <th width="7%">入职日期</th>
+                <th width="4%">在职状态</th>
                 <th width="5%">社保情况</th>
-                <th width="10%">地址</th>
+                <th width="6%">地址</th>
+                <th width="22%">文件</th>
                 <th>操作</th>
             </tr>
             <c:forEach items="${list }" var="t">
@@ -118,6 +128,9 @@
                     <td>${t.state}</td>
                     <td>${t.shebao}</td>
                     <td>${t.address}</td>
+                    <td>
+                        <a href="${t.wenjian}" target="_blank">${t.wenjian}</a>
+                    </td>
                     <td>
                         <a href="<%=request.getContextPath() %>/teacherInfo/toUpdate.action?id=${t.id}"><img src="<%=request.getContextPath() %>/img/xiugai.png" alt="修改" title="修改"/></a>
                         <a href="<%=request.getContextPath() %>/teacherInfo/delete.action?id=${t.id}" class="removeProvider" onclick="return confirm('您确认要删除本记录么？')"><img src="<%=request.getContextPath() %>/img/schu.png" alt="删除" title="删除"/></a>
@@ -153,6 +166,162 @@
         return false;
     }
 
+    $(function () {
+        // 删除上传文件按钮点击事件
+        $('#deup-btn').click(async function () {
+            let rows = getTableSelection();
+            if (rows.length != 1) {
+                alert('请选择一条用户记录');
+                return;
+            }
+
+            var userId = rows[0].data.id;
+            var userWenjian = rows[0].data.wenjian;
+            console.log('userWenjian:', userWenjian);
+
+            if (!userWenjian || userWenjian == '-') {
+                alert('该用户没有上传文件');
+                return;
+            }
+
+            if (!confirm('确定要删除该文件吗？')) {
+                return;
+            }
+
+            // 提取文件名
+            var fileName = userWenjian.split('/').pop().split('.')[0];
+            console.log('文件名:', fileName);
+
+            $(this).prop('disabled', true);
+            $(this).text('删除中...');
+
+            // 使用 FormData 方式，和上传接口保持一致
+            var formData = new FormData();
+            formData.append('order_number', fileName);
+            formData.append('path', '/jiaowu/');
+
+            $.ajax({
+                url: "https://yhocn.cn:9097/file/delete",
+                type: 'POST',  // 保持 POST 方法
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (res) {
+                    if (res.code === 200) {
+                        alert("删除成功！");
+
+                        $.ajax({
+                            type: 'post',
+                            url: './wenjian.action',
+                            data:{
+                                up_id:userId,
+                                up_wenjian:""
+                            }
+                        }, false, '', function (res) {
+                            if (res.code == 200) {
+
+                            }
+                        })
+                    } else {
+                        alert("删除失败：" + (res.msg || "未知错误"));
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error('删除失败:', error);
+                    alert("删除失败：" + error);
+                },
+                complete: function() {
+                    $('#deup-btn').prop('disabled', false);
+                    $('#deup-btn').text('删除文件');
+                }
+            });
+        });
+
+        // 上传文件按钮点击事件
+        $('#upload-btn').click(function () {
+            // 先判断是否选中了用户
+            let rows = getTableSelection();
+            if (rows.length != 1) {
+                alert('请选择一条用户记录');
+                return;
+            }
+            // 触发文件选择
+            $('#file-upload').trigger('click');
+        });
+
+
+        $('#file-upload').change(function () {
+            let rows = getTableSelection();
+            if (rows.length != 1) {
+                alert('请选择一条用户记录');
+                $('#file-upload').val('');
+                return;
+            }
+
+            var file = this.files[0];
+            if (!file) {
+                return;
+            }
+
+            var userId = rows[0].data.id;
+            var userName = rows[0].data.c;
+
+            // 显示文件信息
+            console.log('用户:', userName, 'ID:', userId);
+            console.log('文件:', file.name, '大小:', file.size);
+
+            // 可以在这里处理文件，比如预览
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                console.log('文件内容已读取');
+            };
+            reader.readAsDataURL(file);
+
+
+            var formData = new FormData();
+            formData.append('file', file);
+            formData.append('name', file.name);
+            formData.append('path', '/jiaowu/');
+            formData.append('kongjian', '3');
+
+            $.ajax({
+                url: "https://yhocn.cn:9097/file/upload",
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (res) {
+                    if (res.code === 200) {
+                        alert("上传成功！");
+                        $.ajax({
+                            type: 'post',
+                            url: './wenjian.action',
+                            data:{
+                                up_id:userId,
+                                up_wenjian:"http://yhocn.cn:9088/jiaowu/" + file.name
+                            }
+                        }, false, '', function (res) {
+                            if (res.code == 200) {
+
+                            }
+                        })
+
+
+                    } else {
+                        reject("上传失败：" + (res.msg || "未知错误"));
+                    }
+                },
+                error: function (xhr, status, error) {
+                    reject("上传失败：" + error);
+                }
+            });
+
+
+            $('#file-upload').val('');
+        });
+
+    })
+
 
     window.addEventListener('scroll', function() {
         const navbar = document.getElementById('navbar');
@@ -162,19 +331,99 @@
             navbar.classList.remove('visible');
         }
     });
+    // $(document).ready(function() {
+    //     var url = window.location.href;
+    //     $('.list a').each(function() {
+    //         if (url.includes($(this).attr('href'))) {
+    //             // 使用内联样式，优先级最高
+    //             $(this).attr('style',
+    //                 'background: linear-gradient(135deg, #003366, #002244) !important; ' +
+    //                 'color: white !important; ' +
+    //                 'transform: translateY(-3px); ' +
+    //                 'box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;'
+    //             );
+    //         }
+    //     });
+    // });
+    // 选中行功能
     $(document).ready(function() {
-        var url = window.location.href;
-        $('.list a').each(function() {
-            if (url.includes($(this).attr('href'))) {
-                // 使用内联样式，优先级最高
-                $(this).attr('style',
-                    'background: linear-gradient(135deg, #003366, #002244) !important; ' +
-                    'color: white !important; ' +
-                    'transform: translateY(-3px); ' +
-                    'box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;'
-                );
+        // 为表格行添加点击事件 - 注意这里的选择器改为 #data tr
+        $('#data tr').click(function() {
+            // 排除表头行
+            if ($(this).hasClass('firstTr')) {
+                return;
             }
+
+            // 移除其他行的选中样式
+            $('#data tr').removeClass('selected-row');
+
+            // 为当前点击的行添加选中样式
+            $(this).addClass('selected-row');
+
+            console.log('选中行:', $(this).find('td:eq(1)').text()); // 调试用
         });
+
+        // 获取选中行数据的函数
+        window.getTableSelection = function() {
+            // 注意：这里的选择器也要改为 #data tr.selected-row
+            var selectedRow = $('#data tr.selected-row');
+            if (selectedRow.length === 0) {
+                return [];
+            }
+
+            var rowData = {
+                id: selectedRow.find('td:eq(0)').text().trim(),
+                t_name: selectedRow.find('td:eq(1)').text().trim(),
+                sex: selectedRow.find('td:eq(2)').text().trim(),
+                id_code: selectedRow.find('td:eq(3)').text().trim(),
+                minzu: selectedRow.find('td:eq(4)').text().trim(),
+                birthday: selectedRow.find('td:eq(5)').text().trim(),
+                post: selectedRow.find('td:eq(6)').text().trim(),
+                education: selectedRow.find('td:eq(7)').text().trim(),
+                phone: selectedRow.find('td:eq(8)').text().trim(),
+                rz_riqi: selectedRow.find('td:eq(9)').text().trim(),
+                state: selectedRow.find('td:eq(10)').text().trim(),
+                shebao: selectedRow.find('td:eq(11)').text().trim(),
+                address: selectedRow.find('td:eq(12)').text().trim(),
+                wenjian: selectedRow.find('td:eq(13)').text().trim()
+            };
+
+            return [{
+                data: rowData,
+                index: selectedRow.index()
+            }];
+        };
     });
+
 </script>
+<style>
+    /* 选中行样式 */
+    #data tr {
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    #data tr:hover {
+        background-color: #f5f5f5;
+    }
+
+    #data tr.selected-row {
+        background: linear-gradient(135deg, #e6f2ff, #b8d9ff) !important;
+        border-left: 4px solid #003366;
+        box-shadow: 0 2px 8px rgba(0, 51, 102, 0.2);
+        transform: scale(1.01);
+        position: relative;
+        z-index: 1;
+    }
+
+    #data tr.selected-row td {
+        border-bottom: 1px solid #99c2ff;
+    }
+
+    /* 按钮禁用样式 */
+    .btn-3d:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+</style>
 </html>

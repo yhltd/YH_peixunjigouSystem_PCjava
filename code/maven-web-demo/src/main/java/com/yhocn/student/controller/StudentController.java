@@ -105,6 +105,39 @@ public class StudentController {
         return mv;
     }
 
+    @RequestMapping("/wenjian")
+    public ModelAndView upwenjian(ModelAndView mv,
+                                  @RequestParam("up_id") Integer up_id,
+                                  @RequestParam("up_wenjian") String up_wenjian) {
+        LoginController e = new LoginController();
+        boolean pd = false;
+
+        // 权限检查
+        for (int i = 0; i < e.quanxian.size(); i++) {
+            if (e.quanxian.get(i).getView_name().equals("教师信息") &&
+                    e.quanxian.get(i).getUpd().equals("√")) {
+                pd = true;
+            }
+        }
+
+        if (!pd) {
+            mv.addObject("msg", "无权限");
+            mv.setViewName("/main.jsp");
+            return mv;
+        }
+        // 调用 service 更新
+        int i = service.updateWenjian1(up_id,up_wenjian);  // 需要对应的 service 方法
+
+        if (i > 0) {
+            mv.addObject("msg", "文件信息更新成功");
+        } else {
+            mv.addObject("msg", "文件信息更新失败");
+        }
+
+        mv.setViewName("/stu/student.action");
+        return mv;
+    }
+
     @RequestMapping("/student2")
     public ModelAndView query2(ModelAndView mv, Student s, String c, String a, String b, String d, String E, String f, Integer page, HttpServletRequest request, HttpSession session) {
         a = a1;

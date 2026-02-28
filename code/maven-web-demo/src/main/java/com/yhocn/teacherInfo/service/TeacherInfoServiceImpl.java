@@ -94,6 +94,20 @@ public class TeacherInfoServiceImpl implements TeacherInfoService {
     }
 
     @Override
+    public int updateWenjian(Integer id, String wenjian) {
+        String dataSourceType = DataSourceSelector.getDataSourceType();
+
+        if ("mysql".equals(dataSourceType)) {
+            DynamicDataSourceHolder.setDataSource("dataSource1");
+        } else if ("mssql".equals(dataSourceType)) {
+            DynamicDataSourceHolder.setDataSource("dataSource4");
+        } else {
+            System.out.println("用户不存在");
+        }
+        return dao.updateWenjian(id, wenjian);
+    }
+
+    @Override
     public int delete(TeacherInfo t, String c) {
         String dataSourceType = DataSourceSelector.getDataSourceType();
 

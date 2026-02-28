@@ -20,6 +20,7 @@ public class Student {
 	private String Company;
 	private String mall;
 	private String nall;
+	private String wenjian;
 	public Student() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -27,7 +28,7 @@ public class Student {
 
 	public Student(Integer id, String realName, String sex, String rgdate, String course, String teacher,
 			String classnum, String phone, Integer fee, Integer cost, Integer nocost, Integer hour, Integer nohour,
-			Integer allHour, String type,String Company,String mall,String nall) {
+			Integer allHour, String type,String Company,String mall,String nall,String wenjian) {
 		super();
 		this.id = id;
 		this.realName = realName;
@@ -47,6 +48,8 @@ public class Student {
 		this.Company=Company;
 		this.mall=mall;
 		this.nall=nall;
+		this.wenjian = wenjian;
+
 	}
 
 	public Integer getId() {
@@ -191,6 +194,14 @@ public class Student {
 
 	public void setNall(String nall) {
 		this.nall = nall;
+	}
+
+	public String getWenjian() {
+		return wenjian;
+	}
+
+	public void setWenjian(String wenjian) {
+		this.wenjian = wenjian;
 	}
 
 	@Override

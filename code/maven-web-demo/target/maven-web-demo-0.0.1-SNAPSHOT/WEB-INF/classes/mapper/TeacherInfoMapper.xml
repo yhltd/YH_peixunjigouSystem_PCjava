@@ -41,4 +41,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from teacherInfo where id=#{t.id}
 	</delete>
 
+    <update id="updateWenjian">
+        update teacherInfo
+        set wenjian = #{wenjian}
+        where id = #{id}
+    </update>
 </mapper>

@@ -57,6 +57,20 @@ public class StudentServiceImpl implements StudentService {
 
     }
 
+    @Override
+    public int updateWenjian1(Integer id, String wenjian) {
+        String dataSourceType = DataSourceSelector.getDataSourceType();
+
+        if ("mysql".equals(dataSourceType)) {
+            DynamicDataSourceHolder.setDataSource("dataSource1");
+        } else if ("mssql".equals(dataSourceType)) {
+            DynamicDataSourceHolder.setDataSource("dataSource4");
+        } else {
+            System.out.println("用户不存在");
+        }
+        return dao.updateWenjian1(id, wenjian);
+    }
+
 
     @Override
     public Student selectById(Student s, String c) {

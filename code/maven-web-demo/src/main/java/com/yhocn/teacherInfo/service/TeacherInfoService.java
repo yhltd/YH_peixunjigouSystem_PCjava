@@ -15,4 +15,5 @@ public interface TeacherInfoService {
     public int add(TeacherInfo t, String c);
     public int update(TeacherInfo t, String c);
     public int delete(TeacherInfo t, String c);
+    int updateWenjian(Integer id, String wenjian);
 }

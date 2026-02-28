@@ -22,4 +22,6 @@ public interface StudentService {
 
 	public List<Student> getListByName(String RealName, String c);
 
+	int updateWenjian1(Integer id, String wenjian);
+
 }

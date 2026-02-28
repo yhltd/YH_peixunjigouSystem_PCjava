@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -213,6 +214,39 @@ public class TeacherInfoController {
             mv.addObject("msg", "修改失败");
             mv.setViewName("/teacherInfo/update.action");
         }
+        return mv;
+    }
+
+    @RequestMapping("/wenjian")
+    public ModelAndView upwenjian(ModelAndView mv,
+                                  @RequestParam("up_id") Integer up_id,
+                                  @RequestParam("up_wenjian") String up_wenjian) {
+        LoginController e = new LoginController();
+        boolean pd = false;
+
+        // 权限检查
+        for (int i = 0; i < e.quanxian.size(); i++) {
+            if (e.quanxian.get(i).getView_name().equals("教师信息") &&
+                    e.quanxian.get(i).getUpd().equals("√")) {
+                pd = true;
+            }
+        }
+
+        if (!pd) {
+            mv.addObject("msg", "无权限");
+            mv.setViewName("/main.jsp");
+            return mv;
+        }
+        // 调用 service 更新
+        int i = service.updateWenjian(up_id,up_wenjian);  // 需要对应的 service 方法
+
+        if (i > 0) {
+            mv.addObject("msg", "文件信息更新成功");
+        } else {
+            mv.addObject("msg", "文件信息更新失败");
+        }
+
+        mv.setViewName("/teacherInfo/getList1.action");
         return mv;
     }
 

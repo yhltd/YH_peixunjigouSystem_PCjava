@@ -34,6 +34,8 @@ public interface StudentMapper {
 
     public List<Shezhi> shezhiList(@Param("shezhi") Shezhi shezhi, @Param("c") String c);
 
+    public int updateWenjian1(@Param("id") Integer id, @Param("wenjian") String wenjian);
+
     public List<Student> getListByName(@Param("RealName") String RealName, @Param("c") String c);
     public List<Student> getListByName_mssql(@Param("RealName") String RealName, @Param("c") String c);
 }

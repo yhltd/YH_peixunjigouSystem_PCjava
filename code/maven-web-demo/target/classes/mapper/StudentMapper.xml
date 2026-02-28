@@ -7,7 +7,7 @@
 <mapper namespace="com.yhocn.student.mapper.StudentMapper">
 
 	<select id="selectAll" parameterType="Student" resultType="Student">
-		select id,RealName,Sex,rgdate,Course,Teacher,Classnum,phone,Fee,(select SUM(case when Company =#{c} and realname=#{s.realName} then paid + money else 0 end) from payment ) mall ,Fee -Cost as Nocost,(select SUM(case when Company=#{c} and student_name=#{s.realName} and course=#{s.course} then keshi else 0 end ) from keshi_detail ) nall,Allhour - Hour as Nohour,Allhour,Type FROM student
+		select id,RealName,wenjian,Sex,rgdate,Course,Teacher,Classnum,phone,Fee,(select SUM(case when Company =#{c} and realname=#{s.realName} then paid + money else 0 end) from payment ) mall ,Fee -Cost as Nocost,(select SUM(case when Company=#{c} and student_name=#{s.realName} and course=#{s.course} then keshi else 0 end ) from keshi_detail ) nall,Allhour - Hour as Nohour,Allhour,Type FROM student
 		where Company =#{c}
 		<if test="d != null and d != ''">
 			and Realname like "%"#{d}"%"
@@ -58,7 +58,7 @@
 		</if>
 	</select>
 	<select id="selectAll1" parameterType="Student" resultType="Student">
-		select id,RealName,Sex,rgdate,Course,Teacher,Classnum,phone,Fee,(select SUM(case when Company =#{c} and realname=student.realname then paid + money else 0 end) from payment ) mall ,Fee -(select SUM(case when Company =#{c} and realname=student.realname then paid + money else 0 end) from payment ),(select SUM(case when Company=#{c} and student_name=student.realname and course=student.Course then keshi else 0 end ) from keshi_detail ) nall,Allhour - (select SUM(case when Company=#{c} and student_name=student.realname and course=student.Course then keshi else 0 end ) from keshi_detail ) as Nohour,Allhour,Type FROM student
+		select id,RealName,wenjian,Sex,rgdate,Course,Teacher,Classnum,phone,Fee,(select SUM(case when Company =#{c} and realname=student.realname then paid + money else 0 end) from payment ) mall ,Fee -(select SUM(case when Company =#{c} and realname=student.realname then paid + money else 0 end) from payment ),(select SUM(case when Company=#{c} and student_name=student.realname and course=student.Course then keshi else 0 end ) from keshi_detail ) nall,Allhour - (select SUM(case when Company=#{c} and student_name=student.realname and course=student.Course then keshi else 0 end ) from keshi_detail ) as Nohour,Allhour,Type FROM student
 		where Company =#{c}
 		<if test="d != null and d != ''">
 			and Realname like "%"#{d}"%"
@@ -78,7 +78,7 @@
 	<select id="selectAll1_mssql" parameterType="Student" resultType="Student">
 		SELECT * FROM (
 		SELECT
-		s.id, s.RealName, s.Sex, s.rgdate, s.Course, s.Teacher, s.Classnum, s.phone, s.Fee,
+		s.id, s.RealName, s.wenjian, s.Sex, s.rgdate, s.Course, s.Teacher, s.Classnum, s.phone, s.Fee,
 		ISNULL(p.mall, 0) as mall,
 		s.Fee - ISNULL(p.mall, 0) as nocost,
 		ISNULL(k.nall, 0) as nall,
@@ -269,4 +269,10 @@
 	<select id="getListByName_mssql" parameterType="Student" resultType="Student">
 		SELECT TOP 1 * FROM Student WHERE RealName=#{RealName} and company=#{c}
 	</select>
+
+	<update id="updateWenjian1">
+		update Student
+		set wenjian = #{wenjian}
+		where id = #{id}
+	</update>
 </mapper>
