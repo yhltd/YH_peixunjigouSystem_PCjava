@@ -1022,6 +1022,7 @@
 <%--        <a style="background: url(img/退出.png);" href="<%=request.getContextPath() %>/login.jsp" >退出</a>--%>
         <a  href="<%=request.getContextPath() %>/pdf/app-debug.apk" >下载app</a>
         <a  href="<%=request.getContextPath() %>/pdf/教务管理系统（20231012）.xlsm">下载表格</a>
+        <a  href="http://yhocn.cn/chanpin7_shipin/excel_7product/7product/userstep/index.html" >使用视频</a>
         <a  onclick="shujv()" >数据空间</a>
         <a  href="<%=request.getContextPath() %>/login.jsp" >退出</a>
     </div>
