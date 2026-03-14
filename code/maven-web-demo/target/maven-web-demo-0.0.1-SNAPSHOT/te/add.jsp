@@ -87,7 +87,7 @@
                     <input type="text" name="psort" id="psort" value="${shezhi.psort }"/>
                 </div>
                 <div class="providerAddBtn">
-                    <input type="submit" value="保存" onclick="history.back(-1)"/>
+                    <input type="submit" value="保存"/>
                     <input type="button" value="返回" onclick="history.back(-1)"/>
                 </div>
             </form>
