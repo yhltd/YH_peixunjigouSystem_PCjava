@@ -83,6 +83,7 @@ public class LoginController {
 				String mark2 = "";
 				String mark3 = "";
 				String mark4 = "";
+				String mark5 = "";
 
 				if(!jiamiList.get(0).getEndtime().equals("")){
 					endtime = jiamiList.get(0).getEndtime().trim();
@@ -107,8 +108,18 @@ public class LoginController {
 					mark4 = jiamiList.get(0).getMark4().trim();
 				}
 
+				if(jiamiList.get(0).getMark5() != null){
+					mark5 = jiamiList.get(0).getMark5().trim();
+				}
+
+
 				boolean panduan = true;
 				if(!mark1.equals("a8xd2s")){
+					if(!mark5.contains("PC端")) {
+						mv.setViewName("/login.jsp");
+						mv.addObject("msg","您没有当前使用端权限，请联系我公司续费或者购买系统");
+						panduan = false;
+					}
 					if(endtime.equals("")){
 						mv.setViewName("/login.jsp");
 						mv.addObject("msg","工具到期，请联系我公司续费");
@@ -190,6 +201,8 @@ public class LoginController {
 						}
 						response.addCookie(c3);
 						SessionUtil.setUserNum(session, StringUtils.cast(mark3));
+						SessionUtil.setStorageSpace(session, mark4);
+						mv.addObject("storageSpaceKB", mark4);
 					}else{
 						mv.setViewName("/login.jsp");
 						mv.addObject("msg","账户已被禁用");

@@ -11,6 +11,17 @@
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/style.css"/>
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/min.css"/>
     <script type="text/javascript">
+
+        $(document).ready(function() {
+            $('.loginForm').on('submit', function() {
+                var company = $('#Company').val();
+                if (company && company != '') {
+                    localStorage.setItem('savedCompany', company);
+                    console.log("保存公司名:", company);
+                }
+                return true;
+            });
+        });
         $(document).ready(function(){
             $.ajax({
                 type: 'post',
@@ -123,7 +134,7 @@
 <div class="logo">
 <img src="img/yhlogo.png" style="width: 60px;height: 60px;float: left">
 </div>
-<p style="text-align: right;font-size: 14px">当前系统版本：5.1.1.3&nbsp;&nbsp;</p>
+<p style="text-align: right;font-size: 14px">当前系统版本：5.1.1.4&nbsp;&nbsp;</p>
 <section class="loginBox">
     <header class="loginHeader">
         <h1 style="    font-size: 40px;">云合一体化教务系统</h1>

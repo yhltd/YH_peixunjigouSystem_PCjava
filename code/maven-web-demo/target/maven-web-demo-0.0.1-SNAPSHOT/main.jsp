@@ -1118,6 +1118,20 @@
         return false;
     }
     $(document).ready(function() {
+
+        // 从后端获取存储空间限制（mark4）
+        var storageSpaceKB = '${storageSpaceKB}';
+
+        console.log("=== 从后端获取的数据 ===");
+        console.log("存储空间限制:", storageSpaceKB);
+        console.log("公司名:", companyName);
+
+        // 保存到 localStorage
+        if (storageSpaceKB && storageSpaceKB != '' && storageSpaceKB != '0') {
+            localStorage.setItem('storageSpace', storageSpaceKB);
+            console.log("保存存储空间:", storageSpaceGB, "GB ->", storageSpaceKBValue, "KB");
+        }
+
         // 点击变色
         $('.list li').click(function() {
             $('.list li').removeClass('active');

@@ -7,15 +7,17 @@ import com.yhocn.shezhi.service.ShezhiService;
 import com.yhocn.teacherInfo.entity.TeacherInfo;
 import com.yhocn.teacherInfo.service.TeacherInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author hui
@@ -31,6 +33,8 @@ public class TeacherInfoController {
     private TeacherInfoService service;
     @Autowired
     private ShezhiService shezhiService;
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
 
     @RequestMapping("/getList1")
     public ModelAndView getList1(ModelAndView mv, TeacherInfo t,String c, String t_name, Integer page, HttpServletRequest request, HttpSession session) {
@@ -273,6 +277,131 @@ public class TeacherInfoController {
         }
         mv.setViewName("/teacherInfo/getList1.action");
         return mv;
+    }
+
+    /**
+     * 表名与公司字段名的映射关系
+     */
+    private Map<String, String> getCompanyColumnMap() {
+        Map<String, String> map = new HashMap<>();
+        map.put("course", "company");
+        map.put("income", "Company");
+        map.put("kaoqin", "company");
+        map.put("keshi_detail", "Company");
+        map.put("payment", "Company");
+        map.put("power", "company");
+        map.put("shezhi", "Company");
+        map.put("student", "Company");
+        map.put("teacher", "Company");
+        map.put("teacherinfo", "company");
+        return map;
+    }
+
+    /**
+     * 获取指定公司所有表的数据大小
+     */
+    @GetMapping("/getCompanyTableSizes")
+    @ResponseBody
+    public Map<String, Object> getCompanyTableSizes(@RequestParam String companyName) {
+        Map<String, Object> result = new HashMap<>();
+        try {
+            String[] tableNames = {
+                    "course", "income", "kaoqin",
+                    "keshi_detail", "payment", "power",
+                    "shezhi", "student", "teacher","teacherinfo"
+            };
+
+            Map<String, String> columnMap = getCompanyColumnMap();
+            List<Map<String, Object>> tableSizes = new ArrayList<>();
+            long totalSizeKB = 0;
+
+            for (String tableName : tableNames) {
+                Map<String, Object> tableInfo = new HashMap<>();
+                tableInfo.put("tableName", tableName);
+
+                try {
+                    String companyColumn = columnMap.get(tableName);
+                    if (companyColumn == null) {
+                        tableInfo.put("error", "未配置公司字段映射");
+                        tableSizes.add(tableInfo);
+                        continue;
+                    }
+
+                    Map<String, Object> companyData = getCompanyTableData(tableName, companyColumn, companyName);
+                    long sizeKB = (Long) companyData.get("sizeKB");
+                    long rowCount = (Long) companyData.get("rowCount");
+
+                    tableInfo.put("sizeKB", sizeKB);
+                    tableInfo.put("sizeMB", sizeKB / 1024.0);
+                    tableInfo.put("sizeFormatted", formatSize(sizeKB * 1024));
+                    tableInfo.put("rows", rowCount);
+                    totalSizeKB += sizeKB;
+
+                } catch (Exception e) {
+                    tableInfo.put("error", e.getMessage());
+                }
+                tableSizes.add(tableInfo);
+            }
+
+            result.put("code", 200);
+            result.put("msg", "获取成功");
+            Map<String, Object> data = new HashMap<>();
+            data.put("companyName", companyName);
+            data.put("tables", tableSizes);
+            data.put("totalSizeKB", totalSizeKB);
+            data.put("totalSizeMB", totalSizeKB / 1024.0);
+            data.put("totalSizeGB", totalSizeKB / (1024.0 * 1024));
+            data.put("totalSizeFormatted", formatSize(totalSizeKB * 1024));
+            result.put("data", data);
+
+        } catch (Exception e) {
+            result.put("code", -1);
+            result.put("msg", "获取失败: " + e.getMessage());
+        }
+        return result;
+    }
+
+    /**
+     * 获取表中某个公司的数据大小
+     */
+    private Map<String, Object> getCompanyTableData(String tableName, String companyColumn, String companyName) {
+        Map<String, Object> resultMap = new HashMap<>();
+
+        try {
+            String sql = "SELECT " +
+                    "    COUNT(*) AS row_count, " +
+                    "    ISNULL(ROUND(SUM(DATALENGTH(ISNULL(CAST(" + companyColumn + " AS NVARCHAR(MAX)), ''))) / 1024.0, 2), 0) AS data_size_kb " +
+                    "FROM " + tableName + " " +
+                    "WHERE " + companyColumn + " = ?";
+
+            Map<String, Object> result = jdbcTemplate.queryForMap(sql, companyName);
+
+            long rowCount = ((Number) result.get("row_count")).longValue();
+            long sizeKB = 0;
+            Object sizeObj = result.get("data_size_kb");
+            if (sizeObj != null) {
+                sizeKB = ((Number) sizeObj).longValue();
+            }
+
+            resultMap.put("sizeKB", sizeKB);
+            resultMap.put("rowCount", rowCount);
+
+        } catch (Exception e) {
+            resultMap.put("sizeKB", 0L);
+            resultMap.put("rowCount", 0L);
+        }
+
+        return resultMap;
+    }
+
+    /**
+     * 格式化大小
+     */
+    private String formatSize(long size) {
+        if (size <= 0) return "0 B";
+        String[] units = {"B", "KB", "MB", "GB", "TB"};
+        int digitGroups = (int) (Math.log10(size) / Math.log10(1024));
+        return String.format("%.2f %s", size / Math.pow(1024, digitGroups), units[digitGroups]);
     }
 
 }

@@ -91,6 +91,11 @@
 	</p:bean>
 	<!-- 配置事务步骤2：配置支持事务的标签 -->
 	<tx:annotation-driven transaction-manager="transactionManager"/>
+
+	<!-- ========== 新增：配置 JdbcTemplate ========== -->
+	<p:bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<p:property name="dataSource" ref="dynamicDataSource" />
+	</p:bean>
 	
 	
 </p:beans>

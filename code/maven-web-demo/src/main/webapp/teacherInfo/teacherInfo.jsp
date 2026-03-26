@@ -167,6 +167,96 @@
     }
 
     $(function () {
+        // 从 localStorage 获取公司名和存储空间限制
+        var savedCompany = localStorage.getItem('savedCompany');
+        var storageSpaceKB = localStorage.getItem('storageSpace');
+
+        // 如果没有获取到，使用默认值
+        if (!storageSpaceKB) {
+            storageSpaceKB = 35 * 1024 * 1024; // 默认 35GB 转 KB
+        } else {
+            storageSpaceKB = parseFloat(storageSpaceKB);
+        }
+
+        console.log("公司名:", savedCompany);
+        console.log("存储空间限制(KB):", storageSpaceKB);
+
+        /**
+         * 检查总空间使用情况
+         */
+        function checkTotalSpace(companyName, limitKB) {
+            return new Promise((resolve, reject) => {
+                // 并行请求数据库大小和文件夹大小
+                var dbRequest = $.ajax({
+                    url: "./getCompanyTableSizes.action",
+                    type: "GET",
+                    data: { companyName: companyName }
+                });
+
+                var path = "/jiaowu/" + companyName + "/";
+                var folderRequest = $.ajax({
+                    url: "https://yhocn.cn:9097/file/getFolderSize",
+                    type: 'GET',
+                    data: { path: path }
+                });
+
+                $.when(dbRequest, folderRequest).done(function(dbRes, folderRes) {
+                    var dbData = dbRes[0];
+                    var folderData = folderRes[0];
+
+                    // 检查数据库请求是否成功
+                    if (dbData.code !== 200) {
+                        reject("获取数据库大小失败: " + (dbData.msg || "未知错误"));
+                        return;
+                    }
+
+                    var dbSizeKB = dbData.data.totalSizeKB;
+                    var folderSizeKB = 0;
+
+                    // 检查文件夹请求结果
+                    if (folderData.code === 200) {
+                        // 文件夹存在，获取大小
+                        folderSizeKB = folderData.data.sizeBytes / 1024;
+                        console.log("文件夹大小:", folderSizeKB.toFixed(2), "KB");
+                    } else if (folderData.code === 500 && folderData.msg === "文件夹不存在") {
+                        // 文件夹不存在，大小设为 0
+                        folderSizeKB = 0;
+                        console.log("文件夹不存在，大小设为 0 KB");
+                    } else {
+                        // 其他错误，也设为 0 继续执行
+                        console.warn("获取文件夹大小失败:", folderData.msg);
+                        folderSizeKB = 0;
+                    }
+
+                    var totalUsedKB = dbSizeKB + folderSizeKB;
+                    var usagePercent = (totalUsedKB / limitKB) * 100;
+
+                    console.log("数据库大小:", dbSizeKB, "KB");
+                    console.log("文件夹大小:", folderSizeKB.toFixed(2), "KB");
+                    console.log("总使用:", totalUsedKB.toFixed(2), "KB", "(", usagePercent.toFixed(2), "%)");
+
+                    var canUpload = true;
+
+                    if (totalUsedKB >= limitKB * 1.1) {
+                        canUpload = false;
+                        alert("空间使用已超100%（" + usagePercent.toFixed(2) + "%），无法上传！");
+                        $("#upload-btn").prop("disabled", true);
+                    } else if (totalUsedKB >= limitKB * 0.9) {
+                        alert("空间使用已超90%（" + usagePercent.toFixed(2) + "%），请注意清理！");
+                        $("#upload-btn").prop("disabled", false);
+                    } else {
+                        $("#upload-btn").prop("disabled", false);
+                    }
+
+                    resolve({ canUpload: canUpload, totalUsedKB: totalUsedKB, usagePercent: usagePercent });
+
+                }).fail(function(err) {
+                    console.error("获取空间信息失败:", err);
+                    reject("请求失败");
+                });
+            });
+        }
+
         // 删除上传文件按钮点击事件
         $('#deup-btn').click(async function () {
             let rows = getTableSelection();
@@ -195,33 +285,37 @@
             $(this).prop('disabled', true);
             $(this).text('删除中...');
 
-            // 使用 FormData 方式，和上传接口保持一致
+            // 构建路径（使用公司名）
+            var path = "/jiaowu/" + savedCompany + "/";
+
+            // 使用 FormData 方式
             var formData = new FormData();
             formData.append('order_number', fileName);
-            formData.append('path', '/jiaowu/');
+            formData.append('path', path);
 
             $.ajax({
                 url: "https://yhocn.cn:9097/file/delete",
-                type: 'POST',  // 保持 POST 方法
+                type: 'POST',
                 data: formData,
                 processData: false,
                 contentType: false,
                 success: function (res) {
                     if (res.code === 200) {
-                        alert("删除成功！");
-
+                        // 更新数据库中的文件字段
                         $.ajax({
                             type: 'post',
                             url: './wenjian.action',
-                            data:{
-                                up_id:userId,
-                                up_wenjian:""
+                            data: {
+                                up_id: userId,
+                                up_wenjian: ""
+                            },
+                            success: function (res) {
+                                if (res.code == 200) {
+                                    alert("删除成功！");
+                                    location.reload(); // 刷新页面
+                                }
                             }
-                        }, false, '', function (res) {
-                            if (res.code == 200) {
-
-                            }
-                        })
+                        });
                     } else {
                         alert("删除失败：" + (res.msg || "未知错误"));
                     }
@@ -239,18 +333,16 @@
 
         // 上传文件按钮点击事件
         $('#upload-btn').click(function () {
-            // 先判断是否选中了用户
             let rows = getTableSelection();
             if (rows.length != 1) {
                 alert('请选择一条用户记录');
                 return;
             }
-            // 触发文件选择
             $('#file-upload').trigger('click');
         });
 
-
-        $('#file-upload').change(function () {
+        // 文件上传处理
+        $('#file-upload').change(async function () {
             let rows = getTableSelection();
             if (rows.length != 1) {
                 alert('请选择一条用户记录');
@@ -263,26 +355,52 @@
                 return;
             }
 
+            // ========== 文件大小验证（不能超过 500MB） ==========
+            var maxSizeMB = 500;
+            var maxSizeBytes = maxSizeMB * 1024 * 1024;
+            var fileSizeMB = file.size / (1024 * 1024);
+
+            if (file.size > maxSizeBytes) {
+                alert("文件大小超过限制！\n当前文件: " + fileSizeMB.toFixed(2) + " MB\n最大允许: " + maxSizeMB + " MB");
+                $('#file-upload').val('');
+                return;
+            }
+            console.log("文件大小验证通过:", fileSizeMB.toFixed(2), "MB /", maxSizeMB, "MB");
+            // ========== 文件大小验证结束 ==========
+
+            // 先检查空间
+            var canUpload = false;
+            try {
+                var result = await checkTotalSpace(savedCompany, storageSpaceKB);
+                canUpload = result.canUpload;
+            } catch (error) {
+                alert("空间检查失败: " + error);
+                $('#file-upload').val('');
+                return;
+            }
+
+            if (!canUpload) {
+                alert("空间不足，无法上传！");
+                $('#file-upload').val('');
+                return;
+            }
+
             var userId = rows[0].data.id;
             var userName = rows[0].data.c;
 
-            // 显示文件信息
             console.log('用户:', userName, 'ID:', userId);
-            console.log('文件:', file.name, '大小:', file.size);
+            console.log('文件:', file.name, '大小:', fileSizeMB.toFixed(2), "MB");
 
-            // 可以在这里处理文件，比如预览
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                console.log('文件内容已读取');
-            };
-            reader.readAsDataURL(file);
-
-
+            // 构建上传路径（使用公司名）
+            var path = "/jiaowu/" + savedCompany + "/";
             var formData = new FormData();
             formData.append('file', file);
             formData.append('name', file.name);
-            formData.append('path', '/jiaowu/');
-            formData.append('kongjian', '3');
+            formData.append('path', path);
+
+            // 后端期望的 kongjian 单位是 GB，需要转换
+            var storageSpaceGB = (storageSpaceKB / 1024 / 1024).toFixed(0);
+            formData.append('kongjian', storageSpaceGB);
 
             $.ajax({
                 url: "https://yhocn.cn:9097/file/upload",
@@ -292,37 +410,34 @@
                 contentType: false,
                 success: function (res) {
                     if (res.code === 200) {
-                        alert("上传成功！");
                         $.ajax({
                             type: 'post',
                             url: './wenjian.action',
-                            data:{
-                                up_id:userId,
-                                up_wenjian:"http://yhocn.cn:9088/jiaowu/" + file.name
+                            data: {
+                                up_id: userId,
+                                up_wenjian: "http://yhocn.cn:9088/" + path + file.name
+                            },
+                            success: function (res) {
+                                if (res.code == 200) {
+                                    alert("上传成功！");
+                                    location.reload(); // 刷新页面
+                                }
                             }
-                        }, false, '', function (res) {
-                            if (res.code == 200) {
-
-                            }
-                        })
-
-
+                        });
                     } else {
-                        reject("上传失败：" + (res.msg || "未知错误"));
+                        alert("上传失败：" + (res.msg || "未知错误"));
                     }
                 },
                 error: function (xhr, status, error) {
-                    reject("上传失败：" + error);
+                    alert("上传失败：" + error);
                 }
             });
 
-
             $('#file-upload').val('');
         });
-
     })
 
-
+    // 滚动导航栏效果
     window.addEventListener('scroll', function() {
         const navbar = document.getElementById('navbar');
         if (window.scrollY > 100) {
@@ -331,41 +446,19 @@
             navbar.classList.remove('visible');
         }
     });
-    // $(document).ready(function() {
-    //     var url = window.location.href;
-    //     $('.list a').each(function() {
-    //         if (url.includes($(this).attr('href'))) {
-    //             // 使用内联样式，优先级最高
-    //             $(this).attr('style',
-    //                 'background: linear-gradient(135deg, #003366, #002244) !important; ' +
-    //                 'color: white !important; ' +
-    //                 'transform: translateY(-3px); ' +
-    //                 'box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;'
-    //             );
-    //         }
-    //     });
-    // });
+
     // 选中行功能
     $(document).ready(function() {
-        // 为表格行添加点击事件 - 注意这里的选择器改为 #data tr
         $('#data tr').click(function() {
-            // 排除表头行
             if ($(this).hasClass('firstTr')) {
                 return;
             }
-
-            // 移除其他行的选中样式
             $('#data tr').removeClass('selected-row');
-
-            // 为当前点击的行添加选中样式
             $(this).addClass('selected-row');
-
-            console.log('选中行:', $(this).find('td:eq(1)').text()); // 调试用
+            console.log('选中行:', $(this).find('td:eq(1)').text());
         });
 
-        // 获取选中行数据的函数
         window.getTableSelection = function() {
-            // 注意：这里的选择器也要改为 #data tr.selected-row
             var selectedRow = $('#data tr.selected-row');
             if (selectedRow.length === 0) {
                 return [];
@@ -394,7 +487,6 @@
             }];
         };
     });
-
 </script>
 <style>
     /* 选中行样式 */
