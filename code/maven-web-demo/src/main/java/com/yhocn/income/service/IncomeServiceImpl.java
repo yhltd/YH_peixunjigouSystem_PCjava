@@ -111,10 +111,12 @@ public  class IncomeServiceImpl implements IncomeService{
 
 		if ("mysql".equals(dataSourceType)) {
 			DynamicDataSourceHolder.setDataSource("dataSource1");
+//			return dao.shezhiList(shezhi,c);
 			return dao.shezhiList(shezhi,c);
 		} else if ("mssql".equals(dataSourceType)) {
 			DynamicDataSourceHolder.setDataSource("dataSource4");
-			return dao.shezhiList_mssql(shezhi,c);
+//			return dao.shezhiList_mssql(shezhi,c);
+			return dao.shezhiList_mssql_new(c);
 		} else {
 			System.out.println("用户不存在");
 		}
@@ -132,7 +134,7 @@ public  class IncomeServiceImpl implements IncomeService{
 			return dao.List(shezhi,c);
 		} else if ("mssql".equals(dataSourceType)) {
 			DynamicDataSourceHolder.setDataSource("dataSource4");
-			return dao.List_mssql(shezhi,c);
+			return dao.List_mssql_new(c);
 		} else {
 			System.out.println("用户不存在");
 		}

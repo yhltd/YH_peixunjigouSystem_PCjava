@@ -21,6 +21,7 @@ public interface KeshiDetailMapper {
     public List<Keshidetail> getList1_mssql(@Param("ksd")Keshidetail ksd,@Param("c")String c,@Param("a")String a,@Param("b")String b,@Param("d")String d,@Param("f")String f,@Param("page")Integer page);
 
     public List<Shezhi> shezhiList(@Param("shezhi")Shezhi shezhi,@Param("c")String c);
+    public List<Shezhi> shezhiList_mssql(@Param("shezhi")Shezhi shezhi,@Param("c")String c);
     public int add(@Param("ksd")Keshidetail ksd,@Param("c")String c);
     public int update(@Param("ksd")Keshidetail ksd,@Param("c")String c);
     public int delete(@Param("ksd")Keshidetail ksd,@Param("c")String c);

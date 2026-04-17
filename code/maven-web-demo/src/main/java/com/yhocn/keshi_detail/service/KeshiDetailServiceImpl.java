@@ -89,7 +89,17 @@ public class KeshiDetailServiceImpl implements KeshiDetailService {
     }
     @Override
     public List<Shezhi> shezhiList(Shezhi shezhi, String c) {
-        DynamicDataSourceHolder.setDataSource("dataSource1");
+        String dataSourceType = DataSourceSelector.getDataSourceType();
+
+        if ("mysql".equals(dataSourceType)) {
+            DynamicDataSourceHolder.setDataSource("dataSource1");
+            return km.shezhiList(shezhi,c);
+        } else if ("mssql".equals(dataSourceType)) {
+            DynamicDataSourceHolder.setDataSource("dataSource4");
+            return km.shezhiList_mssql(shezhi,c);
+        } else {
+            System.out.println("用户不存在");
+        }
         return km.shezhiList(shezhi,c);
     }
 

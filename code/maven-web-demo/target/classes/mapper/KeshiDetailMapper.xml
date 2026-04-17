@@ -70,6 +70,10 @@
 		select * from shezhi where  Company =#{c}
 	</select>
 
+	<select id="shezhiList_mssql" parameterType="Shezhi" resultType="Shezhi">
+		select * from shezhi where  Company =#{c}
+	</select>
+
 	<insert id="add">
 		insert into
 		keshi_detail(riqi,student_name,course,keshi,teacher_name,jine, Company)
