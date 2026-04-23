@@ -63,7 +63,7 @@ public class KeshiDetailServiceImpl implements KeshiDetailService {
             return km.select(ksd,c,a,d,f);
         } else if ("mssql".equals(dataSourceType)) {
             DynamicDataSourceHolder.setDataSource("dataSource4");
-            return km.select_mssql(ksd,c,a,d,f);
+            return km.select_mssql1(ksd,c,a,d,f);
         } else {
             System.out.println("用户不存在");
         }

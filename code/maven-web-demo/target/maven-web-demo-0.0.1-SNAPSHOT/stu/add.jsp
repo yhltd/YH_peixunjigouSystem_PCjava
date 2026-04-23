@@ -150,7 +150,7 @@
                     </select>
                 </div>
                 <div class="providerAddBtn">
-                    <input type="submit" value="保存" />
+                    <input type="submit" value="保存" onclick="history.back(-1)" />
                     <input type="button" value="返回" onclick="history.back(-1)"/>
                 </div>
             </form>

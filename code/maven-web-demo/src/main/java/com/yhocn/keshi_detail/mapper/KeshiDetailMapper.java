@@ -30,7 +30,7 @@ public interface KeshiDetailMapper {
 
 
     public List<Keshidetail> select(@Param("ksd") Keshidetail ksd, @Param("c") String c, @Param("a") String a,@Param("d")String d,@Param("f")String f);
-    public List<Keshidetail> select_mssql(@Param("ksd") Keshidetail ksd, @Param("c") String c, @Param("a") String a,@Param("d")String d,@Param("f")String f);
+    public List<Keshidetail> select_mssql1(@Param("ksd") Keshidetail ksd, @Param("c") String c, @Param("a") String a,@Param("d")String d,@Param("f")String f);
 
     public List<Keshidetail> select1(@Param("ksd") Keshidetail ksd, @Param("c") String c, @Param("a") String a, @Param("b") String b);
     public List<Keshidetail> select1_mssql(@Param("ksd") Keshidetail ksd, @Param("c") String c, @Param("a") String a, @Param("b") String b);
