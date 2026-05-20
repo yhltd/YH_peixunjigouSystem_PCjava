@@ -23,7 +23,7 @@ public interface IncomeMapper {
 	public List<Shezhi> List(@Param("shezhi")Shezhi shezhi,@Param("c")String c);
 	public List<Shezhi> List_mssql_new(@Param("c")String c);
 	public List<Income> select(@Param("inc")Income inc, @Param("a")String a,@Param("b")String b,@Param("c")String c);
-	public List<Income> select_mssql(@Param("inc")Income inc, @Param("a")String a,@Param("b")String b,@Param("c")String c);
+	public List<Income> select_mssql_2(@Param("inc")Income inc, @Param("a")String a,@Param("b")String b,@Param("c")String c);
 
 
 }

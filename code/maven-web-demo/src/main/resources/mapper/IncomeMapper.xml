@@ -18,17 +18,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</if>
 	</select>
 
-	<select id="select_mssql" parameterType="Income" resultType="Income">
-		select *,
-		(SELECT ISNULL(SUM(money),0)FROM income where  rgdate  between #{a} and #{b}and Company =#{c} ) mall,
-		(SELECT ISNULL(SUM(paid),0)FROM income where  rgdate  between #{a} and #{b}and Company =#{c}) pall,
-		(SELECT ISNULL(SUM(money),0)FROM income WHERE msort='学费' and  rgdate  between #{a} and #{b}and Company =#{c}) xall,
-		(SELECT ISNULL(SUM(money),0)-ISNULL(SUM(paid),0) FROM income where  rgdate  between #{a} and #{b}and Company =#{c}) yall
-		from income where Company =#{c}
-		<if test="a != null and b != ''">
-			and rgdate  between #{a} and #{b}
+	<select id="select_mssql_2" parameterType="map" resultType="Income">
+		SELECT *,
+		(SELECT ISNULL(SUM(money),0) FROM income
+		WHERE rgdate BETWEEN #{a} AND #{b} AND Company = #{c}) AS mall,
+		(SELECT ISNULL(SUM(paid),0) FROM income
+		WHERE rgdate BETWEEN #{a} AND #{b} AND Company = #{c}) AS pall,
+		(SELECT ISNULL(SUM(money),0) FROM income
+		WHERE msort='学费' AND rgdate BETWEEN #{a} AND #{b} AND Company = #{c}) AS xall,
+		(SELECT ISNULL(SUM(money),0)-ISNULL(SUM(paid),0) FROM income
+		WHERE rgdate BETWEEN #{a} AND #{b} AND Company = #{c}) AS yall
+		FROM income
+		WHERE Company = #{c}
+		<if test="a != null and b != null">
+			AND rgdate BETWEEN #{a} AND #{b}
 		</if>
 	</select>
+
+
 
 
 	<select id="selectAll" parameterType="Income" resultType="Income">

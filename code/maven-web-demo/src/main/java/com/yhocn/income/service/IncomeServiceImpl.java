@@ -47,7 +47,7 @@ public  class IncomeServiceImpl implements IncomeService{
 			return dao.select(inc,a,b,c);
 		} else if ("mssql".equals(dataSourceType)) {
 			DynamicDataSourceHolder.setDataSource("dataSource4");
-			return dao.select_mssql(inc,a,b,c);
+			return dao.select_mssql_2(inc,a,b,c);
 		} else {
 			System.out.println("用户不存在");
 		}

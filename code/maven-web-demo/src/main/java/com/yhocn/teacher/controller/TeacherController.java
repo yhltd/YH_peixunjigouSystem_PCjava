@@ -184,7 +184,7 @@ public class TeacherController {
 		c=e.a;
 		boolean panduan = true;
 		String userNum = SessionUtil.getUserNum(session);
-		if(userNum != ""){
+		if(userNum != null && !userNum.isEmpty()){
 			int num = Integer.parseInt(userNum);
 			List<Teacher> teacherList = service.selectAll(t,c);
 			if(teacherList.size() >= num){
